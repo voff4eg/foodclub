@@ -1,0 +1,327 @@
+#b-comments {
+	margin-top: 50px;
+}
+#b-comment-form {
+	position: relative;
+}
+.b-comment-form__photo {
+	float: left;
+	width: 65px;
+	margin: 23px 15px 0 0;
+}
+.b-comment-form__photo .input_file {
+	height: 0;
+}
+.b-comment-form__photo.i-uploaded .input_file {
+	display: none;
+}
+.b-comment-form__photo.i-uploaded.i-hover .input_file {
+	display: block;
+}
+.b-comment-form__photo.i-uploaded {
+	padding-top: 7px;
+}
+.b-comment-form__photo.i-uploaded .b-comment-form__photo__img {
+	margin-top: -7px;
+}
+.b-comment-form__text {
+	float: left;
+	width: 594px;
+}
+
+#comment_form textarea, #reply_form textarea, div.comments_block div.edit_form textarea {
+	border:1px solid #c3c3c3;
+	width:100%;
+	height:50px;
+	padding:10px;
+	box-shadow:4px 4px 8px #c8c8c8 inset;
+	-webkit-box-shadow:4px 4px 8px #c8c8c8 inset; /* Safari, Chrome */
+	-moz-box-shadow:4px 4px 8px #c8c8c8 inset; /* Firefox */
+	-moz-border-radius:3px; /* Firefox */
+	-webkit-border-radius:3px; /* Safari, Chrome */
+	-khtml-border-radius:3px; /* KHTML */
+	border-radius:3px; /* CSS3 */
+	background:#ffffff;}
+#comment_form .textarea, #reply_form .textarea, .comments_block .edit_form .textarea {padding-right:22px;}
+#reply_form textarea {
+	width:100%;
+	//width:497px;}
+/*input.button*/
+#system_message .button {
+	height:auto;
+	border:none;
+	padding:11px;}
+#comment_form div.foodclub {
+	border:1px solid #edd5d5;
+	background:#faefef;}
+#comment_form div.comment div.icons {
+	position:relative;
+	border-top:1px solid #ffffff;}
+#comment_form div.foodclub div.icons {border-top-color:#faefef;}
+#comment_form div.comment div.icons div {position:absolute;}
+#comment_form div.comment div.icons div.pointer {
+	background:url(/images/comment/pointer.gif) no-repeat;
+	width:8px;
+	height:13px;
+	top:23px;
+	left:-8px;}
+#body #comment_form div.foodclub div.padding {padding:15px;}
+#comment_form div.comment div.padding div.text {display:block;}
+#comment_form div.foodclub div.icons div.pointer {background-image:url(/images/comment/pointer_foodclub.gif);}
+
+#sessId {display:none;}
+
+
+.b-more-button {
+	text-align: center;
+	margin-top: 15px;
+}
+.b-more-button.i-preload {
+	background: url(/images/preloader.gif) no-repeat center center;
+	height: 27px;
+}
+.b-more-button .b-button {
+	display: inline-block;
+	height: 27px;
+	width: 129px;
+	font-size: 8pt;
+	padding-top: 6px;
+	margin: 0;
+}
+.b-more-button.i-preload .b-button {
+	display: none;
+}
+
+.b-rc__item__content__text__img {
+	width: 65px;
+	height: 65px;
+	overflow: hidden;
+	float: left;
+	margin-right: 12px;
+	cursor: pointer;
+}
+.b-rc__item__content__text__img__type_block {
+	width: auto;
+	height: auto;
+	float: none;
+	margin-bottom: 15px;
+}
+.b-rc__item__content__text__content {
+	float: left;
+	width: 497px;
+}
+.b-rc__reply-block .b-rc__item__content__text__content {
+	width: 445px;
+}
+
+/*recipe comment*/
+.b-recipe-comments {
+	margin-top: 40px;
+}
+.b-recipe-comments .b-textarea-wrapper,
+#b-comment-form .b-textarea-wrapper {
+	margin: 0 16px;
+}
+.b-recipe-comments .b-textarea,
+#b-comment-form .b-textarea {
+	width: 100%;
+	height: 70px;
+	margin-left: -16px;
+	padding: 19px 15px;
+}
+.b-rc__heading {
+	color: #333333;
+	font-size: 20pt;
+	margin: 0 0 20px 0;
+}
+
+.b-rc__block, .b-rc__reply-block {
+	margin-left: 52px;
+}
+.b-rc__item {
+	margin-bottom: 20px;
+}
+/*.b-rc__item__icons {
+	position: relative;
+	border-top: 1px solid #ffffff;
+}
+.i-mine .b-rc__item__icons {
+	border-top-color:#f1f8e9;
+}
+.i-foodclub .b-rc__item__icons {
+	border-top-color:#faefef;
+}*/
+.b-rc__item__close {
+	position: absolute;
+	top: 0;
+	right: 0;
+	display: none;
+}
+.b-rc__item__pointer {
+	background: url("data:image/gif;base64,R0lGODlhCAANAJECAOvr6////QAAAAAAACH5BAEAAAIALAAAAAAIAA0AAAIXlA9xlooBH3Rtijqx1XRG5i3Vcn1iUAAAOw==") no-repeat;
+	width: 8px;
+	height: 13px;
+	position: absolute;
+	top: 23px;
+	left: -7px;
+}
+.i-mine .b-rc__item__pointer {
+	background-image: url("data:image/gif;base64,R0lGODlhCAANAJECANDivPH46QAAAAAAACH5BAEAAAIALAAAAAAIAA0AAAIXlA9xlooBH3Rtijqx1XRG5i3Vcn1iUAAAOw==");
+}
+.i-foodclub .b-rc__item__pointer {
+	background-image: url("data:image/gif;base64,R0lGODlhCAANAJECAO3V1frv7////wAAACH5BAEAAAIALAAAAAAIAA0AAAIXlA9xlooBH3Rtijqx1XRG5i3Vcn1iUAAAOw==");
+}
+.b-rc__item__author {
+	position: absolute;
+	top: 12px;
+	left: -54px;
+}
+.b-rc__admin-buttons {
+	position: absolute;
+	top: 16px;
+	right: 16px;
+}
+.b-rc__item__content {
+	border: 1px solid #ebebeb;
+	background-color: #fff;
+	padding: 10px 30px 10px 15px;
+	box-sizing: content-box;
+	-moz-box-sizing: content-box;
+	-webkit-box-sizing: content-box;
+	-khtml-box-sizing: content-box;
+}
+.i-mine .b-rc__item__content {
+	border-color: #d0e2bc;
+	background-color: #f1f8e9;
+}
+.i-foodclub .b-rc__item__content {
+	border-color: #edd5d5;
+	background-color: #faefef;
+	padding: 15px;
+}
+.b-rc__item__content__author {
+	margin: 2px 0 6px;
+	font-size: 8pt;
+}
+.b-rc__item__content__text {
+	display: block;
+	word-wrap: break-word;
+}
+
+.b-rc__props {
+	margin: 11px 0 5px 0;
+	height: 27px;
+	position: relative;
+}
+.b-rc__props__reply {
+	float: left;
+	margin-right: 19px;
+}
+.b-rc__props__like {
+	float: left;
+	margin-top: 3px;
+}
+.b-rc__props__date {
+	font-size: 7pt;
+	white-space: nowrap;
+	color: #999999;
+	text-align: right;
+	float: right;
+	margin: 14px -15px 0 0;
+}
+/*_recipe comment_*/
+
+/*reply form*/
+#b-rc__reply-form {
+	margin-top: 20px;
+	display: none;
+}
+.b-rc__reply-form__close {
+	position: absolute;
+	right: 0;
+	top: 0;
+}
+/*_reply form_*/
+
+/*edit form*/
+.b-rc-edit-form {
+	display: none;
+}
+.b-form__photo-block {
+	float: left;
+	margin: 17px 15px 0 0;
+	width: 65px;
+	position: relative;
+}
+.b-form__photo-block .b-admin-buttons {
+	display: none;
+	position: absolute;
+	top: 24px;
+	left: 25px;
+	z-index: 10;
+}
+.b-form__photo-block__img {
+	width: 65px;
+	height: 65px;
+	overflow: hidden;
+	background-color: #fff;
+}
+/*.b-rc-edit-form__photo.i-hover .b-rc-edit-form__photo__img img {
+	filter: alpha(opacity=35);
+	opacity: 0.35;
+	-moz-opacity: 0.35;
+	-khtml-opacity: 0.35;
+}*/
+.b-form__photo-block.i-hover .b-admin-buttons {
+	display: block;
+}
+.b-form__text-block {
+	float: left;
+	width: 542px;
+}
+.b-rc__reply-block .b-form__text-block {
+	width: 490px;
+}
+
+.b-rc__item.i-edit .b-rc__item__content {
+	background: #fff;
+	border: none;
+	padding: 0;
+}
+.b-rc__item.i-edit .b-rc__item__close,
+.b-rc__item.i-edit .b-rc-edit-form {
+	display: block;
+}
+.b-rc__item.i-edit .b-rc__item__content__text,
+.b-rc__item.i-edit .b-rc__item__pointer,
+.b-rc__item.i-edit .b-rc__item__author,
+.b-rc__item.i-edit .b-rc__admin-buttons,
+.b-rc__item.i-edit .b-rc__item__content__author,
+.b-rc__item.i-edit .b-rc__props {
+	display: none;
+}
+
+div.input_file.b-image-icon__input-file {
+	width: 100%;
+	height: 100%;
+	overflow: hidden;
+}
+div.input_file.b-image-icon__input-file .browse_button {
+	background-image: none;
+	width: 100%;
+	height: 100%;
+}
+div.input_file.b-image-icon__input-file input.text {
+	margin-left: -206px;
+	height: 42px !important;
+}
+div.input_file.b-image-icon__input-file .blocker {
+	width: 205px;
+	margin-left: -206px;
+	height: 42px;
+}
+div.input_file.b-image-icon__input-file .new_file_name,
+.b-form__photo-block .new_file_name {
+	display: none !important;
+}
+/*_edit form_*/

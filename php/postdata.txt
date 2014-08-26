@@ -1,0 +1,24 @@
+a:13:{s:5:"LOGIN";s:7:"voff4eg";s:8:"PASSWORD";s:8:"tetinu77";s:28:"BITRIX_SM_SOUND_LOGIN_PLAYED";s:1:"Y";s:15:"BITRIX_SM_LOGIN";s:7:"voff4eg";s:23:"BITRIX_SM_LAST_SETTINGS";s:0:"";s:9:"PHPSESSID";s:32:"fabd8c1b649cec4bda8fd79286870f2b";s:18:"BITRIX_SM_GUEST_ID";s:8:"18782040";s:20:"BITRIX_SM_LAST_VISIT";s:19:"13.12.2012 22:34:44";s:17:"BITRIX_SM_BANNERS";s:81:"6_65_230_20122012,7_60_3_20122012,6_56_6_20122012,6_66_1_20122012,1_51_3_20122012";s:6:"__utma";s:56:"267912729.244138861.1352218898.1355420795.1355427286.106";s:6:"__utmb";s:25:"267912729.1.10.1355427286";s:6:"__utmc";s:9:"267912729";s:6:"__utmz";s:70:"267912729.1352218898.1.1.utmcsr=(direct)|utmccn=(direct)|utmcmd=(none)";}
+a:2:{s:5:"LOGIN";s:6:"fhhuyf";s:8:"PASSWORD";s:5:"gghui";}
+a:2:{s:5:"LOGIN";s:5:"ggfdg";s:8:"PASSWORD";s:4:"cgfj";}
+a:2:{s:5:"LOGIN";s:5:"ggfdg";s:8:"PASSWORD";s:4:"cgfj";}
+a:2:{s:5:"LOGIN";s:7:"voff4eg";s:8:"PASSWORD";s:8:"tetinu77";}
+a:2:{s:5:"LOGIN";s:7:"voff4eg";s:8:"PASSWORD";s:8:"tetinu77";}
+a:2:{s:5:"LOGIN";s:7:"voff4eg";s:8:"PASSWORD";s:8:"tetinu77";}
+a:2:{s:5:"LOGIN";s:7:"voff4eg";s:8:"PASSWORD";s:8:"tetinu77";}
+a:2:{s:5:"LOGIN";s:7:"voff4eg";s:8:"PASSWORD";s:9:"tetinu-77";}
+a:2:{s:5:"LOGIN";s:7:"voff4eg";s:8:"PASSWORD";s:9:"tetinu-77";}
+a:2:{s:5:"LOGIN";s:7:"voff4eg";s:8:"PASSWORD";s:8:"tetinu77";}
+a:2:{s:5:"LOGIN";s:7:"voff4eg";s:8:"PASSWORD";s:8:"tetinu77";}
+a:2:{s:5:"LOGIN";s:4:"ghgg";s:8:"PASSWORD";s:3:"ghb";}
+a:2:{s:5:"LOGIN";s:4:"ghgg";s:8:"PASSWORD";s:3:"ghb";}
+a:2:{s:5:"LOGIN";s:7:"voff4eg";s:8:"PASSWORD";s:8:"tetinu77";}
+a:2:{s:5:"LOGIN";s:7:"voff4eg";s:8:"PASSWORD";s:8:"tetinu77";}
+a:2:{s:5:"LOGIN";s:7:"voff4eg";s:8:"PASSWORD";s:8:"tetinu77";}
+a:2:{s:5:"LOGIN";s:7:"voff4eg";s:8:"PASSWORD";s:8:"tetinu77";}
+a:2:{s:5:"LOGIN";s:7:"voff4eg";s:8:"PASSWORD";s:8:"tetinu77";}
+a:10:{s:6:"__utma";s:55:"267912729.298330941.1333313328.1355765870.1355771621.81";s:6:"__utmz";s:114:"267912729.1336126528.50.2.utmcsr=foodclub-ru.livejournal.com|utmccn=(referral)|utmcmd=referral|utmcct=/710944.html";s:18:"BITRIX_SM_GUEST_ID";s:8:"18715878";s:20:"BITRIX_SM_LAST_VISIT";s:19:"17.12.2012 22:13:39";s:17:"BITRIX_SM_BANNERS";s:98:"6_65_44_24122012,7_60_39_24122012,6_56_37_24122012,6_66_5_19122012,1_51_3_18122012,6_42_4_23122012";s:15:"BITRIX_SM_LOGIN";s:7:"voff4eg";s:9:"PHPSESSID";s:32:"32c0c68cf3800696e35689a345e68c86";s:6:"__utmc";s:9:"267912729";s:28:"BITRIX_SM_SOUND_LOGIN_PLAYED";s:1:"Y";s:6:"__utmb";s:25:"267912729.1.10.1355771621";}
+a:13:{s:5:"LOGIN";s:4:"test";s:8:"PASSWORD";s:6:"111222";s:5:"EMAIL";s:17:"voff4eg@twinpx.ru";s:6:"__utma";s:55:"267912729.298330941.1333313328.1355765870.1355771621.81";s:6:"__utmz";s:114:"267912729.1336126528.50.2.utmcsr=foodclub-ru.livejournal.com|utmccn=(referral)|utmcmd=referral|utmcct=/710944.html";s:18:"BITRIX_SM_GUEST_ID";s:8:"18715878";s:20:"BITRIX_SM_LAST_VISIT";s:19:"17.12.2012 22:14:13";s:17:"BITRIX_SM_BANNERS";s:98:"6_65_44_24122012,7_60_39_24122012,6_56_37_24122012,6_66_5_19122012,1_51_3_18122012,6_42_4_23122012";s:15:"BITRIX_SM_LOGIN";s:7:"voff4eg";s:9:"PHPSESSID";s:32:"32c0c68cf3800696e35689a345e68c86";s:6:"__utmc";s:9:"267912729";s:28:"BITRIX_SM_SOUND_LOGIN_PLAYED";s:1:"Y";s:6:"__utmb";s:25:"267912729.1.10.1355771621";}
+a:13:{s:5:"LOGIN";s:4:"test";s:8:"PASSWORD";s:6:"111222";s:5:"EMAIL";s:17:"voff4eg@twinpx.ru";s:6:"__utma";s:55:"267912729.298330941.1333313328.1355765870.1355771621.81";s:6:"__utmz";s:114:"267912729.1336126528.50.2.utmcsr=foodclub-ru.livejournal.com|utmccn=(referral)|utmcmd=referral|utmcct=/710944.html";s:18:"BITRIX_SM_GUEST_ID";s:8:"18715878";s:20:"BITRIX_SM_LAST_VISIT";s:19:"17.12.2012 22:20:47";s:17:"BITRIX_SM_BANNERS";s:98:"6_65_44_24122012,7_60_39_24122012,6_56_37_24122012,6_66_5_19122012,1_51_3_18122012,6_42_4_23122012";s:15:"BITRIX_SM_LOGIN";s:7:"voff4eg";s:9:"PHPSESSID";s:32:"32c0c68cf3800696e35689a345e68c86";s:6:"__utmc";s:9:"267912729";s:28:"BITRIX_SM_SOUND_LOGIN_PLAYED";s:1:"Y";s:6:"__utmb";s:25:"267912729.1.10.1355771621";}
+a:2:{s:5:"LOGIN";s:7:"voff4eg";s:8:"PASSWORD";s:8:"tetinu77";}
+a:14:{s:5:"LOGIN";s:4:"test";s:8:"PASSWORD";s:6:"111222";s:5:"EMAIL";s:17:"voff4eg@twinpx.ru";s:6:"__utma";s:56:"267912729.298330941.1333313328.1357672485.1357718524.151";s:6:"__utmz";s:114:"267912729.1336126528.50.2.utmcsr=foodclub-ru.livejournal.com|utmccn=(referral)|utmcmd=referral|utmcct=/710944.html";s:18:"BITRIX_SM_GUEST_ID";s:8:"19076453";s:20:"BITRIX_SM_LAST_VISIT";s:19:"09.01.2013 11:02:11";s:17:"BITRIX_SM_BANNERS";s:84:"6_65_214_16012013,6_56_177_16012013,6_42_24_15012013,1_51_3_12012013,6_66_5_12012013";s:15:"BITRIX_SM_LOGIN";s:7:"voff4eg";s:28:"BITRIX_SM_SOUND_LOGIN_PLAYED";s:1:"Y";s:23:"BITRIX_SM_LAST_SETTINGS";s:0:"";s:6:"__utmc";s:9:"267912729";s:9:"PHPSESSID";s:32:"2f248696a811c187d42c78c0e995c15b";s:6:"__utmb";s:25:"267912729.2.10.1357718524";}

@@ -1,0 +1,234 @@
+/*Top_layers*/
+#search_helper {
+	background:#ffffff;
+	position:absolute;
+	top:0;
+	left:0;
+	width:100%;
+	display:block;
+	z-index:61;}
+#search_helper div.body {
+	width:900px;
+	margin:0 auto;}
+#search_helper div.menu {
+	padding:31px 0 36px 0;
+	background:url(/images/search_border.gif) repeat-x left bottom;}
+#search_helper div.menu div.item {
+	float:left;
+	padding-right:200px;
+	padding-top:11px;}
+#search_helper div.menu div.item a {
+	text-decoration:none;
+	font-family:Arial, serif;
+	display:inline;}
+#search_helper div.menu div.item span {
+	display:none;
+	font-size:21pt;
+	font-family:Georgia, Times, serif;
+	color:#333333;}
+#search_helper div.menu div.act a {display:none;}
+#search_helper div.menu div.act span {display:inline;}
+#search_helper div.menu div.act {
+	padding-top:0;
+	padding-right:200px;}
+#search_helper div.menu div.right {
+	float:right;
+	padding-right:0;}
+
+#search_helper div.search_blocks {margin:20px 0 30px 0;}
+#search_helper div.search_blocks div.column {
+	float:left;
+	width:200px;
+	padding-right:33px;}
+#search_helper div.search_blocks div.right {
+	float:right;
+	padding-right:0;}
+#search_helper div.search_blocks div.item {
+	background:#666666;
+	margin-bottom:10px;}
+#search_helper div.search_blocks div.item img {
+	display:block;
+	margin-bottom:12px;}
+#search_helper div.search_blocks div.item h3 {
+	color:#9a9a9a;
+	margin:-5px 0 6px 15px;}
+#search_helper div.search_blocks div.item ul {
+	background:#666666;
+	padding:0 0 20px 15px;
+	margin:0;}
+#search_helper div.search_blocks div.item li {
+	list-style-type:none;
+	padding-bottom:7px;}
+#search_helper div.search_blocks div.item a {
+	color:#ffffff;
+	font-size:10pt;}
+#search_helper div.search_blocks div.item a:hover {color:#ffffff;}
+
+#search_helper div.random_dish {
+	text-align:center;
+	margin:30px 0;}
+#search_helper div.slide_up_button div {
+	background:url(/images/search_border.gif) repeat-x left top;
+	height:1px;}
+#search_helper div.slide_up_button {
+	height:75px;
+	background:url(/images/slide_up.gif) no-repeat center center;
+	cursor:pointer;}
+
+#h_helper {display:block;}
+#h_ingredients {display:none;}
+#h_dishes {display:none;}
+#h_cuisines {display:none;}
+
+#i_have_list {
+	float:left;
+	width:200px;}
+#i_have_list div.bg {
+	background:#666666;
+	padding:15px 18px 30px 18px;}
+#i_have_list h2 {color:#cccccc;}
+#i_have_list h2.stage_helper {display:none;}
+#i_have_dash {
+	text-align:center;
+	color:#cccccc;}
+#i_have_list table {
+	margin-top:7px;
+	width:164px;}
+#i_have_list table td {
+	background:url(/images/i_have_dots.gif) repeat-x 0 bottom;
+	vertical-align:bottom;
+	padding-top:8px;}
+#i_have_list table td span {
+	background:#666666;
+	color:#ffffff;
+	font-size:10pt;}
+#i_have_list table td.icon {
+	width:15px;
+	background:none;
+	padding-left:5px;}
+#i_have_list table td.icon a.delete {
+	display:block;
+	font-size:0;
+	width:9px;
+	height:9px;
+	background:url(/images/icons/delete_i_have.gif) no-repeat 0 0;}
+#i_have_list table td.icon a.hover {background-position:0 -9px;}
+#i_have_button {
+	text-align:center;
+	margin-top:10px;
+	height:38px;
+	background:url(/images/pink_button_bg.gif) repeat-x 0 0;
+	color:#ffffff;
+	font-size:18pt;
+	font-family:Georgia, Times, serif;
+	cursor:pointer;
+	padding-top:11px;}
+#stage_button {
+	text-align:center;
+	margin-top:10px;
+	height:38px;
+	background:url(/images/pink_button_bg.gif) repeat-x 0 0;
+	color:#ffffff;
+	font-size:18pt;
+	font-family:Georgia, Times, serif;
+	cursor:pointer;
+	padding-top:11px;
+	display:none;}
+
+#i_have_ingredients {
+	float:left;
+	padding-left:10px;}
+
+#i_have_ingredients_group {
+	float:left;
+	width:192px;
+	background:#f9f9f9;}
+	#i_have_ingredients_group ul {
+		margin:14px;}
+	#i_have_ingredients_group ul li {
+		list-style-type:none;}
+	#i_have_ingredients_group * {
+		font-size:9pt;
+		text-decoration:none;}
+	#i_have_ingredients_group span {
+		display:none;
+		color:#333333;}
+	#i_have_ingredients_group a {display:inline;}
+	#i_have_ingredients_group li.act span {display:inline;}
+	#i_have_ingredients_group li.act a {display:none;}
+#i_have_ingredients_list {
+	float:right;
+	width:486px;
+	background:#f9f9f9;}
+	#i_have_ingredients_list h2 {
+		color:#999999;
+		margin:8px 0 0 10px;}
+	#i_have_ingredients_list ul {
+		margin:14px 14px 14px 40px;}
+	#i_have_ingredients_list ul li {
+		list-style-type:none;
+		padding-bottom:1px;}
+	#i_have_ingredients_list a {
+		font-size:9pt;
+		text-decoration:none;}
+	#i_have_ingredients_list li.selected {list-style-image:url(/images/marker_black.gif);}
+	#i_have_ingredients_list li.selected a {color:#000000;}
+	#i_have_ingredients_list li.selected a:hover {color:#666666;}
+/*_Top_layers_*/
+
+/*Search*/
+#helper_smartsearch {
+	width:668px;
+	height:40px;
+	font-family:Georgia, Times, serif;
+	font-size:22pt;
+	padding:4px 10px 3px 10px;
+	color:#333333;
+	line-height:35px;}
+#i_have_ingredients div.search_field {margin-bottom:10px;}
+#i_have_ingredients div.search_field div.search_input {}
+
+#i_have_ingredients .b-form-field__placeholder__text {
+	color: #333333;
+	font-family: Georgia,Times,serif;
+	font-size: 22pt;
+	line-height: normal;
+	padding-top: 8px;
+	padding-left: 12px;
+}
+
+#i_have_ingredients div.search_field div.search_list {position:relative;}
+#i_have_ingredients div.search_field div.search_list ul {
+	position:absolute;
+	top:0;
+	left:0;
+	background-color:#ffffff;
+	border-left:1px solid #c3c3c3;
+	border-right:1px solid #c3c3c3;
+	border-bottom:1px solid #c3c3c3;
+	border-top:none;
+	width:688px;
+	display:none;
+	padding:9px 0 10px 0;
+	margin:0;}
+#i_have_ingredients div.search_field div.search_list li {
+	list-style-type:none;
+	cursor:default;
+	margin:1px 2px;
+	padding:5px 6px 5px 6px;
+	overflow:hidden;
+	font-size:10pt;
+	color:#990000;}
+#i_have_ingredients div.search_field div.search_list li.hover {
+	background-color:#666666;
+	color:#ffffff;}
+/*_Search_*/
+
+/*Stages*/
+#search_helper.stage_helper {}
+#search_helper.stage_helper div.menu {display:none;}
+#search_helper.stage_helper #i_have_list h2 {display:none;}
+#search_helper.stage_helper #i_have_list h2.stage_helper {display:block;}
+#search_helper.stage_helper #i_have_button {display:none;}
+#search_helper.stage_helper #stage_button {display:block;}
+/*_Stages_*/

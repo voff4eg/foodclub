@@ -1,0 +1,421 @@
+.b-personal-page {}
+
+.b-personal-page__intro {
+	background-color: #f6f6f6;
+	padding: 0 6px 6px 6px;
+	color: #333;
+	margin-bottom: 22px;
+}
+.b-personal-page__intro__ill {
+	height: 135px;
+	background-repeat: repeat;
+	background-position: center center;
+	background-size: 100% auto;
+	margin: 0 -6px;
+}
+.b-personal-page__intro__ill.i-progress {
+	background: url("/images/circular-preloader-grey.gif") no-repeat center center;
+	background-size: auto auto;
+}
+.b-personal-page__intro__ill.i-progress .i-relative {
+	display: none;
+}
+.b-personal-page__intro__ill__button {
+	position: absolute;
+	top: 48px;
+	left: 460px;
+	overflow: hidden;
+	background: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACcAAAAnCAYAAACMo1E1AAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAhVJREFUeNrcmLtKA0EUhjdBJIJE7SwUCwVRU6QRbxAvIbHKe4ggwUKLPEAKtUnh5S0UrC1iYUiaWBhB0CZJYadGQU2R8T9ydllywczuZnfwhy9LsjNzfs5eMuf4hBCaBY2ADbAGZsE0GARD4A18gAdwD7LgCrxIRyFzEmyCc/Al5ETjL3i+r9t43ZpaAgXhjAq8nm1zAXAMGsJZNXjdgFVz46Aoeqsix5EyNwPKwh2VOV6LD1+bp3UM5PjolqpgiY+G/E2DAuDSZWN6Qi45fkdzRyCseaMwxzdkvqyL4IZ+07wTmVnh28owR4byYF7zXnlOlHFZ44oYIy2AmNnclqaWtvXLSn/iz6BfIXN1MEqZiypmTGM/0T58RGRmJfdTliNmDtIywyOUuZCmpkKUuSkrM1N7ya7Hpg8zVkJM+nn3qqKGyVywFytbzJZZQTJXc9qI/t2mwZqfCxLbxhwyZNYrmXt0OmMO6Yme1juw3usn1oJKZO4a7Hhww/+lrJ8L3rpir5H6ry8uJs6FWiI/xpbpTLHMnai6Ey7whtPIHDlM8tFLUfzddtVXTk+nhzrlIqul+iIN8EkvysNbsAw+O9WtdCLRXHm7VPEnzMbamdMHUjVWcclYheNVZZqHbnWZJv5df665s5l3yBits+xk21Unxr1d2Z7wN8+Ly8Tz2eimU727CuZM3XTa8r8z1E0v2emm/wgwABHH3vp6iv77AAAAAElFTkSuQmCC") no-repeat 0 0;
+	width: 39px;
+	height: 39px;
+	display: inline-block;
+	z-index: 3;
+}
+.b-personal-page__intro__ill__type_custom .b-personal-page__intro__ill__button {
+	visibility: hidden;
+}
+.b-personal-page__intro__ill__type_custom.i-hover .b-personal-page__intro__ill__button {
+	visibility: visible;
+}
+.b-personal-page__ill__file {
+	cursor: pointer;
+    direction: ltr;
+    font-size: 23px;
+    margin: 0;
+    opacity: 0;
+	filter:alpha(opacity=0);
+	-moz-opacity:0;
+	-khtml-opacity: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+    transform: translate(-300px, 0px) scale(4);
+}
+.b-personal-page__intro__ill__background {
+	width: 960px;
+	height: 135px;
+	background-repeat: repeat;
+	background-position: center center;
+	background-size: 200% auto;
+	position: absolute;
+	top: 0;
+	left: 0;
+	z-index: 1;
+}
+.b-personal-page__intro__ill__pic {
+	width: 960px;
+	height: 135px;
+	background-repeat: no-repeat;
+	background-position: center center;
+	position: absolute;
+	top: 0;
+	left: 0;
+	z-index: 2;
+}
+
+.b-personal-page__intro__ill__error-message {
+	position: absolute;
+	top: 58px;
+	left: 510px;
+	z-index: 3;
+	font-family: Georgia, "Times New Roman", Times, serif;
+	font-style: italic;
+	font-size: 8pt;
+	color: #ff0000;
+	background-color: #fff;
+	display: none;
+}
+.i-hover .b-personal-page__intro__ill__error-message {
+	display: block;
+}
+
+
+.b-personal-page__intro__card {
+	float: left;
+}
+
+.b-personal-card {}
+.b-personal-card__pic {
+	position: relative;
+	float: left;
+	display: inline;
+	width: 110px;
+	height: 110px;
+	margin-right: 10px;
+	margin-left: 5px;
+	z-index: 10;
+}
+.b-personal-card__pic__link {
+	-moz-border-radius: 55px;
+	-webkit-border-radius: 55px;
+	border-radius: 55px;
+	display: block;
+	border: 5px solid #fff;
+	position: absolute;
+	margin-top: -15px;
+	z-index: 10;
+}
+.b-personal-card__pic__image {
+	-moz-border-radius: 50px;
+	-webkit-border-radius: 50px;
+	-khtml-border-radius: 50px;
+	border-radius: 50px;
+	display: block;
+}
+.b-personal-card__info {
+	float: left;
+	width: 450px;
+}
+.b-personal-card__name {
+	margin: 25px 0 16px;
+	font-size: 22pt;
+}
+.b-personal-card__name__first {}
+.b-personal-card__name__patronymic {
+	font-size: 10pt;
+	margin-top: -3px;
+}
+.b-personal-card__position {
+	font-size: 9pt;
+	margin-bottom: 19px;
+}
+.b-personal-card__town {
+	font-size: 8pt;
+	margin-bottom: 4px;
+}
+.b-personal-card__date {
+	font-size: 8pt;
+	margin-bottom: 4px;
+}
+.b-personal-card__age {
+	font-size: 8pt;
+	margin-bottom: 15px;
+}
+
+.b-personal-page__intro__achievements {
+	float: right;
+	max-width: 330px;
+}
+.b-achievements {
+	font-size: 9px;
+	white-space: nowrap;
+	margin-right: -20px;
+	padding: 27px 32px 20px 0;
+}
+.b-achievements__item {
+	display: inline-block;
+	text-align: center;
+	font-family: Georgia, "Times New Roman", Times, serif;
+	line-height: 1;
+	margin-right: 20px;
+	vertical-align: top;
+}
+.b-achievements__item__num {
+	display: inline-block;
+	background: url("data:image/gif;base64,R0lGODlhAQACAIAAAP///+bm5iH5BAAAAAAALAAAAAABAAIAAAICDAoAOw==") repeat-x 0 bottom;
+	font-size: 18pt;
+	padding-bottom: 9px;
+}
+.b-achievements__item__num__link,
+a.b-achievements__item__num__link:hover {
+	color: #333;
+}
+.b-achievements__item__title {
+	display: inline-block;
+	background: url("data:image/gif;base64,R0lGODlhAQACAIAAAP///+bm5iH5BAAAAAAALAAAAAABAAIAAAICDAoAOw==") repeat-x 0 0;
+	font-size: 8pt;
+	padding-top: 6px;
+}
+.b-achievements__item__br {
+	display: block;
+	width: 1px;
+	height: 0px;
+	font-size: 0;
+	margin-top: -2px;
+	//margin-bottom: -1px;
+}
+.b-achievements__items {
+	margin-bottom: 16px;
+}
+.b-achievements__summ {
+	text-align: center;
+}
+.b-achievements__summ .b-achievements__item__num {
+	font-weight: bold;
+}
+
+.b-personal-page__menu {
+	font-size: 10pt;
+	font-family: Georgia, "Times New Roman", Times, serif;
+	overflow: hidden;
+	margin: 0 -33px 32px 0;
+}
+.b-personal-page__menu__item {
+	list-style-type: none;
+	float: left;
+	margin: 0 26px 0 7px;
+}
+.b-personal-page__menu__item.i-disable {
+	color: #999;
+}
+.b-personal-page__menu__item__link {}
+
+.b-personal-page__heading {
+	font-weight: bold;
+}
+
+.b-hr-bg {
+	background: url("data:image/gif;base64,R0lGODlhAQABAIAAAObm5gAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==") repeat-x scroll center center transparent;
+    margin: 0 0 20px 0;
+    text-align: center;
+}
+.b-hr-bg__content {
+	background: none repeat scroll 0 0 #fff;
+    display: inline-block;
+    padding: 0 8px;
+	color: #333;
+}
+
+.b-personal-page__text {
+	margin: 0 18px 30px;
+	font-family: Georgia, "Times New Roman", Times, serif;
+}
+
+.b-personal-page__about {
+	margin: -10px 0 40px 0;
+}
+.b-personal-page__about__text {
+	padding: 0 27px;
+	font-family: "Times New Roman", Times, serif;
+	font-size: 13.5pt;
+}
+.b-personal-page__web {
+	margin-bottom: 40px;
+}
+.b-personal-page__web__site {
+	font-size: 9pt;
+	text-align: center;
+	margin: -2px 0 21px;
+}
+.b-personal-page__web__networks {}
+
+.b-networks-detailed {
+	margin-bottom: -19px;
+}
+.b-networks-detailed__item {
+	display: inline-block;
+	padding: 5px 0 0 27px;
+	background: url(/images/networks-detailed.png) no-repeat 0 0;
+	color: #999;
+	font-size: 8pt;
+	margin: 0 20px 19px 0;
+	height: 15px;
+	width: 58px;
+	box-sizing: content-box;
+	-moz-box-sizing: content-box;
+	-webkit-box-sizing: content-box;
+	-khtml-box-sizing: content-box;
+}
+a.b-networks-detailed__item:hover {
+	color: #999;
+}
+.b-networks-detailed .i-facebook  {
+	background-position: 0 0;
+}
+.b-networks-detailed .i-vkontakte  {
+	background-position: 0 -60px;
+}
+.b-networks-detailed .i-twitter  {
+	background-position: 0 -120px;
+}
+.b-networks-detailed .i-yandex  {
+	background-position: 0 -180px;
+}
+.b-networks-detailed .i-livejournal  {
+	background-position: 0 -240px;
+}
+.b-networks-detailed .i-classmates  {
+	background-position: 0 -300px;
+}
+.b-networks-detailed .i-youtube  {
+	background-position: 0 -360px;
+}
+.b-networks-detailed .i-vimeo  {
+	background-position: 0 -420px;
+}
+
+.b-personal-page__entries {
+	margin-bottom: 40px;
+}
+
+.b-personal-page__badges {
+	border: 1px solid #e6e6e6;
+	padding: 0 25px 16px;
+	margin-bottom: 30px;
+}
+.b-personal-page__badges__heading {
+	margin: 0 0 15px 0;
+}
+.b-banner-h5 {
+	margin-top: -9px;
+	font-size: 9pt;
+	text-align: center;
+}
+.b-banner-h5__content {
+	background: #fff;
+	padding: 0 3px;
+	display: inline-block;
+	font-size: 9pt;
+}
+.b-badges-preview__list {
+	margin-right: -16px;
+}
+.b-badges-preview__list__item {
+	float: left;
+	margin: 0 16px 16px 0;
+}
+.b-personal-page__badges__all {
+	font-family: Georgia, "Times New Roman", Times, serif;
+	font-style: italic;
+	border-top: 1px solid #ecebeb;
+	margin-top: 4px;
+	font-size: 9pt;
+	padding-top: 18px;
+}
+
+.b-entries-list {}
+.b-entries-list__item {
+	text-align: center;
+	margin-bottom: 5px;
+}
+.b-entries-list__item__marker {
+	background: url("data:image/gif;base64,R0lGODlhBwAHAIABAAAAAP///yH5BAEAAAEALAAAAAAHAAcAAAIMjGEJq8sOA0SHJZkKADs=") no-repeat center 0;
+	height: 7px;
+	margin-bottom: 8px;
+}
+.b-entries-list__item__blog {
+	font-family: Georgia, "Times New Roman", Times, serif;
+	margin-bottom: 1px;
+	color: #000;
+	font-size: 8pt;
+}
+.b-entries-list__item__title {
+	font-family: Georgia, "Times New Roman", Times, serif;
+	font-size: 10pt;
+}
+
+/*all badges*/
+.b-balloon {
+	position: absolute;
+	bottom: -42px;
+	left: 0;
+	background: #f6f6f6;
+	-moz-border-radius: 3px;
+	-webkit-border-radius: 3px;
+	-khtml-border-radius: 3px;
+	border-radius: 3px;
+	box-shadow: 1px 2px 2px rgba(0,0,0,0.2);
+	-webkit-box-shadow: 1px 2px 2px rgba(0,0,0,0.2);
+	-moz-box-shadow: 1px 2px 2px rgba(0,0,0,0.2);
+	-khtml-box-shadow: 1px 2px 2px rgba(0,0,0,0.2);
+	padding: 18px;
+	width: 284px;
+	font-size: 9pt;
+	z-index: 11;
+}
+.b-balloon__pointer {
+	background: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAALCAYAAAByF90EAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAJdJREFUeNpi/Pbt238GCgAnJycjiGaCMSgxBGwQiODi4lIj1RCgHnNGRkZjIFYFGwRkMAPpN6QYBjIESP0F4k8gvSAzmIBhBBcgxjB0Q0A0yAyw14g1DJch8DAixjB8hqAYhM8wQoaAAK6oB0UAHxCLQGkGZEOghmJowAZAifQ3koYfQPwOlyH4XIRsETuU/ROXISAAEGAA1/lOgYyIkysAAAAASUVORK5CYII=") no-repeat 0 0;
+	width: 18px;
+	height: 11px;
+	position: absolute;
+	bottom: -10px;
+	left: 58px;
+}
+.b-balloon__close {
+	display: block;
+	width: 11px;
+	height: 11px;
+	position: absolute;
+	top: 0;
+	right: 0;
+	background: url("data:image/gif;base64,R0lGODlhCwALAJECAP///8zMzP///wAAACH5BAEAAAIALAAAAAALAAsAAAIVVI5oyQj8UgxT0ubweTVvCGrJggkFADs=") no-repeat 0 0;
+}
+.b-balloon__heading {
+	font-size: 13.5pt;
+	font-weight: bold;
+	margin-bottom: 10px;
+	color: #333;
+}
+.b-balloon__text {
+	margin-bottom: 15px;
+}
+.b-balloon__share {}
+.b-balloon__share__heading {}
+.b-balloon__share__item {}
+/*_all badges_*/
+
+/*foodshot*/
+.b-personal-page .b-foodshot-board {
+	width: 600px;
+}
+/*_foodshot_*/

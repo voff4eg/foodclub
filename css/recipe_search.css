@@ -1,0 +1,101 @@
+#top_search_list {
+	position: relative;
+	width: 100px;
+}
+#top_search_list ul {
+	list-style-type: none;
+	position: absolute;
+	top: 0;
+	left: 0;
+	z-index: 60;
+	margin: 0;
+	border: 1px solid #e0e0de;
+	border-top: none;
+	box-shadow: 0 0 8px #c8c8c8;
+	-webkit-box-shadow: 0 0 8px #c8c8c8;
+	-moz-box-shadow: 0 0 8px #c8c8c8;
+	display: none;
+	background-color: #ffffff;
+}
+#top_search_list li {
+	background-color: #ffffff;
+	border-bottom: 1px solid #eae1e1;
+	font-size: 9pt;
+	padding: 0;
+}
+#top_search_list li.heading {
+	background-color:#eeeeee;
+	border-top:1px solid #ffffff;
+	border-bottom:1px solid #ffffff;
+	padding:6px 0 5px 10px;
+	margin-top:-1px;
+	text-align: center;
+	color: #333333;
+	font-weight: bold;
+}
+#top_search_list li.heading:first-child {border-top:none;}
+#top_search_list li.heading div {position:relative;}
+#top_search_list li.heading div div {
+	position:absolute;
+	top:-13px;
+	right:10px;
+	font-size:7pt;}
+#top_search_list li.search_all {
+	background-color:#eeeeee;
+	border-top:1px solid #ffffff;
+	border-bottom:1px solid #eeeeee;
+	margin-top:-1px;}
+#top_search_list li.hover {background-color:#f9eaea;}
+#top_search_list li a {
+	font-size: 9pt;
+	text-decoration :none;
+	display: block;
+	padding: 4px 0 5px 0;
+}
+#top_search_list li a.hover, #top_search_list li a:hover {
+	background-color:#f9eaea;
+	color:#990000;
+}
+
+#top_search_list ul {
+	width: 412px;
+	padding: 9px;
+	box-sizing: content-box;
+	-moz-box-sizing: content-box;
+	-webkit-box-sizing: content-box;
+	-khtml-box-sizing: content-box;
+}
+
+.b-rs__item {}
+.b-rs__item__link {
+	display: block;
+	overflow: hidden;
+}
+.b-rs__item__image-wrapper {
+	float: left;
+	width: 50px;
+	height: 50px;
+	overflow: hidden;
+	margin-right: 6px;
+}
+.b-rs__item__image {}
+.b-rs__item__text {
+	float: left;
+	width: 250px;
+}
+.b-rs__item__info {
+	float: right;
+	width: 80px;
+}
+.b-rs__item__time {
+	font-size: 7pt;
+	color: #999;
+	display: block;
+	text-align: right;
+}
+.b-rs__item__nutrition {
+	font-size: 7pt;
+	color: #999;
+	display: block;
+	text-align: right;
+}

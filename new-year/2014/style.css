@@ -1,0 +1,152 @@
+.b-ny {}
+.b-ny__template {
+	text-align: center;
+}
+.b-ny__social {
+	position: absolute;
+	top: 20px;
+	left: 375px;
+}
+.b-ny__social__item {
+	margin: 0 10px;
+	float: left;
+}
+.b-ny__top-menu {
+	font-family: Georgia, "Times New Roman", Times, serif;
+	font-style: italic;
+	font-size: 9pt;
+	margin: 0 0 30px;
+	padding: 0;
+	overflow: hidden;
+}
+.b-ny__top-menu__item {
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+	display: none;
+}
+.b-ny__top-menu__item.b-nav-left {
+	display: block;
+	float: left;
+	background: url("data:image/gif;base64,R0lGODlhGQAxAIABAJkAAP///yH5BAEAAAEALAAAAAAZADEAAAJIjI+pB+venmSzxvouXnqn7lGhAo5leHrptmKtNZLxNyPvdEt5Vov9DukZgDzh0HhEEoNKZGDJcUJlzapxSrMKsTapV/v7XqUFADs=") no-repeat 0 0;
+}
+.b-ny__top-menu__item.b-nav-left a {
+	display: block;
+	padding: 0 10px 0 68px;
+	line-height: 49px;
+}
+.b-ny__top-menu__item.b-nav-right {
+	display: block;
+	float: right;
+	background: url("data:image/gif;base64,R0lGODlhGQAxAIABAJkAAP///yH5BAEAAAEALAAAAAAZADEAAAJIRI6pm8YPHZyN2iNv1DTz5X2VyIRkYJKpuH4t92rxNVt1d4K5ck/9tkP8HkNeEHUsjnZKYfIZbGKgTGpOioxaT9juVvVlHQMFADs=") no-repeat right 0;
+}
+.b-ny__top-menu__item.b-nav-right a {
+	display: block;
+	padding: 0 68px 0 10px;
+	line-height: 49px;
+}
+.b-ny__top-menu__item.i-active {}
+
+.b-ny__block {
+	background: url(/images/new_year/2014/bg.jpg) repeat 0 center;
+	border-top: 1px solid #dadada;
+}
+.b-ny__menu {
+	display: none;
+}
+.b-ny__menu__heading {
+	padding-bottom: 30px;
+}
+.b-ny__menu__heading h2 {
+	margin: 0;
+	color: #333;
+	position: absolute;
+	top: -18px;
+	left: 50%;
+}
+.b-ny__menu__heading span {
+	display: inline-block;
+	margin-left: -50%;
+	padding: 0 38px;
+	background: url(/images/new_year/2014/h2-bg.gif) repeat-x 0 0;
+}
+.b-ny__menu__intro {
+	font-size: 10pt;
+	color: #333;
+	width: 500px;
+	margin: 0 auto;
+	text-align: center;
+	margin-bottom: 40px;
+	line-height: 1.7;
+}
+.b-ny__menu__sub {}
+.b-ny__menu__sub__hr {
+	width: 400px;
+	height: 27px;
+	margin: 0 auto 10px;
+}
+.i-salads .b-ny__menu__sub__hr {
+	background: url(/images/new_year/2014/salads-hr.png) no-repeat center center;
+}
+.i-starters .b-ny__menu__sub__hr {
+	background: url(/images/new_year/2014/starters-hr.png) no-repeat center center;
+}
+.i-main-courses .b-ny__menu__sub__hr {
+	background: url(/images/new_year/2014/main-courses-hr.png) no-repeat center center;
+}
+.i-desserts .b-ny__menu__sub__hr {
+	background: url(/images/new_year/2014/desserts-hr.png) no-repeat center center;
+}
+.b-ny__menu__sub__heading {
+	text-align: center;
+	margin: 0 0 15px 0;
+	color: #333;
+}
+
+div.pages_recipes div.item {padding-bottom:10px;}
+div.pages_recipes {margin:20px 0 0 0;}
+div.pages_recipes div.item div.link {display:block;}
+div.pages_recipes div.photo {
+	float:left;
+	width:50px;
+	padding:0 12px 0 0;}
+div.pages_recipes div.big_photo {
+	position:relative;
+	display:none;}
+div.pages_recipes div.big_photo div {
+	position:absolute;
+	top:-3px;
+	left:-3px;
+	z-index:4;}
+div.pages_recipes h2 {
+	color:#333333;
+	margin:40px 0 15px;}
+
+div.recipes_blocks {
+	padding: 10px 5px 30px 5px;
+	text-align: center;
+}
+div.recipes_blocks h2 {
+	margin-bottom:20px;
+	color:#333333;}
+div.recipes_blocks p {margin:10px 0;}
+div.recipes_blocks div.item {
+	float:none;
+	display: inline-block;
+	vertical-align: top;
+	width:188px;
+	margin:0 0 5px 0;}
+div.recipes_blocks div.item h3 {
+	margin:10px 0;
+	font-size:10pt;}
+div.recipes_blocks div.item h3 a {font-size:10pt;}
+div.recipes_blocks div.item p {
+	font-size:10pt;
+	margin:0;}
+.recipe_list_item .photo {
+	padding: 8px;
+}
+
+.recipe_list_item .photo a {
+	vertical-align: top;
+}

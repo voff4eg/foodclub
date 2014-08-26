@@ -1,0 +1,134 @@
+<?
+require($_SERVER["DOCUMENT_ROOT"]."/bitrix/header.php");
+$APPLICATION->SetTitle("Title");
+
+if (CModule::IncludeModule("advertising")){ $strBanner = CAdvBanner::Show("right_banner"); }
+
+CModule::IncludeModule("blog");
+CModule::IncludeModule("socialnetwork");
+include($_SERVER['DOCUMENT_ROOT'].'/classes/factory.class.php');
+
+if(strpos($_REQUEST['place'], "pr_comment") !== false){
+    if($USER->IsAuthorized())
+    {
+        $UserId = IntVal($USER->GetId());
+    }
+    else 
+    {
+	    LocalRedirect("/auth/?backurl=/profile/comments/");
+    }
+} else {
+	$UserId = IntVal($_REQUEST['u']);
+	$rsUser = CUser::GetByID($UserId);
+	$arUser = $rsUser->Fetch();
+	
+	if(intval($arUser['PERSONAL_PHOTO']) > 0){
+		$rsAvatar = CFile::GetByID($arUser['PERSONAL_PHOTO']);
+		$arAvatar = $rsAvatar->Fetch();
+		$arAvatar['SRC'] = "/upload/".$arAvatar['SUBDIR']."/".$arAvatar['FILE_NAME'];
+	} else {
+		$arAvatar['SRC'] = "/images/avatar/avatar.jpg";
+	}
+}
+
+$APPLICATION->SetPageProperty("title", $arUser['LOGIN']." &mdash; комментарии пользователя на Foodclub");
+
+$rsComments = CBlogComment::GetList(Array("DATE_CREATE"=>"DESC"), Array("AUTHOR_ID"=>$UserId), false, Array("nPageSize"=>20), Array("ID", "POST_TEXT", "DATE_CREATE", "AUTHOR_ID", "POST_ID", "BLOG_ID"));
+if($rsComments->isNavPrint()){
+	$NavString = $rsComments->GetPageNavStringEx($navComponentObject, "Рецепты", "blogs", "N");
+}
+while ($Item = $rsComments->GetNext()) {
+	$Comments[ $Item['ID'] ] = $Item;
+	$BlogsId[] = $Item['BLOG_ID'];
+	$PostsId[] = $Item['POST_ID'];
+}
+$BlogsId = array_unique($BlogsId);
+$BlogsId = array_values($BlogsId);
+
+$PostsId = array_unique($PostsId);
+$PostsId = array_values($PostsId);
+
+/*
+ * Получение id групп в социальных сетях
+ * $SocNetBlogs - массив, в котором - ключ:id блога, значение:id группы
+ */
+$rsBlogs = CBlog::GetList(Array(), Array("ID"=>$BlogsId), false, false);
+while ($Blog = $rsBlogs->GetNext()) {
+	$SocNetBlogs[ $Blog['ID'] ] = $Blog['SOCNET_GROUP_ID'];
+}
+
+/*
+ * Получение названий групп социальных сетей
+ */
+$rsSocNet = CSocNetGroup::GetList(Array(), Array('ID'=>array_values($SocNetBlogs)), false, false, Array('ID', 'NAME'));
+while($SocNet = $rsSocNet->GetNext()){
+	$SocNetName[ $SocNet['ID'] ] = $SocNet;
+}
+
+/*
+ * Получение названий топиков
+ */
+$rsTopics = CBlogPost::GetList(Array("DATE_CREATE"=>"DESC"), Array("ID"=>$PostsId, "PUBLISH_STATUS" => BLOG_PUBLISH_STATUS_PUBLISH,), false, false);
+while ($Item = $rsTopics->GetNext()) {
+	$TopicsName[ $Item['ID'] ] = $Item;
+}
+
+?>
+<div id="content">
+	<div id="text_space" class="comments_list">
+	<?if(strpos($_REQUEST['place'], "pr_comment") !== false){?>
+		<h1>Мои комментарии</h1>
+	<?} else {?>
+		<div class="author_bar" style="margin-bottom: 20px;">
+			<div class="author"><div class="photo" style="padding-top:0;"><a href="/profile/<?=$UserId?>/"><img src="<?=$arAvatar['SRC']?>" width="100" height="100" alt="<?=$arUser['LOGIN']?>"></a></div><h1><a href="/profile/<?=$UserId?>/"><?=$arUser['LOGIN']?></a></h1></div>
+			<div class="menu"><a href="/profile/<?=$UserId?>/recipes/">Рецепты</a><a href="/profile/<?=$UserId?>/topics/">Записи</a><span>Комментарии</span><a href="/profile/<?=$UserId?>/opinions/">Отзывы</a><a href="/profile/<?=$UserId?>/favorites/">Избранные рецепты</a></div>
+			<div class="clear"></div>
+		</div>
+	<?}?>
+<?if(count($Comments) > 0){?>
+		<ul class="comments_list">
+	<?foreach ($Comments as $Item){
+		$arDate = explode(" ", $Item['DATE_CREATE']);
+	?>
+		<li>
+			<p><?=$Item['POST_TEXT']?></p>
+			<p class="sign">
+				<?=CFactory::humanDate($arDate[0])?> к топику 
+				<a href="/blogs/group/<?=$SocNetBlogs[ $Item['BLOG_ID'] ]."/blog/".$Item['POST_ID']?>/">
+					<?=$TopicsName[ $Item['POST_ID'] ]['TITLE']?></a> в клубе 
+				<a href="/blogs/group/<?=$SocNetBlogs[ $Item['BLOG_ID'] ]?>/blog/">
+					<?=$SocNetName[ $SocNetBlogs[ $Item['BLOG_ID'] ] ]['NAME']?></a>
+			</p>
+		</li>
+	<?}?>
+		</ul>
+	<?if(isset($NavString)){echo $NavString;}?>
+<?} else {
+	if(strpos($_REQUEST['place'], "pr_comment") !== false){
+		?><h2>Вы не оставили ни одного комментария. Например, Вы можете <a href="/blogs/group/6/blog/21/">оставить</a> свое мнение о нашем сайте.<?
+	} else {
+		?><h2>У меня пока нет комментариев.<?
+	}
+}?>
+	</div>
+	<div id="banner_space">
+		<?
+		$rsRandomDoUKnow = CIBlockElement::GetList(array("rand"=>"asc"),array("IBLOCK_CODE"=>"do_u_know"),false,false,array("ID","PREVIEW_TEXT"));
+		if($arRandomDoUKnow = $rsRandomDoUKnow->Fetch()){?>
+		<div id="do-you-know-that" class="b-facts">
+			<div class="b-facts__heading">Знаете ли вы что:</div>
+			<div class="b-facts__content">
+				<div class="b-facts__item" data-id="<?=$arRandomDoUKnow["ID"]?>">
+					<?=$arRandomDoUKnow["PREVIEW_TEXT"]?>
+				</div>
+			</div>
+			<div class="b-facts__more">
+				<a href="#" class="b-facts__more__link">Еще</a>
+			</div>
+		</div>
+		<?}?>
+		<?if(strlen($strBanner) > 0){?><div class="banner"><?=$strBanner?></div><?}?>
+	</div>
+	<div class="clear"></div>
+</div>	
+<?require($_SERVER["DOCUMENT_ROOT"]."/bitrix/footer.php");?>

@@ -1,0 +1,49 @@
+.b-all-badges__list {}
+.b-all-badges__item {
+	display: block;
+	float: left;
+	width: 129px;
+	height: 190px;
+	margin: 0 16px 20px;
+}
+.b-all-badges__item__link {
+	display: inline-block;
+}
+.b-all-badges__item__image {
+	display: block;
+	text-align: center;
+	margin-bottom: 20px;
+}
+.b-all-badges__item__title {
+	display: block;
+	text-align: center;
+	font-family: Georgia, "Times New Roman", Times, serif;
+	font-size: 9pt;
+}
+.b-all-badges__balloon {}
+
+.b-balloon__share__heading {
+	display: inline-block;
+	vertical-align: top;
+	margin: 2px 5px 0 0;
+}
+.b-balloon__share__item {
+	display: inline-block;
+	vertical-align: top;
+	width: 20px;
+	height: 20px;
+	background: url(/images/networks-detailed.png) no-repeat 0 0;
+	margin: 0 5px 0 0;
+}
+.b-balloon__share__item.i-vkontakte {
+	background-position: 0 -60px;
+}
+.b-balloon__share__item.i-facebook {
+	background-position: 0 0;
+}
+.b-balloon__share__item.i-twitter {
+	background-position: 0 -120px;
+}
+.b-balloon__share__item.i-google {
+	background: none;
+}

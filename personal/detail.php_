@@ -1,0 +1,139 @@
+<?
+require($_SERVER["DOCUMENT_ROOT"]."/bitrix/header.php");
+
+if (CModule::IncludeModule("advertising")){ $strBanner = CAdvBanner::Show("right_banner"); }
+
+if($_REQUEST['place'] == "pr_show"){
+	$UserId = IntVal($USER->GetId());
+} else {
+	$UserId = IntVal($_REQUEST['u']);
+	if($UserId == $USER->GetId())
+	{
+	    LocalRedirect("/profile/");
+	}
+}
+
+$rsUser = $USER->GetByID($UserId);
+if($arUser = $rsUser->Fetch()){
+	
+	CModule::IncludeModule("socialnetwork");
+	$rsRel = CSocNetUserToGroup::GetList(Array(), Array("USER_ID"=>$UserId), false, false);
+	while($rs = $rsRel->GetNext()){
+		$Groups[] = CSocNetGroup::GetByID($rs['GROUP_ID']);
+	}
+	
+	$APPLICATION->SetPageProperty("title", $arUser['LOGIN']." &mdash; страница пользователя на Foodclub");
+	
+	$arMonth = Array("01"=>"января", "02"=>"февраля", "03"=>"марта", "04"=>"апреля",	"05"=>"мая", "06"=>"июня", "07"=>"июля", 
+					 "08"=>"августа", "09"=>"сентября", "10"=>"октября", "11"=>"ноября", "12"=>"декабря");
+	
+	if(intval($arUser['PERSONAL_PHOTO']) > 0){
+		$rsAvatar = CFile::GetByID($arUser['PERSONAL_PHOTO']);
+		$arAvatar = $rsAvatar->Fetch();
+		$arAvatar['SRC'] = "/upload/".$arAvatar['SUBDIR']."/".$arAvatar['FILE_NAME'];
+	} else {
+		$arAvatar['SRC'] = "/images/avatar/avatar.jpg";
+	}
+
+	?>
+	<div id="content">
+		<div id="text_space">
+			<div id="personal_page">
+			<?if($_REQUEST['place'] == "pr_show"){?><h1><?=$arUser['LOGIN']?><?if($USER->IsAdmin() || $USER->GetID() == $UserId){?><a href="/profile/edit/" class="edit"><img src="/images/icons/edit.gif" width="7" height="12" alt="" title="Редактировать личные данные"></a><?}?></h1><?}?>
+			<?if($_REQUEST['place'] == "pr_show"){?>
+				<div class="photo">
+					<img width="100" height="100" alt="<?=$arUser['LOGIN']?>" src="<?=$arAvatar['SRC']?>"/>
+				</div>
+			<?} else {?>	
+				<div class="author_bar">
+					<div class="author"><div class="photo" style="padding-top:0;"><img src="<?=$arAvatar['SRC']?>" width="100" height="100" alt="<?=$arUser['LOGIN']?>"></div><h1><?=$arUser['LOGIN']?></h1></div>
+					<div class="menu"><a href="/profile/<?=$UserId?>/recipes/">Рецепты</a><a href="/profile/<?=$UserId?>/topics/">Записи</a><a href="/profile/<?=$UserId?>/comments/">Комментарии</a><a href="/profile/<?=$UserId?>/opinions/">Отзывы</a><a href="/profile/<?=$UserId?>/favorites/">Избранные рецепты</a></div>
+	
+					<div class="clear"></div>
+				</div>			
+			<?}?>
+				<div class="info" style="padding-top: 20px;">
+				<?if(strlen($arUser['LAST_NAME']) > 0 || strlen($arUser['NAME']) > 0){?>
+					<div class="personal_info">
+						<h4>Имя, фамилия</h4>
+						<p><?=$arUser['NAME']." "?><?=$arUser['LAST_NAME']?></p>
+					</div>
+				<?}//if
+				if(intval($arUser["UF_RAITING"]) > 0):
+				?>
+				<div class="personal_info rating">
+					<h4>Рейтинг</h4>
+					<p><?=intval($arUser["UF_RAITING"])?></p>
+				</div>
+				<?
+				endif;
+				if(strlen($arUser['WORK_WWW']) > 0 && $arUser['WORK_WWW'] != "http://"){?>
+					<div class="personal_info">
+						<h4>Адрес домашней страницы</h4>
+						<p><noindex><a href='<?=( strpos($arUser['WORK_WWW'], "http://") !== false ? $arUser['WORK_WWW'] : "http://".$arUser['WORK_WWW'])?>' target='_blank'><?=$arUser['WORK_WWW']?></a></noindex></p>
+					</div>
+				<?}//if
+				if(!is_null($arUser['UF_ABOUT_SELF'])){?>
+					<div class="personal_info">
+						<h4>О себе</h4>
+						<p><?=$arUser['UF_ABOUT_SELF']?></p>
+					</div>
+				<?}//if?>
+				<?if(!is_null($arUser['UF_INTEREST'])){?>
+					<div class="personal_info">
+						<h4>Интересы</h4>
+						<p><?=$arUser['UF_INTEREST']?></p>
+	
+					</div>
+				<?}//if?>
+				<?if(strlen($arUser['PERSONAL_GENDER']) > 0){?>
+					<div class="personal_info">
+						<h4>Пол</h4>
+						<p><?if($arUser['PERSONAL_GENDER'] == "M"){?>Мужской<?} else {?>Женский<?}?></p>
+					</div>
+				<?}//if?>
+				<?if(!is_null($arUser['PERSONAL_BIRTHDAY'])){
+					$arDate = explode(".",$arUser['PERSONAL_BIRTHDAY']);
+					$strDate = date("j ".$arMonth[$arDate[1]]." Y", mktime(0, 0, 0, $arDate[1], $arDate[0], $arDate[2]));?>
+					<div class="personal_info">
+						<h4>Дата рождения</h4>
+						<p><?=$strDate?></p>
+					</div>
+				<?}//if?>
+				<?if(isset($Groups)){ $bFirst = true;?>
+					<div class="personal_info">
+						<h4>Состоит в</h4><p>
+					<?foreach($Groups as $Item){
+						if(!$bFirst){echo ", ";}else{$bFirst = false;}?><a href="/blogs/group/<?=$Item['ID']?>/blog/"><?=$Item['NAME']?></a><?
+					}?>
+					</p></div>
+				<?}//if?>
+				</div>
+				<div class="clear"></div>
+			</div>
+		</div>
+		<div id="banner_space">
+			<?
+			$rsRandomDoUKnow = CIBlockElement::GetList(array("rand"=>"asc"),array("IBLOCK_CODE"=>"do_u_know"),false,false,array("ID","PREVIEW_TEXT"));
+			if($arRandomDoUKnow = $rsRandomDoUKnow->Fetch()){?>
+			<div id="do-you-know-that" class="b-facts">
+				<div class="b-facts__heading">Знаете ли вы что:</div>
+				<div class="b-facts__content">
+					<div class="b-facts__item" data-id="<?=$arRandomDoUKnow["ID"]?>">
+						<?=$arRandomDoUKnow["PREVIEW_TEXT"]?>
+					</div>
+				</div>
+				<div class="b-facts__more">
+					<a href="#" class="b-facts__more__link">Еще</a>
+				</div>
+			</div>
+			<?}?>
+			<?if(strlen($strBanner) > 0){?><div class="banner"><?=$strBanner?></div><?}?>
+		</div>
+		<div class="clear"></div>
+	</div>
+	<?
+} else {
+	LocalRedirect("/auth/?backurl=/profile/");
+}
+require($_SERVER["DOCUMENT_ROOT"]."/bitrix/footer.php");?>

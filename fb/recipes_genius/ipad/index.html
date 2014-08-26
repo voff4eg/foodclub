@@ -1,0 +1,125 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1251" />
+<title>Recipe genius iPhone page</title>
+<style>
+body {
+	margin:0;
+	padding:0;
+	background:#ffffff;}
+#content {
+	width:500px;
+	height:757px;
+	cursor:pointer;
+	overflow:hidden;}
+#content img {display:none;}
+#content img.visible {display:block;}
+#button {
+	display:block;
+	width:142px;
+	height:48px;
+	position:absolute;
+	top:675px;
+	left:179px;}
+#switch {
+	text-align:center;
+	width:500px;
+	position:absolute;
+	top:19px;
+	left:0;}
+#switch a {
+	display:inline-block;
+	width:10px;
+	height:10px;
+	margin:0 3px;
+	background:url(switch.gif) no-repeat 0 0;}
+#switch a.active {background-position:-16px 0;}
+.relative {position:relative;}
+</style>
+</head>
+
+<body>
+<div id="content">
+	<div class="relative">
+		<div id="switch"></div>
+		<a target="_blank" href="http://itunes.apple.com/us/app/recipes-genius/id477962838?mt=8" id="button"></a>
+	</div>
+	<img src="1.jpg" width="500" height="757" alt="" class="visible" />
+	<img src="2.jpg" width="500" height="757" alt="" />
+	<img src="3.jpg" width="500" height="757" alt="" />
+	<img src="4.jpg" width="500" height="757" alt="" />
+	<img src="5.jpg" width="500" height="757" alt="" />
+	<img src="6.jpg" width="500" height="757" alt="" />
+	<img src="7.jpg" width="500" height="757" alt="" />
+</div>
+<script type="text/javascript">
+var content = document.getElementById("content"), button=document.getElementById("button"), switchDiv=document.getElementById("switch"), images=[], switches=[];
+for(var i=0; i<content.childNodes.length; i++) {
+	if(!content.childNodes[i].tagName || content.childNodes[i].tagName != "IMG") continue;
+	images.push(content.childNodes[i]);
+}
+
+for(i=0; i<images.length; i++) {
+	var aElem = document.createElement("A");
+	aElem.setAttribute("href", "#");
+	if(i == 0) {
+		aElem.className = "active";
+	}
+	aElem.onclick = function(e) {
+		switchImages(e);
+		return false;
+	};
+	
+	switchDiv.appendChild(aElem);
+	switches.push(aElem);
+}
+
+content.onclick = function() {
+	for(var i=0; i<switches.length; i++) {
+		switches[i].className = "";
+	}
+	
+	for(i=0; i<images.length; i++) {
+		if(images[i].className == "visible"){
+			images[i].className = "";
+			if(images[i+1]) {
+				images[i+1].className = "visible";
+				switches[i+1].className = "active";
+			}
+			else {
+				images[0].className = "visible";
+				switches[0].className = "active";
+			}
+			break;
+		}
+	}
+};
+for(var i=0; i<button.childNodes.length; i++) {
+	if(button.childNodes[i].tagName == "A") {
+		button.childNodes[i].onclick = function(e) {stopEvent(e);};
+	}
+}
+function stopEvent(e) {
+	if(!e) e = window.event;
+	if(e.stopPropagation) e.stopPropagation();
+	else e.cancelBubble = true;
+}
+function switchImages(event) {
+	event = event||window.event;
+	var target = event.target || event.srcElement,
+		current = 0;
+	for(var i=0; i<switches.length; i++) {
+		switches[i].className = "";
+		images[i].className = "";
+		if(switches[i] == target) {
+			current = i;
+		}
+	}
+	target.className = "active";
+	images[current].className = "visible";
+	stopEvent(event);
+}
+</script>
+</body>
+</html>

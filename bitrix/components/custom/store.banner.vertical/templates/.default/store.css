@@ -1,0 +1,119 @@
+.b-collection-block {
+	border: 1px solid #e6e6e6;
+	margin: 15px 0 0 0;
+}
+.b-collection-block__heading {
+	text-align: center;
+	margin-top: -15px;
+}
+.b-collection-block__heading__content {
+	background: #fff;
+	display: inline-block;
+	padding: 0 7px;
+	font-size: 14pt;
+	font-family: Georgia, "Times New Roman", Times, serif;
+	font-style: italic;
+}
+
+.b-store-block {
+	margin: 45px 0;
+}
+.b-store-block__content {
+	overflow: hidden;
+	padding: 18px 0;
+	margin: -8px 0 0 -1px;
+}
+.b-store-block__item {
+	float: left;
+	width: 178px;
+	border-left: 1px solid #e6e6e6;
+	padding: 0 30px;
+	box-sizing: content-box;
+	-moz-box-sizing: content-box;
+	-webkit-box-sizing: content-box;
+	-khtml-box-sizing: content-box;
+	text-align: center;
+	height: 330px;
+}
+.b-store-block__item__logo {
+	height: 30px;
+	overflow: hidden;
+	margin-bottom: 6px;
+	padding-top: 14px;
+}
+.b-store-block__item__photo {
+	height: 130px;
+	overflow: hidden;
+	margin-bottom: 15px;
+}
+.b-store-block__item__photo__link {}
+.b-store-block__item__title {
+	font-size: 8pt;
+	margin-bottom: 8px;
+}
+.b-store-block__item__price {
+	margin-bottom: 3px;
+}
+.b-store-block__item__button {}
+
+.b-price {
+	font-family: Georgia, "Times New Roman", Times, serif;
+}
+.b-price__num {
+	color: #333;
+	display: inline-block;
+	vertical-align: bottom;
+}
+.b-price__num__int {
+	display: inline-block;
+	vertical-align: top;
+	font-size: 18pt;
+}
+.b-price__num__fract {
+	display: inline-block;
+	vertical-align: top;
+	font-size: 12pt;
+}
+.b-price__unit {
+	color: #999;
+	display: inline-block;
+	vertical-align: bottom;
+	margin-bottom: 3px;
+}
+
+.b-button {
+	display: inline-block;
+}
+.b-button__size_M {
+	display: inline-block;
+	width: 97px;
+	padding: 6px 0 0 0;
+	height: 19px;
+	background: url(/images/buttons.png) no-repeat 0 -298px;
+	font-size: 8pt;
+	text-align: center;
+	text-decoration: none;
+	color: #666666;
+	box-sizing: content-box;
+	-moz-box-sizing: content-box;
+	-webkit-box-sizing: content-box;
+	-khtml-box-sizing: content-box;
+}
+.b-button__size_M:hover {background-position: 0 -326px;}
+.b-button__size_M:active {background-position: 0 -354px;}
+
+/*aside*/
+.b-store-block__type_aside .b-store-block__item {
+	float: none;
+	width: auto;
+	border-left: none;
+	border-bottom: 1px solid #e6e6e6;
+	padding-top: 40px;
+}
+.b-store-block__type_aside .b-store-block__content {
+	padding: 0 12px;
+	margin: -15px 0 -1px 0;
+}
+.b-store-block__type_aside .b-store-block__item__logo {
+	padding-top: 0;
+}

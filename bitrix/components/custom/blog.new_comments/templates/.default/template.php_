@@ -1,0 +1,24 @@
+<?if (!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED!==true)die();?>
+<h5 title='Последние комментарии'>Последние комментарии</h5>
+<ul>
+<?
+for($i = count($arResult);/*$i >= 0*/$i >= (count($arResult) -6);$i--){
+//foreach($arResult as $arComment){
+	$arComment = $arResult[$i];
+	?><li>
+	<?if(strlen($arComment["TEXT_FORMATED"]) > 0):?>
+		<a class="comment" href="/blogs/group/<?=$arComment['BLOG_SOCNET_GROUP_ID']?>/blog/<?=$arComment['POST_ID']?>/<?=$arComment['urlToComment']?>"><?=$arComment['TEXT_FORMATED']?></a>
+		<div class="info">
+			<a class="author" href="/profile/<?=$arComment['arUser']['ID']?>/"><?=$arComment['arUser']['LOGIN']?></a>
+			<span class="date"><?=$arComment['DATE_CREATE_FORMATED']?></span>
+		</div>
+	<?elseif(strlen($arComment["~PREVIEW_TEXT"]) > 0):?>
+		<a class="comment" href="/detail/<?=$arComment['PROPERTY_RECIPE_VALUE']?>/?ID=<?=$arComment['ID']?>#<?=$arComment['ID']?>"><?if(strlen($arComment['~PREVIEW_TEXT']) > 100){echo substr($arComment['~PREVIEW_TEXT'], 0 ,100)."...";}else{echo $arComment['~PREVIEW_TEXT'];}?></a>
+		<div class="info">
+			<a class="author" href="/profile/<?=$arComment["USER"]["ID"]?>/"><?=$arComment["USER"]["LOGIN"]?></a>
+			<span class="date"><?=$arComment['DATE_CREATE']?></span>
+		</div>
+	<?endif;?>
+	</li><? 
+}
+?></ul>

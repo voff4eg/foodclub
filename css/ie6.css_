@@ -1,0 +1,24 @@
+.subscription_list .submit {background:url(/images/ie6/buttons/save.gif) no-repeat 0 0;}
+
+#form div.button, #form div.button_authorization, #search_list_layer .button, #ingredients_list_layer .button, #authorization_layer div.button {background:url(/images/ie6/buttons/button_bg.gif) no-repeat 0 0;}
+
+#contest_sauce #bg1 {background:url(/images/contest/meat-wine_bg.jpg) no-repeat center -11px;}
+#contest_sauce h1 {display:none;}
+#contest_sauce .relative .prise1, #contest_sauce .relative .prise2, #contest_sauce .relative .sause_boat {background:none;}
+#contest_sauce .partners h2 {
+	margin:0 0 25px 0;
+	text-align:center;
+	width:auto;
+	height:auto;
+	background:none;
+	text-indent:0;
+	overflow:auto;}
+#contest_sauce .partners .torro_grill {background:url(/images/contest/sauce_partner.gif) no-repeat 0 0;}
+#contest_sauce .partners .meat_wine {background:url(/images/contest/sauce_partner.gif) no-repeat -125px -46px;}
+
+#recipe_search button {background:url(/images/ie6/buttons/search.gif) no-repeat 0 0;}
+#recipe_search button.hover {background-position:0 -43px;}
+#recipe_search button.active {background-position:0 -86px;}
+#iphone_link div.pic {background:url(/images/iphone/link_pic.gif) no-repeat 0 0;}
+#contest_sauce #iphone_link div.pic {background:url(/images/contest/link_pic.gif) no-repeat 0 0;}
+#top_search_list {border-top:1px solid #ffffff;}

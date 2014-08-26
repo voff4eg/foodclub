@@ -1,0 +1,31 @@
+<?if(!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED!==true)die();
+
+global $APPLICATION;
+
+$cp = $this->__component; // объект компонента
+
+if (is_object($cp)){
+
+	global $USER;
+	if($USER->IsAuthorized()){
+		$rsUser = $USER->GetByID($USER->GetID());
+		$arUser = $rsUser->Fetch();
+		$user["ID"] = $arUser["ID"];
+		$arResult["user"]["NAME"] = $arUser["NAME"];
+		$arResult["user"]["LAST_NAME"] = $arUser["LAST_NAME"];
+		if(intval($arUser["PERSONAL_PHOTO"]) > 0){
+			//$is_image = CFile::IsImage($arUser["PERSONAL_PHOTO"]);
+			//if($is_image === true){
+				$arUser["PERSONAL_PHOTO"] = CFile::GetFileArray($arUser["PERSONAL_PHOTO"]);
+				$arResult["user"]["PERSONAL_PHOTO"] = CFile::ResizeImageGet($arUser["PERSONAL_PHOTO"], array('width'=>"30",'height'=>30), BX_RESIZE_IMAGE_PROPORTIONAL, true);
+			//}
+		}
+
+		$cp->arResult['user'] = $arUser;
+		$cp->SetResultCacheKeys(array('user'));
+		// сохраним их в копии arResult, с которой работает шаблон
+		$arResult['user'] = $cp->arResult['user'];
+	}
+}
+	
+?>

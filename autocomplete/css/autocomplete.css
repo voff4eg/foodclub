@@ -1,0 +1,115 @@
+#recipe-search input {
+	background: #F9F9F9;
+	border: 1px solid #e6e6e6;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	-khtml-border-radius: 5px;
+	border-radius: 5px;
+	box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	font: italic 22pt Georgia, "Times New Roman", Times, serif;
+	float: left;
+	width: 313px;
+	height: 42px;
+    padding: 0 46px 1px 10px;
+}
+
+#recipe-search button {
+	background: url(http://www.foodclub.ru/images/buttons.png) no-repeat scroll 0 -722px transparent;
+    border: none;
+    cursor: pointer;
+    display: inline;
+    float: left;
+    height: 42px;
+    margin-left: 11px;
+    width: 65px;
+}
+#recipe-search button:hover {
+	background-position: 0 -765px;
+}
+#recipe-search button:active {
+	background-position: 0 -808px;
+}
+
+.recipe-autocomplete-suggestions {
+	clear: both;
+	position: relative;
+}
+
+.recipe-autocomplete-suggestions .list {
+	background:#fff;
+	box-sizing: border-box;
+	border: 1px solid #e0e0de;
+	border-top: none;
+    -moz-box-shadow: 0 0 8px #C8C8C8;
+    -webkit-box-shadow: 0 0 8px #C8C8C8;
+    box-shadow: 0 0 8px #C8C8C8;
+    left: 0;
+    list-style-type: none;
+    margin: 0;
+	padding: 0;
+    position: absolute;
+    top: 0;
+    width: 413px;
+    z-index: 60;
+}
+
+.recipe-autocomplete-suggestions .item {
+	background-color: #ffffff;
+	border-bottom: 1px solid #eae1e1;
+	font-size: 9pt;
+	padding: 0;
+}
+.recipe-autocomplete-suggestions .title {
+	background-color: #eeeeee;
+	border-top: 1px solid #ffffff;
+	border-bottom: 1px solid #ffffff;
+	padding: 6px 0 5px 10px;
+	margin-top: -1px;
+	cursor: default;
+}
+.recipe-autocomplete-suggestions .item:first-child {
+	border-top: none;
+}
+.recipe-autocomplete-suggestions .num {
+	font-size: 7pt;
+	float:right;
+	margin-right: 10px;
+	display: inline;
+}
+.recipe-autocomplete-suggestions .extra-link {
+	background-color: #eeeeee;
+	border-top: 1px solid #ffffff;
+	border-bottom: 1px solid #eeeeee;
+	margin-top: -1px;
+}
+.recipe-autocomplete-suggestions .item a {
+	font-size: 9pt;
+	text-decoration: none;
+	display: block;
+	padding: 4px 20px 5px 23px;
+}
+.recipe-autocomplete-suggestions .item a:hover {
+	background-color: #f9eaea;
+	color: #990000;
+}
+.recipe-autocomplete-suggestions .item b {
+	font-weight: bold;
+	color: #990000;
+	font-size: 9pt;
+}
+
+#recipe-search .clear-field {
+	position: relative;
+}
+
+#recipe-search .clear-field a {
+	position: absolute;
+	width: 21px;
+	height: 21px;
+	font-size: 0;
+	background: url(http://www.foodclub.ru/images/icons/search_delete.gif) no-repeat;
+	cursor: pointer;
+	top: 11px;
+	left: 284px;
+}

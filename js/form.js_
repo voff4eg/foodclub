@@ -1,0 +1,267 @@
+$(function() {
+	$("select").each(function() {
+		if($(this).is(":visible")) {
+			new DecoratedSelect(this);
+		}
+		else {
+			decorateHiddenSelect(this);
+		}
+	});
+
+	$(".b-form-field[data-counter]").each(function() {
+		new FieldCounter(this);
+	});
+});
+
+function FieldCounter(elem) {
+	var self = this;
+
+	init();
+
+	function init() {
+		initElements();
+		handleEvents();
+		makeHtml();
+	}
+
+	function initElements() {
+		self.$elem = $(elem);
+		self.$elem.data("FieldCounter", self);
+		self.$field = self.$elem.find("textarea");
+		self.$counter = self.$elem.find(".b-counter");
+		self.num = parseInt(self.$elem.attr("data-counter"));
+	}
+
+	function handleEvents() {
+		self.$field.keyup(keyupField);
+	}
+
+	function makeHtml() {
+		self.$counter.html('<span class="b-counter__typed"></span><span class="b-counter__limit"></span>')
+		self.$typed = self.$counter.find(".b-counter__typed");
+		self.$limit = self.$counter.find(".b-counter__limit");
+		keyupField();
+	}
+
+	function keyupField() {
+		if(self.$field.val().length > self.num) {
+			self.$field.val(self.$field.val().slice(0, self.num));
+		}
+
+		setCounter(self.$field.val().length);
+	}
+
+	function setCounter(num) {
+		self.$typed.text(num);
+		self.$limit.text(self.num - num);
+	}
+
+	/*--- public methods ---*/
+
+	this._reset = function() {
+		setCounter(self.$field.val().length);
+	};
+}
+
+function DecoratedSelect(elem, params) {
+	var self = this;
+	
+	init();
+	
+	function init() {
+		setOptions();
+		setVariables();
+		makeHtml();
+		handleEvents();
+		
+		setValue({
+			value: self.$hidden.val(),
+			text: self.$content.text()
+		});
+	}
+	
+	function setOptions() {
+		var params = params || {};
+		self.options = {};
+		self.options.selectClass = params.selectClass || "b-uniform-select";
+	}
+	
+	function setVariables() {
+		self.$elem = $(elem);
+		self.selectWidth = parseInt(self.$elem.outerWidth());
+	}
+			
+	function isDisabled() {
+		if(self.$elem.attr("disabled") == "disabled") return true;
+		return false;
+	}
+	
+	function makeHtml() {
+		makeSelectDiv();
+		appendNewHtml();
+		setElements();
+		makeStyles();
+		
+		function appendNewHtml() {
+			self.$elem.before(self.$select).remove();
+		}
+		
+		function makeSelectDiv() {
+			var li = makeLi();
+			var name = self.$elem.attr("name");
+			var $selected = getSelected();
+			var className = self.$elem[0].className || "";
+			
+			if(isDisabled()) {
+				className += " i-disabled";
+			}
+			
+			var $select = $('<div class="' + self.options.selectClass + ' ' + className + '"><input type="hidden" name="' + name + '" value="' + $selected.val() + '"><div class="b-uniform-select__select"><div class="b-uniform-select__relative"><ul class="b-uniform-select__list">' + li +'</ul></div></div><a href="#" class="b-uniform-select__button"><span class="b-uniform-select__button__pointer"><span class="b-uniform-select__button__content">' + $selected.text() + '</span></span></a></div>');
+			
+			self.$select = $select;
+		
+			function makeLi() {
+				var li="";
+				for(var i = 0; i < self.$elem.find("option").size(); i++) {
+					li += '<li rel="' + self.$elem.find("option:eq(" + i + ")").val() + '" class="b-uniform-select__item">' + self.$elem.find("option:eq(" + i + ")").text() + '</li>';
+				}
+				
+				return li;
+			}
+			
+			function getSelected() {
+				if(self.$elem.find("option:selected").size() == 0) {
+					var $selected = self.$elem.find("option:eq(0)")
+				}
+				else {
+					$selected = self.$elem.find("option:selected")
+				}
+				
+				return $selected;
+			}
+		}
+		
+		function setElements() {
+			self.$absolute = self.$select.find(".b-uniform-select__relative");
+			self.$bg = self.$select.find(".b-uniform-select__button__pointer");
+			self.$list = self.$select.find(".b-uniform-select__list");
+			self.$item = self.$select.find(".b-uniform-select__item");
+			self.$hidden = self.$select.find("input:hidden");
+			self.$content = self.$select.find(".b-uniform-select__button__content");
+			self.$button = self.$select.find(".b-uniform-select__button");
+			self.defaultValue = getValue();
+			
+			self.$select.data("object", self);
+		}
+	}
+	
+	function handleEvents() {
+		self.$item
+			.hover(hoverLi)
+			.click(clickLi);
+			
+		self.$button.click(clickIcon);
+		
+		$(document).bind("click", function() {
+			hideAllSelectElements();
+		});
+		
+		function hoverLi() {
+			$(this).toggleClass("i-hover");
+		}
+		
+		function clickLi(e) {
+			self._clickLi($(this), e);
+		}
+		
+		function clickIcon(e) {
+			if(!isDisabled()) {
+				hideAllSelectElements();
+				
+				self.$absolute.stop().slideToggle("middle");
+				e.stopPropagation();
+			}
+			return false;
+		}
+	}
+	
+	this._clickLi = function($li, e) {
+		setValue({value: $li.attr("rel"), text: $li.text()});
+		hide();
+	};
+	
+	function hideAllSelectElements() {
+		$("div." + self.options.selectClass).each(function() {
+			$(this).data("object").hide();
+		});
+	}
+	
+	function setValue(argsObject) {
+		self.$hidden.val(argsObject.value);
+		setText(argsObject.text);
+		
+		function setText(text) {
+			var bgWidth = self.$bg.width();
+			
+			self.$content.text(text);
+			
+			while(text.length > 3 && self.$content.outerWidth() > bgWidth) {
+				text = text.slice(0, text.length-2);
+				self.$content.text(text + "...");
+			}
+		}
+	}
+		
+	function makeStyles() {
+		if(self.$select.is(":hidden")) return false;
+		
+		self.$bg.css({
+			width: self.$button.width() - parseInt(self.$bg.css("paddingRight")) - parseInt(self.$bg.css("paddingLeft"))
+		});
+		self.$absolute.css({
+			width: (self.$button.outerWidth() - 2) + "px"
+		});
+	}
+	
+	function getValue() {
+		return {value: self.$hidden.val(), text: self.$bg.text()};
+	}
+	
+	function resetValue() {
+		setValue(self.defaultValue);
+	}
+	
+	function show() {
+		self.$absolute.slideDown("middle");
+	}
+	
+	function hide() {
+		self.$absolute.slideUp("middle");
+	}
+	
+	//------public methods------//
+	
+	this.makeStyles = function() {
+		makeStyles();
+	};
+	
+	this.setValue = function(argsObj) {
+		setValue(argsObj);
+	};
+	
+	this.getValue = function() {
+		return getValue();
+	};
+	
+	this.resetValue = function() {
+		resetValue();
+	};
+	
+	this.show = function() {
+		show();
+	};
+	
+	this.hide = function() {
+		hide();
+	};
+}

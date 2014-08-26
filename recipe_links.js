@@ -1,0 +1,1 @@
+﻿var exampleLinkArray = new Array("салаты", "торт", "суп", "шашлыки", "десерт");

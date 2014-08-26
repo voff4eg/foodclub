@@ -1,0 +1,54 @@
+8
+
+dir
+1
+file:///srv/svn/foodclub/images/infoblock
+file:///srv/svn/foodclub
+
+
+
+2008-11-26T07:37:37.225214Z
+1
+root
+
+
+svn:special svn:externals svn:needs-lock
+
+
+
+
+
+
+
+
+
+
+
+035515e4-d687-43ac-a412-0f885b1b469c
+
+stage.jpg
+file
+
+
+
+
+2008-11-26T07:44:49.000000Z
+38df1625e5c74a2627ef172a7c33320d
+2008-11-26T07:37:37.225214Z
+1
+root
+has-props
+
+last_recipe.jpg
+file
+
+
+
+
+2008-11-26T07:44:49.000000Z
+423b6da86e9605536a294d7bafba952d
+2008-11-26T07:37:37.225214Z
+1
+root
+has-props
+

@@ -1,0 +1,42 @@
+<script type="text/html" id="print-recipe">
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+	<head>
+		<title><%=title%></title>
+		<link type="text/css" rel="stylesheet" href="/css/print.css" />
+	</head>
+	<body>
+		<div id="body">
+			<div id="top_decor"><img src="/images/print/top_decor.gif" width="602" height="4" alt="" /></div>
+			<div id="recipe">
+				<div class="b-print-button"><a href="#" class="b-button i-print-button" onclick="window.print(); return false;"><span>Распечатать</span></a></div>
+				<div class="b-print-head">
+					<div class="b-print-head__logo b-logo"><img src="/images/print/foodclub_logo.gif" width="89" height="63" alt="Foodclub.ru" /></div>
+					<div class="b-print-head__slogan b-slogan">Рецепты<br />с пошаговыми<br />фотографиями</div>
+					<div class="b-print-head__web b-web">www.foodclub.ru</div>
+					<div class="i-clearfix"></div>
+				</div>
+				<div class="title">
+					<h1><%=h1%></h1>
+					<div class="recipe_info"><%=recipeInfo%></div>
+					<div class="needed">
+						<h2>Для приготовления блюда вам понадобится:</h2>
+						<table><%=needed%></table>
+					</div>
+					<div class="image"><%=titleImage%></div>
+					<div class="description"><%=description%></div>
+					<div class="i-clearfix"></div>
+				</div>
+				<div class="instructions">
+					<% for(var i = 0; i < stages.length; i++) { %>
+					<div class="stage"><%=stages[i]%></div>
+					<% } %>
+				</div>
+				<div class="b-print-button"><a href="#" class="b-button i-print-button" onclick="window.print(); return false;"><span>Распечатать</span></a></div>
+			</div>
+			<div id="bottom_decor"><img src="/images/print/bottom_decor.gif" width="602" height="4" alt="" /></div>
+		</div>
+		</div>
+	</body>
+</html>
+</script>

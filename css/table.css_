@@ -1,0 +1,67 @@
+/*Elements*/
+* {
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:11pt;
+	color:#666666;
+	padding:0;
+	margin:0;}
+body {
+	width:700px;
+	background:#ffffff;
+	margin:20px 50px 0 50px;}
+img {border:0;}
+table, table td {border-collapse:collapse;}
+table td {vertical-align:top;}
+p {margin-top:10px;}
+a {color:#990000;}
+a:hover {color:#d13636;}
+a:focus {outline:none;}
+a img {cursor:pointer;}
+a.no_link {
+	text-decoration:none;
+	border-bottom:1px dashed #990000;}
+h1, h2, h3, h4, h5, h6 {font-weight:normal;}
+h1 {
+	color:#333333;
+	font-size:22pt;
+	font-family:Georgia, Times, serif;
+	margin:0 0 15px 0;
+	text-align:center;}
+h2 {font-weight:bold;}
+
+.clear {
+	clear:both;
+	height:0;
+	overflow:hidden;
+	width:1px;}
+/*_Elements_*/
+
+/*Page*/
+#head {
+	width:143px;
+	margin:0 auto 20px auto;}
+#table table {width:700px;}
+#table td {padding:15px 10px 14px 10px;}
+#table td.hover, #table td.click {background-color:#f8f8f8;}
+#table thead td {border-bottom:2px solid #cccccc;}
+#table thead td {
+	color:#999999;
+	font-size:9pt;}
+#table .foodstuffs {text-align:left;}
+#table .ton {
+	text-align:center;
+	width:117px;}
+#table tbody tr td {border-bottom:1px solid #e8e8e8;}
+#table tbody tr.last td {
+	border-bottom:none;
+	padding-bottom:25px;}
+#table tr.foodheader td {border-bottom:none;}
+#table tr.foodheader td {padding:20px 10px 6px 10px;}
+#bottom {height:50px;}
+/*_Page_*/
+
+/*Bitrix*/
+div.top-panel * {
+	font-size:8pt;
+	color:#333333;}
+/*_Bitrix_*/

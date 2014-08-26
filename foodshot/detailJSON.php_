@@ -1,0 +1,120 @@
+<?if(intval($_REQUEST["id"]) > 0){
+	require($_SERVER["DOCUMENT_ROOT"]."/bitrix/modules/main/include/prolog_before.php");
+	$APPLICATION->RestartBuffer();
+	CModule::IncludeModule("iblock");
+	//лучше по IBLOCK_ID
+	$element_id = intval($_REQUEST["id"]);
+	$rsFoodShot = CIBlockElement::GetList(array(),array("IBLOCK_CODE"=>"foodshot_elements","ID"=>$element_id,"ACTIVE" => "Y"),false,false,array("ID","NAME","CREATED_BY","DETAIL_PICTURE","DETAIL_TEXT","PROPERTY_comments_count","PROPERTY_likes_count","PROPERTY_www"));
+	if($arFoodShot = $rsFoodShot->GetNext()){
+	// echo "<pre>";print_r($arFoodShot);echo "</pre>";
+		$resultArray = array();
+		$arRequestedUsers = array();
+		if(intval($arFoodShot["DETAIL_PICTURE"]) > 0){
+			$asPhoto = CFile::GetByID($arFoodShot["DETAIL_PICTURE"])->Fetch();
+			$resultArray["image"]["src"] = CFile::GetPath($asPhoto["ID"]);
+			$resultArray["image"]["width"] = $asPhoto["WIDTH"];
+			$resultArray["image"]["height"] = $asPhoto["HEIGHT"];
+		} else {			
+			$resultArray["image"]["src"] = "";
+			$resultArray["image"]["width"] = "";
+			$resultArray["image"]["height"] = "";
+		}
+		
+		$resultArray["name"] = $arFoodShot["NAME"];
+		
+		if(strlen($arFoodShot["DETAIL_TEXT"]) > 0){
+			$resultArray["description"]["text"] = $arFoodShot["DETAIL_TEXT"];
+		} else {
+			$resultArray["description"]["text"] = "";
+		}
+		
+		if(strlen($arFoodShot["PROPERTY_WWW_VALUE"]) > 0){
+			$resultArray["description"]["source"] = $arFoodShot["PROPERTY_WWW_VALUE"];
+		} else {
+			$resultArray["description"]["source"] = "";
+		}
+		
+		if(strlen($arFoodShot["CREATED_BY"]) > 0){
+			$author = CUser::GetByID($arFoodShot["CREATED_BY"])->Fetch();
+			if(!empty($author)){
+				$arRequestedUsers[ $author["ID"] ] = $author;
+				$resultArray["description"]["author"]["name"] = $author["LOGIN"];
+				if(intval($author["PERSONAL_PHOTO"]) > 0){
+					$personal_photo = CFile::GetByID($author["PERSONAL_PHOTO"])->Fetch();
+					if(!empty($personal_photo)){
+						$arRequestedUsers[ $author["ID"] ]["PERSONAL_PHOTO_ARRAY"] = $personal_photo;
+						$resultArray["description"]["author"]["href"] = "/profile/".$author["ID"]."/";
+						$resultArray["description"]["author"]["src"] = CFile::GetPath($personal_photo["ID"]);
+					}
+				} else {
+						$resultArray["description"]["author"]["href"] = "";
+						$resultArray["description"]["author"]["src"] = "";
+				}
+			}
+		}
+		$rsComments = CIBlockElement::GetList(array("DATE_CREATE" => "ASC"),array("IBLOCK_CODE"=>"foodshot_comments","PROPERTY_element"=>$element_id),false,false,array("ID","CREATED_BY","PREVIEW_TEXT"));
+		if ($rsComments->SelectedRowsCount() > 0) {
+			while($arComment = $rsComments->GetNext()){
+				if(intval($arComment["CREATED_BY"]) > 0){
+					if(!in_array($arComment["CREATED_BY"],$arRequestedUsers)){
+						$comment_author = CUser::GetByID($arComment["CREATED_BY"])->Fetch();
+						if(!empty($comment_author)){
+							$arRequestedUsers[ $comment_author["ID"] ] = $comment_author;
+							if(intval($comment_author["PERSONAL_PHOTO"]) > 0){
+								$comment_author_photo = CFile::GetByID($comment_author["PERSONAL_PHOTO"])->Fetch();
+								if(!empty($comment_author_photo)){
+									$arRequestedUsers[ $comment_author["ID"] ]["PERSONAL_PHOTO_ARRAY"] = $comment_author_photo;
+								}
+							}
+						}
+					}
+					$resultArray["comments"][] = array(
+						"id" => $arComment["ID"],
+						"author" => array(
+							"id" => $arRequestedUsers[ $arComment["CREATED_BY"] ]["ID"],
+							"href" => "/profile/".$arRequestedUsers[ $arComment["CREATED_BY"] ]["ID"]."/",
+							"src" => CFile::GetPath($arRequestedUsers[ $arComment["CREATED_BY"] ]["PERSONAL_PHOTO_ARRAY"]["ID"]),
+							"name" => $arRequestedUsers[ $arComment["CREATED_BY"] ]["LOGIN"],
+						),
+						"text" => $arComment["PREVIEW_TEXT"]
+					);
+				}
+			}
+		} else {
+			$resultArray["comments"][0]["author"]["id"] = "";
+			$resultArray["comments"][0]["author"]["href"] = "";
+			$resultArray["comments"][0]["author"]["src"] = "";
+			$resultArray["comments"][0]["author"]["name"] = "";
+		}
+		
+		$arAllLikesFilter = array (
+			"IBLOCK_CODE" 	    => "foodshot_likes",
+			"ACTIVE"	    	    => "Y",
+			"PROPERTY_ELEMENT" => $arFoodShot["ID"],
+			"PROPERTY_LIKE"	    => "1",
+		);
+
+		$arAllLikesSelect = array (
+			"ID",
+			"CREATED_BY",
+		);
+
+		$rsAllLikesItems = CIBlockElement::GetList(array(), $arAllLikesFilter, false, false, $arAllLikesSelect);
+		$resultArray["likeNum"] = intval($rsAllLikesItems->SelectedRowsCount());
+
+		while($arAllLikesItems = $rsAllLikesItems->Fetch())
+		{
+			if ($USER->IsAuthorized() && intval($USER->GetID()) === intval($arAllLikesItems["CREATED_BY"]))
+				$resultArray["user_liked"] = "yes";			
+		}
+
+		/*if(intval($arFoodShot["PROPERTY_LIKES_COUNT_VALUE"]) > 0){
+			$resultArray["likeNum"] = $arFoodShot["PROPERTY_LIKES_COUNT_VALUE"];
+		} else {
+			$resultArray["likeNum"] = "";
+		}*/
+	}
+	// echo "<pre>";print_r($resultArray);echo "</pre>";
+	echo json_encode($resultArray);
+}
+?>

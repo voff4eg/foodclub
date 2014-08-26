@@ -1,0 +1,53 @@
+#top_search_list {
+	position:relative;
+	width:100px;}
+#top_search_list ul {
+	list-style-type:none;
+	position:absolute;
+	top:0;
+	left:0;
+	z-index:60;
+	margin:0;
+	width:413px;
+	border:1px solid #e0e0de;
+	border-top:none;
+	box-shadow:0 0 8px #c8c8c8;
+	-webkit-box-shadow:0 0 8px #c8c8c8; /* Safari, Chrome */
+	-moz-box-shadow:0 0 8px #c8c8c8; /* Firefox */
+	display:none;}
+#top_search_list li {
+	background-color:#ffffff;
+	border-bottom:1px solid #eae1e1;
+	font-size:9pt;
+	padding:0;}
+#top_search_list li.heading {
+	background-color:#eeeeee;
+	border-top:1px solid #ffffff;
+	border-bottom:1px solid #ffffff;
+	padding:6px 0 5px 10px;
+	margin-top:-1px;}
+#top_search_list li.heading:first-child {border-top:none;}
+#top_search_list li.heading div {position:relative;}
+#top_search_list li.heading div div {
+	position:absolute;
+	top:-13px;
+	right:10px;
+	font-size:7pt;}
+#top_search_list li.search_all {
+	background-color:#eeeeee;
+	border-top:1px solid #ffffff;
+	border-bottom:1px solid #eeeeee;
+	margin-top:-1px;}
+#top_search_list li.hover {background-color:#f9eaea;}
+#top_search_list li a {
+	font-size:9pt;
+	text-decoration:none;
+	display:block;
+	padding:4px 20px 5px 23px;}
+#top_search_list li a.hover, #top_search_list li a:hover {
+	background-color:#f9eaea;
+	color:#990000;}
+#top_search_list li a span {
+	font-weight:bold;
+	color:#990000;
+	font-size:9pt;}

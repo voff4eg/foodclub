@@ -1,0 +1,52 @@
+<?require($_SERVER["DOCUMENT_ROOT"]."/bitrix/modules/main/include/prolog_before.php");
+//Передаются параметры
+//num - число рецептов, которые передаются детально, остальные только id
+//type - тип данных, по которым произошла сортировка (Кухня, Метки, Основной ингредиент)
+//data - id кухни или метка, в общем данные из фильтра
+if(isset($_REQUEST["type"]) && isset($_REQUEST["data"])){
+	$data = array("cuisine"=>"kitchen","dish"=>"dish_type","ingredient"=>"main_ingredient");
+	$obCache = new CPHPCache;
+	$site_id = $_REQUEST["siteId"];
+	if($obCache->InitCache(86400, "all".$_REQUEST["type"]."_".$_REQUEST["data"]."_".$site_id, "all")){
+		$vars = $obCache->GetVars();
+		$str = $vars["str"];
+	}else{
+		CModule::IncludeModule("iblock");
+		$key = 0;
+		$recipes = array();
+		$id = array();
+		$arAllFilter = array("PROPERTY_".$data[ $_REQUEST["type"] ]=>$_REQUEST["data"],"ACTIVE"=>"Y","PROPERTY_lib"=>"Y","SITE_ID"=>SITE_ID);
+		if(SITE_ID == "s1"){
+		    $arAllFilter["IBLOCK_ID"] = 5;
+		    $site_dir = "/";
+		}elseif(SITE_ID == "fr"){
+		    $arAllFilter["IBLOCK_ID"] = 24;
+		    $site_dir = "/fr/";
+		}
+		$rsRecipes = CIBlockElement::GetList(array("ACTIVE_FROM"=>"DESC","DATE_CREATE"=>"DESC"),$arAllFilter,false,false,array("NAME","ID","PREVIEW_PICTURE","DETAIL_PICTURE","CREATED_BY","PROPERTY_comment_count"));
+		while($arRecipe = $rsRecipes->GetNext()){
+			$key++;
+			if($key <= $_REQUEST["num"]){
+				if(intval($arRecipe["PREVIEW_PICTURE"])){
+					$arFile = CFile::GetFileArray($arRecipe["PREVIEW_PICTURE"]);
+					$src = "http://www.foodclub.ru".$arFile["SRC"];
+				}else{
+					$src = "";
+				}
+				$rsUser = CUser::GetByID($arRecipe['CREATED_BY']);
+				$arUser = $rsUser->Fetch();
+				$recipes[] = array("name"=>$arRecipe["NAME"],"href"=>$site_dir."detail/".$arRecipe["ID"]."/","src"=>$src, "author"=>$arUser["LOGIN"], "comments"=>intval($arRecipe["PROPERTY_COMMENT_COUNT_VALUE"]));
+			}else{
+				$id[] = $arRecipe["ID"];
+			}
+		}
+		$str = array("recipes"=>$recipes,"id"=>$id);
+	}
+	if($obCache->StartDataCache()):
+		echo json_encode($str);
+		$obCache->EndDataCache(array(
+			"str"    => $str
+		)); 
+	endif;
+}
+?>

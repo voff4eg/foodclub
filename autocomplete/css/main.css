@@ -1,0 +1,29 @@
+body {
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:10pt;
+	color:#333;
+}
+
+#page {
+	width: 900px;
+	margin: 100px auto;
+}
+
+form {
+	background: #f0f0f0;
+}
+
+fieldset {
+	border: none;
+	padding:10px;
+}
+
+a {
+	color: #990000;
+	text-decoration: none;
+}
+
+input {
+	color:#333;
+}
+

@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<site xmlns="http://interactive-answers.webmaster.yandex.ru/schemas/site/0.0.1"
+     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+     xsi:schemaLocation="http://interactive-answers.webmaster.yandex.ru/schemas/site-0.0.1.xsd">
+	 
+	<!--Краткое название сайта, используется в заголовке формы-->
+	<title>Foodclub.ru</title>
+	<!--Краткое описание сайта. Максимальная длина текста — 200 символов-->
+	<description>Рецепты с пошаговыми фотографиями</description>
+	<!--Ссылка, которую следует использовать, если для данного набора фильров невозможно построить URL-->
+	<rootUrl>http://foodclub.ru/</rootUrl>
+	<!--Cтруктура адресов сайта-->
+	<resource>
+		<fixed name="foodclub.ru/recipes/"/>
+	</resource>
+	<!--Описания фильтров-->
+	<filters>
+	<!--Тип блюда 35 шт-->
+		<dropDown>
+			<description caption="Тип блюда">
+				<setParameter name="dish"/>
+			</description>
+			<dropDownValue key="29" caption="Блины, блинчики оладьи"/>
+			<dropDownValue key="38062" caption="Булочки и сдоба"/>
+			<dropDownValue key="38058" caption="Бутерброды, сендвичи"/>
+			<dropDownValue key="3070" caption="Варенье и цукаты"/>
+			<dropDownValue key="4524" caption="Гарниры"/>
+			<dropDownValue key="3" caption="Десерты"/>
+			<dropDownValue key="4" caption="Закуски"/>
+			<dropDownValue key="35" caption="Запеканки"/>
+			<dropDownValue key="99" caption="Каши"/>
+			<dropDownValue key="38061" caption="Кексы"/>
+			<dropDownValue key="39" caption="Колбасы"/>
+			<dropDownValue key="4013" caption="Котлеты"/>
+			<dropDownValue key="38766" caption="Мороженое"/>
+			<dropDownValue key="49662" caption="Мясные рулеты, фаршированное мясо"/>
+			<dropDownValue key="34" caption="Напитки"/>
+			<dropDownValue key="35752" caption="Основные блюда"/>
+			<dropDownValue key="27" caption="Паста"/>
+			<dropDownValue key="92" caption="Пельмени, вареники"/>
+			<dropDownValue key="100" caption="Печенье, пряники"/>
+			<dropDownValue key="36" caption="Пироги (несладкие), киши"/>
+			<dropDownValue key="6715" caption="Пироги (сладкие), торты"/>
+			<dropDownValue key="38060" caption="Пирожные"/>
+			<dropDownValue key="102" caption="Пицца"/>
+			<dropDownValue key="1626" caption="Плов, ризотто, паэлья"/>
+			<dropDownValue key="105" caption="Рыба и морепродукты"/>
+			<dropDownValue key="38" caption="Салаты"/>
+			<dropDownValue key="38767" caption="Сладости, конфеты"/>
+			<dropDownValue key="53490" caption="Соленья, маринады"/>
+			<dropDownValue key="41" caption="Соусы"/>
+			<dropDownValue key="104" caption="Стейки, отбивные"/>
+			<dropDownValue key="1" caption="Супы"/>
+			<dropDownValue key="40" caption="Суши, сашими"/>
+			<dropDownValue key="1625" caption="Сырники"/>
+			<dropDownValue key="8569" caption="Фаршированные овощи"/>
+			<dropDownValue key="4066" caption="Хлеб"/>
+			<dropDownValue key="96" caption="Холодцы и заливное"/>
+			<dropDownValue key="95" caption="Шашлыки"/>
+			<dropDownValue key="6241" caption="Яичницы и омлеты"/>
+		</dropDown>
+		<!--Кухня 44 шт-->
+		<dropDown>
+			<description caption="Кухня">
+				<setParameter name="cuisine"/>
+			</description>
+			<dropDownValue key="42" caption="Австралийская кухня"/>
+			<dropDownValue key="43" caption="Австрийская кухня"/>
+			<dropDownValue key="35460" caption="Азербайджанская кухня"/>
+			<dropDownValue key="44" caption="Американская кухня"/>
+			<dropDownValue key="45" caption="Английская кухня"/>
+			<dropDownValue key="46" caption="Армянская кухня"/>
+			<dropDownValue key="47" caption="Белорусская кухня"/>
+			<dropDownValue key="49" caption="Болгарская кухня"/>
+			<dropDownValue key="50" caption="Бразильская кухня"/>
+			<dropDownValue key="51" caption="Венгерская кухня"/>
+			<dropDownValue key="53" caption="Греческая кухня"/>
+			<dropDownValue key="54" caption="Грузинская кухня"/>
+			<dropDownValue key="55" caption="Датская кухня"/>
+			<dropDownValue key="117" caption="Домашние рецепты"/>
+			<dropDownValue key="56" caption="Еврейская кухня"/>
+			<dropDownValue key="59" caption="Индийская кухня"/>
+			<dropDownValue key="60" caption="Индонезийская кухня"/>
+			<dropDownValue key="61" caption="Испанская кухня"/>
+			<dropDownValue key="62" caption="Итальянаская кухня"/>
+			<dropDownValue key="64" caption="Китайская кухня"/>
+			<dropDownValue key="66" caption="Кубинская кухня"/>
+			<dropDownValue key="68" caption="Ливанская кухня"/>
+			<dropDownValue key="69" caption="Литовская кухня"/>
+			<dropDownValue key="11119" caption="Малышам"/>
+			<dropDownValue key="70" caption="Марокканская кухня"/>
+			<dropDownValue key="71" caption="Мексиканская кухня"/>
+			<dropDownValue key="9159" caption="Молдавская кухня"/>
+			<dropDownValue key="72" caption="Немецкая кухня"/>
+			<dropDownValue key="18692" caption="Норвежская кухня"/>
+			<dropDownValue key="73" caption="Польская кухня"/>
+			<dropDownValue key="74" caption="Португальская кухня"/>
+			<dropDownValue key="38891" caption="Румынская кухня"/>
+			<dropDownValue key="76" caption="Русская кухня"/>
+			<dropDownValue key="77" caption="Тайская кухня"/>
+			<dropDownValue key="78" caption="Турецкая кухня"/>
+			<dropDownValue key="79" caption="Узбекская кухня"/>
+			<dropDownValue key="80" caption="Украинская кухня"/>
+			<dropDownValue key="35942" caption="Финская кухня"/>
+			<dropDownValue key="82" caption="Французская кухня"/>
+			<dropDownValue key="83" caption="Чешская кухня"/>
+			<dropDownValue key="8022" caption="Шведская кухня"/>
+			<dropDownValue key="1286" caption="Шотландская кухня"/>
+			<dropDownValue key="86" caption="Ямайская кухня"/>
+			<dropDownValue key="87" caption="Японская кухня"/>
+		</dropDown>
+		<!--Основной ингредиент 22 шт-->
+		<dropDown>
+			<description caption="Метка">
+				<setParameter name="tag"/>
+			</description>
+			<dropDownValue key="Dieta%20Dyukana" caption="Диета дюкана"/>
+			<dropDownValue key="Maslenica" caption="Масленица"/>
+		</dropDown>
+
+	</filters>
+</site>

@@ -1,0 +1,206 @@
+.b-recipe-search {
+	float: left;
+	padding: 36px 57px 0 0;
+}
+.b-recipe-search__helper {
+	font-size: 8pt;
+	margin: 7px 0 0 8px;
+	padding-bottom: 1px;
+}
+.b-recipe-search__helper__link {
+	font-size: 8pt;
+	text-decoration: none;
+}
+.b-recipe-search__form-field {
+	position: relative;
+	height: 52px;
+	width: 315px;
+	float: left;
+	margin-bottom: 0 !important;
+}
+.b-recipe-search .b-form-field__placeholder__text {
+	font-size: 11pt;
+	color: #333333;
+	line-height: 32px;
+	padding-top: 11px;
+	padding-left: 11px;
+	width: 273px !important;
+}
+.b-recipe-search__delete {
+	position: absolute;
+	width: 21px;
+	height: 21px;
+	font-size: 0;
+	background: url("data:image/gif;base64,R0lGODlhFQAVAJECAP///bm5uf///wAAACH5BAEAAAIALAAAAAAVABUAAAIvVI6paesfAFwy1RndfVt1i30ZNiIiZ5JeqaYteEJXTK2kSLO2FvL3/ns5GsKAoAAAOw==") no-repeat;
+	cursor: pointer;
+	top: 16px;
+	left: 279px;
+}
+.b-recipe-search__input {
+	width: 257px !important;
+	height: 47px !important;
+	font-size: 11pt;
+	padding: 2px 46px 1px 10px !important;
+	color: #333333;
+	display: block;
+	line-height: 35px;
+	box-sizing: content-box;
+	-moz-box-sizing: content-box;
+	-webkit-box-sizing: content-box;
+	-khtml-box-sizing: content-box;
+}
+.b-recipe-search__button {
+	margin: 0 0 0 11px;
+	padding: 0;
+	width: 65px;
+	height: 52px;
+	float: left;
+	display: inline;
+	background: url(/images/buttons.png) no-repeat -79px -2660px;
+	border: none;
+	cursor: pointer;
+}
+#recipe_search .button_hover, #author_search .button_hover, #club_search .button_hover {background:url(/images/buttons.png) no-repeat -79px -2713px;}
+#recipe_search .button_active, #author_search .button_active, #club_search .button_active {background:url(/images/buttons.png) no-repeat -79px -2766px;}
+#recipe_search button span {
+	display:inline-block;
+	margin:-2px 0 0 0;
+	font-family:Georgia, "Times New Roman", Times, serif;
+	font-size:10.5pt;
+	color:#7d7c7c;
+	text-shadow:0 1px 0 #ffffff;}
+
+#recipe_search_list {
+	position: relative;
+	width: 100px;
+	z-index: 99;
+}
+.b-recipe-search__ul {
+	list-style-type: none;
+	position: absolute;
+	top: 9px;
+	left: 0;
+	z-index: 60;
+	margin: 0;
+	border: 1px solid #e0e0de;
+	border-top: none;
+	box-shadow: 0 0 8px rgba(0,0,0,0.15);
+	-webkit-box-shadow: 0 0 8px rgba(0,0,0,0.15);
+	-moz-box-shadow: 0 0 8px rgba(0,0,0,0.15);
+	display: none;
+	background-color: #ffffff;
+	font-size: 9.5pt;
+	width: 412px;
+	padding: 10px 9px;
+	box-sizing: content-box;
+	-moz-box-sizing: content-box;
+	-webkit-box-sizing: content-box;
+	-khtml-box-sizing: content-box;
+	z-index: 100;
+}
+.b-rs__heading {
+	background-color :#eeeeee;
+	border-top: 1px solid #ffffff;
+	border-bottom: 1px solid #ffffff;
+	padding: 5px 10px 6px 10px;
+	margin-top:-1px;
+	text-align: center;
+	color: #333333;
+	font-weight: bold;
+}
+.b-rs__heading:first-child {
+	border-top: none;
+}
+.b-rs__heading__num {
+	position: relative;
+	display: block;
+}
+.b-rs__heading__num__content {
+	position: absolute;
+	top: 0;
+	right: 10px;
+	display: block;
+	font-size: 8.5pt;
+	font-weight: normal;
+}
+.b-rs__item {
+	padding: 0;
+}
+.b-rs__search-all {
+	background-color: #eeeeee;
+	border-top: 1px solid #ffffff;
+	margin-top: -1px;
+	padding: 0;
+}
+.b-rs__search-all__link {
+	display: block;
+	text-align: center;
+	font-weight: bold;
+	padding: 18px 15px 17px;
+	font-size: 9.5pt;
+}
+a.b-rs__search-all__link:hover,
+.b-rs__search-all.i-hover .b-rs__search-all__link {
+	background-color: #f9eaea;
+}
+.b-rs__item__link {
+	font-size: 9.5pt;
+	text-decoration :none;
+	display: block;
+	padding: 1px 0 1px 0;
+	display: block;
+	overflow: hidden;
+}
+a.b-rs__item__link:hover,
+.b-rs__item.i-hover .b-rs__item__link {
+	background-color:#f9eaea;
+	color:#990000;
+}
+.b-rs__item__image-wrapper {
+	float: left;
+	width: 50px;
+	height: 50px;
+	overflow: hidden;
+	margin-right: 11px;
+}
+.b-rs__item__image-wrapper__type_empty {
+	border: 1px solid #e5e5e5;
+}
+.b-rs__item__image {
+	display: none;
+}
+.b-rs__item__text {
+	float: left;
+	width: 240px;
+	padding: 18px 0 0;
+	display: table-cell;
+	vertical-align: middle;
+	line-height: 1;
+}
+.b-rs__item__info {
+	float: right;
+	width: 90px;
+}
+.b-rs__item__time {
+	font-size: 7.5pt;
+	color: #999;
+	display: block;
+	text-align: right;
+	margin: 10px 12px 2px 0;
+	white-space: nowrap;
+}
+.b-rs__item__nutrition {
+	font-size: 7.5pt;
+	color: #999;
+	display: block;
+	text-align: right;
+	margin: 0 12px 0 0;
+}
+.b-rs__item__hr {
+	display: block;
+	font-size: 0;
+	height: 0;
+	padding: 0;
+	margin: 0 0 0 50px;
+	border-bottom: 1px solid #eae1e1;
+}

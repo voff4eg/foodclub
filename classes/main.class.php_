@@ -1,0 +1,321 @@
+<?
+class CFClub
+{
+	static private $_instance = null;
+	const REC_IBLOCK = 5;
+		
+	public function getKitchens($bFull = false, $Chose = Array(), $site_id = "s1")
+	{
+		if(count($Chose) >  0){
+			$Prop = Array('ACTIVE'=>'Y', 'ID' => $Chose, 'SITE_ID' => $site_id);
+		} else {
+			$Prop = Array('ACTIVE'=>'Y', 'SITE_ID' => $site_id);
+		}
+		if($site_id == "s1"){
+		    $Prop['IBLOCK_CODE'] = 'kitchens';
+		}elseif($site_id == "fr"){
+		    $Prop['IBLOCK_CODE'] = 'kitchens_fr';
+		}
+		
+		$rsKitchens = CIBlockElement::GetList(Array('NAME'=>'ASC'), $Prop, false, false);
+		
+		if(!$bFull){
+			while ($arKitchen = $rsKitchens->GetNext())
+			{
+				$arResult[ $arKitchen['ID'] ] = Array("ID" => $arKitchen['ID'], "NAME" => $arKitchen['NAME']);
+			}
+		} else {
+			while ($obKitchen = $rsKitchens->GetNextElement())
+			{
+				$arFields = $obKitchen->GetFields();
+				$arProp   = $obKitchen->GetProperties();
+				$arFields['dish'] = $arProp['dish_type']['VALUE'];
+				$arDishType = $this->getDishType(true, $arFields['dish']);
+				$arResult[ $arFields['ID'] ] = Array("ID" => $arFields['ID'], "NAME" => $arFields['NAME'], "DISH" => $arDishType);
+			}
+		}
+		return $arResult;
+	}
+	
+	static public function getDishList($site_id = "s1"){
+	    if($site_id == "s1"){
+		$rsDish = CIBlockElement::GetList(Array('NAME'=>'ASC'), Array('IBLOCK_CODE'=>'dish_type', 'ACTIVE'=>'Y'), false, false);
+	    }elseif($site_id == "fr"){
+		$rsDish = CIBlockElement::GetList(Array('NAME'=>'ASC'), Array('IBLOCK_CODE'=>'fr_dish_type', 'ACTIVE'=>'Y'), false, false);
+	    }
+		$arDishs = Array();
+		while($arDish = $rsDish->GetNext()){
+			$arDishs[ $arDish['ID'] ] = $arDish;
+		}
+		return $arDishs;
+	}
+	
+	static public function getDishType($bShowEmpty = true, $arDish = Array())
+	{
+		$arResult = Array();
+		if(count($arDish) > 0){
+			if($bShowEmpty == true){
+				foreach ($arDish as $strItem)
+				{
+					$rsDishType = CIBlockElement::GetById($strItem);
+					$arDishType = $rsDishType->GetNext();
+					$arResult[ $arDishType['ID'] ] = Array("ID"=>$arDishType['ID'], "NAME"=>$arDishType['NAME']);
+				}
+			} else {
+				foreach ($arDish as $strItem)
+				{
+					$rsDishType = CIBlockElement::GetById($strItem);
+					$arDishType = $rsDishType->GetNext();
+					$rsRecipe = CIBlockElement::GetList(Array(), Array("IBLOCK_ID"=>self::REC_IBLOCK, "ACTIVE"=>"Y", "PROPERTY_dish_type"=>$arDishType['ID']), false, false);
+					$intCount = $rsRecipe->SelectedRowsCount();
+					if(intval($intCount) > 0){$arResult[ $arDishType['ID'] ] = Array("ID"=>$arDishType['ID'], "NAME"=>$arDishType['NAME']);}
+				}
+			}
+			
+		} else {
+			$rsSections = CIBlockElement::GetList(Array('NAME'=>'ASC'), Array('IBLOCK_CODE'=>'dish_type', 'ACTIVE'=>'Y'));
+			
+			if($bShowEmpty == true){
+				while($arSection = $rsSections->GetNext()){
+					$arResult[ $arSection['ID'] ] = $arSection;
+				}
+			}
+			
+		}
+		return $arResult;
+	}
+	
+	static public function getUnitList($site_id="s1")
+	{
+		$rsSections = CIBlockSection::GetList(Array('NAME'=>'ASC'), Array('IBLOCK_CODE'=>'ingredients', 'ACTIVE'=>'Y'));
+		while ($arSection = $rsSections->GetNext())
+		{
+			$arResult[ $arSection['ID'] ] = Array("ID" => $arSection['ID'], "NAME" => $arSection['NAME']);
+		}
+		
+		$rsUnits = CIBlockElement::GetList(Array('NAME'=>'ASC'), Array('IBLOCK_CODE'=>'ingredients', 'ACTIVE'=>'Y'), false, false, Array("ID", "IBLOCK_SECTION_ID", "NAME", "PROPERTY_unit", "PROPERTY_fr_name", "PROPERTY_fr_unit"));
+		while ($arUnits = $rsUnits->GetNext())
+		{
+		    if($site_id == "s1"){
+			$arResult[ $arUnits['IBLOCK_SECTION_ID'] ]['UNITS'][] = Array("ID" => $arUnits['ID'], "NAME" => $arUnits['NAME'], "UNIT" => $arUnits['PROPERTY_UNIT_VALUE']);
+		    }elseif($site_id == "fr"){
+			$arResult[ $arUnits['IBLOCK_SECTION_ID'] ]['UNITS'][] = Array("ID" => $arUnits['ID'], "NAME" => (strlen($arUnits["PROPERTY_FR_NAME_VALUE"]) > 0 ? $arUnits["PROPERTY_FR_NAME_VALUE"] : $arUnits['NAME']), "UNIT" => (strlen($arUnits["PROPERTY_FR_UNIT_VALUE"]) > 0 ? $arUnits["PROPERTY_FR_UNIT_VALUE"] : $arUnits['PROPERTY_UNIT_VALUE']));
+		    }
+		}
+		return $arResult;
+	}
+	
+	static public function getRecipesTree()
+	{
+		$rsRecipes = CIBlockElement::GetList(Array("SORT"=>"ASC"), Array("IBLOCK_CODE"=>"recipe", "ACTIVE"=>"Y"), false, false, Array("ID", "NAME", "PROPERTY_dish_type", "PROPERTY_kitchen"));
+		while($arRecipe = $rsRecipes->GetNext()){
+			$arResult[ $arRecipe['PROPERTY_KITCHEN_VALUE'] ][ $arRecipe['PROPERTY_DISH_TYPE_VALUE'] ][] = $arRecipe;
+		}
+		return $arResult;
+	}
+	
+	static public function getRecipesCount()
+	{
+		$rsRecipes = CIBlockElement::GetList(Array("SORT"=>"ASC"), Array("IBLOCK_CODE"=>"recipe","SITE_ID"=>SITE_ID), array("IBLOCK_ID"), false, Array("ID", "NAME", "PROPERTY_dish_type", "PROPERTY_kitchen"));
+		if($arRecipe = $rsRecipes->GetNext()){
+			$count = $arRecipe["CNT"];
+		}
+		return $count;
+	}
+	
+	static public function getOnlineCount()
+	{
+		$rsData = CUserOnline::GetList($guest_count, $session_count, Array($by=>$order), array());
+		while($arRes = $rsData->GetNext())
+		{
+			$arUsersOnline[] = $arRes["LAST_USER_ID"];
+		}
+		return count($arUsersOnline);
+	}
+	
+	static public function getList($strPageSize = 5, $arFilter = Array(), $Template = "fclub", $Lib = "Y"){
+		
+		if(IntVal($strPageSize) > 0){
+			$arNavStartParams = Array("nPageSize" => $strPageSize);
+		} else {
+			$arNavStartParams = false;
+		}
+		
+		$arProp = Array("IBLOCK_ID"=>self::REC_IBLOCK, "ACTIVE"=>"Y");
+		if(count($arFilter) > 0){
+			foreach($arFilter as $strKey => $strItem){
+				if($strKey == "k"){
+					$arProp["PROPERTY_kitchen"] = IntVal($strItem);
+				} elseif($strKey == "d"){
+					$arProp["PROPERTY_dish_type"] = IntVal($strItem);
+				} elseif($strKey == 'CREATED_BY'){
+					$arProp["CREATED_BY"] = IntVal($strItem);
+				} elseif($strKey == 'ID'){
+					$arProp["ID"] = $strItem;
+				}elseif($strKey == 'dates'){
+					$arProp["ACTIVE_DATE"] = "Y";
+					$arProp[">=DATE_ACTIVE_FROM"] = $strItem['from'];
+				}elseif($strKey == 'site_id'){
+				    if($strItem == "fr"){
+					$arProp["IBLOCK_ID"] = "24";
+				    }
+				}
+			}
+		}				
+		
+		//echo "<pre>"; print_r($arProp); echo "</pre>";
+		
+		
+		if($Lib == "Y"){
+			$arProp['PROPERTY_lib'] = "Y";
+		}
+		
+		$rsRecipes = CIBlockElement::GetList(Array("ACTIVE_FROM"=>"DESC","DATE_CREATE"=>"DESC"), $arProp, false, $arNavStartParams, Array("ID", "NAME", "PREVIEW_TEXT", "PREVIEW_PICTURE", "CREATED_BY", "PROPERTY_dish_type", "PROPERTY_kitchen", "PROPERTY_comment_count", "DATE_ACTIVE_FROM", "DATE_ACTIVE_TO"));
+		while($arRecipe = $rsRecipes->GetNext()){
+		
+			$rsUser = CUser::GetByID($arRecipe['CREATED_BY']);
+			$arUser = $rsUser->Fetch();
+			
+			/*
+			if(strpos($arUser['EXTERNAL_AUTH_ID'], "OPENID") !== false){
+				if(strpos($arUser['LOGIN'], "livejournal") !== false){
+					$arUser['FULL_LOGIN'] = $arUser['LOGIN'];
+					$arUser['LOGIN'] = substr($arUser['LOGIN'], 7, (strpos($arUser['LOGIN'], ".livejournal")-7));
+					$arUser['LOGIN_TYPE'] = "lj";
+				}
+			}
+			*/
+			$arRecipe['USER'] = $arUser;
+			
+			if(IntVal($arRecipe['PREVIEW_PICTURE']) > 0){
+				$rsFile = CFile::GetByID(IntVal($arRecipe['PREVIEW_PICTURE']));
+				$arFile = $rsFile->Fetch();
+				$arFile['SRC'] = "/upload/".$arFile['SUBDIR']."/".$arFile['FILE_NAME'];
+				$arRecipe["PREVIEW_PICTURE"] = $arFile;
+			}
+			$arResult['ITEMS'][ $arRecipe['ID'] ] = $arRecipe;
+			$arResult['Kitchen'][ $arRecipe['PROPERTY_KITCHEN_VALUE'] ][] = $arRecipe['ID'];
+		}
+		
+		if($rsRecipes->IsNavPrint()){
+			$arResult["NAV_STRING"] = $rsRecipes->GetPageNavStringEx($navComponentObject, "Рецепты", $Template, "N");
+		}
+		
+		return $arResult;
+	}
+	
+	static public function getLastFiveLibRecipes(){
+		$arResult = array();
+		$arProp = array("IBLOCK_ID"=>self::REC_IBLOCK, "ACTIVE"=>"Y", "PROPERTY_lib"=>"Y");
+		$rsRecipes = CIBlockElement::GetList(Array("ACTIVE_FROM"=>"DESC","DATE_CREATE"=>"DESC","SITE_ID"=>SITE_ID), $arProp, false, array("nTopCount"=>5), Array("ID", "NAME", "PREVIEW_TEXT", "PREVIEW_PICTURE", "CREATED_BY", "PROPERTY_dish_type", "PROPERTY_kitchen", "PROPERTY_comment_count", "DATE_ACTIVE_FROM", "DATE_ACTIVE_TO"));
+		while($arRecipe = $rsRecipes->GetNext()){
+			
+			$rsUser = CUser::GetByID($arRecipe['CREATED_BY']);
+			$arUser = $rsUser->Fetch();						
+			$arRecipe['USER'] = $arUser;
+			
+			if(IntVal($arRecipe['PREVIEW_PICTURE']) > 0){
+				$rsFile = CFile::GetByID(IntVal($arRecipe['PREVIEW_PICTURE']));
+				$arFile = $rsFile->Fetch();
+				$arFile['SRC'] = "/upload/".$arFile['SUBDIR']."/".$arFile['FILE_NAME'];
+				$arRecipe["PREVIEW_PICTURE"] = $arFile;
+			}
+			
+			$arResult['ITEMS'][ $arRecipe['ID'] ] = $arRecipe;
+			$arResult['Kitchen'][ $arRecipe['PROPERTY_KITCHEN_VALUE'] ][] = $arRecipe['ID'];
+		}
+		return $arResult;	
+	}
+	
+	static public function getMainIgredientList(){
+		$rsMainIgredient = CIBlockElement::GetList(Array('NAME'=>'ASC'), Array('IBLOCK_CODE'=>'main_ingredient', 'ACTIVE'=>'Y', 'SITE_ID' => "s1"));
+		$arMainIgredient = Array();
+		while($arMainIgredient = $rsMainIgredient->GetNext()){
+			$arMainIgredients[ $arMainIgredient['ID'] ] = $arMainIgredient;
+		}
+		return $arMainIgredients;
+	}
+	
+	static public function getIdList($strPageSize = 5, $arFilter = Array(), $Template = "fclub", $Lib = "Y"){
+		
+		if(IntVal($strPageSize) > 0){
+			$arNavStartParams = Array("nPageSize" => $strPageSize);
+		} else {
+			$arNavStartParams = false;
+		}
+		
+		$arProp = Array("IBLOCK_ID"=>self::REC_IBLOCK, "ACTIVE"=>"Y");
+		if(count($arFilter) > 0){
+			foreach($arFilter as $strKey => $strItem){
+				if($strKey == "k"){
+					$arProp["PROPERTY_kitchen"] = IntVal($strItem);
+				} elseif($strKey == "d"){
+					$arProp["PROPERTY_dish_type"] = IntVal($strItem);
+				} elseif($strKey == 'CREATED_BY'){
+					$arProp["CREATED_BY"] = IntVal($strItem);
+				} elseif($strKey == 'ID'){
+					$arProp["ID"] = $strItem;
+				}elseif($strKey == 'dates'){
+					$arProp["ACTIVE_DATE"] = "Y";
+					$arProp[">=DATE_ACTIVE_FROM"] = $strItem['from'];
+				}elseif($strKey == 'site_id'){
+				    if($strItem == "fr"){
+					$arProp["IBLOCK_ID"] = "24";
+				    }
+				}
+			}
+		}
+		//echo "<pre>"; print_r($arProp); echo "</pre>";
+		
+		
+		if($Lib == "Y"){
+			$arProp['PROPERTY_lib'] = "Y";
+		}
+		
+		$rsRecipes = CIBlockElement::GetList(Array("ACTIVE_FROM"=>"DESC","DATE_CREATE"=>"DESC"), $arProp, false, $arNavStartParams, Array("ID"));
+		while($arRecipe = $rsRecipes->GetNext()){
+			
+			if(IntVal($arRecipe['PREVIEW_PICTURE']) > 0){
+				$rsFile = CFile::GetByID(IntVal($arRecipe['PREVIEW_PICTURE']));
+				$arFile = $rsFile->Fetch();
+				$arFile['SRC'] = "/upload/".$arFile['SUBDIR']."/".$arFile['FILE_NAME'];
+				$arRecipe["PREVIEW_PICTURE"] = $arFile;
+			}
+			$arResult[] = $arRecipe;
+		}
+		
+		return $arResult;
+	}
+	
+	static public function getInstance(){
+		return (self::$_instance !== null) ? self::$_instance : (self::$_instance = new CFClub());  
+	}
+	
+	static public function numberingStage($stageNumber) {
+		$numberingArray1 = Array("первого", "второго", "третьего", "четвёртого", "пятого", "шестого", "седьмого", "восьмого", "девятого");
+		$numberingArray2 = Array("одиннадцатого", "двенадцатого", "тринадцатого", "четырнадцатого", "пятнадцатого", "шестнадцатого", "семнадцатого", "восемнадцатого", "девятнадцатого");
+		$numberingArray3 = Array("десятого", "двадцатого", "тридцатого", "сорокового", "пятидесятого", "шестидесятого", "семидесятого", "восьмидесятого", "девяностого");
+		$numberingArray4 = Array("", "двадцать", "тридцать", "сорок", "пятьдесят", "шестьдесят", "семьдесят", "восемьдесят", "девяносто");
+
+		if (IntVal($stageNumber) < 10) {
+			$numbering = $numberingArray1[$stageNumber];
+		}
+		else {
+			$lastLetter = ($stageNumber + 1)%10;
+			if ($lastLetter == 0) {
+				$numbering = $numberingArray3[floor(($stageNumber + 1)/10) - 1];
+			}
+			else {
+				if (floor(($stageNumber + 1)/10) == 1) {
+					$numbering = $numberingArray2[$stageNumber%10];
+				}
+				else {
+					$numbering = $numberingArray4[floor(($stageNumber)/10) - 1] + " " + $numberingArray1[$stageNumber%10];
+				}
+			}
+		}
+		return $numbering;
+	}
+}
+
+?>

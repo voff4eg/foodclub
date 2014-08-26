@@ -1,0 +1,227 @@
+<?
+class CFClubComment
+{
+	static private $_instance = null;
+	
+	/*
+	 * Добавления комментария
+	 */
+	static public function add($intRecipe, $strComment, $intReply, $intRoot){
+		$intID = false;
+		global $USER;
+		
+		
+		$arProp = Array("recipe"=>$intRecipe);
+		if(isset($intReply))$arProp['reply'] = $intReply;
+		if(isset($intReply))$arProp['root'] = $intRoot;
+		
+		$arLoadProductArray = Array(
+			"IBLOCK_SECTION"  => false,
+			"IBLOCK_ID"       => 6,
+			"PROPERTY_VALUES" => $arProp,
+			"NAME"            => $intRecipe.".комментарий",
+			"ACTIVE"          => "Y",
+			"PREVIEW_TEXT"    => $strComment,
+	    );
+	    
+	    $elComment   = new CIBlockElement;
+		$intID = $elComment->Add($arLoadProductArray);
+		
+		$rsCount = CIBlockElement::GetProperty(5, $intRecipe, "sort", "asc", Array("CODE"=>"comment_count"));
+		$arCount = $rsCount->Fetch(); 
+		$mixCount = IntVal($arCount["VALUE"]);
+		CIBlockElement::SetPropertyValues($intRecipe, 5, IntVal($mixCount)+1, "comment_count");
+		$events = GetModuleEvents("iblock", "OnAfterIBlockElementUpdate");
+		while($arEvent = $events->Fetch())
+		{			
+			if(ExecuteModuleEvent($arEvent, array("update_element_id"=>$intRecipe)) === false)
+			{
+				if($err = $APPLICATION->GetException())
+					$arResult['ERRORS'][] = $err->GetString();
+				
+				break;
+			}
+		}
+		$obCache = new CPageCache;
+		$obCache->Clean("main", "home");
+		
+		$rsRecipe = CIBlockElement::GetById($intRecipe);
+		$arRecipe = $rsRecipe->Fetch();
+		$rsUser = CUser::GetByID($arRecipe['CREATED_BY']);
+		$arUser = $rsUser->Fetch();
+		
+		$arFields = array(
+		    "MESSAGE"	=> $strComment,
+		    "ID"		=> $intRecipe,
+			"CID"		=> $intID,
+			"EMAIL"		=> $arUser['EMAIL'],
+			"RECIPE_LINK" => "detail/".$intRecipe."/",
+			"RECIPE_NAME" => $arRecipe["NAME"],
+			"AUTHOR_NAME" => "",
+			"AUTHOR_LINK" => ""
+		);
+		if(intval($USER->GetID())){
+			$rsCommentAuthor = CUser::GetByID($USER->GetID());
+			if($arCommentAuthor = $rsCommentAuthor->Fetch()){
+				if($arCommentAuthor["NAME"] && $arCommentAuthor["LAST_NAME"])
+					$arFields["AUTHOR_NAME"] = $arCommentAuthor["NAME"]." ".$arCommentAuthor["LAST_NAME"];
+				else
+					$arFields["AUTHOR_NAME"] = $arCommentAuthor["LOGIN"];
+
+				$arFields["AUTHOR_LINK"] = "profile/".$arCommentAuthor["ID"]."/";
+			}
+		}
+		
+		CEvent::Send("NEW_COMMENT", array("s1"), $arFields, "N");
+		return $intID;
+	}
+	
+	/*
+	 * Добавления комментария
+	 */
+	static public function update($intComment, $strComment, $intRecipe){
+		global $USER;
+		
+		$rsC = CIBlockElement::GetByID($intComment);
+		$arC = $rsC->Fetch();
+		
+		if($USER->IsAdmin() || $arC['CREATED_BY'] == $USER->GetID()){
+			$arProp = Array("recipe"=>$intRecipe);
+			$arLoadProductArray = Array(
+				"MODIFIED_BY"    => $USER->GetID(),
+				"IBLOCK_SECTION"  => false,
+				"IBLOCK_ID"       => 6,
+				"PROPERTY_VALUES" => $arProp,
+				"NAME"            => $intRecipe.".комментарий",
+				"ACTIVE"          => "Y",
+				"PREVIEW_TEXT"    => $strComment,
+		    );
+		    
+		    $elComment   = new CIBlockElement;
+			if($elComment->Update($intComment, $arLoadProductArray)){
+				return true;	
+			} else {
+				return false;
+			}//if
+		} else {
+			return false;
+		}//if
+	}
+	
+	static public function delete($intComment){
+		$bError = true;
+		
+		$rsC = CIBlockElement::GetByID($intComment);
+		$arC = $rsC->Fetch();
+		
+		global $DB, $USER;
+		
+		$rsRecipe = CIBlockElement::GetProperty(6, $intComment, "sort", "asc", Array("CODE"=>"recipe"));
+		$arRecipe = $rsRecipe->Fetch(); 
+		$mixRecipe = IntVal($arRecipe["VALUE"]);
+				
+		if($USER->IsAdmin() || $arC['CREATED_BY'] == $USER->GetID()){
+			$DB->StartTransaction();
+			if(!CIBlockElement::Delete($intComment)){
+				$bError = false;
+				$DB->Rollback();
+			}
+			else{
+				$DB->Commit();
+				
+				$rsCount = CIBlockElement::GetProperty(5, $mixRecipe, "sort", "asc", Array("CODE"=>"comment_count"));
+				$arCount = $rsCount->Fetch(); 
+				$mixCount = IntVal($arCount["VALUE"]);
+				CIBlockElement::SetPropertyValues($mixRecipe, 5, IntVal($mixCount)-1, "comment_count");
+				
+				$obCache = new CPageCache;
+				$obCache->Clean("main", "home");
+			}
+				
+		} else $bError = false;
+		
+		return $bError;
+	}
+	
+	/*
+	 * Получения списка комментариев
+	 */
+	static public function getList($mixID){
+		$arResult = false;
+		
+		$rsComment = CIBlockElement::GetList(Array("ID"=>"ASC"), 
+											 Array("IBLOCK_ID"=>6, "ACTIVE"=>"Y", "PROPERTY_recipe"=>$mixID), 
+											 False, 
+											 False,
+											 Array("ID","CREATED_BY", "PREVIEW_TEXT", "CREATED_USER_NAME", "DATE_CREATE", "PROPERTY_recipe", "PROPERTY_root", "PROPERTY_reply"));
+											 
+		while($arComment = $rsComment->GetNext()){
+			
+			$rsUser = CUser::GetById( $arComment['CREATED_BY'] );
+			$arComment['DATE_CREATE'] = substr(str_replace(" ", " в ", $arComment['DATE_CREATE']), 0, -3);
+						
+			$arComment['USER'] = $rsUser->Fetch();
+			if(strlen($arComment['USER']['NAME']) > 0 && strlen($arComment['USER']["LAST_NAME"]) > 0){		     	
+		     	$arComment['USER']['FULLNAME'] = $arComment['USER']['NAME']." ".$arComment['USER']["LAST_NAME"];
+		 	}else{
+		 		$arComment['USER']["FULLNAME"] = $arComment['USER']["LOGIN"];
+		 	}
+			
+			if(intval($arComment['USER']['PERSONAL_PHOTO']) > 0){
+				$rsAvatar = CFile::GetByID($arComment['USER']['PERSONAL_PHOTO']);
+				$arAvatar = $rsAvatar->Fetch();
+				$arComment['USER']['SRC'] = "/upload/".$arAvatar['SUBDIR']."/".$arAvatar['FILE_NAME'];
+			} else {
+				$arComment['USER']['SRC'] = "/images/avatar/avatar.jpg";
+			}
+			
+			$arResult[ $arComment['ID'] ] = $arComment;
+		}
+		
+		return $arResult;
+	}
+	/*
+		Получение фиксированного числа последних отзывов
+	*/
+	static public function getLastReplies($count){
+		$arResult = false;
+		$arFilter = Array("ACTIVE"=>"Y", "IBLOCK_ID"=>6);
+		$rsComment = CIBlockElement::GetList(Array("created" => "DESC"),
+											 $arFilter,
+											 false,
+											 Array ("nTopCount" => $count),
+											 Array("ID","CREATED_BY", "PREVIEW_TEXT", "CREATED_USER_NAME", "DATE_CREATE", "PROPERTY_recipe", "PROPERTY_root", "PROPERTY_reply", "DETAIL_PAGE_URL")
+											);
+		while($arComment = $rsComment->GetNext()){
+			$rsUser = CUser::GetById( $arComment['CREATED_BY'] );
+			$arComment['DATE_CREATE'] = substr(str_replace(" ", " в ", $arComment['DATE_CREATE']), 0, -3);
+			$arComment['USER'] = $rsUser->Fetch();
+			$arResult[ $arComment['ID'] ] = $arComment;
+		}
+		return $arResult;
+	}
+	
+	static public function getLastRepliesNew($count){
+		$arResult = false;
+		$arFilter = Array("ACTIVE"=>"Y", "IBLOCK_ID"=>6);
+		$rsComment = CIBlockElement::GetList(Array("created" => "DESC"),
+											 $arFilter,
+											 false,
+											 Array ("nTopCount" => $count),
+											 Array("ID","CREATED_BY", "PREVIEW_TEXT", "CREATED_USER_NAME", "DATE_CREATE", "PROPERTY_recipe", "PROPERTY_root", "PROPERTY_reply", "DETAIL_PAGE_URL")
+											);
+		while($arComment = $rsComment->GetNext()){
+			$rsUser = CUser::GetById( $arComment['CREATED_BY'] );
+			$arComment['DATE_CREATE'] = $arComment['DATE_CREATE'];
+			$arComment['USER'] = $rsUser->Fetch();
+			$arResult[$arComment["ID"]] = $arComment;
+		}
+		return $arResult;
+	}
+	
+	
+	static public function getInstance(){
+		return (self::$_instance !== null) ? self::$_instance : (self::$_instance = new CFClubComment());  
+	}
+}
+?>

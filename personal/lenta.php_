@@ -1,0 +1,228 @@
+<?
+require($_SERVER["DOCUMENT_ROOT"]."/bitrix/header.php");
+
+if (CModule::IncludeModule("advertising")){ $strBanner = CAdvBanner::Show("right_banner"); }
+
+$APPLICATION->SetPageProperty("title", $arUser['LOGIN']." &mdash; лента пользователя на Foodclub");
+
+CModule::IncludeModule("blog");
+CModule::IncludeModule("socialnetwork");
+CModule::IncludeModule("iblock");
+
+
+
+// Factory class
+include($_SERVER['DOCUMENT_ROOT'].'/classes/factory.class.php');
+
+/**
+ * Получаем список групп в зависимости от фильтрации по личным группам пользователя.
+ */
+if($USER->IsAuthorized())
+{
+    $rsRel = CSocNetUserToGroup::GetList(Array(), Array("USER_ID"=>$USER->GetID()), false, false);
+    while($rs = $rsRel->GetNext())
+    {
+	    $arGroupProp['ID'][] = $rs['GROUP_ID'];
+    }
+} 
+else 
+{
+	LocalRedirect("/auth/?backurl=/profile/lenta/");
+}
+
+if(!is_null($arGroupProp)){
+	$rsGroup = CSocNetGroup::GetList(Array(), $arGroupProp, false, false);
+
+	/**
+	 * TODO Необходимо собрать уникальные ID блогов и запрашивать информацию только по ним вне цикла.
+	 */
+	while ($arGroup = $rsGroup->GetNext()) {
+		$arBlog = CBlog::GetBySocNetGroupID($arGroup['ID']);
+		$arBlogs[ $arBlog['ID'] ] = $arGroup;
+	}
+	$arFilter["<DATE_PUBLISH"] = ConvertTimeStamp($to, "FULL");
+	$dbPosts = CBlogPost::GetList(  Array("DATE_PUBLISH" => "DESC", "NAME" => "ASC"), 
+									Array("PUBLISH_STATUS" => BLOG_PUBLISH_STATUS_PUBLISH, "BLOG_ID" => array_keys($arBlogs),
+									"<=DATE_PUBLISH"=>ConvertTimeStamp(date(), "FULL"),
+									),
+									false,
+									Array('nPageSize'=>5)
+								 );
+	$Nav_string = $dbPosts->GetPageNavString("", "blogs");
+	
+	//Parser class
+	$parser = new blogTextParser;
+}
+
+
+?>
+<div id="content">
+	<div id="text_space">
+	<h1>Моя лента</h1>
+<?
+if(!is_null($arGroupProp)){
+	$bFirst = true;
+	while ($arPost = $dbPosts->Fetch()){
+		
+		$dbCategory = CBlogPostCategory::GetList(Array("NAME" => "ASC"), Array("BLOG_ID" => $arPost["BLOG_ID"], "POST_ID" => $arPost["ID"]));
+		while($arCategory = $dbCategory->GetNext()){
+			$arCatTmp = $arCategory;
+			$arCatTmp["urlToCategory"] = "/blogs/group/".$arBlogs[ $arPost['BLOG_ID'] ]['ID']."/blog/?category=".$arCatTmp['CATEGORY_ID'];
+			$arPost["CATEGORY"][] = $arCatTmp;
+		}
+									
+		$arPost['urlToDelete'] = "/blogs/group/".$arBlogs[ $arPost['BLOG_ID'] ]['ID']."/blog/?del_id=".$arPost['ID'];
+		$res = CBlogImage::GetList(array("ID"=>"ASC"), array("POST_ID"=>$arPost['ID'], "BLOG_ID"=>$arPost['BLOG_ID']));
+		
+		while ($arImage = $res->Fetch())
+		    $arImages[$arImage['ID']] = $arImage['FILE_ID'];
+		
+		$text = $parser->convert($arPost['DETAIL_TEXT'], true, $arImages);
+		if (preg_match("/(\[CUT\])/i",$arPost['DETAIL_TEXT']) || preg_match("/(<CUT>)/i",$arPost['DETAIL_TEXT']))
+			$arPost["CUT"] = "Y";
+	    
+		$rsUser = CUser::GetByID($arPost['AUTHOR_ID']);
+		$arUser = $rsUser->Fetch();
+		
+		if(intval($arUser['PERSONAL_PHOTO']) > 0){
+			$rsAvatar = CFile::GetByID($arUser['PERSONAL_PHOTO']);
+			$arAvatar = $rsAvatar->Fetch();
+			$arAvatar['SRC'] = "/upload/".$arAvatar['SUBDIR']."/".$arAvatar['FILE_NAME'];
+		} else {
+			$arAvatar['SRC'] = "/images/avatar/avatar_small.jpg";
+		}
+		
+		$arDate = explode(" ", $arPost['DATE_PUBLISH']);?>
+		<?if(!$bFirst){?><div class="border"></div><?} else { $bFirst = false; }?>
+		<div class="topic_item">
+			<div class="chain_path">
+				<a href="/blogs/group/<?=$arBlogs[ $arPost['BLOG_ID'] ]['ID']?>/blog/">
+					<?=$arBlogs[ $arPost['BLOG_ID'] ]['NAME']?></a>
+			</div>		
+			<h1>
+				<a href="/blogs/group/<?=$arBlogs[ $arPost['BLOG_ID'] ]['ID']."/blog/".$arPost['ID']?>/">
+					<?=$arPost['TITLE']?></a>
+				<?if($USER->IsAdmin() || $USER->GetID() == $arPost['AUTHOR_ID']){?>
+				<a href="/blogs/group/<?=$arBlogs[ $arPost['BLOG_ID'] ]['ID']."/blog/edit/".$arPost['ID']?>/" class="edit">
+					<img src="/images/icons/edit.gif" width="7" height="12" alt="" title="Редактировать рецепт"></a>
+				<?}?>
+				<?if($USER->IsAdmin() || $USER->GetID() == $arPost['AUTHOR_ID']){?>
+				<a class="delete" href="javascript:if(confirm('Вы действительно хотите удалить этот пост?')) window.location='<?=$arPost["urlToDelete"]."&".bitrix_sessid_get()?>'">
+					<img width="9" height="9" title="Удалить" alt="" src="/images/icons/delete.gif"/>
+				</a>
+				<?}?>
+			</h1>
+			<div class="text"><?=$text?>
+			<?if($arPost['CUT'] == "Y"){?>
+					<div class="fcut"><a href="/blogs/group/<?=$arBlogs[ $arPost['BLOG_ID'] ]['ID']."/blog/".$arPost['ID']?>/#cut">Подробнее</a></div>
+				<?}?>
+			</div>
+			<?if(isset($arPost['CATEGORY'])){ $bFirst = true;?>
+				<div class="tags">
+				<h5>Метки</h5>
+				<?foreach($arPost['CATEGORY'] as $Item){?><?if(!$bFirst){echo ", ";}else{$bFirst = false;}?><a href="<?=$Item['urlToCategory']?>"><?=$Item['NAME']?></a><?}?>
+				</div>
+			<?}?>
+			<div class="bar">
+				<div class="padding">
+					<div class="author">
+						<div class="photo">
+							<div class="big_photo">
+								<div>
+									<img src="<?=$arAvatar['SRC']?>" width="100" height="100" alt="<?=$arUser['LOGIN']?>">
+								</div>
+							</div>	
+							<img src="<?=$arAvatar['SRC']?>" width="30" height="30" alt="<?=$arUser['LOGIN']?>">
+						</div>
+						<a href="/profile/<?=$arUser['ID']?>/"><?=$arUser['LOGIN']?></a>
+					</div>
+					<div class="comments">
+						<div class="icon">
+							<a href="/blogs/group/<?=$arBlogs[ $arPost['BLOG_ID'] ]['ID']."/blog/".$arPost['ID']?>/#add_comment">
+								<img src="/images/icons/comment.gif" width="15" height="15" alt="">
+							</a>
+						</div>
+						<a href="/blogs/group/<?=$arBlogs[ $arPost['BLOG_ID'] ]['ID']."/blog/".$arPost['ID']?>/#add_comment">
+							Комментировать</a>
+						<span class="number">
+							(<a href="/blogs/group/<?=$arBlogs[ $arPost['BLOG_ID'] ]['ID']."/blog/".$arPost['ID']?>/#00"><?=$arPost['NUM_COMMENTS']?></a>)
+						</span>
+					</div>
+					<div class="date"><?=CFactory::humanDate($arDate[0])?><span class="time"><?=$arDate[1]?></span></div>
+				</div>
+			</div>
+	    </div>
+	<?}?>
+	<?=$Nav_string?>
+<?} else {?>
+	<h2>Вы не вступили ни в один из клубов. Вы можете это сделать на странице <a href="/blogs/">клубов</a>.</h2>
+<?}?>
+	</div>
+	<div id="banner_space">
+		<?
+		$rsRandomDoUKnow = CIBlockElement::GetList(array("rand"=>"asc"),array("IBLOCK_CODE"=>"do_u_know"),false,false,array("ID","PREVIEW_TEXT"));
+		if($arRandomDoUKnow = $rsRandomDoUKnow->Fetch()){?>
+		<div id="do-you-know-that" class="b-facts">
+			<div class="b-facts__heading">Знаете ли вы что:</div>
+			<div class="b-facts__content">
+				<div class="b-facts__item" data-id="<?=$arRandomDoUKnow["ID"]?>">
+					<?=$arRandomDoUKnow["PREVIEW_TEXT"]?>
+				</div>
+			</div>
+			<div class="b-facts__more">
+				<a href="#" class="b-facts__more__link">Еще</a>
+			</div>
+		</div>
+		<?}?>
+		<?if(strlen($strBanner) > 0){?><div class="banner"><?=$strBanner?></div><?}?>
+	<?
+		$rsThematicBlock = CIBlockElement::GetList( Array("SORT"=>"ASC"), 
+											Array("ACTIVE"=>"Y", "IBLOCK_CODE"=>"thematic_bloc", "PROPERTY_place_VALUE"=>"home"),
+											false,
+											false,
+											Array("ID", "NAME", "PREVIEW_PICTURE", "PROPERTY_recipe", "PROPERTY_place")
+										);
+		$ResDump = Array();
+		while($Bl = $rsThematicBlock->GetNext())
+		{
+			$ResDump[ $Bl['ID'] ][] = $Bl['PROPERTY_RECIPE_VALUE'];
+			
+			if(!isset( $Themes[ $Bl['ID'] ] ))
+			{
+				$Themes[ $Bl['ID'] ] = $Bl;
+			}
+		}
+		
+		foreach($Themes as $Block){	
+			$strBlockHTML = '';
+			$rsRecipes = CIBlockElement::GetList(Array("SORT"=>"ASC"), Array("ID"=>$ResDump[ $Block['ID'] ]), false, false, Array("ID", "NAME", "CREATED_BY", "PROPERTY_comment_count"));
+			
+			while($arRecipe = $rsRecipes->GetNext()){
+				$rsUser = CUser::GetByID($arRecipe['CREATED_BY']);
+				$arUser = $rsUser->Fetch();
+				
+				$arRecipe['USER'] = $arUser;
+				
+				$strBlockHTML .= '<li><a href="/detail/'.$arRecipe['ID'].'/">'.$arRecipe['NAME'].'</a>&nbsp;<span class="comments">(<a href="/detail/'.$arRecipe['ID'].'/#comments">'.IntVal($arRecipe['PROPERTY_COMMENT_COUNT_VALUE']).'</a>)</span><span class="author">От: '.$arRecipe['USER']['LOGIN'].'</span></li>';
+			}?>
+			<div class="thematic_block">
+				<?
+				if(IntVal($Block['PREVIEW_PICTURE']) > 0){
+					$rsFile = CFile::GetByID(IntVal($Block['PREVIEW_PICTURE']));
+					$arFile = $rsFile->Fetch();
+					$arFile['SRC'] = "/upload/".$arFile['SUBDIR']."/".$arFile['FILE_NAME'];					
+				?>
+				<img src="<?=$arFile['SRC']?>" width="<?=$arFile['WIDTH']?>" height="<?=$arFile['HEIGHT']?>" alt="<?=$arFile['DESCRIPTION']?>" class="thematic_pic">
+				<?}?>
+				<h2><a href="http://foodclub.ru/search/<?=$Block['NAME']?>/"><?=$Block['NAME']?></a></h2>
+				<ul class="recipes">
+				<?=$strBlockHTML?>
+				</ul>
+			</div>
+		<?}?>
+	</div>
+	<div class="clear"></div>
+</div>
+<?//	$obCache->EndDataCache();
+//endif;
+require($_SERVER["DOCUMENT_ROOT"]."/bitrix/footer.php");?>

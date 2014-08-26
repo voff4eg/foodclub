@@ -1,0 +1,276 @@
+.b-foodshot-board {
+	position: relative;
+	min-height: 50px;
+}
+.b-foodshot-board.i-preloader {
+	background: url(/images/preloader.gif) no-repeat center bottom;
+}
+.b-foodshot-board__item {
+	background: #fff;
+	border: 1px solid #e3e3e1;
+	box-shadow:0 0 3px #e3e3e1;
+	-webkit-box-shadow:0 0 3px #e3e3e1;
+	-moz-box-shadow:0 0 3px #e3e3e1;
+	padding: 8px;
+	width: 170px;
+	box-sizing: content-box;
+	-moz-box-sizing: content-box;
+	-webkit-box-sizing: content-box;
+	-khtml-box-sizing: content-box;
+	position: absolute;
+	top: 0;
+	left: 0;
+	font-size: 8pt;
+}
+.b-foodshot-board__item__type_static {
+	position: static;
+	top: auto;
+	left: auto;
+}
+
+.b-foodshot-board__item__delete {
+	position: relative;
+}
+.b-foodshot-board__item__delete .b-close-icon {
+	position: absolute;
+	top: 0;
+	right: 0;
+}
+.b-foodshot-board__item-content {
+	margin-bottom: 17px;
+}
+.b-foodshot-board__item-content-image {
+	display: block;
+	width: 170px;
+	overflow: hidden;
+	margin-bottom: 12px;
+}
+.b-foodshot-board__item-content-text {
+	margin-bottom: 5px;
+	word-wrap: break-word;
+}
+.b-foodshot-board__item-content-author {}
+
+.b-foodshot-board__item-comments {}
+.b-foodshot-board__item-comments-hidden {
+	margin-bottom: 25px;
+}
+.b-foodshot-board__item-comments-hidden__button {
+	display: block;
+	height: 27px;
+	background: url(/images/comments-hidden-bg.gif) repeat-x 0 0;
+	text-align: center;
+}
+.b-foodshot-board__item-comments-hidden__icon {
+	margin-top: 6px;
+}
+a.b-foodshot-board__item-comments-hidden__button:hover .b-foodshot-board__item-comments-hidden__icon {
+	background-position: -478px -60px;
+}
+a.b-foodshot-board__item-comments-hidden__button:active .b-foodshot-board__item-comments-hidden__icon {
+	background-position: -478px -90px;
+}
+
+.b-foodshot-board__item-action {
+	background: #f2f2f2;
+	padding: 5px 9px;
+	z-index: 0;
+}
+.b-foodshot-board__item-action_like {
+	float: left;
+	margin-right: 8px;
+}
+.b-foodshot-board__item-action_like .b-like-num {
+	color: #999999;
+}
+.i-foodshot-board__item-action-invert .b-foodshot-board__item-action_like .b-like-num {
+	color: #666666;
+}
+.b-foodshot-board__item-action_comment_visible {
+	float: left;
+}
+.b-foodshot-board__item-action_comment_hidden {
+	display: none;
+ 	/*margin-top: -95px; is it being used somewhere?
+	margin-left: -35px;*/
+}
+.b-foodshot-board__item-action_comment_hidden textarea {
+	width: 113px;
+	height: 52px;
+	font-size: 8pt;
+	box-sizing: content-box;
+	-moz-box-sizing: content-box;
+	-webkit-box-sizing: content-box;
+	-khtml-box-sizing: content-box;
+	overflow: hidden;
+	vertical-align: top;
+}
+.b-foodshot-board__item-action_comment_hidden .i-over-height {
+	overflow-y: scroll;
+	padding-right: 0;
+}
+.b-form-field__type-comment__button {
+	float: right;
+	margin-top: 6px;
+	cursor: pointer;
+}
+.b-form-comments .b-form-field {
+	margin-bottom: 0;
+}
+
+.b-foodshot-board__item-action.i-foodshot-board__item-action-invert {
+	background: none;
+	padding: 0;
+}
+.i-foodshot-board__item-action-invert .b-foodshot-board__item-action_like {
+	float: none;
+	margin: -21px 0 5px 0;
+}
+.i-foodshot-board__item-action-invert .b-foodshot-board__item-action_comment_visible {
+	display: none;
+}
+.i-foodshot-board__item-action-invert .b-foodshot-board__item-action_comment_hidden {
+	display: block;
+	margin: 8px 0 0 0;
+}
+
+.b-foodshot-detail {
+	background: #fff;
+	-moz-border-radius: 2px;
+	-webkit-border-radius: 2px;
+	-khtml-border-radius: 2px;
+	border-radius: 2px;
+	padding: 16px 30px 30px;
+	width: 600px;
+	box-sizing: content-box;
+	-moz-box-sizing: content-box;
+	-webkit-box-sizing: content-box;
+	-khtml-box-sizing: content-box;
+	display: none;
+	position: absolute;
+	top: 0;
+	left: 0;
+	z-index: 201;
+}
+.b-foodshot-detail__close {
+	position: relative;
+}
+.b-foodshot-detail__close .b-close-icon {
+	position: absolute;
+	top: -42px;
+	right: -42px;
+}
+.b-foodshot-detail__delete {
+	position: relative;
+}
+.b-foodshot-detail__delete .b-admin-panel__delete {
+	margin: 0;
+	position: absolute;
+	top: 7px;
+	right: -21px;
+}
+
+.b-foodshot-detail__nav {
+	position: relative;
+	font-size: 7.5pt;
+	color: #999;
+	height: 10px;
+	margin-bottom: 14px;
+}
+.b-foodshot-detail__nav__note {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	text-align: center;
+	z-index: 209;
+}
+.b-foodshot-detail__nav__prev {
+	position: absolute;
+	top: 0;
+	left: 0;
+	z-index: 210;
+}
+.b-foodshot-detail__nav__next {
+	position: absolute;
+	top: 0;
+	right: 0;
+	z-index: 210;
+}
+
+.b-foodshot-detail__image {
+	text-align: center;
+	background-color: #f9f9f9;
+	min-height: 400px;
+	margin: -1px;
+	margin-bottom: 15px;
+	box-sizing: content-box;
+	-moz-box-sizing: content-box;
+	-webkit-box-sizing: content-box;
+	-khtml-box-sizing: content-box;
+}
+.b-foodshot-detail__image img {
+}
+.b-foodshot-detail__admin-buttons {
+	float: right;
+}
+.b-foodshot-detail__like {
+	margin-bottom: 40px;
+}
+.b-foodshot-detail__like .b-like {
+	vertical-align: top;
+	margin-right: 25px;
+}
+.b-foodshot-detail__like__item {
+	display: inline-block;
+	vertical-align: top;
+	width: 100px;
+	height: 20px;
+	margin-right: 25px;
+}
+.b-foodshot-detail__description {
+	padding: 1px 0 0 0;
+	margin-bottom: 30px;
+	border-bottom: none;
+}
+.b-foodshot-detail__description .b-comment__content {
+	margin-top: 0;
+}
+.b-foodshot-detail__description .b-comment__text {
+	margin-bottom: 15px;
+	word-wrap: break-word;
+}
+.b-foodshot-detail__description .b-userpic {
+	margin-bottom: 13px;
+}
+.b-foodshot-detail__description .b-like {
+	text-align: center;
+	display: block;
+	width: 100px;
+}
+.b-foodshot-detail__description__source {
+	margin-bottom: 12px;
+}
+
+.b-foodshot-detail .b-form-field__type-comment__button {
+	float: none;
+	margin-left: 45px;
+}
+.b-foodshot-detail__comments__textarea {
+	width: 533px;
+	height: 70px;
+	box-sizing: content-box;
+	-moz-box-sizing: content-box;
+	-webkit-box-sizing: content-box;
+	-khtml-box-sizing: content-box;
+}
+
+#opaco {
+	-ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=70)";/* IE8 */
+	filter:progid:DXImageTransform.Microsoft.Alpha(opacity = 70); /* IE5+ */
+	filter: alpha(opacity=70);/* IE4- */
+	moz-opacity: 0.7; /* Mozilla */
+	-khtml-opacity: 0.7; /* Safari */
+	opacity: 0.7;  /* general CSS3 */
+	z-index: 200;
+}

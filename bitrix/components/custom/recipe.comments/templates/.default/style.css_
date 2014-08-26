@@ -1,0 +1,202 @@
+.comments_block {
+	margin-top: 40px;
+	padding:4px 0 0 53px;
+}
+.comments_block h2 {
+	margin-left:-53px;
+	color:#333333;
+	font-size:20pt;}
+div.comments_block div.comment {border:1px solid #ebebeb;}
+div.comments_block div.mine {
+	border:1px solid #d0e2bc;
+	background:#f1f8e9;}
+div.comments_block div.foodclub {
+	border:1px solid #edd5d5;
+	background:#faefef;}
+div.comments_block div.comment div.icons {
+	position:relative;
+	border-top:1px solid #ffffff;}
+div.comments_block div.mine div.icons {border-top-color:#f1f8e9;}
+div.comments_block div.foodclub div.icons {border-top-color:#faefef;}
+div.comments_block div.comment div.icons div {position:absolute;}
+div.comments_block div.comment div.icons div.right {
+	position:relative;
+	float:right;}
+.comments_block .delete {
+	top:10px;
+	left:-18px;
+	cursor:pointer;
+	margin: 0;}
+div.comments_block div.comment div.icons div.pointer {
+	background:url(/images/comment/pointer.gif) no-repeat;
+	width:8px;
+	height:13px;
+	top:23px;
+	left:-8px;}
+div.comments_block div.comment div.icons div.photo {
+	width:30px;
+	height:30px;
+	top:12px;
+	left:-54px;}
+div.comments_block div.comment div.big_photo {
+	position:relative;
+	display:none;}
+div.comments_block div.comment div.big_photo div {
+	font-size:0;
+	position:absolute;
+	top:-35px;
+	left:-35px;
+	z-index:2;}
+div.comments_block div.mine div.icons div.pointer {background-image:url(/images/comment/pointer_mine.gif);}
+.comments_block .edit {
+	top:30px;
+	left:-17px;
+	cursor:pointer;
+	margin: 0;}
+div.comments_block div.comment div.properties {
+	margin:14px 0 -6px 0;
+	height:19px;
+	position:relative;}
+div.comments_block div.comment div.date {
+	font-size:7pt;
+	white-space:nowrap;
+	color:#999999;
+	text-align:right;}
+div.comments_block div.comment div.date a {font-size:8pt;}
+div.comments_block div.comment div.reply_string {
+	background:url(/images/icons.png) no-repeat 0 -287px;
+	padding:3px 0 4px 34px;
+	height:15px;
+	position:absolute;
+	top:-6px;
+	left:0;}
+div.comments_block div.comment div.reply_string a {font-size:8pt;}
+#body div.comments_block div.comment div.padding {padding:10px 30px 10px 15px;}
+#body div.comments_block div.foodclub div.padding {padding:15px;}
+div.comments_block div.comment div.padding div.text {
+	display:block;
+	word-wrap:break-word;}
+div.comments_block div.comment div.padding div.comment_author {margin-bottom:8px;}
+div.comments_block div.comment div.padding div.comment_author * {font-size:8pt;}
+div.comments_block div.comment div.padding form {display:none;}
+div.comments_block div.block {margin:20px 0 0 0;}
+div.comments_block div.reply_block {margin:20px 0 0 30px;}
+div.comments_block div.straight {margin:20px 0 0 0;}
+div.comments_block div.foodclub {}
+div.comments_block div.foodclub div.icons div.pointer {background-image:url(/images/comment/pointer_foodclub.gif);}
+
+div.comments_block div.edit_form {
+	border:none;
+	background:transparent;}
+#body div.comments_block div.edit_form div.padding {padding:0;}
+div.comments_block div.edit_form div.icons div.pointer, div.comments_block div.edit_form div.icons div.edit, div.comments_block div.edit_form div.icons div.delete {background:transparent;}
+div.comments_block div.edit_form div.padding div.text {display:none;}
+div.comments_block div.edit_form div.padding form {display:block;}
+div.comments_block div.edit_form div.icons {border-color:#ffffff;}
+div.comments_block div.edit_form div.icons div.properties {
+	top:9px;
+	left:24px;}
+div.comments_block div.edit_form div.icons div.reply_string {
+	top:31px;
+	left:24px;}
+div.comments_block div.edit_form div.icons div.photo {
+	top:13px;
+	left:-53px;}
+div.comments_block div.edit_form div.icons div.close_icon {
+	top:2px;
+	right:0;
+	cursor:pointer;
+	width:11px;
+	height:11px;
+	background:url(/images/icons.png) no-repeat -13px 0;}
+
+#reply_form {
+	margin-top:17px;
+	display:none;
+	//width:527px;}
+#reply_form div.close_icon {
+	float:right;
+	position:relative;}
+#reply_form div.close_icon div {
+	position:absolute;
+	top:6px;
+	left:-11px;
+	cursor:pointer;
+	width:11px;
+	height:11px;
+	background:url(/images/icons.png) no-repeat -13px 0;}
+#reply_form h4, #comment_form h4 {
+	color:#999999;
+	font-style:italic;
+	font-size:10pt;
+	margin-bottom:7px;}
+#reply_form h4.attention, #comment_form h4.attention {color:#ff0000;}
+#reply_form .button {
+	width:100%;
+	margin-top:15px;}
+
+#comment_form {
+	position:relative;
+	margin-top:38px;}
+#comment_form textarea, #reply_form textarea, div.comments_block div.edit_form textarea {
+	border:1px solid #c3c3c3;
+	width:100%;
+	height:50px;
+	padding:10px;
+	box-shadow:4px 4px 8px #c8c8c8 inset;
+	-webkit-box-shadow:4px 4px 8px #c8c8c8 inset; /* Safari, Chrome */
+	-moz-box-shadow:4px 4px 8px #c8c8c8 inset; /* Firefox */
+	-moz-border-radius:3px; /* Firefox */
+	-webkit-border-radius:3px; /* Safari, Chrome */
+	-khtml-border-radius:3px; /* KHTML */
+	border-radius:3px; /* CSS3 */
+	background:#ffffff;}
+#comment_form .textarea, #reply_form .textarea, .comments_block .edit_form .textarea {padding-right:22px;}
+#reply_form textarea {
+	width:100%;
+	//width:497px;}
+/*input.button*/
+#system_message .button {
+	height:auto;
+	border:none;
+	padding:11px;}
+#comment_form div.foodclub {
+	border:1px solid #edd5d5;
+	background:#faefef;}
+#comment_form div.comment div.icons {
+	position:relative;
+	border-top:1px solid #ffffff;}
+#comment_form div.foodclub div.icons {border-top-color:#faefef;}
+#comment_form div.comment div.icons div {position:absolute;}
+#comment_form div.comment div.icons div.pointer {
+	background:url(/images/comment/pointer.gif) no-repeat;
+	width:8px;
+	height:13px;
+	top:23px;
+	left:-8px;}
+#body #comment_form div.foodclub div.padding {padding:15px;}
+#comment_form div.comment div.padding div.text {display:block;}
+#comment_form div.foodclub div.icons div.pointer {background-image:url(/images/comment/pointer_foodclub.gif);}
+
+#sessId {display:none;}
+
+
+.b-more-button {
+	text-align: center;
+	margin-top: 15px;
+}
+.b-more-button.i-preload {
+	background: url(/images/preloader.gif) no-repeat center center;
+	height: 27px;
+}
+.b-more-button .b-button {
+	display: inline-block;
+	height: 27px;
+	width: 129px;
+	font-size: 8pt;
+	padding-top: 6px;
+	margin: 0;
+}
+.b-more-button.i-preload .b-button {
+	display: none;
+}

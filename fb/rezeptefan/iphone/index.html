@@ -1,0 +1,66 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1251" />
+<title>Rezeptefan iPhone page</title>
+<style>
+body {
+	margin:0;
+	padding:0;
+	background:#ffffff;}
+#content {
+	width:500px;
+	height:757px;
+	cursor:pointer;
+	overflow:hidden;}
+#content img {display:none;}
+#content img.visible {display:block;}
+#button {position:relative;}
+#button a {
+	display:block;
+	width:119px;
+	height:40px;
+	position:absolute;
+	top:672px;
+	left:191px;}
+</style>
+</head>
+
+<body>
+<div id="content">
+	<div id="button"><a target="_blank" href="http://itunes.apple.com/ru/app/rezeptefan/id457543563?mt=8"></a></div>
+	<img src="2.jpg" width="500" height="757" alt="" class="visible" />
+	<img src="3.jpg" width="500" height="757" alt="" />
+	<img src="4.jpg" width="500" height="757" alt="" />
+	<img src="5.jpg" width="500" height="757" alt="" />
+</div>
+<script type="text/javascript">
+var content = document.getElementById("content"), button=document.getElementById("button"), images=[];
+for(var i=0; i<content.childNodes.length; i++) {
+	if(content.childNodes[i].tagName == "IMG") {
+		images.push(content.childNodes[i]);
+	}
+}
+content.onclick = function() {
+	for(var i=0; i<images.length; i++) {
+		if(images[i].className == "visible"){
+			images[i].className = "";
+			if(images[i+1]) {images[i+1].className = "visible";}
+			else {images[0].className = "visible";}
+			break;
+		}
+	}
+};
+for(var i=0; i<button.childNodes.length; i++) {
+	if(button.childNodes[i].tagName == "A") {
+		button.childNodes[i].onclick = function(e) {stopEvent(e);};
+	}
+}
+function stopEvent(e) {
+	if(!e) e = window.event;
+	if(e.stopPropagation) e.stopPropagation();
+	else e.cancelBubble = true;
+}
+</script>
+</body>
+</html>

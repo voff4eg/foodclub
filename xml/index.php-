@@ -1,0 +1,189 @@
+<?
+require($_SERVER["DOCUMENT_ROOT"]."/bitrix/header.php");
+CModule::IncludeModule("iblock");
+
+include $_SERVER.'/classes/main.class.php';
+require($_SERVER["DOCUMENT_ROOT"]."/classes/favorite.class.php");
+
+$Recipes = CFavorite::get_list(2926);
+$CFClub = new CFClub();
+
+$arDishType = $CFClub->getDishType();
+$arUnits = $CFClub->getUnitList();
+
+$Dump = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>
+<RecipeList>";
+foreach($Recipes as $Recipe){
+    $rsRecipe = CIBlockElement::GetList(Array(), Array("ID"=>$Recipe), false, false, Array("ID", "NAME", "DATE_ACTIVE_FROM", "CREATED_BY", "PREVIEW_PICTURE", "DETAIL_PICTURE", "PREVIEW_TEXT", "PROPERTY_kitchen", "PROPERTY_dish_type", "PROPERTY_recipt_steps", "PROPERTY_comment_count", "PROPERTY_title", "PROPERTY_keywords", "PROPERTY_description", "PROPERTY_block_photo", "PROPERTY_block_search", "PROPERTY_block_like"));
+	$arRecipe = $rsRecipe->GetNext();
+	$arSteps = array();
+	$arSteps[ $arRecipe['PROPERTY_RECIPT_STEPS_VALUE_ID'] ] = $arRecipe['PROPERTY_RECIPT_STEPS_VALUE'];
+	
+	while($arItem = $rsRecipe->GetNext()){
+		$arSteps[ $arItem['PROPERTY_RECIPT_STEPS_VALUE_ID'] ] = $arItem['PROPERTY_RECIPT_STEPS_VALUE'];
+	}
+	
+	$rsMainFile = CFile::GetByID($arRecipe['DETAIL_PICTURE']);
+	$arMainFile = $rsMainFile->Fetch();
+	$arMainFile['SRC'] = $arMainFile['SUBDIR']."/".$arMainFile['FILE_NAME'];
+    
+    if( strlen($arMainFile['SUBDIR'])> 0 )
+        CopyDirFiles($_SERVER["DOCUMENT_ROOT"]."/upload/".$arMainFile['SRC'], $_SERVER["DOCUMENT_ROOT"]."/xml/".$arMainFile['SRC']);
+
+    $arStages = array();
+    $rsStages = CIBlockElement::GetList(Array(), Array("ID"=>$arSteps), false, false, Array("ID", "NAME", "PREVIEW_PICTURE", "PREVIEW_TEXT", "PROPERTY_ingredient", "PROPERTY_numer", "PROPERTY_parent"));
+	while($arStage = $rsStages->GetNext()){
+
+		$arStages[ $arStage['ID'] ]['ID'] = $arStage['ID'];
+		$arStages[ $arStage['ID'] ]['NAME'] = $arStage['NAME'];
+		$arStages[ $arStage['ID'] ]['PREVIEW_PICTURE'] = $arStage['PREVIEW_PICTURE'];
+		$arStages[ $arStage['ID'] ]['PREVIEW_TEXT'] = $arStage['PREVIEW_TEXT'];
+		$arStages[ $arStage['ID'] ]['PROPERTY_INGREDIENT_VALUE'][ $arStage['PROPERTY_INGREDIENT_VALUE_ID'] ] = $arStage['PROPERTY_INGREDIENT_VALUE'];
+		$arStages[ $arStage['ID'] ]['PROPERTY_NUMER_VALUE'][ $arStage['PROPERTY_NUMER_VALUE_ID'] ] = $arStage['PROPERTY_NUMER_VALUE'];
+		$arStages[ $arStage['ID'] ]['PROPERTY_PARENT_VALUE'] = $arStage['PROPERTY_PARENT_VALUE'];
+
+	}
+
+	global $DB;
+	foreach($arStages as $Item)
+	{
+		$ElementId = $Item['ID'];
+
+		$sqlIngridient = "SELECT * FROM `b_iblock_element_property` WHERE `IBLOCK_ELEMENT_ID` = ".$ElementId." AND `IBLOCK_PROPERTY_ID` = 3 ORDER BY `ID` ASC";
+		$sqlNumer = "SELECT * FROM `b_iblock_element_property` WHERE `IBLOCK_ELEMENT_ID` = ".$ElementId." AND `IBLOCK_PROPERTY_ID` = 4 ORDER BY `ID` ASC";
+
+		$rowFields = $DB->Query($sqlIngridient, false);
+		while($Field = $rowFields->Fetch()){
+			$arStages[ $Item['ID'] ]['PROPERTY_INGREDIENT_VALUE'][ $Field['ID'] ] = $Field['VALUE'];
+		}
+		ksort($arStages[ $Item['ID'] ]['PROPERTY_INGREDIENT_VALUE']);
+		reset($arStages[ $Item['ID'] ]['PROPERTY_INGREDIENT_VALUE']);
+
+		$rowFields = $DB->Query($sqlNumer, false);
+		while($Field = $rowFields->Fetch()){
+			$arStages[ $Item['ID'] ]['PROPERTY_NUMER_VALUE'][ $Field['ID'] ] = $Field['VALUE'];
+		}
+		ksort($arStages[ $Item['ID'] ]['PROPERTY_NUMER_VALUE']);
+		reset($arStages[ $Item['ID'] ]['PROPERTY_NUMER_VALUE']);
+	}
+	
+	$Stages = "";
+    foreach($arStages as $strStep){
+
+		$arStageFields = Array(
+							"ID" => $strStep['ID'],
+							"NAME" => $strStep['NAME'],
+							"PREVIEW_PICTURE" => $strStep['PREVIEW_PICTURE'],
+							"PREVIEW_TEXT" => $strStep['PREVIEW_TEXT'],
+							);
+		$arStageProp = Array(
+							"ingredient" => $strStep['PROPERTY_INGREDIENT_VALUE'],
+							"numer" => $strStep['PROPERTY_NUMER_VALUE'],
+							"parent" => $strStep['PROPERTY_PARENT_VALUE'],
+							);
+
+		$arKey = array_keys($arStageProp['ingredient']);
+		$arStageProp['numer'] = array_combine($arKey, $arStageProp['numer']);
+
+		$rsIng = CIBlockElement::GetList(Array(), Array("ID"=>$arStageProp['ingredient']), false, false, Array("ID","NAME","PROPERTY_unit"));
+		while($arIngSrc = $rsIng->GetNext()){
+			$arIng[ $arIngSrc['ID'] ] = $arIngSrc;
+		}
+
+		foreach($arStageProp['ingredient'] as $strKey => $strItem){
+			if(!is_null($strItem)){
+				$arResult[] = Array(
+					"ID"    => $strItem,
+					"NAME"  => $arIng[ $strItem ]['NAME'],
+					"UNIT"  => $arIng[ $strItem ]['PROPERTY_UNIT_VALUE'],
+					"VALUE" => $arStageProp['numer'][ $strKey ],
+				);
+
+				$arAllUnits[$strItem][] = Array(
+					"ID"    => $strItem,
+					"NAME"  => $arIng[ $strItem ]['NAME'],
+					"UNIT"  => $arIng[ $strItem ]['PROPERTY_UNIT_VALUE'],
+					"VALUE" => $arStageProp['numer'][ $strKey ],
+				);
+			}
+		}
+
+		$rsFile = CFile::GetByID($arStageFields['PREVIEW_PICTURE']);
+        $arFile = $rsFile->Fetch($arResult);
+        $arFile['SRC'] = $arFile['SUBDIR']."/".$arFile['FILE_NAME'];
+
+        if( strlen($arFile['SUBDIR'])> 0 )
+            CopyDirFiles($_SERVER["DOCUMENT_ROOT"]."/upload/".$arFile['SRC'], $_SERVER["DOCUMENT_ROOT"]."/xml/".$arFile['SRC']);
+        
+        $Stages .= "
+          <Stage>
+            <ID>{$arStageFields['ID']}</ID>
+            <Name>{$arStageFields['NAME']}</Name>
+            <Description>{$arStageFields['PREVIEW_TEXT']}</Description>
+            <Photo>
+              <Path>{$arFile['SUBDIR']}/{$arFile['FILE_NAME']}</Path>
+              <Width>{$arFile['WIDTH']}</Width>
+              <Height>{$arFile['HEIGHT']}</Height>
+            </Photo>
+            <Ingridients>";
+            
+        $value = str_replace(Array("1/2", "1/4", "3/4"), Array("&frac12;","&frac14;","&frac34;"), $arItem['VALUE']);
+        
+        foreach($arResult as $strKey => $arItem){
+            $Stages .= "
+                <Item>
+                   <ID>{$arItem['ID']}</ID>
+                   <Name>{$arItem['NAME']}</Name>
+                   <Value>{$arItem['VALUE']} {$arItem['UNIT']}</Value>
+                </Item>";
+        } 
+        unset($arResult);
+        
+        $Stages .= "
+            </Ingridients>
+        </Stage>";
+    }
+    
+    $TotalIngridients = "";
+    foreach($arAllUnits as $arItem){
+		$intUnitCount = 0;
+		foreach($arItem as $arUnit){
+			ob_start(); eval("echo ".$arUnit['VALUE'].";"); $i = ob_get_contents(); ob_end_clean();
+			$intUnitCount += FloatVal($i);
+		}
+		$value = str_replace(Array("0.5", "0.25", "0.75"), Array("&frac12;","&frac14;","&frac34;"), $intUnitCount);
+        $TotalIngridients .= "
+        <Item>
+           <ID>{$arItem[0]['ID']}</ID>
+           <Name>{$arItem[0]['NAME']}</Name>
+           <Value>{$intUnitCount} {$arItem[0]['UNIT']}</Value>
+        </Item>";
+    }
+
+    $Dump .= 
+<<<HTML
+<Recipe>
+    <Name>{$arRecipe['NAME']}</Name>
+    <Description>{$arRecipe['PREVIEW_TEXT']}</Description>
+    <MainPhoto>
+        <Path>{$arMainFile['SRC']}</Path>
+        <Width>{$arMainFile['WIDTH']}</Width>
+        <Height>{$arMainFile['HEIGHT']}</Height>
+    </MainPhoto>
+    <TotalIngridients>
+        {$TotalIngridients}
+    </TotalIngridients>
+    <Stages>
+        {$Stages}
+    </Stages>
+</Recipe>
+HTML;
+
+}
+$Dump .= "</RecipeList>";
+echo $_SERVER['DOCUMENT_ROOT'].'/xml/dump.xml';
+$fp = fopen($_SERVER['DOCUMENT_ROOT'].'/xml/dump.xml', 'w');
+fwrite($fp, $Dump);
+fclose($fp);
+?>
+

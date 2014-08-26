@@ -1,0 +1,188 @@
+@media print {
+	.b-print-button, .screen {
+		display: none;
+	}
+}
+
+html {overflow-y: scroll;}
+* {
+	padding: 0;
+	margin: 0;}
+body {
+	font-size: 10pt;
+	width: 100%;
+	height: 100%;
+	background: #ffffff;
+	color: #333333;
+	font-family: Tahoma, Arial, Helvetica, sans-serif;}
+img {
+	border: 0;
+	vertical-align: bottom;
+}
+table, table td {border-collapse: collapse;}
+table td {vertical-align: top;}
+p {margin-top: 10px;}
+h1, h2, h3, h4, h5, h6 {
+	font-weight: normal;
+	font-family: Georgia, Times, serif;
+}
+h1 {
+	font-size: 20pt;
+	margin: 0 0 20px 0;}
+h2 {
+	font-size: 14pt;
+	color: #999999;
+	margin-bottom: 10px;
+}
+h3 {
+	font-size: 14pt;
+	font-family: Georgia, Times, serif;}
+h4 {}
+h5 {
+	color: #999999;
+	font-size: 10pt;
+	font-family: Georgia, Times, serif;
+	font-style: italic;}
+h6 {}
+
+.i-clearfix {
+	clear: both;
+	height: 0;
+	overflow: hidden;
+	width: 1px;}
+
+
+#body {
+	width: 602px;
+	padding: 50px 0;
+	margin: 0 auto;
+}
+#recipe {
+	border-left: 1px solid #cccccc;
+	border-right: 1px solid #cccccc;
+	padding: 30px 50px;
+}
+#top_decor, #bottom_decor {
+	height:4px;
+	font-size: 0;
+}
+
+.b-button {
+	display: inline-block;
+	height: 43px;
+	//height: 31px;
+	background: url(/images/buttons.png) repeat-x 0 -1841px;
+	color: #ffffff;
+	font-size: 11pt;
+	font-family: Georgia, "Times New Roman", Times, serif;
+	color: #7d7c7c;
+	text-shadow: 0 1px 0 #ffffff;
+	cursor: pointer;
+	text-align: center;
+	padding: 12px 18px 0 18px;
+	-moz-border-radius: 5px; /* Firefox */
+	-webkit-border-radius: 5px; /* Safari, Chrome */
+	-khtml-border-radius: 5px; /* KHTML */
+	border-radius: 5px; /* CSS3 */
+	box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	-khtml-box-sizing: border-box;
+	border: 0;
+	text-decoration: none;}
+.b-button:hover {background-position:0 -1884px;}
+.b-button:active {background-position:0 -1927px;}
+
+.b-print-button {text-align:center;}
+
+.b-print-head {
+	margin: 30px 0 35px 0;
+}
+.b-print-head__logo {
+	float: left;
+	margin: 0 27px 0 0;
+}
+.b-logo {
+	width: 89px;
+	height: 63px;
+}
+.b-print-head__slogan {
+	float: left;
+	margin: 12px 0 0 0;
+}
+.b-slogan {
+	font-family: Georgia, "Times New Roman", Times, serif;
+	font-size: 9pt;
+	font-style: italic;
+	color: #666666;
+}
+.b-print-head__web {
+	float: right;
+	margin: 18px 0 0 0;
+}
+.b-web {
+	font-family: Georgia, "Times New Roman", Times, serif;
+	font-size: 18pt;
+	font-style: italic;
+}
+
+.needed {
+	margin: 0 0 30px 0;
+	color: #666666;}
+.needed table {
+	width: 100%;
+	border-top: 1px solid #ebebeb;
+	margin-top: 8px;}
+.needed table td {
+	border-bottom: 1px solid #ebebeb;
+	font-size: 8pt;
+	vertical-align: middle;}
+.needed table td.ing_name {
+	padding: 5px 13px;
+	width: 35%;}
+.needed table td.ing_amount {
+	padding: 5px 13px 5px 0;
+	width: 15%;}
+.needed table td.border {border-left:1px solid #ebebeb;}
+
+.recipe_info {
+	color: #666666;
+	margin: 0 0 28px 0;}
+.recipe_info table {
+	width:100%;
+	border-top:1px solid #ebebeb;}
+.recipe_info td {
+	border-bottom:1px solid #ebebeb;
+	font-size:8pt;
+	vertical-align:middle;}
+.recipe_info td.time {
+	padding:5px 13px;
+	width:42%;}
+.recipe_info td.yield {
+	padding:5px 13px 5px 0;
+	width:16%;}
+.recipe_info td.nutrition {
+	padding:5px 13px 5px 0;
+	width:42%;
+	text-align:right;}
+.recipe_info span {color:#999999;}
+
+.image {
+	float: left;
+	margin: 0 15px 0 0;
+}
+.description, .instruction {
+	float: left;
+	width: 280px;
+}
+
+.screen {position:relative;}
+.screen div {
+	position:absolute;
+	top:0;
+	left:0;
+	background:url(/images/spacer.gif) no-repeat 0 0;}
+
+.stage, .title {
+	margin-bottom: 40px;
+}

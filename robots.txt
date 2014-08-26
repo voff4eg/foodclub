@@ -1,0 +1,14 @@
+User-agent: msnbot
+Crawl-delay: 120
+User-agent: *
+Disallow: /bitrix/
+Disallow: /iframe.html
+Disallow: /php/
+Disallow: /apc.php
+Disallow: /js.php
+Disallow: /js_for_new_plugin.php
+Disallow: /mysqltuner.pl
+Disallow: /reg.php
+Disallow: /test.php
+Disallow: /title.php
+Disallow: /pages/salad/

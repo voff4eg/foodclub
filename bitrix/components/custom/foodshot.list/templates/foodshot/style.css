@@ -1,0 +1,38 @@
+#cooks_space .b-last-foodshot h2 {
+	margin-bottom: 11px;
+}
+.b-last-foodshot {
+	margin-bottom: 25px;
+}
+
+.b-collection-block {
+	border: 1px solid #e6e6e6;
+	margin: 15px 0 0 0;
+}
+.b-collection-block__type_top-border {
+	border: none !important;
+	border-top: 1px solid #e6e6e6 !important;
+}
+.b-last-foodshot.b-collection-block .b-collection-block__heading {
+	text-align: center;
+	margin-top: -15px;
+	margin-bottom: 25px;
+}
+.b-collection-block__heading__content {
+	background: #fff;
+	display: inline-block;
+	padding: 0 7px;
+	font-size: 14pt;
+	font-family: Georgia, "Times New Roman", Times, serif;
+	font-style: italic;
+}
+.b-last-foodshot.b-collection-block {
+	margin: 15px -3px 25px;
+}
+.b-last-foodshot .b-foodshot-board__item__type_static {
+	margin: 0 auto;
+}
+.b-last-foodshot.b-collection-block .b-foodshot-board__item__type_static {
+	margin: 0 2px 0 3px;
+	float: left;
+}

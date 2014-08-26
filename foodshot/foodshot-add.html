@@ -1,0 +1,101 @@
+<link rel="stylesheet" type="text/css" href="foodshot-add.css">
+
+<div id="add-foodshot-layer">
+	<a href="#" class="b-close-icon"></a>
+
+	<div id="add-foodshot-layer__choice" class="b-af__choice">
+		<a href="#" class="b-af__choice__link b-af__choice__url">
+			<span class="b-af__choice__ill"></span>
+			<span class="b-af__choice__heading">Ссылка</span>
+			<span class="b-af__choice__note">Фото размещено<br>на другом сайте.</span>
+		</a>
+		<a href="#" class="b-af__choice__link b-af__choice__file">
+			<span class="b-af__choice__ill"></span>
+			<span class="b-af__choice__heading">Фото</span>
+			<span class="b-af__choice__note">Файл на вашем<br>компьютере.</span>
+		</a>
+		<div class="i-clearfix"></div>
+	</div>
+	
+	<div id="add-foodshot-layer__file" class="b-af__form">
+		<h2 class="b-af__form__heading">
+			<span class="b-af__form__heading__text">Добавить фудшот</span>
+			<a href="#" class="b-af__form__heading__back" title="Вернуться назад"></a>
+		</h2>
+		<form action="" method="get">
+			<fieldset class="b-af__form__photo">
+				<!--#include virtual="/components/foodshot.add-file.source/template.html"-->
+			</fieldset>
+			
+			<fieldset class="b-af__form__details">
+				<div class="b-form-field b-af__form__title">
+					<label class="b-form-label">Название</label>
+					<input type="text" name="title" value="" class="b-input-text" required>
+				</div>
+				<div class="b-form-field b-af__form__description">
+					<label class="b-form-label">Описание</label>
+					<div class="counter"></div>
+					<textarea name="description" cols="10" rows="10" class="b-textarea" required></textarea>
+				</div>
+			</fieldset>
+			
+			<div class="i-clearfix"></div>
+			
+			<div class="b-af__form__submit"><input type="submit" value="Добавить шот" class="b-button" /></div>
+		</form>
+		
+	</div>
+	
+	<div id="add-foodshot-layer__url" class="b-af__form">
+		<h2 class="b-af__form__heading">
+			<span class="b-af__form__heading__text">Добавить фудшот</span>
+			<a href="#" class="b-af__form__heading__back" title="Вернуться назад"></a>
+		</h2>
+		<form action="" method="get">
+			<fieldset class="b-af__form__url">
+				<div class="b-form-field">
+					<label class="b-form-label">Ссылка</label>
+					<input type="text" name="url" value="" class="b-input-text" required>
+					<a href="#" class="b-button">Найти картинку</a>
+				</div>
+			</fieldset>
+			
+			<div class="b-af__hr"></div>
+			
+			<div class="b-af__form__hidden-fields">
+				<fieldset class="b-af__form__preview">
+					<div class="b-preview">
+						<label class="b-form-label">Превью</label>
+						<div class="b-preview__screen b-file-upload__files-container">
+							<div class="b-preview__belt">
+								<img src="/images/spacer.gif" width="260" height="177" alt="" />
+							</div>
+							<input type="hidden" name="photo" value="">
+						</div>
+						<div class="b-preview__nav">
+							<a href="#" class="b-preview__nav__left" title="Назад"></a><a href="#" class="b-preview__nav__right" title="Вперёд"></a>
+						</div>
+					</div>
+				</fieldset>
+				
+				<fieldset class="b-af__form__details">
+					<div class="b-form-field b-af__form__title">
+						<label class="b-form-label">Название</label>
+						<input type="text" name="title" value="" class="b-input-text" required>
+					</div>
+					<div class="b-form-field b-af__form__description">
+						<label class="b-form-label">Описание</label>
+						<div class="counter"></div>
+						<textarea name="description" cols="10" rows="10" class="b-textarea" required></textarea>
+					</div>
+				</fieldset>
+				
+				<div class="i-clearfix"></div>
+				
+				<div class="b-af__form__submit"><input type="submit" value="Добавить шот" class="b-button" /></div>
+			</div>
+		</form>
+		
+	</div>
+	
+</div>

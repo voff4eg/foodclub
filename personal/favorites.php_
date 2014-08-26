@@ -1,0 +1,169 @@
+<?
+require($_SERVER["DOCUMENT_ROOT"]."/bitrix/header.php");
+$APPLICATION->SetTitle("Title");
+
+if (CModule::IncludeModule("advertising")){ $strBanner = CAdvBanner::Show("right_banner"); }
+
+
+
+if(strpos($_REQUEST['place'], "pr_favor") !== false){
+	$UserId = IntVal($USER->GetId());
+	if(!$USER->IsAuthorized()){
+		LocalRedirect('/auth/?backurl=/profile/favorites/');
+	}
+} else {
+	
+	$UserId = IntVal($_REQUEST['u']);
+	$rsUser = CUser::GetByID($UserId);
+	$arUser = $rsUser->Fetch();
+	
+	if(intval($arUser['PERSONAL_PHOTO']) > 0){
+		$rsAvatar = CFile::GetByID($arUser['PERSONAL_PHOTO']);
+		$arAvatar = $rsAvatar->Fetch();
+		$arAvatar['SRC'] = "/upload/".$arAvatar['SUBDIR']."/".$arAvatar['FILE_NAME'];
+	} else {
+		$arAvatar['SRC'] = "/images/avatar/avatar.jpg";
+	}
+}
+
+
+
+$APPLICATION->SetPageProperty("title", $arUser['LOGIN']." &mdash; избранные рецепты пользователя на Foodclub");
+?>
+<div id="content">
+	<div id="text_space" class="personal_recipes">
+	<?if(strpos($_REQUEST['place'], "pr_favor") !== false){?>
+		<h1>Избранные рецепты</h1>
+	<?} else {?>
+		<div class="author_bar">
+			<div class="author">
+				<div class="photo">
+					<a href="/profile/<?=$UserId?>/"><img src="<?=$arAvatar['SRC']?>" width="100" height="100" alt="<?=$arUser['LOGIN']?>"></a>
+				</div>
+				<h1><a href="/profile/<?=$UserId?>/"><?=$arUser['LOGIN']?></a></h1>
+			</div>
+			<div class="menu"><a href="/profile/<?=$UserId?>/recipes/">Рецепты</a><a href="/profile/<?=$UserId?>/topics/">Записи</a><a href="/profile/<?=$UserId?>/comments/">Комментарии</a><a href="/profile/<?=$UserId?>/opinions/">Отзывы</a><span>Избранные рецепты</span></div>
+			<div class="clear"></div>
+		</div>
+	<?}?>
+<?
+CModule::IncludeModule("iblock");
+
+
+
+include $_SERVER.'/classes/main.class.php';
+require($_SERVER["DOCUMENT_ROOT"]."/classes/favorite.class.php");
+
+if(isset($_REQUEST['f']))
+{
+	if( intval($_REQUEST['r']) >0 )
+	{
+		CFavorite::delete($_REQUEST['r']);
+	}
+}
+
+$Recipes = CFavorite::get_list($UserId);
+
+
+$CFClub = new CFClub();
+if($Recipes)
+{
+	$arRecipe = $CFClub->getList(10000, Array("ID"=>$Recipes), "blogs", "N");
+	$arKitchensId = array_keys($arRecipe['Kitchen']);
+	$arKitchens = $CFClub->getKitchens(false, $arKitchensId);
+}
+
+if(count($arRecipe) > 0){
+	$Flag= true; $Left = ''; $Right = '';
+
+	foreach($arRecipe['Kitchen'] as $strKey=>$arItem){
+		foreach($arItem as $Recipe){
+			$arRecipe['ITEMS'][ $Recipe ]['PROPERTY_COMMENT_COUNT_VALUE'] = IntVal($arRecipe['ITEMS'][ $Recipe ]['PROPERTY_COMMENT_COUNT_VALUE']);
+			$Dump = 
+<<<HTML
+<div class="item">
+	<div class="photo">
+		<div class="big_photo">
+			<div>
+				<table class="frame">
+					<tr><td class="tl"><img src="/images/spacer.gif" width="11" height="11" alt=""></td><td class="top"><img src="/images/spacer.gif" width="1" height="11" alt=""></td><td class="tr"><img src="/images/spacer.gif" width="14" height="11" alt=""></td></tr><tr><td class="left"><img src="/images/spacer.gif" width="11" height="1" alt=""></td>
+						<td class="middle"><a href="/detail/{$arRecipe['ITEMS'][ $Recipe ]['ID']}/"><img src="{$arRecipe['ITEMS'][ $Recipe ]['PREVIEW_PICTURE']['SRC']}" width="{$arRecipe['ITEMS'][ $Recipe ]['PREVIEW_PICTURE']['WIDTH']}" height="{$arRecipe['ITEMS'][ $Recipe ]['PREVIEW_PICTURE']['HEIGHT']}" alt=""></a></td>
+						<td class="right"><img src="/images/spacer.gif" width="14" height="1" alt=""></td></tr><tr><td class="bl"><img src="/images/spacer.gif" width="11" height="14" alt=""></td><td class="bottom"><img src="/images/spacer.gif" width="1" height="14" alt=""></td><td class="br"><img src="/images/spacer.gif" width="14" height="14" alt=""></td>
+					</tr>
+				</table>
+			</div>
+		</div>
+		<img src="{$arRecipe['ITEMS'][ $Recipe ]['PREVIEW_PICTURE']['SRC']}" width="50" height="33" alt="">
+	</div>
+	<div class="link"><a href="/detail/{$arRecipe['ITEMS'][ $Recipe ]['ID']}/">{$arRecipe['ITEMS'][ $Recipe ]['NAME']}</a>&nbsp;<span class="comments">(<a href="/detail/{$arRecipe['ITEMS'][ $Recipe ]['ID']}/#comments">{$arRecipe['ITEMS'][ $Recipe ]['PROPERTY_COMMENT_COUNT_VALUE']}</a>)</span>
+HTML;
+echo "<pre>"; print_r(); echo "</pre>";
+if( ( strpos($_REQUEST['place'], "pr_favor") !== false ) || $USER->IsAdmin() ){
+	$Dump .=
+<<<HTML
+	<span class="icons"><a class="fav" title="Убрать из избранного" href="?f=n&r={$arRecipe['ITEMS'][ $Recipe ]['ID']}"><img width="13" height="13" alt="" src="/images/icons/fav_already.gif"/></a></span>
+HTML;
+}
+$Dump .= 
+<<<HTML
+		<span class="author">От: {$arRecipe['ITEMS'][ $Recipe ]['USER']['LOGIN']}</span></div>
+	<div class="clear"></div>
+</div>
+HTML;
+
+		if($Flag)
+		{
+			$Left .= $Dump;
+			$Flag = false;
+		}
+		else
+		{
+			$Right .= $Dump;
+			$Flag = true;
+		}
+	}
+}
+	
+	if(strlen($Left)){ ?>
+	<div class="two_column pages_recipes">
+		<?=$Left?>
+	</div>
+	<?}?>
+	
+	<? if(strlen($Right)){ ?>
+	<div class="two_column pages_recipes">
+		<?=$Right?>
+	</div>
+	<div class="clear"></div>
+	<?}
+	
+}
+else {
+	if(strpos($_REQUEST['place'], "pr_favor") !== false){
+		?><h2>Вы пока не добавили в избранное ни одного рецепта. Вы можете <a href="/all/">добавить</a> любой рецепт из каталога.<?
+	}
+}
+?>
+	<?if(isset($arRecipe["NAV_STRING"])){echo $arRecipe["NAV_STRING"];}?>
+	</div>
+	<div id="banner_space">
+		<?
+		$rsRandomDoUKnow = CIBlockElement::GetList(array("rand"=>"asc"),array("IBLOCK_CODE"=>"do_u_know"),false,false,array("ID","PREVIEW_TEXT"));
+		if($arRandomDoUKnow = $rsRandomDoUKnow->Fetch()){?>
+		<div id="do-you-know-that" class="b-facts">
+			<div class="b-facts__heading">Знаете ли вы что:</div>
+			<div class="b-facts__content">
+				<div class="b-facts__item" data-id="<?=$arRandomDoUKnow["ID"]?>">
+					<?=$arRandomDoUKnow["PREVIEW_TEXT"]?>
+				</div>
+			</div>
+			<div class="b-facts__more">
+				<a href="#" class="b-facts__more__link">Еще</a>
+			</div>
+		</div>
+		<?}?>
+		<?if(strlen($strBanner) > 0){?><div class="banner"><?=$strBanner?></div><?}?>
+	</div>
+	<div class="clear"></div>
+</div>
+<?require($_SERVER["DOCUMENT_ROOT"]."/bitrix/footer.php");?>

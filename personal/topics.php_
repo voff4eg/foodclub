@@ -1,0 +1,187 @@
+<?
+require($_SERVER["DOCUMENT_ROOT"]."/bitrix/header.php");
+$APPLICATION->SetTitle("Title");
+
+if (CModule::IncludeModule("advertising")){ $strBanner = CAdvBanner::Show("right_banner"); }
+
+CModule::IncludeModule("blog");
+CModule::IncludeModule("socialnetwork");
+include($_SERVER['DOCUMENT_ROOT'].'/classes/factory.class.php');
+
+/*
+ * Получение всех топиков автора
+ * $Posts - все топики
+ * $BlogsId - id блогов
+ */
+
+if(strpos($_REQUEST['place'], "pr_topic") !== false){
+    if($USER->IsAuthorized())
+    {
+        $UserId = IntVal($USER->GetId());
+    }
+    else 
+    {
+	    LocalRedirect("/auth/?backurl=/profile/topics/");
+    }
+} else {
+	$UserId = IntVal($_REQUEST['u']);
+}
+
+$Sort = Array("DATE_PUBLISH" => "DESC", "NAME" => "ASC");
+$arFilter = Array(
+	"PUBLISH_STATUS" => BLOG_PUBLISH_STATUS_PUBLISH,
+	"AUTHOR_ID" => $UserId,
+    );	
+$dbPosts = CBlogPost::GetList($Sort, $arFilter, false, Array("nPageSize"=>5));
+if($dbPosts->IsNavPrint()){
+	$NavString = $dbPosts->GetPageNavStringEx($navComponentObject, "Рецепты", "blogs", "N");
+}
+while ($arPost = $dbPosts->Fetch()){
+    $Posts[ $arPost['ID'] ] = $arPost;
+    $BlogsId[] = $arPost['BLOG_ID'];
+}
+$BlogsId = array_unique($BlogsId);
+
+
+/*
+ * Получение id групп в социальных сетях
+ * $SocNetBlogs - массив, в котором - ключ:id блога, значение:id группы
+ */
+$rsBlogs = CBlog::GetList(Array(), Array("ID"=>$BlogsId), false, false);
+while ($Blog = $rsBlogs->GetNext()) {
+	$SocNetBlogs[ $Blog['ID'] ] = $Blog['SOCNET_GROUP_ID'];
+
+}
+
+/*
+ * Получение названий групп социальных сетей
+ */
+$rsSocNet = CSocNetGroup::GetList(Array(), Array('ID'=>array_values($SocNetBlogs)), false, false, Array('ID', 'NAME'));
+while($SocNet = $rsSocNet->GetNext()){
+	$SocNetName[ $SocNet['ID'] ] = $SocNet;
+}
+
+$parser = new blogTextParser;
+
+$rsUser = CUser::GetByID($UserId);
+$arUser = $rsUser->Fetch();
+
+if(intval($arUser['PERSONAL_PHOTO']) > 0){
+	$rsAvatar = CFile::GetByID($arUser['PERSONAL_PHOTO']);
+	$arAvatar = $rsAvatar->Fetch();
+	$arAvatar['SRC'] = "/upload/".$arAvatar['SUBDIR']."/".$arAvatar['FILE_NAME'];
+} else {
+	$arAvatar['SRC'] = "/images/avatar/avatar.jpg";
+}
+
+$APPLICATION->SetPageProperty("title", $arUser['LOGIN']." &mdash; записи пользователя на Foodclub");
+?>
+
+<div id="content">
+	<div id="text_space">
+	<?if(strpos($_REQUEST['place'], "pr_topic") !== false){?>
+		<h1>Мои записи</h1>
+	<?} else {?>
+		<div class="author_bar" style="margin-bottom: 20px;">
+			<div class="author"><div class="photo" style="padding-top:0;"><a href="/profile/<?=$UserId?>/"><img src="<?=$arAvatar['SRC']?>" width="100" height="100" alt="<?=$arUser['LOGIN']?>"></a></div><h1><a href="/profile/<?=$UserId?>/"><?=$arUser['LOGIN']?></a></h1></div>
+			<div class="menu"><a href="/profile/<?=$UserId?>/recipes/">Рецепты</a><span>Записи</span><a href="/profile/<?=$UserId?>/comments/">Комментарии</a><a href="/profile/<?=$UserId?>/opinions/">Отзывы</a><a href="/profile/<?=$UserId?>/favorites/">Избранные рецепты</a></div>
+			<div class="clear"></div>
+		</div>
+	<?}?>
+	<?
+if(count($Posts) > 0){
+	$bFirst = true;
+	foreach ($Posts as $arItem) {
+		$res = CBlogImage::GetList(array("ID"=>"ASC"), array("POST_ID"=>$arItem['ID'], "BLOG_ID"=>$arItem['BLOG_ID']));
+	
+		while ($arImage = $res->Fetch())
+		    $arImages[$arImage['ID']] = $arImage['FILE_ID'];
+		
+		$text = $parser->convert($arItem['DETAIL_TEXT'], true, $arImages);
+		
+		$arDate = explode(" ", $arItem['DATE_PUBLISH']);
+		if(!$bFirst){
+			echo '<div class="border"></div>';
+		} else {
+			$bFirst = false;
+		}?>
+		<div class="topic_item">
+			<div class="chain_path">
+				<a href="/blogs/group/<?=$SocNetBlogs[ $arItem['BLOG_ID'] ]?>/blog/">
+					<?=$SocNetName[ $SocNetBlogs[ $arItem['BLOG_ID'] ] ]['NAME']?></a>
+			</div>
+			<h1>
+				<a href="/blogs/group/<?=$SocNetBlogs[ $arItem['BLOG_ID'] ]."/blog/".$arItem['ID']?>/">
+					<?=$arItem['TITLE']?></a>
+				<?if($USER->IsAdmin() || $USER->GetID() == $arItem['AUTHOR_ID']){?>
+				<a href="/blogs/group/<?=$SocNetBlogs[ $arItem['BLOG_ID'] ]."/blog/edit/".$arItem['ID']?>/" class="edit">
+					<img src="/images/icons/edit.gif" width="7" height="12" alt="" title="Редактировать рецепт">
+				</a>
+				<?}?>
+				<?if($USER->IsAdmin() || $USER->GetID() == $arItem['AUTHOR_ID']){?>
+				<a class="delete" href="javascript:if(confirm('Вы уверены, что хотите удалить сообщение?')) window.location='/blogs/group/<?=$SocNetBlogs[ $arItem['BLOG_ID'] ]?>/blog/index.php?del_id=<?=$arItem['ID']?>&sessid=<?=bitrix_sessid()?>'">
+					<img height="9" width="9" src="/images/icons/delete.gif" alt="" title="Удалить"/>
+				</a>
+				<?}?>
+			</h1>
+			<div class="text"><?=$text?></div>
+			<div class="bar">
+				<div class="padding">
+					<div class="author">
+						<div class="photo">
+							<div class="big_photo">
+								<div>
+									<img src="<?=$arAvatar['SRC']?>" width="100" height="100" alt="<?=$arUser['LOGIN']?>">
+								</div>
+							</div>
+							<img src="<?=$arAvatar['SRC']?>" width="30" height="30" alt="<?=$arUser['ID']?>">
+						</div>
+						<a href="/profile/<?=$arUser['ID']?>/"><?=$arUser['LOGIN']?></a>
+					</div>
+					<div class="comments">
+						<div class="icon">
+							<a href="#add_opinion">
+								<img src="/images/icons/comment.gif" width="15" height="15" alt="">
+							</a>
+						</div>
+						<a href="/blogs/group/<?=$SocNetBlogs[ $arItem['BLOG_ID'] ]."/blog/".$arItem['ID']?>/#comment">
+							Комментировать</a>
+						<span class="number">
+							(<a href="/blogs/group/<?=$SocNetBlogs[ $arItem['BLOG_ID'] ]."/blog/".$arItem['ID']?>/#00"><?=$arItem['NUM_COMMENTS']?></a>)
+						</span>
+					</div>
+					<div class="date"><?=CFactory::humanDate($arDate[0])?><span class="time"><?=$arDate[1]?></span></div>
+				</div>
+			</div>
+		</div>
+	<?}?>
+<?} else {
+	if(strpos($_REQUEST['place'], "pr_topic") !== false){
+		?><h2>Вы не написали ни одного поста. Попробуйте <a href="/blogs/">написать</a> в один из клубов.<?
+	} else {
+		?><h2>У меня пока нет постов.<?
+	}
+}?>
+	<?if(isset($NavString)){echo $NavString;}?>
+	</div>
+	<div id="banner_space">
+		<?
+		$rsRandomDoUKnow = CIBlockElement::GetList(array("rand"=>"asc"),array("IBLOCK_CODE"=>"do_u_know"),false,false,array("ID","PREVIEW_TEXT"));
+		if($arRandomDoUKnow = $rsRandomDoUKnow->Fetch()){?>
+		<div id="do-you-know-that" class="b-facts">
+			<div class="b-facts__heading">Знаете ли вы что:</div>
+			<div class="b-facts__content">
+				<div class="b-facts__item" data-id="<?=$arRandomDoUKnow["ID"]?>">
+					<?=$arRandomDoUKnow["PREVIEW_TEXT"]?>
+				</div>
+			</div>
+			<div class="b-facts__more">
+				<a href="#" class="b-facts__more__link">Еще</a>
+			</div>
+		</div>
+		<?}?>
+		<?if(strlen($strBanner) > 0){?><div class="banner"><?=$strBanner?></div><?}?>
+	</div>
+	<div class="clear"></div>
+</div>	
+<?require($_SERVER["DOCUMENT_ROOT"]."/bitrix/footer.php");?>

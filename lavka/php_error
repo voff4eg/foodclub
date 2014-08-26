@@ -1,0 +1,32 @@
+[13-Sep-2013 12:04:04] PHP Fatal error:  Call to a member function Fetch() on a non-object in /var/www/vhosts/foodclub/site/foodclub/public_html/bitrix/components/custom/store.banner.horlavka/component.php on line 13
+[13-Sep-2013 12:04:19] PHP Fatal error:  Cannot pass parameter 1 by reference in /var/www/vhosts/foodclub/site/foodclub/public_html/bitrix/components/custom/store.banner.horlavka/component.php on line 13
+[13-Sep-2013 12:04:34] PHP Fatal error:  Cannot pass parameter 1 by reference in /var/www/vhosts/foodclub/site/foodclub/public_html/bitrix/components/custom/store.banner.horlavka/component.php on line 13
+[13-Sep-2013 12:20:50] PHP Parse error:  syntax error, unexpected T_ECHO, expecting ';' in /var/www/vhosts/foodclub/site/foodclub/public_html/bitrix/components/custom/store.banner.horlavka/component.php on line 24
+[13-Sep-2013 12:21:45] PHP Parse error:  syntax error, unexpected T_ECHO, expecting ';' in /var/www/vhosts/foodclub/site/foodclub/public_html/bitrix/components/custom/store.banner.horlavka/component.php on line 24
+[13-Sep-2013 13:42:24] PHP Fatal error:  Cannot pass parameter 1 by reference in /var/www/vhosts/foodclub/site/foodclub/public_html/bitrix/components/custom/store.banner.horlavka/component.php on line 12
+[13-Sep-2013 13:42:36] PHP Fatal error:  Cannot pass parameter 1 by reference in /var/www/vhosts/foodclub/site/foodclub/public_html/bitrix/components/custom/store.banner.horlavka/component.php on line 12
+[13-Sep-2013 13:43:24] PHP Fatal error:  Cannot pass parameter 1 by reference in /var/www/vhosts/foodclub/site/foodclub/public_html/bitrix/components/custom/store.banner.horlavka/component.php on line 12
+[13-Sep-2013 13:43:34] PHP Fatal error:  Cannot pass parameter 1 by reference in /var/www/vhosts/foodclub/site/foodclub/public_html/bitrix/components/custom/store.banner.horlavka/component.php on line 12
+[13-Sep-2013 14:52:31] PHP Parse error:  syntax error, unexpected '}', expecting ',' or ';' in /var/www/vhosts/foodclub/site/foodclub/public_html/bitrix/components/custom/store.banner.horlavka/templates/.default/template.php on line 11
+[13-Sep-2013 15:29:23] PHP Parse error:  syntax error, unexpected $end in /var/www/vhosts/foodclub/site/foodclub/public_html/bitrix/components/custom/store.banner.horlavka/templates/.default/template.php on line 139
+[13-Sep-2013 15:39:45] PHP Parse error:  syntax error, unexpected ';' in /var/www/vhosts/foodclub/site/foodclub/public_html/bitrix/components/custom/store.banner.horlavka/templates/.default/template.php on line 46
+[13-Sep-2013 16:18:52] PHP Parse error:  syntax error, unexpected ')' in /var/www/vhosts/foodclub/site/foodclub/public_html/bitrix/components/custom/store.banner.horlavka/component.php on line 102
+[13-Sep-2013 17:20:48] PHP Parse error:  syntax error, unexpected '}' in /var/www/vhosts/foodclub/site/foodclub/public_html/lavka/index.php on line 4
+[13-Sep-2013 17:20:56] PHP Parse error:  syntax error, unexpected '}' in /var/www/vhosts/foodclub/site/foodclub/public_html/lavka/index.php on line 4
+[13-Sep-2013 17:21:03] PHP Parse error:  syntax error, unexpected '}' in /var/www/vhosts/foodclub/site/foodclub/public_html/lavka/index.php on line 4
+[13-Sep-2013 17:21:31] PHP Fatal error:  Class 'CFClub' not found in /var/www/vhosts/foodclub/site/foodclub/public_html/bitrix/templates/fclub/footer.php on line 5
+[13-Sep-2013 17:23:00] PHP Fatal error:  Class 'CFClub' not found in /var/www/vhosts/foodclub/site/foodclub/public_html/bitrix/templates/fclub/footer.php on line 5
+[13-Sep-2013 17:23:02] PHP Fatal error:  Class 'CFClub' not found in /var/www/vhosts/foodclub/site/foodclub/public_html/bitrix/templates/fclub/footer.php on line 5
+[13-Sep-2013 17:27:17] PHP Parse error:  syntax error, unexpected ';', expecting ')' in /var/www/vhosts/foodclub/site/foodclub/public_html/bitrix/components/custom/store.banner.horlavka/component.php on line 12
+[13-Sep-2013 17:27:47] PHP Parse error:  syntax error, unexpected ';', expecting ')' in /var/www/vhosts/foodclub/site/foodclub/public_html/bitrix/components/custom/store.banner.horlavka/component.php on line 12
+[16-Sep-2013 11:18:47] PHP Fatal error:  Call to undefined function htmlcpesialcars() in /var/www/vhosts/foodclub/site/foodclub/public_html/bitrix/components/custom/store.banner.horlavka/component.php on line 75
+[16-Sep-2013 11:18:59] PHP Fatal error:  Call to undefined function htmlspecialcars() in /var/www/vhosts/foodclub/site/foodclub/public_html/bitrix/components/custom/store.banner.horlavka/component.php on line 75
+[16-Sep-2013 11:19:08] PHP Fatal error:  Call to undefined function htmlspesialcars() in /var/www/vhosts/foodclub/site/foodclub/public_html/bitrix/components/custom/store.banner.horlavka/component.php on line 75
+[16-Sep-2013 12:20:58] PHP Fatal error:  Call to a member function Fetch() on a non-object in /var/www/vhosts/foodclub/site/foodclub/public_html/bitrix/components/custom/store.banner.horlavka/component.php on line 37
+[16-Sep-2013 12:21:04] PHP Fatal error:  Call to a member function Fetch() on a non-object in /var/www/vhosts/foodclub/site/foodclub/public_html/bitrix/components/custom/store.banner.horlavka/component.php on line 37
+[16-Sep-2013 12:21:47] PHP Fatal error:  Call to a member function Fetch() on a non-object in /var/www/vhosts/foodclub/site/foodclub/public_html/bitrix/components/custom/store.banner.horlavka/component.php on line 37
+[16-Sep-2013 12:22:31] PHP Fatal error:  Call to a member function Fetch() on a non-object in /var/www/vhosts/foodclub/site/foodclub/public_html/bitrix/components/custom/store.banner.horlavka/component.php on line 37
+[17-Sep-2013 17:13:50] PHP Fatal error:  Can't use function return value in write context in /var/www/vhosts/foodclub/site/foodclub/public_html/lavka/index.php on line 11
+[17-Sep-2013 17:13:53] PHP Fatal error:  Can't use function return value in write context in /var/www/vhosts/foodclub/site/foodclub/public_html/lavka/index.php on line 11
+[17-Sep-2013 17:15:15] PHP Fatal error:  Can't use function return value in write context in /var/www/vhosts/foodclub/site/foodclub/public_html/lavka/index.php on line 11
+[18-Sep-2013 17:54:36] PHP Parse error:  syntax error, unexpected '{' in /var/www/vhosts/foodclub/site/foodclub/public_html/bitrix/components/custom/store.banner.horlavka/component.php on line 41

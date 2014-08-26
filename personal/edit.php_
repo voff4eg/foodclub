@@ -1,0 +1,160 @@
+<?
+require($_SERVER["DOCUMENT_ROOT"]."/bitrix/header.php");
+
+if(!$USER->IsAuthorized()){
+	LocalRedirect("/auth/?backurl=/profile/edit/");
+} else {
+	$intUser = $USER->GetId();
+}
+
+$arMonth = Array("01"=>"январь", "02"=>"февраль", "03"=>"март", "04"=>"апрель",	"05"=>"май", "06"=>"июнь", "07"=>"июль", 
+				 "08"=>"август", "09"=>"сентябрь", "10"=>"октябрь", "11"=>"ноябрь", "12"=>"декабрь");
+$rsUser = $USER->GetByID($intUser);
+$arUser = $rsUser->Fetch();
+
+if(IntVal($arUser['PERSONAL_PHOTO']) > 0){
+	$rsFile = CFile::GetByID($arUser['PERSONAL_PHOTO']);
+	$arFile = $rsFile->Fetch();
+	$arFile['SRC'] = "/upload/".$arFile['SUBDIR']."/".$arFile['FILE_NAME'];
+}
+
+$arDate = explode(".", $arUser['PERSONAL_BIRTHDAY']);
+$APPLICATION->SetPageProperty("title", "Редактирование страницы ".$arUser['LOGIN']);
+
+?>
+	<div id="content" class="personal">
+		<div id="personal_page">
+			<div id="form">
+				<form action="/profile/edit/post/" method="post" enctype="multipart/form-data">
+				<div class="photo">
+				<?if(IntVal($arUser['PERSONAL_PHOTO']) > 0){?>
+					<h5>Аватара</h5>
+					<img src="<?=$arFile['SRC']?>" width="<?=$arFile['WIDTH']?>" height="<?=$arFile['HEIGHT']?>" alt="">
+					<div class="note">Для аватары подходят файлы с расширением jpg.</div>
+					<div class="input_file">
+						<div class="file_name"><span><?=$arFile['FILE_NAME']?></span><img src="/images/spacer.gif" width="7" height="7" alt="" title="Удалить изображение" class="delete_icon" onClick="deleteStageImage(this, 'img_id');"></div>
+						<input type="file" accept="images/jpeg" class="text" name="PERSONAL_PHOTO">
+					</div>
+				<?} else {?>	
+					<h5>Аватара</h5>
+					<div class="note">Для аватары подходят файлы с расширением jpg.</div>
+					<div class="input_file">
+						<input type="file" accept="images/jpeg" class="text" name="PERSONAL_PHOTO">
+					</div>
+				<?}?>
+				</div>
+				
+				<input type="hidden" name="LOGIN" value="<?=$arUser['LOGIN']?>">
+				<?if(strlen($arUser['UF_PROFILE_FULL']) > 0){
+					//$UF_PROFILE_FULL = unserialize(unserialize($arUser['UF_PROFILE_FULL']));
+					$UF_PROFILE_FULL = unserialize($arUser['UF_PROFILE_FULL']);
+					//echo "<pre>"; print_r(unserialize('a:1:{s:4:"full";s:4:"true";}')); echo "</pre>";
+					//echo "<pre>"; print_r(unserialize($arUser['UF_PROFILE_FULL'])); echo "</pre>";
+					//echo "<pre>"; print_r($UF_PROFILE_FULL); echo "</pre>";die;
+					if($UF_PROFILE_FULL["full"] == "true"){
+						$profile_full = serialize($UF_PROFILE_FULL);
+						?>
+						<input type="hidden" name="UF_PROFILE_FULL" value="<?=$profile_full?>">
+					<?}
+				}?>
+					<div class="info">
+						<div class="form_field">
+							<div class="description"></div>
+							<h5>Имя</h5>
+							<input type="text" class="text" name="NAME" value="<?=$arUser['NAME']?>">
+						</div>
+						<div class="form_field">
+							<div class="description"></div>
+
+							<h5>Фамилия</h5>
+							<input type="text" class="text" name="LAST_NAME" value="<?=$arUser['LAST_NAME']?>">
+						</div>
+						<div class="form_field">
+							<div class="description"><div>Обязательное поле, необходимое для восстановления пароля и отслеживания полученных комментариев.</div></div>
+							<h5>E-mail <span>?</span></h5>
+							<input type="text" class="text" name="EMAIL" value="<?=$arUser['EMAIL']?>">
+						</div>
+						<div class="form_field">
+							<div class="description"></div>
+							<h5>Пол</h5>
+							<select name="PERSONAL_GENDER">
+								<option value="M" <?if($arUser['PERSONAL_GENDER'] == "M"){?>selected="selected"<?}?>>Мужской</option>
+								<option value="F" <?if($arUser['PERSONAL_GENDER'] != "M"){?>selected="selected"<?}?>>Женский</option>
+							</select>
+						</div>
+						<div class="form_field">
+							<div class="description"><div>Если Вы хотите рассказать о себе.</div></div>
+							<h5>О себе</h5>
+							<textarea name="UF_ABOUT_SELF" cols="10" rows="10"><?=$arUser['UF_ABOUT_SELF']?></textarea>
+						</div>
+						<div class="form_field">
+							<div class="description"></div>
+							<h5>Адрес домашней страницы</h5>
+							<input type="text" class="text" name="WORK_WWW" value="<?=$arUser['WORK_WWW']?>">
+						</div>
+						<div class="form_field">
+							<div class="description"><div>В будущем Вы сможете найти людей с похожими интересами. Вводите, пожалуйста, интересы через запятую. Пример: спорт, ставки, казино</div></div>
+							<h5>Интересы</h5>
+							<textarea name="UF_INTEREST" cols="10" rows="10"><?=$arUser['UF_INTEREST']?></textarea>
+						</div>
+						<div class="form_field">
+							<h5>День рождения</h5>
+
+							<table>
+								<tr>
+									<td class="birthday">
+										<select name="birthday">
+										<?for($i=1; $i<=31; $i++){?>
+										<option value="<?=$i?>" <?if($i == $arDate[0]){?>selected="selected"<?}elseif($i == date("j") && !isset($arDate[0])){?>selected="selected"<?}?>><?=$i?></option>
+										<?}?>
+										</select>
+
+									</td>
+									<td class="birthmonth">
+										<select name="birthmonth">
+										<?foreach($arMonth as $strKey => $strItem){?>
+										<option value="<?=$strKey?>" <?if($strKey == $arDate[1]){?>selected="selected"<?}elseif($strKey == date("m")  && !isset($arDate[1])){?>selected="selected"<?}?>><?=$strItem?></option>
+										<?}?>
+										</select>
+									</td>
+									<td class="birthyear">
+										<select name="birthyear">
+										<?$intYear = date("Y");
+										for($i=$intYear-100; $i<=$intYear-6; $i++){?>
+										<option value="<?=$i?>" <?if($i == $arDate[2]){?>selected="selected"<?}elseif($i == $intYear-30  && !isset($arDate[2])){?>selected="selected"<?}?>><?=$i?></option>
+										<?}?>
+										</select>
+									</td>
+								</tr>
+							</table>
+						</div>
+						<?if(strlen($arUser['EXTERNAL_AUTH_ID']) === 0){?>
+						<div class="two">
+							<div class="form_field">
+								<h5>Новый пароль</h5>
+								<input type="password" class="text" name="NEW_PASSWORD" value="">
+							</div>
+							<div class="form_field">
+								<h5>Подтверждение пароля <span>?</span></h5>
+								<input type="password" class="text" name="NEW_PASSWORD_CONFIRM" value="">
+
+							</div>
+							<div class="clear"></div>
+						</div>
+						<?}?>
+						<?if(isset($_SESSION['ERROR'])){?>
+						<?$arError = explode("<br>", $_SESSION['ERROR']); unset($arError[count($arError)-1]); unset($_SESSION['ERROR']);?>
+							<?foreach($arError as $strItem){?>
+							<div class="error_message">&mdash; <?=$strItem?></div>
+							<?}?>
+						<?}?>
+						<div class="button">Сохранить</div>
+					</div>
+					<div class="clear"></div>
+
+				</form>
+			</div>
+		</div>
+	</div>
+<?
+require($_SERVER["DOCUMENT_ROOT"]."/bitrix/footer.php");?>

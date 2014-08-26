@@ -1,0 +1,258 @@
+@import url(/css/elem.css);
+.b-recipe-of-month {}
+
+.b-recipe-om__current {
+	float: left;
+	width: 480px;
+	border: 1px solid #e6e6e6;
+	padding: 14px;
+	box-sizing: content-box;
+	-moz-box-sizing: content-box;
+	-webkit-box-sizing: content-box;
+	-khtml-box-sizing: content-box;
+	margin-bottom: 40px;
+}
+.b-recipe-om__current__image {
+	margin-bottom: 20px;
+	position: relative;
+}
+.b-recipe-om__current__image__link {
+	display: block;
+	width: 386px;
+	height: 386px;
+	overflow: hidden;
+	position: relative;
+	text-align: center;
+	margin: 0 auto;
+}
+.b-recipe-om__current__image__plate {
+	display: block;
+	width: 386px;
+	height: 386px;
+	background: url(/images/recipe-of-month/plate.png) no-repeat 0 0;
+	position: absolute;
+	top: 0;
+	left: 0;
+}
+.b-recipe-om__current__image__pic {
+	margin-top: 20px;
+}
+.b-recipe-om__current-month {
+	position: absolute;
+	top: 64px;
+	right: 107px;
+	width: 91px;
+	height: 91px;
+	background: url(/images/icons.png) no-repeat -336px -581px;
+	text-align: center;
+}
+
+.b-recipe-om__current-month__name {
+	color: #fff;
+	font-family: Georgia, "Times New Roman", Times, serif;
+	display: inline-block;
+	font-size: 14pt;
+	margin-top: 34px;
+}
+.i-recipe-om__current-month__name__1 {
+	font-size: 22pt;
+	margin-top: 28px;
+}
+.i-recipe-om__current-month__name__2 {
+	font-size: 20pt;
+	margin-top: 30px;
+}
+.i-recipe-om__current-month__name__3 {
+	font-size: 18pt;
+	margin-top: 31px;
+}
+.i-recipe-om__current-month__name__4 {
+	font-size: 16pt;
+	margin-top: 32px;
+}
+.i-recipe-om__current-month__name__5 {
+	font-size: 14pt;
+	margin-top: 34px;
+}
+.i-recipe-om__current-month__name__6 {
+	font-size: 12pt;
+	margin-top: 34px;
+}
+
+.b-recipe-om__current__heading {
+	margin: 0 0 10px 0;
+}
+.b-recipe-om__current__author {
+	margin-bottom: 16px;
+}
+.b-recipe-om__current__like-buttons {
+	margin-bottom: 30px;
+	border: none;
+	padding: 0;
+}
+.b-recipe-om__current__comment {
+	font-family: Georgia, "Times New Roman", Times, serif;
+	border-top: 1px solid #e6e6e6;
+	border-bottom: none;
+	padding-top: 30px;
+	margin-top: 30px;
+}
+
+.b-recipe-om__current__comment__adv {
+	position: relative;
+}
+
+.b-recipe-om__current__comment__adv .b-book-adv {
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	width: 110px;
+	padding: 25px 0 0 0;
+	border-top: 1px solid #e6e6e6;
+}
+.b-book-adv {
+	text-align: center;
+}
+.b-book-adv__ill {
+	display: inline-block;
+	vertical-align: bottom;
+	box-shadow: 2px 2px 2px #c8c8c8;
+	-webkit-box-shadow: 2px 2px 2px #c8c8c8;
+	-moz-box-shadow: 2px 2px 2px #c8c8c8;
+	margin-bottom: 9px;
+}
+.b-book-adv__title {
+	font-family: Georgia, "Times New Roman", Times, serif;
+}
+
+.b-recipe-om__right-column {
+	float: right;
+	width: 435px;
+}
+.b-recipe-om__description {
+	font-family: Georgia, "Times New Roman", Times, serif;
+	padding: 17px 25px 31px;
+	border: 1px solid #e6e6e6;
+	border-bottom: none;
+}
+
+.b-recipe-om__next {
+	border: 1px solid #e6e6e6;
+	padding: 14px;
+	box-sizing: content-box;
+	-moz-box-sizing: content-box;
+	-webkit-box-sizing: content-box;
+	-khtml-box-sizing: content-box;
+	margin-bottom: 45px;
+}
+.b-recipe-om__next__month {
+	text-align: center;
+	float: left;
+	margin: 20px 50px 16px 0;
+	width: 170px;
+}
+.b-recipe-om__next__month__pic {
+	width: 46px;
+	height: 87px;
+	background: url(/images/icons.png) no-repeat -445px -582px;
+	margin: 0 auto 5px;
+}
+.b-recipe-om__next__month__name {
+	font-size: 16pt;
+	font-family: Georgia, "Times New Roman", Times, serif;
+}
+.b-recipe-om__next__button {
+	margin-top: 40px;
+	float: left;
+}
+
+
+.b-recipe-om__feed {
+}
+.b-recipe-om__month {
+	margin-bottom: 45px;
+	width: 435px;
+	float: right;
+}
+.b-recipe-om__month__heading {
+	border-top: 1px solid #e6e6e6;
+	text-align: center;
+	margin: 0 0 23px 0;
+}
+.b-recipe-om__month__heading__name {
+	display: inline-block;
+	padding: 0 7px;
+	background: #fff;
+	font-size: 14pt;
+	font-weight: bold;
+	font-family: Georgia, "Times New Roman", Times, serif;
+	color: #333;
+	margin-top: -14px;
+	vertical-align: top;
+}
+.b-recipe-om__month__image {
+	float: left;
+	width: 200px;
+	margin-right: 25px;
+}
+.b-recipe-om__month__text {
+	float: right;
+	width: 210px;
+}
+.b-recipe-om__month__recipe {
+	margin-bottom: 15px;
+}
+.b-recipe-om__month__text__heading {
+	margin: 0 0 12px 0;
+}
+.b-recipe-om__month__comment {
+	font-family: Georgia, "Times New Roman", Times, serif;
+	font-size: 10pt;
+}
+.b-recipe-om__month__comment__author {
+	margin-bottom: 10px;
+}
+.b-recipe-om__month__comment__author__userpic {
+	display: inline-block;
+	vertical-align: top;
+	margin-right: 10px;
+}
+.b-recipe-om__month__comment__author__name {
+	display: inline-block;
+	vertical-align: top;
+	margin-top: 15px;
+	color: #000;
+}
+.b-recipe-om__month__comment__text {}
+
+
+.b-recipe-om__month__type-wide {
+	width: 100%;
+}
+.b-recipe-om__month__type-wide .b-recipe-om__month__image {
+	margin-right: 27px;
+}
+.b-recipe-om__month__type-wide .b-recipe-om__month__text {
+	float: left;
+	width: 730px;
+}
+.b-recipe-om__month__type-wide .b-recipe-om__month__recipe {
+	float: left;
+	width: 260px;
+	margin: 9px 30px 0 0;
+}
+.b-recipe-om__month__type-wide .b-recipe-om__month__comment {
+	float: left;
+	width: 375px;
+}
+
+.b-recipe-om__feed__years {}
+
+.b-sponsor-banner {
+	margin: 12px 0;
+}
+.b-sponsor-banner__ill img {
+	position: absolute;
+	top: -42px;
+	right: 117px;
+}

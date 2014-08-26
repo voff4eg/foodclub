@@ -1,0 +1,27 @@
+.b-top-panel__decor {
+	position: absolute;
+	top: 54px;
+	left: 0;
+	width: 912px;
+	height: 35px;
+	background: url(/images/new_year/top-panel-decor.png) no-repeat center 0;
+}
+#topbar div.menu {
+	overflow: visible;
+}
+#topbar .menu .ny2014 {
+	background: url(/images/new_year/2014/menu.png) no-repeat 0 0;
+}
+#topbar div.menu div.ny2014 a {
+	background: url(/images/new_year/2014/menu.png) no-repeat 0 0 #c6183d;
+	width: 201px;
+	height: 54px;
+}
+.ny2014-tail {
+	background: url(/images/new_year/2014/menu-left.png) no-repeat 0 0;
+	width: 31px;
+	height: 54px;
+	position: absolute;
+	top: 7px;
+	left: -24px;
+}

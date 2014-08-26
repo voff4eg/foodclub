@@ -1,0 +1,28 @@
+<iframe src="http://www.facebook.com/plugins/likebox.php?id=117900201576972&amp;width=276&amp;connections=10&amp;stream=false&amp;header=true&amp;height=287" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:276px; height:287px;" allowTransparency="true">
+</iframe>
+<script type="text/javascript" src="http://userapi.com/js/api/openapi.js?42"></script>
+
+<!-- VK Widget -->
+<div id="vk_groups"></div>
+<script type="text/javascript">
+VK.Widgets.Group("vk_groups", {mode: 0, width: "276", height: "290"}, 17967854);
+</script>
+
+<!-- Odnoklassniki Widget -->
+<div id="ok_group_widget"></div>
+<script>
+!function (d, id, did, st) {
+  var js = d.createElement("script");
+  js.src = "http://connect.ok.ru/connect.js";
+  js.onload = js.onreadystatechange = function () {
+  if (!this.readyState || this.readyState == "loaded" || this.readyState == "complete") {
+    if (!this.executed) {
+      this.executed = true;
+      setTimeout(function () {
+        OK.CONNECT.insertGroupWidget(id,did,st);
+      }, 0);
+    }
+  }}
+  d.documentElement.appendChild(js);
+}(document,"ok_group_widget","50784881279115","{width:276,height:335}");
+</script>

@@ -1,0 +1,35 @@
+<?require($_SERVER["DOCUMENT_ROOT"]."/bitrix/modules/main/include/prolog_before.php");
+if(strlen($_REQUEST["id"])){
+	$data = array("cuisine"=>"kitchen","dish"=>"dish_type","ingredient"=>"main_ingredient");
+	$obCache = new CPHPCache;
+	if($obCache->InitCache(86400, "more_".$_REQUEST["id"], "all")){
+		$vars = $obCache->GetVars();
+		$str = $vars["str"];
+	}else{
+		CModule::IncludeModule("iblock");
+		$Ids = explode(",",$_REQUEST["id"]);
+		if(!empty($Ids)){
+			//$str = '\'{"recipes":[';
+			$str["recipes"] = array();
+			$rsRecipes = CIBlockElement::GetList(array("ACTIVE_FROM"=>"DESC","DATE_CREATE"=>"DESC"),array("ID"=>$Ids,"ACTIVE"=>"Y","PROPERTY_lib"=>"Y"),false,false,array("NAME","ID","PREVIEW_PICTURE","DETAIL_PICTURE","CREATED_BY","PROPERTY_comment_count"));
+			while($arRecipe = $rsRecipes->GetNext()){
+				if(intval($arRecipe["PREVIEW_PICTURE"])){
+					$arFile = CFile::GetFileArray($arRecipe["PREVIEW_PICTURE"]);
+					$src = "http://www.foodclub.ru".$arFile["SRC"];
+				}else{
+					$src = "";
+				}
+				$rsUser = CUser::GetByID($arRecipe['CREATED_BY']);
+				$arUser = $rsUser->Fetch();
+				$str["recipes"][] = array("name"=>$arRecipe["NAME"],"href"=>"/detail/".$arRecipe["ID"]."/","src"=>"http://www.foodclub.ru".$arFile["SRC"], "author"=>$arUser["LOGIN"], "comments"=>intval($arRecipe["PROPERTY_COMMENT_COUNT_VALUE"]));
+			}
+		}
+	}
+	if($obCache->StartDataCache()):
+		echo json_encode($str);
+		$obCache->EndDataCache(array(
+			"str"    => $str
+		)); 
+	endif;
+}
+?>

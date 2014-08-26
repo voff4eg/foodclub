@@ -1,0 +1,2867 @@
+<div class="b-foodshot-board i-preloader" id="foodshotBoard" style="height: 3156px;">
+		<script type="text/javascript">
+		var userObject = {
+			"id": "2253",
+			"href": "http://www.foodclub.ru/profile/2253/",
+			"src": "http://www.foodclub.ru/upload/resize_cache/main/2f6/30_30_2/pedobear (5).jpeg",
+			"name": "Владимир Егоров",			
+		};
+				userObject.isAdmin = "yes";
+			</script>
+		<script id="foodshot-details-template" type="text/html">
+	</script>
+	<script id="foodshot-template" type="text/html">
+	&lt;div class="b-foodshot-board__item" data-id="&lt;%=id%&gt;"&gt;
+		&lt;div class="b-foodshot-board__item-content"&gt;
+			&lt;% var imgWidth = 170; %&gt;
+			&lt;% var imgHeight = Math.floor((image.height * imgWidth) / image.width); %&gt;
+			&lt;a href="&lt;%=href%&gt;" class="b-foodshot-board__item-content-image" style="height: &lt;%=imgHeight%&gt;px;"&gt;&lt;img src="&lt;%=image.src%&gt;" width="&lt;%=imgWidth%&gt;" height="&lt;%=imgHeight%&gt;" alt="&lt;%=name%&gt;"&gt;&lt;/a&gt;
+			&lt;div class="b-foodshot-board__item-content-text"&gt;&lt;%=text%&gt;&lt;/div&gt;
+			&lt;div class="b-recipe-author b-foodshot-board__item-content-author"&gt;от &lt;%=author.name%&gt;&lt;/div&gt;
+		&lt;/div&gt;
+		
+		&lt;% if(comments.num &gt; 0) { %&gt;
+		&lt;div class="b-foodshot-board__item-comments"&gt;
+		
+			&lt;% if(comments.num &gt; comments.visible.length) { %&gt;
+			&lt;div class="b-foodshot-board__item-comments-hidden"&gt;
+				&lt;a href="#" class="b-foodshot-board__item-comments-hidden__button"&gt;
+					&lt;span class="b-comment-icon b-foodshot-board__item-comments-hidden__icon"&gt;&lt;%=comments.num%&gt;&lt;/span&gt;
+				&lt;/a&gt;
+			&lt;/div&gt;
+			&lt;% } %&gt;
+			
+			&lt;div class="b-comment-list"&gt;
+				&lt;% for(var i = 0; i &lt; comments.visible.length; i++) { %&gt;
+					&lt;div class="b-comment b-comment__type-short b-foodshot-board__item-comment" data-id="&lt;%=comments.visible[i].id%&gt;"&gt;
+						&lt;a href="&lt;%=comments.visible[i].author.href%&gt;" class="b-comment__userpic b-userpic"&gt;
+							&lt;span class="b-userpic__layer"&gt;&lt;/span&gt;
+							&lt;img src="&lt;%=comments.visible[i].author.src%&gt;" width="30" height="30" alt="&lt;%=comments.visible[i].author.name%&gt;" class="b-userpic__image"&gt;
+						&lt;/a&gt;
+						&lt;div class="b-comment__content"&gt;
+							&lt;div class="b-comment__author"&gt;
+								&lt;a href="&lt;%=comments.visible[i].author.href%&gt;"&gt;&lt;%=comments.visible[i].author.name%&gt;&lt;/a&gt;
+							&lt;/div&gt;
+							&lt;div class="b-comment__text"&gt;&lt;%=comments.visible[i].text%&gt;&lt;/div&gt;
+						&lt;/div&gt;
+						&lt;div class="i-clearfix"&gt;&lt;/div&gt;
+					&lt;/div&gt;
+				&lt;% } %&gt;
+			&lt;/div&gt;
+			
+		&lt;/div&gt;
+		&lt;% } %&gt;
+		
+		
+		&lt;div class="b-foodshot-board__item-action"&gt;
+			&lt;% if(window.userObject) { %&gt;
+			&lt;div class="b-foodshot-board__item-action_comment_hidden b-form-comments"&gt;
+				&lt;form action="" method="get"&gt;
+					&lt;div class="b-form-field b-comment b-comment__type-short b-form-field__type-comment"&gt;
+						&lt;a href="&lt;%=userObject.href%&gt;" class="b-comment__userpic b-userpic"&gt;
+							&lt;span class="b-userpic__layer"&gt;&lt;/span&gt;
+							&lt;img src="&lt;%=userObject.src%&gt;" width="30" height="30" alt="&lt;%=userObject.name%&gt;" class="b-userpic__image"&gt;
+						&lt;/a&gt;
+						&lt;div class="b-comment__content"&gt;
+							&lt;textarea cols="30" rows="3" name="comment" required&gt;&lt;/textarea&gt;
+						&lt;/div&gt;
+						&lt;div class="i-clearfix"&gt;&lt;/div&gt;
+					&lt;/div&gt;
+					&lt;a href="#" class="b-form-field__type-comment__button i-frame-bg"&gt;
+						&lt;span class="i-frame-bg_left"&gt;
+							&lt;span class="i-frame-bg_right"&gt;
+								&lt;span class="i-frame-bg_bg"&gt;
+									&lt;span class="i-frame-bg_content"&gt;Комментировать&lt;/span&gt;
+								&lt;/span&gt;
+							&lt;/span&gt;
+						&lt;/span&gt;
+					&lt;/a&gt;
+					&lt;div class="i-clearfix"&gt;&lt;/div&gt;
+				&lt;/form&gt;
+			&lt;/div&gt;
+			&lt;% } %&gt;
+			&lt;div class="b-foodshot-board__item-action_like"&gt;
+				&lt;span class="b-like"&gt;
+					&lt;a href="#" class="b-like-icon b-like-icon__type-button&lt;% if(user_liked) { %&gt; b-like-icon__type-active&lt;% } %&gt;" title="Мне нравится"&gt;&lt;/a&gt;
+					&lt;span class="b-like-num"&gt;&lt;%=likeNum%&gt;&lt;/span&gt;
+				&lt;/span&gt;
+			&lt;/div&gt;
+			&lt;% if(window.userObject) { %&gt;
+			&lt;div class="b-foodshot-board__item-action_comment_visible"&gt;
+				&lt;a href="#" class="b-comment-icon b-comment-icon__type-button" title="Комментировать"&gt;&lt;/a&gt;
+			&lt;/div&gt;
+			&lt;% } %&gt;
+			&lt;div class="i-clearfix"&gt;&lt;/div&gt;
+		&lt;/div&gt;
+		
+	&lt;/div&gt;
+	</script>
+	
+	<script id="foodshot-comment-template" type="text/html">
+		&lt;div class="b-comment b-comment__type-short b-foodshot-board__item-comment" data-id="&lt;%=id%&gt;"&gt;
+			&lt;a href="&lt;%=author.href%&gt;" class="b-comment__userpic b-userpic"&gt;
+				&lt;span class="b-userpic__layer"&gt;&lt;/span&gt;
+				&lt;img src="&lt;%=author.src%&gt;" width="30" height="30" alt="&lt;%=author.name%&gt;" class="b-userpic__image"&gt;
+			&lt;/a&gt;
+			&lt;div class="b-comment__content"&gt;
+				&lt;div class="b-comment__author"&gt;
+					&lt;a href="&lt;%=author.href%&gt;"&gt;&lt;%=author.name%&gt;&lt;/a&gt;
+				&lt;/div&gt;
+				&lt;div class="b-comment__text"&gt;&lt;%=text%&gt;&lt;/div&gt;
+			&lt;/div&gt;
+			&lt;div class="i-clearfix"&gt;&lt;/div&gt;
+		&lt;/div&gt;
+	</script>
+
+	<script id="foodshot-detail-comment-template" type="text/html">
+		&lt;div class="b-comment-block i-mine b-comment__user" data-id="&lt;%=id%&gt;"&gt;
+			&lt;div class="i-relative"&gt;
+				&lt;div class="b-comment-block__pointer"&gt;&lt;/div&gt;
+				&lt;a class="b-userpic b-comment-block__userpic" href="&lt;%=author.href%&gt;"&gt;
+					&lt;img height="30" width="30" class="b-userpic__image" alt="&lt;%=author.name%&gt;" src="&lt;%=author.src%&gt;"&gt;
+				&lt;/a&gt;
+				
+				&lt;div class="b-comment-block__admin-panel b-admin-panel"&gt;
+					&lt;a title="Удалить" class="b-admin-panel__delete" href=""&gt;&lt;/a&gt;
+				&lt;/div&gt;
+				
+			&lt;/div&gt;
+			
+			&lt;div class="b-comment-block__content"&gt;
+				&lt;div class="b-comment-block__author"&gt;
+					&lt;a href="&lt;%=author.href%&gt;"&gt;&lt;%=author.name%&gt;&lt;/a&gt;
+				&lt;/div&gt;
+				&lt;div class="b-comment-block__text"&gt;
+					&lt;%=text%&gt;
+				&lt;/div&gt;
+				&lt;div class="b-comment-block__date"&gt;&lt;%=date%&gt;&lt;/div&gt;
+			&lt;/div&gt;
+			
+			&lt;div class="i-clearfix"&gt;&lt;/div&gt;
+		&lt;/div&gt;
+		
+	</script>
+<div data-id="54734" class="b-foodshot-board__item" data-index="0" style="top: 6px; left: 0px;">
+		<div class="b-foodshot-board__item-content">
+			
+			
+			<a style="height: 253px;" class="b-foodshot-board__item-content-image" href="/foodshot/54734/"><img width="170" height="253" alt="Торт-осьминог" src="/upload/iblock/ac9/1389634479_Торт-осьминог.jpg"></a>
+			<div class="b-foodshot-board__item-content-text">Обалденный торт-осьминог. Всеобщий восторг на празднике обеспечен!<br>
+<br>
+<a href="http://www.lovethispic.com/image/33129/squid-cake" class="txttohtmllink">http://www.lovethispic.com/image/33129/squid-cake</a></div>
+			<div class="b-recipe-author b-foodshot-board__item-content-author">от Юлия Корчук</div>
+		</div>
+		
+		
+		
+		
+		<div class="b-foodshot-board__item-action">
+			
+			<div class="b-foodshot-board__item-action_comment_hidden b-form-comments">
+				<form method="get" action="">
+					<div class="b-form-field b-comment b-comment__type-short b-form-field__type-comment">
+						<a class="b-comment__userpic b-userpic" href="http://www.foodclub.ru/profile/2253/">
+							<span class="b-userpic__layer"></span>
+							<img width="30" height="30" class="b-userpic__image" alt="Владимир Егоров" src="http://www.foodclub.ru/upload/resize_cache/main/2f6/30_30_2/pedobear (5).jpeg">
+						</a>
+						<div class="b-comment__content">
+							<textarea required="" name="comment" rows="3" cols="30"></textarea>
+						</div>
+						<div class="i-clearfix"></div>
+					</div>
+					<a class="b-form-field__type-comment__button i-frame-bg" href="#">
+						<span class="i-frame-bg_left">
+							<span class="i-frame-bg_right">
+								<span class="i-frame-bg_bg">
+									<span class="i-frame-bg_content">Комментировать</span>
+								</span>
+							</span>
+						</span>
+					</a>
+					<div class="i-clearfix"></div>
+				</form>
+			</div>
+			
+			<div class="b-foodshot-board__item-action_like">
+				<span class="b-like">
+					<a title="Мне нравится" class="b-like-icon b-like-icon__type-button b-like-icon__type-active" href="#"></a>
+					<span class="b-like-num">1</span>
+				</span>
+			</div>
+			
+			<div class="b-foodshot-board__item-action_comment_visible">
+				<a title="Комментировать" class="b-comment-icon b-comment-icon__type-button" href="#"></a>
+			</div>
+			
+			<div class="i-clearfix"></div>
+		</div>
+		
+	</div><div data-id="54733" class="b-foodshot-board__item" data-index="1" style="top: 6px; left: 193px;">
+		<div class="b-foodshot-board__item-content">
+			
+			
+			<a style="height: 170px;" class="b-foodshot-board__item-content-image" href="/foodshot/54733/"><img width="170" height="170" alt="Совы" src="/upload/iblock/694/1389634349_Совы.jpg"></a>
+			<div class="b-foodshot-board__item-content-text">Совы &mdash; всегда в тренде:)</div>
+			<div class="b-recipe-author b-foodshot-board__item-content-author">от Юлия Корчук</div>
+		</div>
+		
+		
+		
+		
+		<div class="b-foodshot-board__item-action">
+			
+			<div class="b-foodshot-board__item-action_comment_hidden b-form-comments">
+				<form method="get" action="">
+					<div class="b-form-field b-comment b-comment__type-short b-form-field__type-comment">
+						<a class="b-comment__userpic b-userpic" href="http://www.foodclub.ru/profile/2253/">
+							<span class="b-userpic__layer"></span>
+							<img width="30" height="30" class="b-userpic__image" alt="Владимир Егоров" src="http://www.foodclub.ru/upload/resize_cache/main/2f6/30_30_2/pedobear (5).jpeg">
+						</a>
+						<div class="b-comment__content">
+							<textarea required="" name="comment" rows="3" cols="30"></textarea>
+						</div>
+						<div class="i-clearfix"></div>
+					</div>
+					<a class="b-form-field__type-comment__button i-frame-bg" href="#">
+						<span class="i-frame-bg_left">
+							<span class="i-frame-bg_right">
+								<span class="i-frame-bg_bg">
+									<span class="i-frame-bg_content">Комментировать</span>
+								</span>
+							</span>
+						</span>
+					</a>
+					<div class="i-clearfix"></div>
+				</form>
+			</div>
+			
+			<div class="b-foodshot-board__item-action_like">
+				<span class="b-like">
+					<a title="Мне нравится" class="b-like-icon b-like-icon__type-button" href="#"></a>
+					<span class="b-like-num">0</span>
+				</span>
+			</div>
+			
+			<div class="b-foodshot-board__item-action_comment_visible">
+				<a title="Комментировать" class="b-comment-icon b-comment-icon__type-button" href="#"></a>
+			</div>
+			
+			<div class="i-clearfix"></div>
+		</div>
+		
+	</div><div data-id="54721" class="b-foodshot-board__item" data-index="2" style="top: 6px; left: 386px;">
+		<div class="b-foodshot-board__item-content">
+			
+			
+			<a style="height: 112px;" class="b-foodshot-board__item-content-image" href="/foodshot/54721/"><img width="170" height="112" alt="Сент-Оноре" src="/upload/iblock/8f7/1389599888_Сент-Оноре.jpg"></a>
+			<div class="b-foodshot-board__item-content-text">Знаменитый десерт Сент-Оноре у меня в Instagram - @darkzip. Как же я с ним намаялся)</div>
+			<div class="b-recipe-author b-foodshot-board__item-content-author">от darkzip</div>
+		</div>
+		
+		
+		<div class="b-foodshot-board__item-comments">
+		
+			
+			
+			<div class="b-comment-list">
+				
+					<div data-id="54724" class="b-comment b-comment__type-short b-foodshot-board__item-comment">
+						<a class="b-comment__userpic b-userpic" href="/profile/56/">
+							<span class="b-userpic__layer"></span>
+							<img width="30" height="30" class="b-userpic__image" alt="Пачкуале Пестрини" src="/upload/main/102/230532_213443745350868_5229453_n (2).jpg">
+						</a>
+						<div class="b-comment__content">
+							<div class="b-comment__author">
+								<a href="/profile/56/">Пачкуале Пестрини</a>
+							</div>
+							<div class="b-comment__text"><a href="http://instagram.com/darkzip" class="txttohtmllink">http://instagram.com/darkzip</a> &ndash; лучше всего ставьте прямую ссылку )</div>
+						</div>
+						<div class="i-clearfix"></div>
+					</div>
+				
+			</div>
+			
+		</div>
+		
+		
+		
+		<div class="b-foodshot-board__item-action">
+			
+			<div class="b-foodshot-board__item-action_comment_hidden b-form-comments">
+				<form method="get" action="">
+					<div class="b-form-field b-comment b-comment__type-short b-form-field__type-comment">
+						<a class="b-comment__userpic b-userpic" href="http://www.foodclub.ru/profile/2253/">
+							<span class="b-userpic__layer"></span>
+							<img width="30" height="30" class="b-userpic__image" alt="Владимир Егоров" src="http://www.foodclub.ru/upload/resize_cache/main/2f6/30_30_2/pedobear (5).jpeg">
+						</a>
+						<div class="b-comment__content">
+							<textarea required="" name="comment" rows="3" cols="30"></textarea>
+						</div>
+						<div class="i-clearfix"></div>
+					</div>
+					<a class="b-form-field__type-comment__button i-frame-bg" href="#">
+						<span class="i-frame-bg_left">
+							<span class="i-frame-bg_right">
+								<span class="i-frame-bg_bg">
+									<span class="i-frame-bg_content">Комментировать</span>
+								</span>
+							</span>
+						</span>
+					</a>
+					<div class="i-clearfix"></div>
+				</form>
+			</div>
+			
+			<div class="b-foodshot-board__item-action_like">
+				<span class="b-like">
+					<a title="Мне нравится" class="b-like-icon b-like-icon__type-button b-like-icon__type-active" href="#"></a>
+					<span class="b-like-num">1</span>
+				</span>
+			</div>
+			
+			<div class="b-foodshot-board__item-action_comment_visible">
+				<a title="Комментировать" class="b-comment-icon b-comment-icon__type-button" href="#"></a>
+			</div>
+			
+			<div class="i-clearfix"></div>
+		</div>
+		
+	</div><div data-id="54710" class="b-foodshot-board__item" data-index="3" style="top: 6px; left: 579px;">
+		<div class="b-foodshot-board__item-content">
+			
+			
+			<a style="height: 255px;" class="b-foodshot-board__item-content-image" href="/foodshot/54710/"><img width="170" height="255" alt="Работа фудфотографов" src="/upload/iblock/bcf/1389546870_Работа фудфотографов.jpg"></a>
+			<div class="b-foodshot-board__item-content-text">Будни фудфотографов.</div>
+			<div class="b-recipe-author b-foodshot-board__item-content-author">от Юлия Корчук</div>
+		</div>
+		
+		
+		
+		
+		<div class="b-foodshot-board__item-action">
+			
+			<div class="b-foodshot-board__item-action_comment_hidden b-form-comments">
+				<form method="get" action="">
+					<div class="b-form-field b-comment b-comment__type-short b-form-field__type-comment">
+						<a class="b-comment__userpic b-userpic" href="http://www.foodclub.ru/profile/2253/">
+							<span class="b-userpic__layer"></span>
+							<img width="30" height="30" class="b-userpic__image" alt="Владимир Егоров" src="http://www.foodclub.ru/upload/resize_cache/main/2f6/30_30_2/pedobear (5).jpeg">
+						</a>
+						<div class="b-comment__content">
+							<textarea required="" name="comment" rows="3" cols="30"></textarea>
+						</div>
+						<div class="i-clearfix"></div>
+					</div>
+					<a class="b-form-field__type-comment__button i-frame-bg" href="#">
+						<span class="i-frame-bg_left">
+							<span class="i-frame-bg_right">
+								<span class="i-frame-bg_bg">
+									<span class="i-frame-bg_content">Комментировать</span>
+								</span>
+							</span>
+						</span>
+					</a>
+					<div class="i-clearfix"></div>
+				</form>
+			</div>
+			
+			<div class="b-foodshot-board__item-action_like">
+				<span class="b-like">
+					<a title="Мне нравится" class="b-like-icon b-like-icon__type-button" href="#"></a>
+					<span class="b-like-num">0</span>
+				</span>
+			</div>
+			
+			<div class="b-foodshot-board__item-action_comment_visible">
+				<a title="Комментировать" class="b-comment-icon b-comment-icon__type-button" href="#"></a>
+			</div>
+			
+			<div class="i-clearfix"></div>
+		</div>
+		
+	</div><div data-id="54708" class="b-foodshot-board__item" data-index="4" style="top: 6px; left: 772px;">
+		<div class="b-foodshot-board__item-content">
+			
+			
+			<a style="height: 255px;" class="b-foodshot-board__item-content-image" href="/foodshot/54708/"><img width="170" height="255" alt="Кофе и печенье" src="/upload/iblock/e3a/1389546312_Кофе и печенье.jpg"></a>
+			<div class="b-foodshot-board__item-content-text">Кофейно-шоколадное утро с печеньем.</div>
+			<div class="b-recipe-author b-foodshot-board__item-content-author">от Юлия Корчук</div>
+		</div>
+		
+		
+		
+		
+		<div class="b-foodshot-board__item-action">
+			
+			<div class="b-foodshot-board__item-action_comment_hidden b-form-comments">
+				<form method="get" action="">
+					<div class="b-form-field b-comment b-comment__type-short b-form-field__type-comment">
+						<a class="b-comment__userpic b-userpic" href="http://www.foodclub.ru/profile/2253/">
+							<span class="b-userpic__layer"></span>
+							<img width="30" height="30" class="b-userpic__image" alt="Владимир Егоров" src="http://www.foodclub.ru/upload/resize_cache/main/2f6/30_30_2/pedobear (5).jpeg">
+						</a>
+						<div class="b-comment__content">
+							<textarea required="" name="comment" rows="3" cols="30"></textarea>
+						</div>
+						<div class="i-clearfix"></div>
+					</div>
+					<a class="b-form-field__type-comment__button i-frame-bg" href="#">
+						<span class="i-frame-bg_left">
+							<span class="i-frame-bg_right">
+								<span class="i-frame-bg_bg">
+									<span class="i-frame-bg_content">Комментировать</span>
+								</span>
+							</span>
+						</span>
+					</a>
+					<div class="i-clearfix"></div>
+				</form>
+			</div>
+			
+			<div class="b-foodshot-board__item-action_like">
+				<span class="b-like">
+					<a title="Мне нравится" class="b-like-icon b-like-icon__type-button" href="#"></a>
+					<span class="b-like-num">0</span>
+				</span>
+			</div>
+			
+			<div class="b-foodshot-board__item-action_comment_visible">
+				<a title="Комментировать" class="b-comment-icon b-comment-icon__type-button" href="#"></a>
+			</div>
+			
+			<div class="i-clearfix"></div>
+		</div>
+		
+	</div><div data-id="54707" class="b-foodshot-board__item" data-index="5" style="top: 284px; left: 193px;">
+		<div class="b-foodshot-board__item-content">
+			
+			
+			<a style="height: 255px;" class="b-foodshot-board__item-content-image" href="/foodshot/54707/"><img width="170" height="255" alt="Специи" src="/upload/iblock/7c9/1389546101_Специи.jpg"></a>
+			<div class="b-foodshot-board__item-content-text">Очень красиво, как будто россыпь галактик из специй...</div>
+			<div class="b-recipe-author b-foodshot-board__item-content-author">от Юлия Корчук</div>
+		</div>
+		
+		
+		
+		
+		<div class="b-foodshot-board__item-action">
+			
+			<div class="b-foodshot-board__item-action_comment_hidden b-form-comments">
+				<form method="get" action="">
+					<div class="b-form-field b-comment b-comment__type-short b-form-field__type-comment">
+						<a class="b-comment__userpic b-userpic" href="http://www.foodclub.ru/profile/2253/">
+							<span class="b-userpic__layer"></span>
+							<img width="30" height="30" class="b-userpic__image" alt="Владимир Егоров" src="http://www.foodclub.ru/upload/resize_cache/main/2f6/30_30_2/pedobear (5).jpeg">
+						</a>
+						<div class="b-comment__content">
+							<textarea required="" name="comment" rows="3" cols="30"></textarea>
+						</div>
+						<div class="i-clearfix"></div>
+					</div>
+					<a class="b-form-field__type-comment__button i-frame-bg" href="#">
+						<span class="i-frame-bg_left">
+							<span class="i-frame-bg_right">
+								<span class="i-frame-bg_bg">
+									<span class="i-frame-bg_content">Комментировать</span>
+								</span>
+							</span>
+						</span>
+					</a>
+					<div class="i-clearfix"></div>
+				</form>
+			</div>
+			
+			<div class="b-foodshot-board__item-action_like">
+				<span class="b-like">
+					<a title="Мне нравится" class="b-like-icon b-like-icon__type-button" href="#"></a>
+					<span class="b-like-num">0</span>
+				</span>
+			</div>
+			
+			<div class="b-foodshot-board__item-action_comment_visible">
+				<a title="Комментировать" class="b-comment-icon b-comment-icon__type-button" href="#"></a>
+			</div>
+			
+			<div class="i-clearfix"></div>
+		</div>
+		
+	</div><div data-id="54635" class="b-foodshot-board__item" data-index="6" style="top: 327px; left: 386px;">
+		<div class="b-foodshot-board__item-content">
+			
+			
+			<a style="height: 116px;" class="b-foodshot-board__item-content-image" href="/foodshot/54635/"><img width="170" height="116" alt="Жареная картошка" src="/upload/iblock/a7d/1389430171_Жареная картошка.jpg"></a>
+			<div class="b-foodshot-board__item-content-text">Жареная дольками картошка всегда невозможно аппетитна.</div>
+			<div class="b-recipe-author b-foodshot-board__item-content-author">от Мария Савельева</div>
+		</div>
+		
+		
+		<div class="b-foodshot-board__item-comments">
+		
+			
+			
+			<div class="b-comment-list">
+				
+					<div data-id="54643" class="b-comment b-comment__type-short b-foodshot-board__item-comment">
+						<a class="b-comment__userpic b-userpic" href="/profile/56/">
+							<span class="b-userpic__layer"></span>
+							<img width="30" height="30" class="b-userpic__image" alt="Пачкуале Пестрини" src="/upload/main/102/230532_213443745350868_5229453_n (2).jpg">
+						</a>
+						<div class="b-comment__content">
+							<div class="b-comment__author">
+								<a href="/profile/56/">Пачкуале Пестрини</a>
+							</div>
+							<div class="b-comment__text">Согласен.</div>
+						</div>
+						<div class="i-clearfix"></div>
+					</div>
+				
+			</div>
+			
+		</div>
+		
+		
+		
+		<div class="b-foodshot-board__item-action">
+			
+			<div class="b-foodshot-board__item-action_comment_hidden b-form-comments">
+				<form method="get" action="">
+					<div class="b-form-field b-comment b-comment__type-short b-form-field__type-comment">
+						<a class="b-comment__userpic b-userpic" href="http://www.foodclub.ru/profile/2253/">
+							<span class="b-userpic__layer"></span>
+							<img width="30" height="30" class="b-userpic__image" alt="Владимир Егоров" src="http://www.foodclub.ru/upload/resize_cache/main/2f6/30_30_2/pedobear (5).jpeg">
+						</a>
+						<div class="b-comment__content">
+							<textarea required="" name="comment" rows="3" cols="30"></textarea>
+						</div>
+						<div class="i-clearfix"></div>
+					</div>
+					<a class="b-form-field__type-comment__button i-frame-bg" href="#">
+						<span class="i-frame-bg_left">
+							<span class="i-frame-bg_right">
+								<span class="i-frame-bg_bg">
+									<span class="i-frame-bg_content">Комментировать</span>
+								</span>
+							</span>
+						</span>
+					</a>
+					<div class="i-clearfix"></div>
+				</form>
+			</div>
+			
+			<div class="b-foodshot-board__item-action_like">
+				<span class="b-like">
+					<a title="Мне нравится" class="b-like-icon b-like-icon__type-button b-like-icon__type-active" href="#"></a>
+					<span class="b-like-num">1</span>
+				</span>
+			</div>
+			
+			<div class="b-foodshot-board__item-action_comment_visible">
+				<a title="Комментировать" class="b-comment-icon b-comment-icon__type-button" href="#"></a>
+			</div>
+			
+			<div class="i-clearfix"></div>
+		</div>
+		
+	</div><div data-id="54629" class="b-foodshot-board__item" data-index="7" style="top: 369px; left: 579px;">
+		<div class="b-foodshot-board__item-content">
+			
+			
+			<a style="height: 216px;" class="b-foodshot-board__item-content-image" href="/foodshot/54629/"><img width="170" height="216" alt="Курица чипотле с киноа и овощами" src="/upload/iblock/e23/1389429951_Курица чипотле с киноа и овощами.jpg"></a>
+			<div class="b-foodshot-board__item-content-text">Курица чипотле с киноа и овощами</div>
+			<div class="b-recipe-author b-foodshot-board__item-content-author">от Мария Савельева</div>
+		</div>
+		
+		
+		
+		
+		<div class="b-foodshot-board__item-action">
+			
+			<div class="b-foodshot-board__item-action_comment_hidden b-form-comments">
+				<form method="get" action="">
+					<div class="b-form-field b-comment b-comment__type-short b-form-field__type-comment">
+						<a class="b-comment__userpic b-userpic" href="http://www.foodclub.ru/profile/2253/">
+							<span class="b-userpic__layer"></span>
+							<img width="30" height="30" class="b-userpic__image" alt="Владимир Егоров" src="http://www.foodclub.ru/upload/resize_cache/main/2f6/30_30_2/pedobear (5).jpeg">
+						</a>
+						<div class="b-comment__content">
+							<textarea required="" name="comment" rows="3" cols="30"></textarea>
+						</div>
+						<div class="i-clearfix"></div>
+					</div>
+					<a class="b-form-field__type-comment__button i-frame-bg" href="#">
+						<span class="i-frame-bg_left">
+							<span class="i-frame-bg_right">
+								<span class="i-frame-bg_bg">
+									<span class="i-frame-bg_content">Комментировать</span>
+								</span>
+							</span>
+						</span>
+					</a>
+					<div class="i-clearfix"></div>
+				</form>
+			</div>
+			
+			<div class="b-foodshot-board__item-action_like">
+				<span class="b-like">
+					<a title="Мне нравится" class="b-like-icon b-like-icon__type-button b-like-icon__type-active" href="#"></a>
+					<span class="b-like-num">1</span>
+				</span>
+			</div>
+			
+			<div class="b-foodshot-board__item-action_comment_visible">
+				<a title="Комментировать" class="b-comment-icon b-comment-icon__type-button" href="#"></a>
+			</div>
+			
+			<div class="i-clearfix"></div>
+		</div>
+		
+	</div><div data-id="54602" class="b-foodshot-board__item" data-index="8" style="top: 382px; left: 772px;">
+		<div class="b-foodshot-board__item-content">
+			
+			
+			<a style="height: 113px;" class="b-foodshot-board__item-content-image" href="/foodshot/54602/"><img width="170" height="113" alt="крокеты" src="/upload/iblock/2b8/1389383919_крокеты.jpg"></a>
+			<div class="b-foodshot-board__item-content-text">Творожные крокеты с клубничным джемом</div>
+			<div class="b-recipe-author b-foodshot-board__item-content-author">от Irina Matsevitaya</div>
+		</div>
+		
+		
+		<div class="b-foodshot-board__item-comments">
+		
+			
+			
+			<div class="b-comment-list">
+				
+					<div data-id="54630" class="b-comment b-comment__type-short b-foodshot-board__item-comment">
+						<a class="b-comment__userpic b-userpic" href="/profile/2/">
+							<span class="b-userpic__layer"></span>
+							<img width="30" height="30" class="b-userpic__image" alt="Мария Савельева" src="/upload/main/fb3/avatar.jpg">
+						</a>
+						<div class="b-comment__content">
+							<div class="b-comment__author">
+								<a href="/profile/2/">Мария Савельева</a>
+							</div>
+							<div class="b-comment__text">Здорово, творожные крокеты ни разу не пробовала)</div>
+						</div>
+						<div class="i-clearfix"></div>
+					</div>
+				
+			</div>
+			
+		</div>
+		
+		
+		
+		<div class="b-foodshot-board__item-action">
+			
+			<div class="b-foodshot-board__item-action_comment_hidden b-form-comments">
+				<form method="get" action="">
+					<div class="b-form-field b-comment b-comment__type-short b-form-field__type-comment">
+						<a class="b-comment__userpic b-userpic" href="http://www.foodclub.ru/profile/2253/">
+							<span class="b-userpic__layer"></span>
+							<img width="30" height="30" class="b-userpic__image" alt="Владимир Егоров" src="http://www.foodclub.ru/upload/resize_cache/main/2f6/30_30_2/pedobear (5).jpeg">
+						</a>
+						<div class="b-comment__content">
+							<textarea required="" name="comment" rows="3" cols="30"></textarea>
+						</div>
+						<div class="i-clearfix"></div>
+					</div>
+					<a class="b-form-field__type-comment__button i-frame-bg" href="#">
+						<span class="i-frame-bg_left">
+							<span class="i-frame-bg_right">
+								<span class="i-frame-bg_bg">
+									<span class="i-frame-bg_content">Комментировать</span>
+								</span>
+							</span>
+						</span>
+					</a>
+					<div class="i-clearfix"></div>
+				</form>
+			</div>
+			
+			<div class="b-foodshot-board__item-action_like">
+				<span class="b-like">
+					<a title="Мне нравится" class="b-like-icon b-like-icon__type-button" href="#"></a>
+					<span class="b-like-num">1</span>
+				</span>
+			</div>
+			
+			<div class="b-foodshot-board__item-action_comment_visible">
+				<a title="Комментировать" class="b-comment-icon b-comment-icon__type-button" href="#"></a>
+			</div>
+			
+			<div class="i-clearfix"></div>
+		</div>
+		
+	</div><div data-id="54600" class="b-foodshot-board__item" data-index="9" style="top: 432px; left: 0px;">
+		<div class="b-foodshot-board__item-content">
+			
+			
+			<a style="height: 91px;" class="b-foodshot-board__item-content-image" href="/foodshot/54600/"><img width="170" height="91" alt="штрудель" src="/upload/iblock/a90/1389383722_штрудель.jpg"></a>
+			<div class="b-foodshot-board__item-content-text">Штрудель, почти венский)) с яблоками, изюмом и ванильным сиропом</div>
+			<div class="b-recipe-author b-foodshot-board__item-content-author">от Irina Matsevitaya</div>
+		</div>
+		
+		
+		
+		
+		<div class="b-foodshot-board__item-action">
+			
+			<div class="b-foodshot-board__item-action_comment_hidden b-form-comments">
+				<form method="get" action="">
+					<div class="b-form-field b-comment b-comment__type-short b-form-field__type-comment">
+						<a class="b-comment__userpic b-userpic" href="http://www.foodclub.ru/profile/2253/">
+							<span class="b-userpic__layer"></span>
+							<img width="30" height="30" class="b-userpic__image" alt="Владимир Егоров" src="http://www.foodclub.ru/upload/resize_cache/main/2f6/30_30_2/pedobear (5).jpeg">
+						</a>
+						<div class="b-comment__content">
+							<textarea required="" name="comment" rows="3" cols="30"></textarea>
+						</div>
+						<div class="i-clearfix"></div>
+					</div>
+					<a class="b-form-field__type-comment__button i-frame-bg" href="#">
+						<span class="i-frame-bg_left">
+							<span class="i-frame-bg_right">
+								<span class="i-frame-bg_bg">
+									<span class="i-frame-bg_content">Комментировать</span>
+								</span>
+							</span>
+						</span>
+					</a>
+					<div class="i-clearfix"></div>
+				</form>
+			</div>
+			
+			<div class="b-foodshot-board__item-action_like">
+				<span class="b-like">
+					<a title="Мне нравится" class="b-like-icon b-like-icon__type-button" href="#"></a>
+					<span class="b-like-num">1</span>
+				</span>
+			</div>
+			
+			<div class="b-foodshot-board__item-action_comment_visible">
+				<a title="Комментировать" class="b-comment-icon b-comment-icon__type-button" href="#"></a>
+			</div>
+			
+			<div class="i-clearfix"></div>
+		</div>
+		
+	</div><div data-id="54599" class="b-foodshot-board__item" data-index="10" style="top: 614px; left: 386px;">
+		<div class="b-foodshot-board__item-content">
+			
+			
+			<a style="height: 115px;" class="b-foodshot-board__item-content-image" href="/foodshot/54599/"><img width="170" height="115" alt="Новогодние елочки" src="/upload/iblock/c68/1389382630_Новогодние елочки.jpg"></a>
+			<div class="b-foodshot-board__item-content-text">Наши семейные елочки (каждая соответствует члену семьи)))</div>
+			<div class="b-recipe-author b-foodshot-board__item-content-author">от Irina Matsevitaya</div>
+		</div>
+		
+		
+		<div class="b-foodshot-board__item-comments">
+		
+			
+			
+			<div class="b-comment-list">
+				
+					<div data-id="54633" class="b-comment b-comment__type-short b-foodshot-board__item-comment">
+						<a class="b-comment__userpic b-userpic" href="/profile/2/">
+							<span class="b-userpic__layer"></span>
+							<img width="30" height="30" class="b-userpic__image" alt="Мария Савельева" src="/upload/main/fb3/avatar.jpg">
+						</a>
+						<div class="b-comment__content">
+							<div class="b-comment__author">
+								<a href="/profile/2/">Мария Савельева</a>
+							</div>
+							<div class="b-comment__text">Ого, какая большая семья! :)</div>
+						</div>
+						<div class="i-clearfix"></div>
+					</div>
+				
+			</div>
+			
+		</div>
+		
+		
+		
+		<div class="b-foodshot-board__item-action">
+			
+			<div class="b-foodshot-board__item-action_comment_hidden b-form-comments">
+				<form method="get" action="">
+					<div class="b-form-field b-comment b-comment__type-short b-form-field__type-comment">
+						<a class="b-comment__userpic b-userpic" href="http://www.foodclub.ru/profile/2253/">
+							<span class="b-userpic__layer"></span>
+							<img width="30" height="30" class="b-userpic__image" alt="Владимир Егоров" src="http://www.foodclub.ru/upload/resize_cache/main/2f6/30_30_2/pedobear (5).jpeg">
+						</a>
+						<div class="b-comment__content">
+							<textarea required="" name="comment" rows="3" cols="30"></textarea>
+						</div>
+						<div class="i-clearfix"></div>
+					</div>
+					<a class="b-form-field__type-comment__button i-frame-bg" href="#">
+						<span class="i-frame-bg_left">
+							<span class="i-frame-bg_right">
+								<span class="i-frame-bg_bg">
+									<span class="i-frame-bg_content">Комментировать</span>
+								</span>
+							</span>
+						</span>
+					</a>
+					<div class="i-clearfix"></div>
+				</form>
+			</div>
+			
+			<div class="b-foodshot-board__item-action_like">
+				<span class="b-like">
+					<a title="Мне нравится" class="b-like-icon b-like-icon__type-button" href="#"></a>
+					<span class="b-like-num">1</span>
+				</span>
+			</div>
+			
+			<div class="b-foodshot-board__item-action_comment_visible">
+				<a title="Комментировать" class="b-comment-icon b-comment-icon__type-button" href="#"></a>
+			</div>
+			
+			<div class="i-clearfix"></div>
+		</div>
+		
+	</div><div data-id="54595" class="b-foodshot-board__item" data-index="11" style="top: 657px; left: 0px;">
+		<div class="b-foodshot-board__item-content">
+			
+			
+			<a style="height: 113px;" class="b-foodshot-board__item-content-image" href="/foodshot/54595/"><img width="170" height="113" alt="пробные печенюшки))" src="/upload/iblock/af2/1389382485_пробные печенюшки)).jpg"></a>
+			<div class="b-foodshot-board__item-content-text">какой праздник праздничной выпечки))</div>
+			<div class="b-recipe-author b-foodshot-board__item-content-author">от Irina Matsevitaya</div>
+		</div>
+		
+		
+		
+		
+		<div class="b-foodshot-board__item-action">
+			
+			<div class="b-foodshot-board__item-action_comment_hidden b-form-comments">
+				<form method="get" action="">
+					<div class="b-form-field b-comment b-comment__type-short b-form-field__type-comment">
+						<a class="b-comment__userpic b-userpic" href="http://www.foodclub.ru/profile/2253/">
+							<span class="b-userpic__layer"></span>
+							<img width="30" height="30" class="b-userpic__image" alt="Владимир Егоров" src="http://www.foodclub.ru/upload/resize_cache/main/2f6/30_30_2/pedobear (5).jpeg">
+						</a>
+						<div class="b-comment__content">
+							<textarea required="" name="comment" rows="3" cols="30"></textarea>
+						</div>
+						<div class="i-clearfix"></div>
+					</div>
+					<a class="b-form-field__type-comment__button i-frame-bg" href="#">
+						<span class="i-frame-bg_left">
+							<span class="i-frame-bg_right">
+								<span class="i-frame-bg_bg">
+									<span class="i-frame-bg_content">Комментировать</span>
+								</span>
+							</span>
+						</span>
+					</a>
+					<div class="i-clearfix"></div>
+				</form>
+			</div>
+			
+			<div class="b-foodshot-board__item-action_like">
+				<span class="b-like">
+					<a title="Мне нравится" class="b-like-icon b-like-icon__type-button b-like-icon__type-active" href="#"></a>
+					<span class="b-like-num">2</span>
+				</span>
+			</div>
+			
+			<div class="b-foodshot-board__item-action_comment_visible">
+				<a title="Комментировать" class="b-comment-icon b-comment-icon__type-button" href="#"></a>
+			</div>
+			
+			<div class="i-clearfix"></div>
+		</div>
+		
+	</div><div data-id="54590" class="b-foodshot-board__item" data-index="12" style="top: 660px; left: 193px;">
+		<div class="b-foodshot-board__item-content">
+			
+			
+			<a style="height: 119px;" class="b-foodshot-board__item-content-image" href="/foodshot/54590/"><img width="170" height="119" alt="Тако" src="/upload/iblock/97d/1389371848_Тако.jpg"></a>
+			<div class="b-foodshot-board__item-content-text">Тако пицца с колбасками.</div>
+			<div class="b-recipe-author b-foodshot-board__item-content-author">от Юлия Корчук</div>
+		</div>
+		
+		
+		
+		
+		<div class="b-foodshot-board__item-action">
+			
+			<div class="b-foodshot-board__item-action_comment_hidden b-form-comments">
+				<form method="get" action="">
+					<div class="b-form-field b-comment b-comment__type-short b-form-field__type-comment">
+						<a class="b-comment__userpic b-userpic" href="http://www.foodclub.ru/profile/2253/">
+							<span class="b-userpic__layer"></span>
+							<img width="30" height="30" class="b-userpic__image" alt="Владимир Егоров" src="http://www.foodclub.ru/upload/resize_cache/main/2f6/30_30_2/pedobear (5).jpeg">
+						</a>
+						<div class="b-comment__content">
+							<textarea required="" name="comment" rows="3" cols="30"></textarea>
+						</div>
+						<div class="i-clearfix"></div>
+					</div>
+					<a class="b-form-field__type-comment__button i-frame-bg" href="#">
+						<span class="i-frame-bg_left">
+							<span class="i-frame-bg_right">
+								<span class="i-frame-bg_bg">
+									<span class="i-frame-bg_content">Комментировать</span>
+								</span>
+							</span>
+						</span>
+					</a>
+					<div class="i-clearfix"></div>
+				</form>
+			</div>
+			
+			<div class="b-foodshot-board__item-action_like">
+				<span class="b-like">
+					<a title="Мне нравится" class="b-like-icon b-like-icon__type-button" href="#"></a>
+					<span class="b-like-num">0</span>
+				</span>
+			</div>
+			
+			<div class="b-foodshot-board__item-action_comment_visible">
+				<a title="Комментировать" class="b-comment-icon b-comment-icon__type-button" href="#"></a>
+			</div>
+			
+			<div class="i-clearfix"></div>
+		</div>
+		
+	</div><div data-id="54589" class="b-foodshot-board__item" data-index="13" style="top: 691px; left: 772px;">
+		<div class="b-foodshot-board__item-content">
+			
+			
+			<a style="height: 113px;" class="b-foodshot-board__item-content-image" href="/foodshot/54589/"><img width="170" height="113" alt="Магический куб" src="/upload/iblock/d14/1389371592_Магический куб.jpg"></a>
+			<div class="b-foodshot-board__item-content-text">Магический куб.</div>
+			<div class="b-recipe-author b-foodshot-board__item-content-author">от Юлия Корчук</div>
+		</div>
+		
+		
+		<div class="b-foodshot-board__item-comments">
+		
+			
+			
+			<div class="b-comment-list">
+				
+					<div data-id="54644" class="b-comment b-comment__type-short b-foodshot-board__item-comment">
+						<a class="b-comment__userpic b-userpic" href="/profile/56/">
+							<span class="b-userpic__layer"></span>
+							<img width="30" height="30" class="b-userpic__image" alt="Пачкуале Пестрини" src="/upload/main/102/230532_213443745350868_5229453_n (2).jpg">
+						</a>
+						<div class="b-comment__content">
+							<div class="b-comment__author">
+								<a href="/profile/56/">Пачкуале Пестрини</a>
+							</div>
+							<div class="b-comment__text">Не что подобное ходит по интернету в исполнение&nbsp;&nbsp;Влада Пискунова.</div>
+						</div>
+						<div class="i-clearfix"></div>
+					</div>
+				
+			</div>
+			
+		</div>
+		
+		
+		
+		<div class="b-foodshot-board__item-action">
+			
+			<div class="b-foodshot-board__item-action_comment_hidden b-form-comments">
+				<form method="get" action="">
+					<div class="b-form-field b-comment b-comment__type-short b-form-field__type-comment">
+						<a class="b-comment__userpic b-userpic" href="http://www.foodclub.ru/profile/2253/">
+							<span class="b-userpic__layer"></span>
+							<img width="30" height="30" class="b-userpic__image" alt="Владимир Егоров" src="http://www.foodclub.ru/upload/resize_cache/main/2f6/30_30_2/pedobear (5).jpeg">
+						</a>
+						<div class="b-comment__content">
+							<textarea required="" name="comment" rows="3" cols="30"></textarea>
+						</div>
+						<div class="i-clearfix"></div>
+					</div>
+					<a class="b-form-field__type-comment__button i-frame-bg" href="#">
+						<span class="i-frame-bg_left">
+							<span class="i-frame-bg_right">
+								<span class="i-frame-bg_bg">
+									<span class="i-frame-bg_content">Комментировать</span>
+								</span>
+							</span>
+						</span>
+					</a>
+					<div class="i-clearfix"></div>
+				</form>
+			</div>
+			
+			<div class="b-foodshot-board__item-action_like">
+				<span class="b-like">
+					<a title="Мне нравится" class="b-like-icon b-like-icon__type-button b-like-icon__type-active" href="#"></a>
+					<span class="b-like-num">1</span>
+				</span>
+			</div>
+			
+			<div class="b-foodshot-board__item-action_comment_visible">
+				<a title="Комментировать" class="b-comment-icon b-comment-icon__type-button" href="#"></a>
+			</div>
+			
+			<div class="i-clearfix"></div>
+		</div>
+		
+	</div><div data-id="54588" class="b-foodshot-board__item" data-index="14" style="top: 706px; left: 579px;">
+		<div class="b-foodshot-board__item-content">
+			
+			
+			<a style="height: 255px;" class="b-foodshot-board__item-content-image" href="/foodshot/54588/"><img width="170" height="255" alt="Стайлинг" src="/upload/iblock/204/1389371044_Стайлинг.jpg"></a>
+			<div class="b-foodshot-board__item-content-text">Эстетика в деталях, вкус в исполнении.</div>
+			<div class="b-recipe-author b-foodshot-board__item-content-author">от Юлия Корчук</div>
+		</div>
+		
+		
+		<div class="b-foodshot-board__item-comments">
+		
+			
+			
+			<div class="b-comment-list">
+				
+					<div data-id="54631" class="b-comment b-comment__type-short b-foodshot-board__item-comment">
+						<a class="b-comment__userpic b-userpic" href="/profile/2/">
+							<span class="b-userpic__layer"></span>
+							<img width="30" height="30" class="b-userpic__image" alt="Мария Савельева" src="/upload/main/fb3/avatar.jpg">
+						</a>
+						<div class="b-comment__content">
+							<div class="b-comment__author">
+								<a href="/profile/2/">Мария Савельева</a>
+							</div>
+							<div class="b-comment__text">Что-то определенно красивое!</div>
+						</div>
+						<div class="i-clearfix"></div>
+					</div>
+				
+			</div>
+			
+		</div>
+		
+		
+		
+		<div class="b-foodshot-board__item-action">
+			
+			<div class="b-foodshot-board__item-action_comment_hidden b-form-comments">
+				<form method="get" action="">
+					<div class="b-form-field b-comment b-comment__type-short b-form-field__type-comment">
+						<a class="b-comment__userpic b-userpic" href="http://www.foodclub.ru/profile/2253/">
+							<span class="b-userpic__layer"></span>
+							<img width="30" height="30" class="b-userpic__image" alt="Владимир Егоров" src="http://www.foodclub.ru/upload/resize_cache/main/2f6/30_30_2/pedobear (5).jpeg">
+						</a>
+						<div class="b-comment__content">
+							<textarea required="" name="comment" rows="3" cols="30"></textarea>
+						</div>
+						<div class="i-clearfix"></div>
+					</div>
+					<a class="b-form-field__type-comment__button i-frame-bg" href="#">
+						<span class="i-frame-bg_left">
+							<span class="i-frame-bg_right">
+								<span class="i-frame-bg_bg">
+									<span class="i-frame-bg_content">Комментировать</span>
+								</span>
+							</span>
+						</span>
+					</a>
+					<div class="i-clearfix"></div>
+				</form>
+			</div>
+			
+			<div class="b-foodshot-board__item-action_like">
+				<span class="b-like">
+					<a title="Мне нравится" class="b-like-icon b-like-icon__type-button" href="#"></a>
+					<span class="b-like-num">1</span>
+				</span>
+			</div>
+			
+			<div class="b-foodshot-board__item-action_comment_visible">
+				<a title="Комментировать" class="b-comment-icon b-comment-icon__type-button" href="#"></a>
+			</div>
+			
+			<div class="i-clearfix"></div>
+		</div>
+		
+	</div><div data-id="54548" class="b-foodshot-board__item" data-index="15" style="top: 887px; left: 193px;">
+		<div class="b-foodshot-board__item-content">
+			
+			
+			<a style="height: 255px;" class="b-foodshot-board__item-content-image" href="/foodshot/54548/"><img width="170" height="255" alt="Брокколи с рыбой" src="/upload/iblock/da3/1389287956_Брокколи с рыбой.jpg"></a>
+			<div class="b-foodshot-board__item-content-text">Тушеная брокколи с рыбой.</div>
+			<div class="b-recipe-author b-foodshot-board__item-content-author">от Юлия Корчук</div>
+		</div>
+		
+		
+		<div class="b-foodshot-board__item-comments">
+		
+			
+			
+			<div class="b-comment-list">
+				
+					<div data-id="54687" class="b-comment b-comment__type-short b-foodshot-board__item-comment">
+						<a class="b-comment__userpic b-userpic" href="/profile/22638/">
+							<span class="b-userpic__layer"></span>
+							<img width="30" height="30" class="b-userpic__image" alt="Анна Рябова" src="/upload/main/755/ллл (1).jpg">
+						</a>
+						<div class="b-comment__content">
+							<div class="b-comment__author">
+								<a href="/profile/22638/">Анна Рябова</a>
+							</div>
+							<div class="b-comment__text">вот бы рецептик...</div>
+						</div>
+						<div class="i-clearfix"></div>
+					</div>
+				
+			</div>
+			
+		</div>
+		
+		
+		
+		<div class="b-foodshot-board__item-action">
+			
+			<div class="b-foodshot-board__item-action_comment_hidden b-form-comments">
+				<form method="get" action="">
+					<div class="b-form-field b-comment b-comment__type-short b-form-field__type-comment">
+						<a class="b-comment__userpic b-userpic" href="http://www.foodclub.ru/profile/2253/">
+							<span class="b-userpic__layer"></span>
+							<img width="30" height="30" class="b-userpic__image" alt="Владимир Егоров" src="http://www.foodclub.ru/upload/resize_cache/main/2f6/30_30_2/pedobear (5).jpeg">
+						</a>
+						<div class="b-comment__content">
+							<textarea required="" name="comment" rows="3" cols="30"></textarea>
+						</div>
+						<div class="i-clearfix"></div>
+					</div>
+					<a class="b-form-field__type-comment__button i-frame-bg" href="#">
+						<span class="i-frame-bg_left">
+							<span class="i-frame-bg_right">
+								<span class="i-frame-bg_bg">
+									<span class="i-frame-bg_content">Комментировать</span>
+								</span>
+							</span>
+						</span>
+					</a>
+					<div class="i-clearfix"></div>
+				</form>
+			</div>
+			
+			<div class="b-foodshot-board__item-action_like">
+				<span class="b-like">
+					<a title="Мне нравится" class="b-like-icon b-like-icon__type-button" href="#"></a>
+					<span class="b-like-num">2</span>
+				</span>
+			</div>
+			
+			<div class="b-foodshot-board__item-action_comment_visible">
+				<a title="Комментировать" class="b-comment-icon b-comment-icon__type-button" href="#"></a>
+			</div>
+			
+			<div class="i-clearfix"></div>
+		</div>
+		
+	</div><div data-id="54547" class="b-foodshot-board__item" data-index="16" style="top: 891px; left: 0px;">
+		<div class="b-foodshot-board__item-content">
+			
+			
+			<a style="height: 113px;" class="b-foodshot-board__item-content-image" href="/foodshot/54547/"><img width="170" height="113" alt="Чаепитие" src="/upload/iblock/d49/1389287802_Чаепитие.jpg"></a>
+			<div class="b-foodshot-board__item-content-text">Чаепитие.</div>
+			<div class="b-recipe-author b-foodshot-board__item-content-author">от Юлия Корчук</div>
+		</div>
+		
+		
+		
+		
+		<div class="b-foodshot-board__item-action">
+			
+			<div class="b-foodshot-board__item-action_comment_hidden b-form-comments">
+				<form method="get" action="">
+					<div class="b-form-field b-comment b-comment__type-short b-form-field__type-comment">
+						<a class="b-comment__userpic b-userpic" href="http://www.foodclub.ru/profile/2253/">
+							<span class="b-userpic__layer"></span>
+							<img width="30" height="30" class="b-userpic__image" alt="Владимир Егоров" src="http://www.foodclub.ru/upload/resize_cache/main/2f6/30_30_2/pedobear (5).jpeg">
+						</a>
+						<div class="b-comment__content">
+							<textarea required="" name="comment" rows="3" cols="30"></textarea>
+						</div>
+						<div class="i-clearfix"></div>
+					</div>
+					<a class="b-form-field__type-comment__button i-frame-bg" href="#">
+						<span class="i-frame-bg_left">
+							<span class="i-frame-bg_right">
+								<span class="i-frame-bg_bg">
+									<span class="i-frame-bg_content">Комментировать</span>
+								</span>
+							</span>
+						</span>
+					</a>
+					<div class="i-clearfix"></div>
+				</form>
+			</div>
+			
+			<div class="b-foodshot-board__item-action_like">
+				<span class="b-like">
+					<a title="Мне нравится" class="b-like-icon b-like-icon__type-button b-like-icon__type-active" href="#"></a>
+					<span class="b-like-num">1</span>
+				</span>
+			</div>
+			
+			<div class="b-foodshot-board__item-action_comment_visible">
+				<a title="Комментировать" class="b-comment-icon b-comment-icon__type-button" href="#"></a>
+			</div>
+			
+			<div class="i-clearfix"></div>
+		</div>
+		
+	</div><div data-id="54546" class="b-foodshot-board__item" data-index="17" style="top: 912px; left: 386px;">
+		<div class="b-foodshot-board__item-content">
+			
+			
+			<a style="height: 113px;" class="b-foodshot-board__item-content-image" href="/foodshot/54546/"><img width="170" height="113" alt="Ягоды" src="/upload/iblock/881/1389287645_Ягоды.jpg"></a>
+			<div class="b-foodshot-board__item-content-text">С середины зимы можно начинать ждать лето.</div>
+			<div class="b-recipe-author b-foodshot-board__item-content-author">от Юлия Корчук</div>
+		</div>
+		
+		
+		
+		
+		<div class="b-foodshot-board__item-action">
+			
+			<div class="b-foodshot-board__item-action_comment_hidden b-form-comments">
+				<form method="get" action="">
+					<div class="b-form-field b-comment b-comment__type-short b-form-field__type-comment">
+						<a class="b-comment__userpic b-userpic" href="http://www.foodclub.ru/profile/2253/">
+							<span class="b-userpic__layer"></span>
+							<img width="30" height="30" class="b-userpic__image" alt="Владимир Егоров" src="http://www.foodclub.ru/upload/resize_cache/main/2f6/30_30_2/pedobear (5).jpeg">
+						</a>
+						<div class="b-comment__content">
+							<textarea required="" name="comment" rows="3" cols="30"></textarea>
+						</div>
+						<div class="i-clearfix"></div>
+					</div>
+					<a class="b-form-field__type-comment__button i-frame-bg" href="#">
+						<span class="i-frame-bg_left">
+							<span class="i-frame-bg_right">
+								<span class="i-frame-bg_bg">
+									<span class="i-frame-bg_content">Комментировать</span>
+								</span>
+							</span>
+						</span>
+					</a>
+					<div class="i-clearfix"></div>
+				</form>
+			</div>
+			
+			<div class="b-foodshot-board__item-action_like">
+				<span class="b-like">
+					<a title="Мне нравится" class="b-like-icon b-like-icon__type-button" href="#"></a>
+					<span class="b-like-num">1</span>
+				</span>
+			</div>
+			
+			<div class="b-foodshot-board__item-action_comment_visible">
+				<a title="Комментировать" class="b-comment-icon b-comment-icon__type-button" href="#"></a>
+			</div>
+			
+			<div class="i-clearfix"></div>
+		</div>
+		
+	</div><div data-id="54458" class="b-foodshot-board__item" data-index="18" style="top: 1000px; left: 772px;">
+		<div class="b-foodshot-board__item-content">
+			
+			
+			<a style="height: 113px;" class="b-foodshot-board__item-content-image" href="/foodshot/54458/"><img width="170" height="113" alt="Пряничный домик" src="/upload/iblock/d3f/1389186797_Пряничный домик.jpg"></a>
+			<div class="b-foodshot-board__item-content-text">Мой розовый домик из имбирного пряника сделал праздники яркими, а праздничный стол уникальным!</div>
+			<div class="b-recipe-author b-foodshot-board__item-content-author">от Marquiza</div>
+		</div>
+		
+		
+		
+		
+		<div class="b-foodshot-board__item-action">
+			
+			<div class="b-foodshot-board__item-action_comment_hidden b-form-comments">
+				<form method="get" action="">
+					<div class="b-form-field b-comment b-comment__type-short b-form-field__type-comment">
+						<a class="b-comment__userpic b-userpic" href="http://www.foodclub.ru/profile/2253/">
+							<span class="b-userpic__layer"></span>
+							<img width="30" height="30" class="b-userpic__image" alt="Владимир Егоров" src="http://www.foodclub.ru/upload/resize_cache/main/2f6/30_30_2/pedobear (5).jpeg">
+						</a>
+						<div class="b-comment__content">
+							<textarea required="" name="comment" rows="3" cols="30"></textarea>
+						</div>
+						<div class="i-clearfix"></div>
+					</div>
+					<a class="b-form-field__type-comment__button i-frame-bg" href="#">
+						<span class="i-frame-bg_left">
+							<span class="i-frame-bg_right">
+								<span class="i-frame-bg_bg">
+									<span class="i-frame-bg_content">Комментировать</span>
+								</span>
+							</span>
+						</span>
+					</a>
+					<div class="i-clearfix"></div>
+				</form>
+			</div>
+			
+			<div class="b-foodshot-board__item-action_like">
+				<span class="b-like">
+					<a title="Мне нравится" class="b-like-icon b-like-icon__type-button b-like-icon__type-active" href="#"></a>
+					<span class="b-like-num">2</span>
+				</span>
+			</div>
+			
+			<div class="b-foodshot-board__item-action_comment_visible">
+				<a title="Комментировать" class="b-comment-icon b-comment-icon__type-button" href="#"></a>
+			</div>
+			
+			<div class="i-clearfix"></div>
+		</div>
+		
+	</div><div data-id="54457" class="b-foodshot-board__item" data-index="19" style="top: 1112px; left: 0px;">
+		<div class="b-foodshot-board__item-content">
+			
+			
+			<a style="height: 113px;" class="b-foodshot-board__item-content-image" href="/foodshot/54457/"><img width="170" height="113" alt="Окошко домика" src="/upload/iblock/768/1389186698_Окошко домика.jpg"></a>
+			<div class="b-foodshot-board__item-content-text">А вот и окошко у нашего красавца домика!</div>
+			<div class="b-recipe-author b-foodshot-board__item-content-author">от Marquiza</div>
+		</div>
+		
+		
+		
+		
+		<div class="b-foodshot-board__item-action">
+			
+			<div class="b-foodshot-board__item-action_comment_hidden b-form-comments">
+				<form method="get" action="">
+					<div class="b-form-field b-comment b-comment__type-short b-form-field__type-comment">
+						<a class="b-comment__userpic b-userpic" href="http://www.foodclub.ru/profile/2253/">
+							<span class="b-userpic__layer"></span>
+							<img width="30" height="30" class="b-userpic__image" alt="Владимир Егоров" src="http://www.foodclub.ru/upload/resize_cache/main/2f6/30_30_2/pedobear (5).jpeg">
+						</a>
+						<div class="b-comment__content">
+							<textarea required="" name="comment" rows="3" cols="30"></textarea>
+						</div>
+						<div class="i-clearfix"></div>
+					</div>
+					<a class="b-form-field__type-comment__button i-frame-bg" href="#">
+						<span class="i-frame-bg_left">
+							<span class="i-frame-bg_right">
+								<span class="i-frame-bg_bg">
+									<span class="i-frame-bg_content">Комментировать</span>
+								</span>
+							</span>
+						</span>
+					</a>
+					<div class="i-clearfix"></div>
+				</form>
+			</div>
+			
+			<div class="b-foodshot-board__item-action_like">
+				<span class="b-like">
+					<a title="Мне нравится" class="b-like-icon b-like-icon__type-button b-like-icon__type-active" href="#"></a>
+					<span class="b-like-num">2</span>
+				</span>
+			</div>
+			
+			<div class="b-foodshot-board__item-action_comment_visible">
+				<a title="Комментировать" class="b-comment-icon b-comment-icon__type-button" href="#"></a>
+			</div>
+			
+			<div class="i-clearfix"></div>
+		</div>
+		
+	</div><div data-id="54456" class="b-foodshot-board__item" data-index="20" style="top: 1144px; left: 579px;">
+		<div class="b-foodshot-board__item-content">
+			
+			
+			<a style="height: 113px;" class="b-foodshot-board__item-content-image" href="/foodshot/54456/"><img width="170" height="113" alt="Дверка в пряничный домик" src="/upload/iblock/f14/1389186654_Дверка в пряничный домик.jpg"></a>
+			<div class="b-foodshot-board__item-content-text">Дверка в пряничный домик</div>
+			<div class="b-recipe-author b-foodshot-board__item-content-author">от Marquiza</div>
+		</div>
+		
+		
+		
+		
+		<div class="b-foodshot-board__item-action">
+			
+			<div class="b-foodshot-board__item-action_comment_hidden b-form-comments">
+				<form method="get" action="">
+					<div class="b-form-field b-comment b-comment__type-short b-form-field__type-comment">
+						<a class="b-comment__userpic b-userpic" href="http://www.foodclub.ru/profile/2253/">
+							<span class="b-userpic__layer"></span>
+							<img width="30" height="30" class="b-userpic__image" alt="Владимир Егоров" src="http://www.foodclub.ru/upload/resize_cache/main/2f6/30_30_2/pedobear (5).jpeg">
+						</a>
+						<div class="b-comment__content">
+							<textarea required="" name="comment" rows="3" cols="30"></textarea>
+						</div>
+						<div class="i-clearfix"></div>
+					</div>
+					<a class="b-form-field__type-comment__button i-frame-bg" href="#">
+						<span class="i-frame-bg_left">
+							<span class="i-frame-bg_right">
+								<span class="i-frame-bg_bg">
+									<span class="i-frame-bg_content">Комментировать</span>
+								</span>
+							</span>
+						</span>
+					</a>
+					<div class="i-clearfix"></div>
+				</form>
+			</div>
+			
+			<div class="b-foodshot-board__item-action_like">
+				<span class="b-like">
+					<a title="Мне нравится" class="b-like-icon b-like-icon__type-button b-like-icon__type-active" href="#"></a>
+					<span class="b-like-num">2</span>
+				</span>
+			</div>
+			
+			<div class="b-foodshot-board__item-action_comment_visible">
+				<a title="Комментировать" class="b-comment-icon b-comment-icon__type-button" href="#"></a>
+			</div>
+			
+			<div class="i-clearfix"></div>
+		</div>
+		
+	</div><div data-id="54455" class="b-foodshot-board__item" data-index="21" style="top: 1146px; left: 386px;">
+		<div class="b-foodshot-board__item-content">
+			
+			
+			<a style="height: 113px;" class="b-foodshot-board__item-content-image" href="/foodshot/54455/"><img width="170" height="113" alt="Пряничная деревня" src="/upload/iblock/c32/1389186616_Пряничная деревня.jpg"></a>
+			<div class="b-foodshot-board__item-content-text">Моя Рождественская пряничная деревня! Имбирные пряничные домики и соседи снеговички.</div>
+			<div class="b-recipe-author b-foodshot-board__item-content-author">от Marquiza</div>
+		</div>
+		
+		
+		
+		
+		<div class="b-foodshot-board__item-action">
+			
+			<div class="b-foodshot-board__item-action_comment_hidden b-form-comments">
+				<form method="get" action="">
+					<div class="b-form-field b-comment b-comment__type-short b-form-field__type-comment">
+						<a class="b-comment__userpic b-userpic" href="http://www.foodclub.ru/profile/2253/">
+							<span class="b-userpic__layer"></span>
+							<img width="30" height="30" class="b-userpic__image" alt="Владимир Егоров" src="http://www.foodclub.ru/upload/resize_cache/main/2f6/30_30_2/pedobear (5).jpeg">
+						</a>
+						<div class="b-comment__content">
+							<textarea required="" name="comment" rows="3" cols="30"></textarea>
+						</div>
+						<div class="i-clearfix"></div>
+					</div>
+					<a class="b-form-field__type-comment__button i-frame-bg" href="#">
+						<span class="i-frame-bg_left">
+							<span class="i-frame-bg_right">
+								<span class="i-frame-bg_bg">
+									<span class="i-frame-bg_content">Комментировать</span>
+								</span>
+							</span>
+						</span>
+					</a>
+					<div class="i-clearfix"></div>
+				</form>
+			</div>
+			
+			<div class="b-foodshot-board__item-action_like">
+				<span class="b-like">
+					<a title="Мне нравится" class="b-like-icon b-like-icon__type-button b-like-icon__type-active" href="#"></a>
+					<span class="b-like-num">2</span>
+				</span>
+			</div>
+			
+			<div class="b-foodshot-board__item-action_comment_visible">
+				<a title="Комментировать" class="b-comment-icon b-comment-icon__type-button" href="#"></a>
+			</div>
+			
+			<div class="i-clearfix"></div>
+		</div>
+		
+	</div><div data-id="54454" class="b-foodshot-board__item" data-index="22" style="top: 1260px; left: 772px;">
+		<div class="b-foodshot-board__item-content">
+			
+			
+			<a style="height: 170px;" class="b-foodshot-board__item-content-image" href="/foodshot/54454/"><img width="170" height="170" alt="Снеговички ждут пока домики построят!" src="/upload/iblock/712/1389186307_Снеговички ждут пока домики построят!.jpg"></a>
+			<div class="b-foodshot-board__item-content-text">Снеговички из мастики рядом с пряничным домиком. </div>
+			<div class="b-recipe-author b-foodshot-board__item-content-author">от Marquiza</div>
+		</div>
+		
+		
+		
+		
+		<div class="b-foodshot-board__item-action">
+			
+			<div class="b-foodshot-board__item-action_comment_hidden b-form-comments">
+				<form method="get" action="">
+					<div class="b-form-field b-comment b-comment__type-short b-form-field__type-comment">
+						<a class="b-comment__userpic b-userpic" href="http://www.foodclub.ru/profile/2253/">
+							<span class="b-userpic__layer"></span>
+							<img width="30" height="30" class="b-userpic__image" alt="Владимир Егоров" src="http://www.foodclub.ru/upload/resize_cache/main/2f6/30_30_2/pedobear (5).jpeg">
+						</a>
+						<div class="b-comment__content">
+							<textarea required="" name="comment" rows="3" cols="30"></textarea>
+						</div>
+						<div class="i-clearfix"></div>
+					</div>
+					<a class="b-form-field__type-comment__button i-frame-bg" href="#">
+						<span class="i-frame-bg_left">
+							<span class="i-frame-bg_right">
+								<span class="i-frame-bg_bg">
+									<span class="i-frame-bg_content">Комментировать</span>
+								</span>
+							</span>
+						</span>
+					</a>
+					<div class="i-clearfix"></div>
+				</form>
+			</div>
+			
+			<div class="b-foodshot-board__item-action_like">
+				<span class="b-like">
+					<a title="Мне нравится" class="b-like-icon b-like-icon__type-button b-like-icon__type-active" href="#"></a>
+					<span class="b-like-num">2</span>
+				</span>
+			</div>
+			
+			<div class="b-foodshot-board__item-action_comment_visible">
+				<a title="Комментировать" class="b-comment-icon b-comment-icon__type-button" href="#"></a>
+			</div>
+			
+			<div class="i-clearfix"></div>
+		</div>
+		
+	</div><div data-id="54453" class="b-foodshot-board__item" data-index="23" style="top: 1300px; left: 193px;">
+		<div class="b-foodshot-board__item-content">
+			
+			
+			<a style="height: 113px;" class="b-foodshot-board__item-content-image" href="/foodshot/54453/"><img width="170" height="113" alt="пряничный домик" src="/upload/iblock/d1b/1389185715_пряничный домик.jpg"></a>
+			<div class="b-foodshot-board__item-content-text">Пряничный домик по рецепту Марии Савельевой <a href="http://www.foodclub.ru/detail/21128/" class="txttohtmllink">http://www.foodclub.ru/detail/21128/</a></div>
+			<div class="b-recipe-author b-foodshot-board__item-content-author">от etern</div>
+		</div>
+		
+		
+		
+		
+		<div class="b-foodshot-board__item-action">
+			
+			<div class="b-foodshot-board__item-action_comment_hidden b-form-comments">
+				<form method="get" action="">
+					<div class="b-form-field b-comment b-comment__type-short b-form-field__type-comment">
+						<a class="b-comment__userpic b-userpic" href="http://www.foodclub.ru/profile/2253/">
+							<span class="b-userpic__layer"></span>
+							<img width="30" height="30" class="b-userpic__image" alt="Владимир Егоров" src="http://www.foodclub.ru/upload/resize_cache/main/2f6/30_30_2/pedobear (5).jpeg">
+						</a>
+						<div class="b-comment__content">
+							<textarea required="" name="comment" rows="3" cols="30"></textarea>
+						</div>
+						<div class="i-clearfix"></div>
+					</div>
+					<a class="b-form-field__type-comment__button i-frame-bg" href="#">
+						<span class="i-frame-bg_left">
+							<span class="i-frame-bg_right">
+								<span class="i-frame-bg_bg">
+									<span class="i-frame-bg_content">Комментировать</span>
+								</span>
+							</span>
+						</span>
+					</a>
+					<div class="i-clearfix"></div>
+				</form>
+			</div>
+			
+			<div class="b-foodshot-board__item-action_like">
+				<span class="b-like">
+					<a title="Мне нравится" class="b-like-icon b-like-icon__type-button b-like-icon__type-active" href="#"></a>
+					<span class="b-like-num">2</span>
+				</span>
+			</div>
+			
+			<div class="b-foodshot-board__item-action_comment_visible">
+				<a title="Комментировать" class="b-comment-icon b-comment-icon__type-button" href="#"></a>
+			</div>
+			
+			<div class="i-clearfix"></div>
+		</div>
+		
+	</div><div data-id="54417" class="b-foodshot-board__item" data-index="24" style="top: 1346px; left: 0px;">
+		<div class="b-foodshot-board__item-content">
+			
+			
+			<a style="height: 113px;" class="b-foodshot-board__item-content-image" href="/foodshot/54417/"><img width="170" height="113" alt="Гранита" src="/upload/iblock/28a/1389111950_Гранита.jpg"></a>
+			<div class="b-foodshot-board__item-content-text">Гранита - это традиционный сицилийский сорбет на основе лимона.</div>
+			<div class="b-recipe-author b-foodshot-board__item-content-author">от caterina_sicilia</div>
+		</div>
+		
+		
+		
+		
+		<div class="b-foodshot-board__item-action">
+			
+			<div class="b-foodshot-board__item-action_comment_hidden b-form-comments">
+				<form method="get" action="">
+					<div class="b-form-field b-comment b-comment__type-short b-form-field__type-comment">
+						<a class="b-comment__userpic b-userpic" href="http://www.foodclub.ru/profile/2253/">
+							<span class="b-userpic__layer"></span>
+							<img width="30" height="30" class="b-userpic__image" alt="Владимир Егоров" src="http://www.foodclub.ru/upload/resize_cache/main/2f6/30_30_2/pedobear (5).jpeg">
+						</a>
+						<div class="b-comment__content">
+							<textarea required="" name="comment" rows="3" cols="30"></textarea>
+						</div>
+						<div class="i-clearfix"></div>
+					</div>
+					<a class="b-form-field__type-comment__button i-frame-bg" href="#">
+						<span class="i-frame-bg_left">
+							<span class="i-frame-bg_right">
+								<span class="i-frame-bg_bg">
+									<span class="i-frame-bg_content">Комментировать</span>
+								</span>
+							</span>
+						</span>
+					</a>
+					<div class="i-clearfix"></div>
+				</form>
+			</div>
+			
+			<div class="b-foodshot-board__item-action_like">
+				<span class="b-like">
+					<a title="Мне нравится" class="b-like-icon b-like-icon__type-button b-like-icon__type-active" href="#"></a>
+					<span class="b-like-num">2</span>
+				</span>
+			</div>
+			
+			<div class="b-foodshot-board__item-action_comment_visible">
+				<a title="Комментировать" class="b-comment-icon b-comment-icon__type-button" href="#"></a>
+			</div>
+			
+			<div class="i-clearfix"></div>
+		</div>
+		
+	</div><div data-id="54416" class="b-foodshot-board__item" data-index="25" style="top: 1365px; left: 579px;">
+		<div class="b-foodshot-board__item-content">
+			
+			
+			<a style="height: 113px;" class="b-foodshot-board__item-content-image" href="/foodshot/54416/"><img width="170" height="113" alt="Паста с рикоттой и бобами" src="/upload/iblock/626/1389111807_Паста с рикоттой и бобами.jpg"></a>
+			<div class="b-foodshot-board__item-content-text">Традиционное сицилийское блюдо.</div>
+			<div class="b-recipe-author b-foodshot-board__item-content-author">от caterina_sicilia</div>
+		</div>
+		
+		
+		
+		
+		<div class="b-foodshot-board__item-action">
+			
+			<div class="b-foodshot-board__item-action_comment_hidden b-form-comments">
+				<form method="get" action="">
+					<div class="b-form-field b-comment b-comment__type-short b-form-field__type-comment">
+						<a class="b-comment__userpic b-userpic" href="http://www.foodclub.ru/profile/2253/">
+							<span class="b-userpic__layer"></span>
+							<img width="30" height="30" class="b-userpic__image" alt="Владимир Егоров" src="http://www.foodclub.ru/upload/resize_cache/main/2f6/30_30_2/pedobear (5).jpeg">
+						</a>
+						<div class="b-comment__content">
+							<textarea required="" name="comment" rows="3" cols="30"></textarea>
+						</div>
+						<div class="i-clearfix"></div>
+					</div>
+					<a class="b-form-field__type-comment__button i-frame-bg" href="#">
+						<span class="i-frame-bg_left">
+							<span class="i-frame-bg_right">
+								<span class="i-frame-bg_bg">
+									<span class="i-frame-bg_content">Комментировать</span>
+								</span>
+							</span>
+						</span>
+					</a>
+					<div class="i-clearfix"></div>
+				</form>
+			</div>
+			
+			<div class="b-foodshot-board__item-action_like">
+				<span class="b-like">
+					<a title="Мне нравится" class="b-like-icon b-like-icon__type-button b-like-icon__type-active" href="#"></a>
+					<span class="b-like-num">2</span>
+				</span>
+			</div>
+			
+			<div class="b-foodshot-board__item-action_comment_visible">
+				<a title="Комментировать" class="b-comment-icon b-comment-icon__type-button" href="#"></a>
+			</div>
+			
+			<div class="i-clearfix"></div>
+		</div>
+		
+	</div><div data-id="54414" class="b-foodshot-board__item" data-index="26" style="top: 1393px; left: 386px;">
+		<div class="b-foodshot-board__item-content">
+			
+			
+			<a style="height: 113px;" class="b-foodshot-board__item-content-image" href="/foodshot/54414/"><img width="170" height="113" alt="Капоната " src="/upload/iblock/43a/1389111646_Капоната .jpg"></a>
+			<div class="b-foodshot-board__item-content-text">Капоната - это традиционная итальянская (сицилийская) закуска из овощей. Главный ингредиент - баклажаны.</div>
+			<div class="b-recipe-author b-foodshot-board__item-content-author">от caterina_sicilia</div>
+		</div>
+		
+		
+		
+		
+		<div class="b-foodshot-board__item-action">
+			
+			<div class="b-foodshot-board__item-action_comment_hidden b-form-comments">
+				<form method="get" action="">
+					<div class="b-form-field b-comment b-comment__type-short b-form-field__type-comment">
+						<a class="b-comment__userpic b-userpic" href="http://www.foodclub.ru/profile/2253/">
+							<span class="b-userpic__layer"></span>
+							<img width="30" height="30" class="b-userpic__image" alt="Владимир Егоров" src="http://www.foodclub.ru/upload/resize_cache/main/2f6/30_30_2/pedobear (5).jpeg">
+						</a>
+						<div class="b-comment__content">
+							<textarea required="" name="comment" rows="3" cols="30"></textarea>
+						</div>
+						<div class="i-clearfix"></div>
+					</div>
+					<a class="b-form-field__type-comment__button i-frame-bg" href="#">
+						<span class="i-frame-bg_left">
+							<span class="i-frame-bg_right">
+								<span class="i-frame-bg_bg">
+									<span class="i-frame-bg_content">Комментировать</span>
+								</span>
+							</span>
+						</span>
+					</a>
+					<div class="i-clearfix"></div>
+				</form>
+			</div>
+			
+			<div class="b-foodshot-board__item-action_like">
+				<span class="b-like">
+					<a title="Мне нравится" class="b-like-icon b-like-icon__type-button b-like-icon__type-active" href="#"></a>
+					<span class="b-like-num">2</span>
+				</span>
+			</div>
+			
+			<div class="b-foodshot-board__item-action_comment_visible">
+				<a title="Комментировать" class="b-comment-icon b-comment-icon__type-button" href="#"></a>
+			</div>
+			
+			<div class="i-clearfix"></div>
+		</div>
+		
+	</div><div data-id="54412" class="b-foodshot-board__item" data-index="27" style="top: 1547px; left: 193px;">
+		<div class="b-foodshot-board__item-content">
+			
+			
+			<a style="height: 113px;" class="b-foodshot-board__item-content-image" href="/foodshot/54412/"><img width="170" height="113" alt="Канноли с рикоттой" src="/upload/iblock/9d0/1389111245_Канноли с рикоттой.jpg"></a>
+			<div class="b-foodshot-board__item-content-text">Традиционный сицилийский десерт: хрустящая трубочка, заполенная сладкой рикоттой.</div>
+			<div class="b-recipe-author b-foodshot-board__item-content-author">от caterina_sicilia</div>
+		</div>
+		
+		
+		
+		
+		<div class="b-foodshot-board__item-action">
+			
+			<div class="b-foodshot-board__item-action_comment_hidden b-form-comments">
+				<form method="get" action="">
+					<div class="b-form-field b-comment b-comment__type-short b-form-field__type-comment">
+						<a class="b-comment__userpic b-userpic" href="http://www.foodclub.ru/profile/2253/">
+							<span class="b-userpic__layer"></span>
+							<img width="30" height="30" class="b-userpic__image" alt="Владимир Егоров" src="http://www.foodclub.ru/upload/resize_cache/main/2f6/30_30_2/pedobear (5).jpeg">
+						</a>
+						<div class="b-comment__content">
+							<textarea required="" name="comment" rows="3" cols="30"></textarea>
+						</div>
+						<div class="i-clearfix"></div>
+					</div>
+					<a class="b-form-field__type-comment__button i-frame-bg" href="#">
+						<span class="i-frame-bg_left">
+							<span class="i-frame-bg_right">
+								<span class="i-frame-bg_bg">
+									<span class="i-frame-bg_content">Комментировать</span>
+								</span>
+							</span>
+						</span>
+					</a>
+					<div class="i-clearfix"></div>
+				</form>
+			</div>
+			
+			<div class="b-foodshot-board__item-action_like">
+				<span class="b-like">
+					<a title="Мне нравится" class="b-like-icon b-like-icon__type-button b-like-icon__type-active" href="#"></a>
+					<span class="b-like-num">2</span>
+				</span>
+			</div>
+			
+			<div class="b-foodshot-board__item-action_comment_visible">
+				<a title="Комментировать" class="b-comment-icon b-comment-icon__type-button" href="#"></a>
+			</div>
+			
+			<div class="i-clearfix"></div>
+		</div>
+		
+	</div><div data-id="54411" class="b-foodshot-board__item" data-index="28" style="top: 1551px; left: 772px;">
+		<div class="b-foodshot-board__item-content">
+			
+			
+			<a style="height: 113px;" class="b-foodshot-board__item-content-image" href="/foodshot/54411/"><img width="170" height="113" alt="Аранчини по-сицилийски" src="/upload/iblock/b9f/1389111021_Аранчини по-сицилийски.jpg"></a>
+			<div class="b-foodshot-board__item-content-text">Аранчини в процессе приготовления. Аранчини - это традиционное сицилийское блюдо, рисовый шарик в виде апельсина с начинкой (мясное рагу, моцарелла и ветчина, шпинат и моцарелла и т.д)</div>
+			<div class="b-recipe-author b-foodshot-board__item-content-author">от caterina_sicilia</div>
+		</div>
+		
+		
+		
+		
+		<div class="b-foodshot-board__item-action">
+			
+			<div class="b-foodshot-board__item-action_comment_hidden b-form-comments">
+				<form method="get" action="">
+					<div class="b-form-field b-comment b-comment__type-short b-form-field__type-comment">
+						<a class="b-comment__userpic b-userpic" href="http://www.foodclub.ru/profile/2253/">
+							<span class="b-userpic__layer"></span>
+							<img width="30" height="30" class="b-userpic__image" alt="Владимир Егоров" src="http://www.foodclub.ru/upload/resize_cache/main/2f6/30_30_2/pedobear (5).jpeg">
+						</a>
+						<div class="b-comment__content">
+							<textarea required="" name="comment" rows="3" cols="30"></textarea>
+						</div>
+						<div class="i-clearfix"></div>
+					</div>
+					<a class="b-form-field__type-comment__button i-frame-bg" href="#">
+						<span class="i-frame-bg_left">
+							<span class="i-frame-bg_right">
+								<span class="i-frame-bg_bg">
+									<span class="i-frame-bg_content">Комментировать</span>
+								</span>
+							</span>
+						</span>
+					</a>
+					<div class="i-clearfix"></div>
+				</form>
+			</div>
+			
+			<div class="b-foodshot-board__item-action_like">
+				<span class="b-like">
+					<a title="Мне нравится" class="b-like-icon b-like-icon__type-button b-like-icon__type-active" href="#"></a>
+					<span class="b-like-num">2</span>
+				</span>
+			</div>
+			
+			<div class="b-foodshot-board__item-action_comment_visible">
+				<a title="Комментировать" class="b-comment-icon b-comment-icon__type-button" href="#"></a>
+			</div>
+			
+			<div class="i-clearfix"></div>
+		</div>
+		
+	</div><div data-id="54399" class="b-foodshot-board__item" data-index="29" style="top: 1593px; left: 0px;">
+		<div class="b-foodshot-board__item-content">
+			
+			
+			<a style="height: 254px;" class="b-foodshot-board__item-content-image" href="/foodshot/54399/"><img width="170" height="254" alt="Икра" src="/upload/iblock/8f0/1389014420_Икра.jpg"></a>
+			<div class="b-foodshot-board__item-content-text">Царица праздничного стола.</div>
+			<div class="b-recipe-author b-foodshot-board__item-content-author">от Юлия Корчук</div>
+		</div>
+		
+		
+		
+		
+		<div class="b-foodshot-board__item-action">
+			
+			<div class="b-foodshot-board__item-action_comment_hidden b-form-comments">
+				<form method="get" action="">
+					<div class="b-form-field b-comment b-comment__type-short b-form-field__type-comment">
+						<a class="b-comment__userpic b-userpic" href="http://www.foodclub.ru/profile/2253/">
+							<span class="b-userpic__layer"></span>
+							<img width="30" height="30" class="b-userpic__image" alt="Владимир Егоров" src="http://www.foodclub.ru/upload/resize_cache/main/2f6/30_30_2/pedobear (5).jpeg">
+						</a>
+						<div class="b-comment__content">
+							<textarea required="" name="comment" rows="3" cols="30"></textarea>
+						</div>
+						<div class="i-clearfix"></div>
+					</div>
+					<a class="b-form-field__type-comment__button i-frame-bg" href="#">
+						<span class="i-frame-bg_left">
+							<span class="i-frame-bg_right">
+								<span class="i-frame-bg_bg">
+									<span class="i-frame-bg_content">Комментировать</span>
+								</span>
+							</span>
+						</span>
+					</a>
+					<div class="i-clearfix"></div>
+				</form>
+			</div>
+			
+			<div class="b-foodshot-board__item-action_like">
+				<span class="b-like">
+					<a title="Мне нравится" class="b-like-icon b-like-icon__type-button b-like-icon__type-active" href="#"></a>
+					<span class="b-like-num">2</span>
+				</span>
+			</div>
+			
+			<div class="b-foodshot-board__item-action_comment_visible">
+				<a title="Комментировать" class="b-comment-icon b-comment-icon__type-button" href="#"></a>
+			</div>
+			
+			<div class="i-clearfix"></div>
+		</div>
+		
+	</div><div data-id="54398" class="b-foodshot-board__item" data-index="30" style="top: 1599px; left: 579px;">
+		<div class="b-foodshot-board__item-content">
+			
+			
+			<a style="height: 192px;" class="b-foodshot-board__item-content-image" href="/foodshot/54398/"><img width="170" height="192" alt="Чизкейк в фужере" src="/upload/iblock/f1e/1389014335_Чизкейк в фужере.jpg"></a>
+			<div class="b-foodshot-board__item-content-text">Удивительные чизкейки из хурмы в фужерах.<br>
+<a href="http://veganyackattack.com/2013/12/16/persimmon-cheesecake-in-a-glass/" class="txttohtmllink">http://veganyackattack.com/2013/12/16/persimmon-cheesecake-in-a-glass/</a><br>
+<br>
+</div>
+			<div class="b-recipe-author b-foodshot-board__item-content-author">от Юлия Корчук</div>
+		</div>
+		
+		
+		
+		
+		<div class="b-foodshot-board__item-action">
+			
+			<div class="b-foodshot-board__item-action_comment_hidden b-form-comments">
+				<form method="get" action="">
+					<div class="b-form-field b-comment b-comment__type-short b-form-field__type-comment">
+						<a class="b-comment__userpic b-userpic" href="http://www.foodclub.ru/profile/2253/">
+							<span class="b-userpic__layer"></span>
+							<img width="30" height="30" class="b-userpic__image" alt="Владимир Егоров" src="http://www.foodclub.ru/upload/resize_cache/main/2f6/30_30_2/pedobear (5).jpeg">
+						</a>
+						<div class="b-comment__content">
+							<textarea required="" name="comment" rows="3" cols="30"></textarea>
+						</div>
+						<div class="i-clearfix"></div>
+					</div>
+					<a class="b-form-field__type-comment__button i-frame-bg" href="#">
+						<span class="i-frame-bg_left">
+							<span class="i-frame-bg_right">
+								<span class="i-frame-bg_bg">
+									<span class="i-frame-bg_content">Комментировать</span>
+								</span>
+							</span>
+						</span>
+					</a>
+					<div class="i-clearfix"></div>
+				</form>
+			</div>
+			
+			<div class="b-foodshot-board__item-action_like">
+				<span class="b-like">
+					<a title="Мне нравится" class="b-like-icon b-like-icon__type-button b-like-icon__type-active" href="#"></a>
+					<span class="b-like-num">2</span>
+				</span>
+			</div>
+			
+			<div class="b-foodshot-board__item-action_comment_visible">
+				<a title="Комментировать" class="b-comment-icon b-comment-icon__type-button" href="#"></a>
+			</div>
+			
+			<div class="i-clearfix"></div>
+		</div>
+		
+	</div><div data-id="54397" class="b-foodshot-board__item" data-index="31" style="top: 1653px; left: 386px;">
+		<div class="b-foodshot-board__item-content">
+			
+			
+			<a style="height: 268px;" class="b-foodshot-board__item-content-image" href="/foodshot/54397/"><img width="170" height="268" alt="Рождественский пирог" src="/upload/iblock/338/1389013992_Рождественский пирог.jpg"></a>
+			<div class="b-foodshot-board__item-content-text">Молоко и рождественский пирог.</div>
+			<div class="b-recipe-author b-foodshot-board__item-content-author">от Юлия Корчук</div>
+		</div>
+		
+		
+		
+		
+		<div class="b-foodshot-board__item-action">
+			
+			<div class="b-foodshot-board__item-action_comment_hidden b-form-comments">
+				<form method="get" action="">
+					<div class="b-form-field b-comment b-comment__type-short b-form-field__type-comment">
+						<a class="b-comment__userpic b-userpic" href="http://www.foodclub.ru/profile/2253/">
+							<span class="b-userpic__layer"></span>
+							<img width="30" height="30" class="b-userpic__image" alt="Владимир Егоров" src="http://www.foodclub.ru/upload/resize_cache/main/2f6/30_30_2/pedobear (5).jpeg">
+						</a>
+						<div class="b-comment__content">
+							<textarea required="" name="comment" rows="3" cols="30"></textarea>
+						</div>
+						<div class="i-clearfix"></div>
+					</div>
+					<a class="b-form-field__type-comment__button i-frame-bg" href="#">
+						<span class="i-frame-bg_left">
+							<span class="i-frame-bg_right">
+								<span class="i-frame-bg_bg">
+									<span class="i-frame-bg_content">Комментировать</span>
+								</span>
+							</span>
+						</span>
+					</a>
+					<div class="i-clearfix"></div>
+				</form>
+			</div>
+			
+			<div class="b-foodshot-board__item-action_like">
+				<span class="b-like">
+					<a title="Мне нравится" class="b-like-icon b-like-icon__type-button b-like-icon__type-active" href="#"></a>
+					<span class="b-like-num">2</span>
+				</span>
+			</div>
+			
+			<div class="b-foodshot-board__item-action_comment_visible">
+				<a title="Комментировать" class="b-comment-icon b-comment-icon__type-button" href="#"></a>
+			</div>
+			
+			<div class="i-clearfix"></div>
+		</div>
+		
+	</div><div data-id="54396" class="b-foodshot-board__item" data-index="32" style="top: 1794px; left: 193px;">
+		<div class="b-foodshot-board__item-content">
+			
+			
+			<a style="height: 256px;" class="b-foodshot-board__item-content-image" href="/foodshot/54396/"><img width="170" height="256" alt="Делая печенье" src="/upload/iblock/d38/1389013905_Делая печенье.jpg"></a>
+			<div class="b-foodshot-board__item-content-text">Такой творческий и увлекательный процесс приготовления фигурного печенья к празднику!</div>
+			<div class="b-recipe-author b-foodshot-board__item-content-author">от Юлия Корчук</div>
+		</div>
+		
+		
+		
+		
+		<div class="b-foodshot-board__item-action">
+			
+			<div class="b-foodshot-board__item-action_comment_hidden b-form-comments">
+				<form method="get" action="">
+					<div class="b-form-field b-comment b-comment__type-short b-form-field__type-comment">
+						<a class="b-comment__userpic b-userpic" href="http://www.foodclub.ru/profile/2253/">
+							<span class="b-userpic__layer"></span>
+							<img width="30" height="30" class="b-userpic__image" alt="Владимир Егоров" src="http://www.foodclub.ru/upload/resize_cache/main/2f6/30_30_2/pedobear (5).jpeg">
+						</a>
+						<div class="b-comment__content">
+							<textarea required="" name="comment" rows="3" cols="30"></textarea>
+						</div>
+						<div class="i-clearfix"></div>
+					</div>
+					<a class="b-form-field__type-comment__button i-frame-bg" href="#">
+						<span class="i-frame-bg_left">
+							<span class="i-frame-bg_right">
+								<span class="i-frame-bg_bg">
+									<span class="i-frame-bg_content">Комментировать</span>
+								</span>
+							</span>
+						</span>
+					</a>
+					<div class="i-clearfix"></div>
+				</form>
+			</div>
+			
+			<div class="b-foodshot-board__item-action_like">
+				<span class="b-like">
+					<a title="Мне нравится" class="b-like-icon b-like-icon__type-button b-like-icon__type-active" href="#"></a>
+					<span class="b-like-num">1</span>
+				</span>
+			</div>
+			
+			<div class="b-foodshot-board__item-action_comment_visible">
+				<a title="Комментировать" class="b-comment-icon b-comment-icon__type-button" href="#"></a>
+			</div>
+			
+			<div class="i-clearfix"></div>
+		</div>
+		
+	</div><div data-id="54395" class="b-foodshot-board__item" data-index="33" style="top: 1850px; left: 772px;">
+		<div class="b-foodshot-board__item-content">
+			
+			
+			<a style="height: 170px;" class="b-foodshot-board__item-content-image" href="/foodshot/54395/"><img width="170" height="170" alt="Мандарины" src="/upload/iblock/554/1389013617_Мандарины.jpg"></a>
+			<div class="b-foodshot-board__item-content-text">Мандарины и корица &mdash; зимнее сочетание с запахом праздника.</div>
+			<div class="b-recipe-author b-foodshot-board__item-content-author">от Юлия Корчук</div>
+		</div>
+		
+		
+		
+		
+		<div class="b-foodshot-board__item-action">
+			
+			<div class="b-foodshot-board__item-action_comment_hidden b-form-comments">
+				<form method="get" action="">
+					<div class="b-form-field b-comment b-comment__type-short b-form-field__type-comment">
+						<a class="b-comment__userpic b-userpic" href="http://www.foodclub.ru/profile/2253/">
+							<span class="b-userpic__layer"></span>
+							<img width="30" height="30" class="b-userpic__image" alt="Владимир Егоров" src="http://www.foodclub.ru/upload/resize_cache/main/2f6/30_30_2/pedobear (5).jpeg">
+						</a>
+						<div class="b-comment__content">
+							<textarea required="" name="comment" rows="3" cols="30"></textarea>
+						</div>
+						<div class="i-clearfix"></div>
+					</div>
+					<a class="b-form-field__type-comment__button i-frame-bg" href="#">
+						<span class="i-frame-bg_left">
+							<span class="i-frame-bg_right">
+								<span class="i-frame-bg_bg">
+									<span class="i-frame-bg_content">Комментировать</span>
+								</span>
+							</span>
+						</span>
+					</a>
+					<div class="i-clearfix"></div>
+				</form>
+			</div>
+			
+			<div class="b-foodshot-board__item-action_like">
+				<span class="b-like">
+					<a title="Мне нравится" class="b-like-icon b-like-icon__type-button" href="#"></a>
+					<span class="b-like-num">1</span>
+				</span>
+			</div>
+			
+			<div class="b-foodshot-board__item-action_comment_visible">
+				<a title="Комментировать" class="b-comment-icon b-comment-icon__type-button" href="#"></a>
+			</div>
+			
+			<div class="i-clearfix"></div>
+		</div>
+		
+	</div><div data-id="54394" class="b-foodshot-board__item" data-index="34" style="top: 1955px; left: 0px;">
+		<div class="b-foodshot-board__item-content">
+			
+			
+			<a style="height: 170px;" class="b-foodshot-board__item-content-image" href="/foodshot/54394/"><img width="170" height="170" alt="Рождественское настроение" src="/upload/iblock/525/1389013391_Рождественское настроение.jpg"></a>
+			<div class="b-foodshot-board__item-content-text">Рождественское настроение.</div>
+			<div class="b-recipe-author b-foodshot-board__item-content-author">от Юлия Корчук</div>
+		</div>
+		
+		
+		
+		
+		<div class="b-foodshot-board__item-action">
+			
+			<div class="b-foodshot-board__item-action_comment_hidden b-form-comments">
+				<form method="get" action="">
+					<div class="b-form-field b-comment b-comment__type-short b-form-field__type-comment">
+						<a class="b-comment__userpic b-userpic" href="http://www.foodclub.ru/profile/2253/">
+							<span class="b-userpic__layer"></span>
+							<img width="30" height="30" class="b-userpic__image" alt="Владимир Егоров" src="http://www.foodclub.ru/upload/resize_cache/main/2f6/30_30_2/pedobear (5).jpeg">
+						</a>
+						<div class="b-comment__content">
+							<textarea required="" name="comment" rows="3" cols="30"></textarea>
+						</div>
+						<div class="i-clearfix"></div>
+					</div>
+					<a class="b-form-field__type-comment__button i-frame-bg" href="#">
+						<span class="i-frame-bg_left">
+							<span class="i-frame-bg_right">
+								<span class="i-frame-bg_bg">
+									<span class="i-frame-bg_content">Комментировать</span>
+								</span>
+							</span>
+						</span>
+					</a>
+					<div class="i-clearfix"></div>
+				</form>
+			</div>
+			
+			<div class="b-foodshot-board__item-action_like">
+				<span class="b-like">
+					<a title="Мне нравится" class="b-like-icon b-like-icon__type-button" href="#"></a>
+					<span class="b-like-num">1</span>
+				</span>
+			</div>
+			
+			<div class="b-foodshot-board__item-action_comment_visible">
+				<a title="Комментировать" class="b-comment-icon b-comment-icon__type-button" href="#"></a>
+			</div>
+			
+			<div class="i-clearfix"></div>
+		</div>
+		
+	</div><div data-id="54311" class="b-foodshot-board__item" data-index="35" style="top: 1964px; left: 579px;">
+		<div class="b-foodshot-board__item-content">
+			
+			
+			<a style="height: 114px;" class="b-foodshot-board__item-content-image" href="/foodshot/54311/"><img width="170" height="114" alt="Желе" src="/upload/iblock/c95/1388875019_Желе.jpg"></a>
+			<div class="b-foodshot-board__item-content-text">300 мл вишневого сока (компота)<br>
+300 мл сливок (10-15%)<br>
+20 г желатина<br>
+сахар по вкусу<br>
+</div>
+			<div class="b-recipe-author b-foodshot-board__item-content-author">от Светлана Ан</div>
+		</div>
+		
+		
+		
+		
+		<div class="b-foodshot-board__item-action">
+			
+			<div class="b-foodshot-board__item-action_comment_hidden b-form-comments">
+				<form method="get" action="">
+					<div class="b-form-field b-comment b-comment__type-short b-form-field__type-comment">
+						<a class="b-comment__userpic b-userpic" href="http://www.foodclub.ru/profile/2253/">
+							<span class="b-userpic__layer"></span>
+							<img width="30" height="30" class="b-userpic__image" alt="Владимир Егоров" src="http://www.foodclub.ru/upload/resize_cache/main/2f6/30_30_2/pedobear (5).jpeg">
+						</a>
+						<div class="b-comment__content">
+							<textarea required="" name="comment" rows="3" cols="30"></textarea>
+						</div>
+						<div class="i-clearfix"></div>
+					</div>
+					<a class="b-form-field__type-comment__button i-frame-bg" href="#">
+						<span class="i-frame-bg_left">
+							<span class="i-frame-bg_right">
+								<span class="i-frame-bg_bg">
+									<span class="i-frame-bg_content">Комментировать</span>
+								</span>
+							</span>
+						</span>
+					</a>
+					<div class="i-clearfix"></div>
+				</form>
+			</div>
+			
+			<div class="b-foodshot-board__item-action_like">
+				<span class="b-like">
+					<a title="Мне нравится" class="b-like-icon b-like-icon__type-button b-like-icon__type-active" href="#"></a>
+					<span class="b-like-num">1</span>
+				</span>
+			</div>
+			
+			<div class="b-foodshot-board__item-action_comment_visible">
+				<a title="Комментировать" class="b-comment-icon b-comment-icon__type-button" href="#"></a>
+			</div>
+			
+			<div class="i-clearfix"></div>
+		</div>
+		
+	</div><div data-id="54297" class="b-foodshot-board__item" data-index="36" style="top: 2029px; left: 386px;">
+		<div class="b-foodshot-board__item-content">
+			
+			
+			<a style="height: 255px;" class="b-foodshot-board__item-content-image" href="/foodshot/54297/"><img width="170" height="255" alt="Трюфели" src="/upload/iblock/048/1388862371_Трюфели.jpg"></a>
+			<div class="b-foodshot-board__item-content-text">Нежнейшие трюфели на Рождество.</div>
+			<div class="b-recipe-author b-foodshot-board__item-content-author">от Юлия Корчук</div>
+		</div>
+		
+		
+		
+		
+		<div class="b-foodshot-board__item-action">
+			
+			<div class="b-foodshot-board__item-action_comment_hidden b-form-comments">
+				<form method="get" action="">
+					<div class="b-form-field b-comment b-comment__type-short b-form-field__type-comment">
+						<a class="b-comment__userpic b-userpic" href="http://www.foodclub.ru/profile/2253/">
+							<span class="b-userpic__layer"></span>
+							<img width="30" height="30" class="b-userpic__image" alt="Владимир Егоров" src="http://www.foodclub.ru/upload/resize_cache/main/2f6/30_30_2/pedobear (5).jpeg">
+						</a>
+						<div class="b-comment__content">
+							<textarea required="" name="comment" rows="3" cols="30"></textarea>
+						</div>
+						<div class="i-clearfix"></div>
+					</div>
+					<a class="b-form-field__type-comment__button i-frame-bg" href="#">
+						<span class="i-frame-bg_left">
+							<span class="i-frame-bg_right">
+								<span class="i-frame-bg_bg">
+									<span class="i-frame-bg_content">Комментировать</span>
+								</span>
+							</span>
+						</span>
+					</a>
+					<div class="i-clearfix"></div>
+				</form>
+			</div>
+			
+			<div class="b-foodshot-board__item-action_like">
+				<span class="b-like">
+					<a title="Мне нравится" class="b-like-icon b-like-icon__type-button" href="#"></a>
+					<span class="b-like-num">2</span>
+				</span>
+			</div>
+			
+			<div class="b-foodshot-board__item-action_comment_visible">
+				<a title="Комментировать" class="b-comment-icon b-comment-icon__type-button" href="#"></a>
+			</div>
+			
+			<div class="i-clearfix"></div>
+		</div>
+		
+	</div><div data-id="54296" class="b-foodshot-board__item" data-index="37" style="top: 2141px; left: 772px;">
+		<div class="b-foodshot-board__item-content">
+			
+			
+			<a style="height: 193px;" class="b-foodshot-board__item-content-image" href="/foodshot/54296/"><img width="170" height="193" alt="Домашние ломтики" src="/upload/iblock/1a4/1388861243_Домашние ломтики.jpg"></a>
+			<div class="b-foodshot-board__item-content-text">Теплые ломтики домашнего уюта.</div>
+			<div class="b-recipe-author b-foodshot-board__item-content-author">от Юлия Корчук</div>
+		</div>
+		
+		
+		
+		
+		<div class="b-foodshot-board__item-action">
+			
+			<div class="b-foodshot-board__item-action_comment_hidden b-form-comments">
+				<form method="get" action="">
+					<div class="b-form-field b-comment b-comment__type-short b-form-field__type-comment">
+						<a class="b-comment__userpic b-userpic" href="http://www.foodclub.ru/profile/2253/">
+							<span class="b-userpic__layer"></span>
+							<img width="30" height="30" class="b-userpic__image" alt="Владимир Егоров" src="http://www.foodclub.ru/upload/resize_cache/main/2f6/30_30_2/pedobear (5).jpeg">
+						</a>
+						<div class="b-comment__content">
+							<textarea required="" name="comment" rows="3" cols="30"></textarea>
+						</div>
+						<div class="i-clearfix"></div>
+					</div>
+					<a class="b-form-field__type-comment__button i-frame-bg" href="#">
+						<span class="i-frame-bg_left">
+							<span class="i-frame-bg_right">
+								<span class="i-frame-bg_bg">
+									<span class="i-frame-bg_content">Комментировать</span>
+								</span>
+							</span>
+						</span>
+					</a>
+					<div class="i-clearfix"></div>
+				</form>
+			</div>
+			
+			<div class="b-foodshot-board__item-action_like">
+				<span class="b-like">
+					<a title="Мне нравится" class="b-like-icon b-like-icon__type-button" href="#"></a>
+					<span class="b-like-num">1</span>
+				</span>
+			</div>
+			
+			<div class="b-foodshot-board__item-action_comment_visible">
+				<a title="Комментировать" class="b-comment-icon b-comment-icon__type-button" href="#"></a>
+			</div>
+			
+			<div class="i-clearfix"></div>
+		</div>
+		
+	</div><div data-id="54295" class="b-foodshot-board__item" data-index="38" style="top: 2197px; left: 193px;">
+		<div class="b-foodshot-board__item-content">
+			
+			
+			<a style="height: 251px;" class="b-foodshot-board__item-content-image" href="/foodshot/54295/"><img width="170" height="251" alt="Шоколад" src="/upload/iblock/580/1388860689_Шоколад.jpg"></a>
+			<div class="b-foodshot-board__item-content-text">Удовольствие в шоколаде.</div>
+			<div class="b-recipe-author b-foodshot-board__item-content-author">от Юлия Корчук</div>
+		</div>
+		
+		
+		
+		
+		<div class="b-foodshot-board__item-action">
+			
+			<div class="b-foodshot-board__item-action_comment_hidden b-form-comments">
+				<form method="get" action="">
+					<div class="b-form-field b-comment b-comment__type-short b-form-field__type-comment">
+						<a class="b-comment__userpic b-userpic" href="http://www.foodclub.ru/profile/2253/">
+							<span class="b-userpic__layer"></span>
+							<img width="30" height="30" class="b-userpic__image" alt="Владимир Егоров" src="http://www.foodclub.ru/upload/resize_cache/main/2f6/30_30_2/pedobear (5).jpeg">
+						</a>
+						<div class="b-comment__content">
+							<textarea required="" name="comment" rows="3" cols="30"></textarea>
+						</div>
+						<div class="i-clearfix"></div>
+					</div>
+					<a class="b-form-field__type-comment__button i-frame-bg" href="#">
+						<span class="i-frame-bg_left">
+							<span class="i-frame-bg_right">
+								<span class="i-frame-bg_bg">
+									<span class="i-frame-bg_content">Комментировать</span>
+								</span>
+							</span>
+						</span>
+					</a>
+					<div class="i-clearfix"></div>
+				</form>
+			</div>
+			
+			<div class="b-foodshot-board__item-action_like">
+				<span class="b-like">
+					<a title="Мне нравится" class="b-like-icon b-like-icon__type-button" href="#"></a>
+					<span class="b-like-num">1</span>
+				</span>
+			</div>
+			
+			<div class="b-foodshot-board__item-action_comment_visible">
+				<a title="Комментировать" class="b-comment-icon b-comment-icon__type-button" href="#"></a>
+			</div>
+			
+			<div class="i-clearfix"></div>
+		</div>
+		
+	</div><div data-id="54269" class="b-foodshot-board__item" data-index="39" style="top: 2225px; left: 579px;">
+		<div class="b-foodshot-board__item-content">
+			
+			
+			<a style="height: 265px;" class="b-foodshot-board__item-content-image" href="/foodshot/54269/"><img width="170" height="265" alt="Marshmallow" src="/upload/iblock/61c/1388758955_Marshmallow.jpg"></a>
+			<div class="b-foodshot-board__item-content-text">Великолепная новогодняя композиция из marshmallow.</div>
+			<div class="b-recipe-author b-foodshot-board__item-content-author">от Юлия Корчук</div>
+		</div>
+		
+		
+		
+		
+		<div class="b-foodshot-board__item-action">
+			
+			<div class="b-foodshot-board__item-action_comment_hidden b-form-comments">
+				<form method="get" action="">
+					<div class="b-form-field b-comment b-comment__type-short b-form-field__type-comment">
+						<a class="b-comment__userpic b-userpic" href="http://www.foodclub.ru/profile/2253/">
+							<span class="b-userpic__layer"></span>
+							<img width="30" height="30" class="b-userpic__image" alt="Владимир Егоров" src="http://www.foodclub.ru/upload/resize_cache/main/2f6/30_30_2/pedobear (5).jpeg">
+						</a>
+						<div class="b-comment__content">
+							<textarea required="" name="comment" rows="3" cols="30"></textarea>
+						</div>
+						<div class="i-clearfix"></div>
+					</div>
+					<a class="b-form-field__type-comment__button i-frame-bg" href="#">
+						<span class="i-frame-bg_left">
+							<span class="i-frame-bg_right">
+								<span class="i-frame-bg_bg">
+									<span class="i-frame-bg_content">Комментировать</span>
+								</span>
+							</span>
+						</span>
+					</a>
+					<div class="i-clearfix"></div>
+				</form>
+			</div>
+			
+			<div class="b-foodshot-board__item-action_like">
+				<span class="b-like">
+					<a title="Мне нравится" class="b-like-icon b-like-icon__type-button" href="#"></a>
+					<span class="b-like-num">0</span>
+				</span>
+			</div>
+			
+			<div class="b-foodshot-board__item-action_comment_visible">
+				<a title="Комментировать" class="b-comment-icon b-comment-icon__type-button" href="#"></a>
+			</div>
+			
+			<div class="i-clearfix"></div>
+		</div>
+		
+	</div><div data-id="54268" class="b-foodshot-board__item" data-index="40" style="top: 2233px; left: 0px;">
+		<div class="b-foodshot-board__item-content">
+			
+			
+			<a style="height: 228px;" class="b-foodshot-board__item-content-image" href="/foodshot/54268/"><img width="170" height="228" alt="Рождественский хлеб" src="/upload/iblock/b87/1388758275_Рождественский хлеб.jpg"></a>
+			<div class="b-foodshot-board__item-content-text">Плетеный рождественский хлеб.<br>
+<br>
+<a href="http://www.flickr.com/photos/egruendemann/8375170401/in/pool-395750@N25/lightbox/" class="txttohtmllink">http://www.flickr.com/photos/egruendemann/8375170401/in/pool-395750@N25/lightbox/</a></div>
+			<div class="b-recipe-author b-foodshot-board__item-content-author">от Юлия Корчук</div>
+		</div>
+		
+		
+		
+		
+		<div class="b-foodshot-board__item-action">
+			
+			<div class="b-foodshot-board__item-action_comment_hidden b-form-comments">
+				<form method="get" action="">
+					<div class="b-form-field b-comment b-comment__type-short b-form-field__type-comment">
+						<a class="b-comment__userpic b-userpic" href="http://www.foodclub.ru/profile/2253/">
+							<span class="b-userpic__layer"></span>
+							<img width="30" height="30" class="b-userpic__image" alt="Владимир Егоров" src="http://www.foodclub.ru/upload/resize_cache/main/2f6/30_30_2/pedobear (5).jpeg">
+						</a>
+						<div class="b-comment__content">
+							<textarea required="" name="comment" rows="3" cols="30"></textarea>
+						</div>
+						<div class="i-clearfix"></div>
+					</div>
+					<a class="b-form-field__type-comment__button i-frame-bg" href="#">
+						<span class="i-frame-bg_left">
+							<span class="i-frame-bg_right">
+								<span class="i-frame-bg_bg">
+									<span class="i-frame-bg_content">Комментировать</span>
+								</span>
+							</span>
+						</span>
+					</a>
+					<div class="i-clearfix"></div>
+				</form>
+			</div>
+			
+			<div class="b-foodshot-board__item-action_like">
+				<span class="b-like">
+					<a title="Мне нравится" class="b-like-icon b-like-icon__type-button" href="#"></a>
+					<span class="b-like-num">0</span>
+				</span>
+			</div>
+			
+			<div class="b-foodshot-board__item-action_comment_visible">
+				<a title="Комментировать" class="b-comment-icon b-comment-icon__type-button" href="#"></a>
+			</div>
+			
+			<div class="i-clearfix"></div>
+		</div>
+		
+	</div><div data-id="54267" class="b-foodshot-board__item" data-index="41" style="top: 2405px; left: 386px;">
+		<div class="b-foodshot-board__item-content">
+			
+			
+			<a style="height: 115px;" class="b-foodshot-board__item-content-image" href="/foodshot/54267/"><img width="170" height="115" alt="Снеговики" src="/upload/iblock/b0b/1388757900_Снеговики.jpg"></a>
+			<div class="b-foodshot-board__item-content-text">Праздники не кончаются с такими веселыми снеговиками.</div>
+			<div class="b-recipe-author b-foodshot-board__item-content-author">от Юлия Корчук</div>
+		</div>
+		
+		
+		
+		
+		<div class="b-foodshot-board__item-action">
+			
+			<div class="b-foodshot-board__item-action_comment_hidden b-form-comments">
+				<form method="get" action="">
+					<div class="b-form-field b-comment b-comment__type-short b-form-field__type-comment">
+						<a class="b-comment__userpic b-userpic" href="http://www.foodclub.ru/profile/2253/">
+							<span class="b-userpic__layer"></span>
+							<img width="30" height="30" class="b-userpic__image" alt="Владимир Егоров" src="http://www.foodclub.ru/upload/resize_cache/main/2f6/30_30_2/pedobear (5).jpeg">
+						</a>
+						<div class="b-comment__content">
+							<textarea required="" name="comment" rows="3" cols="30"></textarea>
+						</div>
+						<div class="i-clearfix"></div>
+					</div>
+					<a class="b-form-field__type-comment__button i-frame-bg" href="#">
+						<span class="i-frame-bg_left">
+							<span class="i-frame-bg_right">
+								<span class="i-frame-bg_bg">
+									<span class="i-frame-bg_content">Комментировать</span>
+								</span>
+							</span>
+						</span>
+					</a>
+					<div class="i-clearfix"></div>
+				</form>
+			</div>
+			
+			<div class="b-foodshot-board__item-action_like">
+				<span class="b-like">
+					<a title="Мне нравится" class="b-like-icon b-like-icon__type-button" href="#"></a>
+					<span class="b-like-num">1</span>
+				</span>
+			</div>
+			
+			<div class="b-foodshot-board__item-action_comment_visible">
+				<a title="Комментировать" class="b-comment-icon b-comment-icon__type-button" href="#"></a>
+			</div>
+			
+			<div class="i-clearfix"></div>
+		</div>
+		
+	</div><div data-id="54261" class="b-foodshot-board__item" data-index="42" style="top: 2455px; left: 772px;">
+		<div class="b-foodshot-board__item-content">
+			
+			
+			<a style="height: 170px;" class="b-foodshot-board__item-content-image" href="/foodshot/54261/"><img width="170" height="170" alt="Чиабатта " src="/upload/iblock/004/1388701562_Чиабатта .jpg"></a>
+			<div class="b-foodshot-board__item-content-text">Получилось пресновато, в следующий раз добавлю больше соли :) Но вкусно!</div>
+			<div class="b-recipe-author b-foodshot-board__item-content-author">от Anna Lopatonok</div>
+		</div>
+		
+		
+		
+		
+		<div class="b-foodshot-board__item-action">
+			
+			<div class="b-foodshot-board__item-action_comment_hidden b-form-comments">
+				<form method="get" action="">
+					<div class="b-form-field b-comment b-comment__type-short b-form-field__type-comment">
+						<a class="b-comment__userpic b-userpic" href="http://www.foodclub.ru/profile/2253/">
+							<span class="b-userpic__layer"></span>
+							<img width="30" height="30" class="b-userpic__image" alt="Владимир Егоров" src="http://www.foodclub.ru/upload/resize_cache/main/2f6/30_30_2/pedobear (5).jpeg">
+						</a>
+						<div class="b-comment__content">
+							<textarea required="" name="comment" rows="3" cols="30"></textarea>
+						</div>
+						<div class="i-clearfix"></div>
+					</div>
+					<a class="b-form-field__type-comment__button i-frame-bg" href="#">
+						<span class="i-frame-bg_left">
+							<span class="i-frame-bg_right">
+								<span class="i-frame-bg_bg">
+									<span class="i-frame-bg_content">Комментировать</span>
+								</span>
+							</span>
+						</span>
+					</a>
+					<div class="i-clearfix"></div>
+				</form>
+			</div>
+			
+			<div class="b-foodshot-board__item-action_like">
+				<span class="b-like">
+					<a title="Мне нравится" class="b-like-icon b-like-icon__type-button" href="#"></a>
+					<span class="b-like-num">0</span>
+				</span>
+			</div>
+			
+			<div class="b-foodshot-board__item-action_comment_visible">
+				<a title="Комментировать" class="b-comment-icon b-comment-icon__type-button" href="#"></a>
+			</div>
+			
+			<div class="i-clearfix"></div>
+		</div>
+		
+	</div><div data-id="54242" class="b-foodshot-board__item" data-index="43" style="top: 2556px; left: 193px;">
+		<div class="b-foodshot-board__item-content">
+			
+			
+			<a style="height: 213px;" class="b-foodshot-board__item-content-image" href="/foodshot/54242/"><img width="170" height="213" alt="Апельсиновый сок" src="/upload/iblock/cc1/1388477491_Апельсиновый сок.jpg"></a>
+			<div class="b-foodshot-board__item-content-text">Заряд витаминов в новогоднюю ночь.</div>
+			<div class="b-recipe-author b-foodshot-board__item-content-author">от Юлия Корчук</div>
+		</div>
+		
+		
+		
+		
+		<div class="b-foodshot-board__item-action">
+			
+			<div class="b-foodshot-board__item-action_comment_hidden b-form-comments">
+				<form method="get" action="">
+					<div class="b-form-field b-comment b-comment__type-short b-form-field__type-comment">
+						<a class="b-comment__userpic b-userpic" href="http://www.foodclub.ru/profile/2253/">
+							<span class="b-userpic__layer"></span>
+							<img width="30" height="30" class="b-userpic__image" alt="Владимир Егоров" src="http://www.foodclub.ru/upload/resize_cache/main/2f6/30_30_2/pedobear (5).jpeg">
+						</a>
+						<div class="b-comment__content">
+							<textarea required="" name="comment" rows="3" cols="30"></textarea>
+						</div>
+						<div class="i-clearfix"></div>
+					</div>
+					<a class="b-form-field__type-comment__button i-frame-bg" href="#">
+						<span class="i-frame-bg_left">
+							<span class="i-frame-bg_right">
+								<span class="i-frame-bg_bg">
+									<span class="i-frame-bg_content">Комментировать</span>
+								</span>
+							</span>
+						</span>
+					</a>
+					<div class="i-clearfix"></div>
+				</form>
+			</div>
+			
+			<div class="b-foodshot-board__item-action_like">
+				<span class="b-like">
+					<a title="Мне нравится" class="b-like-icon b-like-icon__type-button" href="#"></a>
+					<span class="b-like-num">1</span>
+				</span>
+			</div>
+			
+			<div class="b-foodshot-board__item-action_comment_visible">
+				<a title="Комментировать" class="b-comment-icon b-comment-icon__type-button" href="#"></a>
+			</div>
+			
+			<div class="i-clearfix"></div>
+		</div>
+		
+	</div><div data-id="54241" class="b-foodshot-board__item" data-index="44" style="top: 2611px; left: 579px;">
+		<div class="b-foodshot-board__item-content">
+			
+			
+			<a style="height: 246px;" class="b-foodshot-board__item-content-image" href="/foodshot/54241/"><img width="170" height="246" alt="Капкейк" src="/upload/iblock/68e/1388477272_Капкейк.jpg"></a>
+			<div class="b-foodshot-board__item-content-text">Чудный новогодний капкейк Санты:)</div>
+			<div class="b-recipe-author b-foodshot-board__item-content-author">от Юлия Корчук</div>
+		</div>
+		
+		
+		
+		
+		<div class="b-foodshot-board__item-action">
+			
+			<div class="b-foodshot-board__item-action_comment_hidden b-form-comments">
+				<form method="get" action="">
+					<div class="b-form-field b-comment b-comment__type-short b-form-field__type-comment">
+						<a class="b-comment__userpic b-userpic" href="http://www.foodclub.ru/profile/2253/">
+							<span class="b-userpic__layer"></span>
+							<img width="30" height="30" class="b-userpic__image" alt="Владимир Егоров" src="http://www.foodclub.ru/upload/resize_cache/main/2f6/30_30_2/pedobear (5).jpeg">
+						</a>
+						<div class="b-comment__content">
+							<textarea required="" name="comment" rows="3" cols="30"></textarea>
+						</div>
+						<div class="i-clearfix"></div>
+					</div>
+					<a class="b-form-field__type-comment__button i-frame-bg" href="#">
+						<span class="i-frame-bg_left">
+							<span class="i-frame-bg_right">
+								<span class="i-frame-bg_bg">
+									<span class="i-frame-bg_content">Комментировать</span>
+								</span>
+							</span>
+						</span>
+					</a>
+					<div class="i-clearfix"></div>
+				</form>
+			</div>
+			
+			<div class="b-foodshot-board__item-action_like">
+				<span class="b-like">
+					<a title="Мне нравится" class="b-like-icon b-like-icon__type-button b-like-icon__type-active" href="#"></a>
+					<span class="b-like-num">2</span>
+				</span>
+			</div>
+			
+			<div class="b-foodshot-board__item-action_comment_visible">
+				<a title="Комментировать" class="b-comment-icon b-comment-icon__type-button" href="#"></a>
+			</div>
+			
+			<div class="i-clearfix"></div>
+		</div>
+		
+	</div><div data-id="54239" class="b-foodshot-board__item" data-index="45" style="top: 2621px; left: 0px;">
+		<div class="b-foodshot-board__item-content">
+			
+			
+			<a style="height: 170px;" class="b-foodshot-board__item-content-image" href="/foodshot/54239/"><img width="170" height="170" alt="Бискотти" src="/upload/iblock/048/1388477086_Бискотти.jpg"></a>
+			<div class="b-foodshot-board__item-content-text">Итальянские рождественские бискотти.</div>
+			<div class="b-recipe-author b-foodshot-board__item-content-author">от Юлия Корчук</div>
+		</div>
+		
+		
+		
+		
+		<div class="b-foodshot-board__item-action">
+			
+			<div class="b-foodshot-board__item-action_comment_hidden b-form-comments">
+				<form method="get" action="">
+					<div class="b-form-field b-comment b-comment__type-short b-form-field__type-comment">
+						<a class="b-comment__userpic b-userpic" href="http://www.foodclub.ru/profile/2253/">
+							<span class="b-userpic__layer"></span>
+							<img width="30" height="30" class="b-userpic__image" alt="Владимир Егоров" src="http://www.foodclub.ru/upload/resize_cache/main/2f6/30_30_2/pedobear (5).jpeg">
+						</a>
+						<div class="b-comment__content">
+							<textarea required="" name="comment" rows="3" cols="30"></textarea>
+						</div>
+						<div class="i-clearfix"></div>
+					</div>
+					<a class="b-form-field__type-comment__button i-frame-bg" href="#">
+						<span class="i-frame-bg_left">
+							<span class="i-frame-bg_right">
+								<span class="i-frame-bg_bg">
+									<span class="i-frame-bg_content">Комментировать</span>
+								</span>
+							</span>
+						</span>
+					</a>
+					<div class="i-clearfix"></div>
+				</form>
+			</div>
+			
+			<div class="b-foodshot-board__item-action_like">
+				<span class="b-like">
+					<a title="Мне нравится" class="b-like-icon b-like-icon__type-button b-like-icon__type-active" href="#"></a>
+					<span class="b-like-num">2</span>
+				</span>
+			</div>
+			
+			<div class="b-foodshot-board__item-action_comment_visible">
+				<a title="Комментировать" class="b-comment-icon b-comment-icon__type-button" href="#"></a>
+			</div>
+			
+			<div class="i-clearfix"></div>
+		</div>
+		
+	</div><div data-id="54196" class="b-foodshot-board__item" data-index="46" style="top: 2641px; left: 386px;">
+		<div class="b-foodshot-board__item-content">
+			
+			
+			<a style="height: 103px;" class="b-foodshot-board__item-content-image" href="/foodshot/54196/"><img width="170" height="103" alt="Ёлочки на стол " src="/upload/iblock/731/1388390377_Ёлочки на стол .jpg"></a>
+			<div class="b-foodshot-board__item-content-text">Оригинально и простенько.</div>
+			<div class="b-recipe-author b-foodshot-board__item-content-author">от Li Li</div>
+		</div>
+		
+		
+		
+		
+		<div class="b-foodshot-board__item-action">
+			
+			<div class="b-foodshot-board__item-action_comment_hidden b-form-comments">
+				<form method="get" action="">
+					<div class="b-form-field b-comment b-comment__type-short b-form-field__type-comment">
+						<a class="b-comment__userpic b-userpic" href="http://www.foodclub.ru/profile/2253/">
+							<span class="b-userpic__layer"></span>
+							<img width="30" height="30" class="b-userpic__image" alt="Владимир Егоров" src="http://www.foodclub.ru/upload/resize_cache/main/2f6/30_30_2/pedobear (5).jpeg">
+						</a>
+						<div class="b-comment__content">
+							<textarea required="" name="comment" rows="3" cols="30"></textarea>
+						</div>
+						<div class="i-clearfix"></div>
+					</div>
+					<a class="b-form-field__type-comment__button i-frame-bg" href="#">
+						<span class="i-frame-bg_left">
+							<span class="i-frame-bg_right">
+								<span class="i-frame-bg_bg">
+									<span class="i-frame-bg_content">Комментировать</span>
+								</span>
+							</span>
+						</span>
+					</a>
+					<div class="i-clearfix"></div>
+				</form>
+			</div>
+			
+			<div class="b-foodshot-board__item-action_like">
+				<span class="b-like">
+					<a title="Мне нравится" class="b-like-icon b-like-icon__type-button b-like-icon__type-active" href="#"></a>
+					<span class="b-like-num">3</span>
+				</span>
+			</div>
+			
+			<div class="b-foodshot-board__item-action_comment_visible">
+				<a title="Комментировать" class="b-comment-icon b-comment-icon__type-button" href="#"></a>
+			</div>
+			
+			<div class="i-clearfix"></div>
+		</div>
+		
+	</div><div data-id="54175" class="b-foodshot-board__item" data-index="47" style="top: 2759px; left: 772px;">
+		<div class="b-foodshot-board__item-content">
+			
+			
+			<a style="height: 255px;" class="b-foodshot-board__item-content-image" href="/foodshot/54175/"><img width="170" height="255" alt="Канун" src="/upload/iblock/649/1388334553_Канун.jpg"></a>
+			<div class="b-foodshot-board__item-content-text">В канун Нового Года.</div>
+			<div class="b-recipe-author b-foodshot-board__item-content-author">от Юлия Корчук</div>
+		</div>
+		
+		
+		
+		
+		<div class="b-foodshot-board__item-action">
+			
+			<div class="b-foodshot-board__item-action_comment_hidden b-form-comments">
+				<form method="get" action="">
+					<div class="b-form-field b-comment b-comment__type-short b-form-field__type-comment">
+						<a class="b-comment__userpic b-userpic" href="http://www.foodclub.ru/profile/2253/">
+							<span class="b-userpic__layer"></span>
+							<img width="30" height="30" class="b-userpic__image" alt="Владимир Егоров" src="http://www.foodclub.ru/upload/resize_cache/main/2f6/30_30_2/pedobear (5).jpeg">
+						</a>
+						<div class="b-comment__content">
+							<textarea required="" name="comment" rows="3" cols="30"></textarea>
+						</div>
+						<div class="i-clearfix"></div>
+					</div>
+					<a class="b-form-field__type-comment__button i-frame-bg" href="#">
+						<span class="i-frame-bg_left">
+							<span class="i-frame-bg_right">
+								<span class="i-frame-bg_bg">
+									<span class="i-frame-bg_content">Комментировать</span>
+								</span>
+							</span>
+						</span>
+					</a>
+					<div class="i-clearfix"></div>
+				</form>
+			</div>
+			
+			<div class="b-foodshot-board__item-action_like">
+				<span class="b-like">
+					<a title="Мне нравится" class="b-like-icon b-like-icon__type-button b-like-icon__type-active" href="#"></a>
+					<span class="b-like-num">2</span>
+				</span>
+			</div>
+			
+			<div class="b-foodshot-board__item-action_comment_visible">
+				<a title="Комментировать" class="b-comment-icon b-comment-icon__type-button" href="#"></a>
+			</div>
+			
+			<div class="i-clearfix"></div>
+		</div>
+		
+	</div></div>

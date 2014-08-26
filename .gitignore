@@ -1,0 +1,63 @@
+################ <The Octocat good rules> ################
+# Compiled source #
+###################
+*.com
+*.class
+*.dll
+*.exe
+*.o
+*.so
+ 
+# Packages #
+############
+# it's better to unpack these files and commit the raw source
+# git has its own built in compression methods
+*.7z
+*.dmg
+*.gz
+*.iso
+*.jar
+*.rar
+*.tar
+*.zip
+ 
+# Logs and databases #
+######################
+*.log
+*.sql
+*.sqlite
+ 
+# OS generated files #
+######################
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+################ </The Octocat good rules> ################
+
+#BITRIX CMS
+bitrix/activities/bitrix/
+bitrix/admin
+bitrix/cache
+bitrix/components/bitrix/
+bitrix/gadgets/bitrix
+bitrix/controller_log
+bitrix/image_uploader
+bitrix/images
+bitrix/js
+bitrix/managed_cache
+bitrix/stack_cache
+bitrix/modules
+bitrix/otp
+bitrix/sounds
+bitrix/template/
+bitrix/themes
+bitrix/tmp
+bitrix/tools
+bitrix/wizards/bitrix
+bitrix/[^/]*\.php$
+upload
+bitrix/php_interface

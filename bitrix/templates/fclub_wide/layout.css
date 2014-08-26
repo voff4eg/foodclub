@@ -1,0 +1,84 @@
+#body {
+	width: 1070px;
+}
+
+/*fonts*/
+body,
+input.text, .b-input-text,
+textarea, .b-textarea,
+select,
+div.tags span.all, div.tags span.all a,
+#html_code,
+#personal_page #form input.text,
+div.clubs_group h5,
+div.topic_item div.tags h5,
+div.advert h3, div.text_page h3,
+#authorization .text, #authorization .bx-auth-service-form input,
+#authorization .button, #authorization .bx-auth-service-form input.button,
+div.found_topics div.comment h2,
+table.discounts td h2, table.discounts td h2 a,
+#contest_magi .recipe_item h3, #contest_magi .recipe_item h3 * {
+	font-family: "Open Sans", Arial, Helvetica, sans-serif;
+}
+h1,
+h1 a,
+h2, h2 *,
+h3, h3 *,
+h5,
+h5 *,
+div.error_message,
+.b-button__type_2,
+.b-linking-text,
+.b-form-label,
+.form_field h4,
+#top_panel,
+.collection_block .block h3,
+#topbar,
+#logo h1, #logo strong,
+#recipe_search_field, #author_search_field, #club_search_field,
+#recipe_search button span,
+#fc_statistics .item,
+.choice a, .choice span,
+div.recipe .tools .item span.p,
+#form input.text,
+#form div.result_message,
+#personal_bar div.item a,
+#personal_bar div.item span,
+#personal_page div.personal_info h4,
+#edit_avatar,
+div.about h2,
+#left_menu div.cooking_list div.switch div *,
+.b-h1-choice__item,
+.b-filter__list a, .b-filter__list span,
+#clubs_list div.bar,
+#authorization_layer div.bar div *,
+#authorization_layer input.text,
+#authorization h2,
+#authorization label,
+#authorization .networks h3,
+#authorization .links,
+.b-form-forgotten,
+div.bx-auth-service-form,
+table.books td div.price div,
+#top5_cooks div.experience, #top5_cooks div.rating,
+#contest_magi em.period,
+#contest_magi .recipe_item .votes div,
+#contest_magi .stage .num div,
+#contest_magi .banner .prises .num div,
+#contest_magi .add_recipe,
+#contest_sauce .relative,
+#contest_sauce .relative .add_recipe,
+#contest_sauce .relative .meat_wine_logo,
+#contest_sauce .recipe_carousel .item,
+#fc_tv_channels a.button, #fc_tv_channels span.button,
+.b-facts__heading,
+.b-facts__more__link {
+	font-family: "Noto Serif", Georgia, Times, serif;
+}
+/*_fonts_*/
+
+@media screen and (max-width:1070px) {
+	#body {
+		width: 1000px;
+	}
+}

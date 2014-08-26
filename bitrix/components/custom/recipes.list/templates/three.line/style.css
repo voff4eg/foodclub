@@ -1,0 +1,34 @@
+div.pages_recipes div.item {
+	padding-bottom:10px;}
+div.pages_recipes {margin:20px 0 0 0;}
+div.pages_recipes div.item div.link {display:block;}
+div.pages_recipes div.photo {
+	float:left;
+	width:50px;
+	padding:0 12px 0 0;}
+div.pages_recipes div.big_photo {
+	position:relative;
+	display:none;}
+div.pages_recipes div.big_photo div {
+	position:absolute;
+	top:-3px;
+	left:-3px;
+	z-index:4;}
+div.pages_recipes h2 {
+	color:#333333;
+	margin:40px 0 15px;}
+
+div.recipes_blocks {margin:30px 0 10px 0;}
+div.recipes_blocks h2 {
+	margin-bottom:20px;
+	color:#333333;}
+div.recipes_blocks p {margin:10px 0;}
+div.recipes_blocks div.item {
+	float:left;
+	width:200px;
+	display:inline;
+	margin:0 20px 30px 0;}
+div.recipes_blocks div.item h3 {margin:10px 0;}
+div.recipes_blocks div.item p {
+	font-size:10pt;
+	margin:0;}

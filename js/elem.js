@@ -1,0 +1,213 @@
+$(function() {
+	authorAvatar();
+	
+	adminButtons();
+	
+	alignImg();
+	
+	popups();
+});
+
+function popups() {
+	$(".b-popup").each(function() {
+		$(this).appendTo("body");
+	});
+	
+	$(document)
+		.delegate("[data-popup-id]", "click", clickPopupLink)
+		.delegate(".b-popup__close", "click", clickPopupClose)
+		.delegate("#opaco", "click", clickOpaco);
+	
+	function clickOpaco() {
+		$(".b-popup:visible").popup();
+	}
+	
+	function clickPopupLink(e) {
+		e.preventDefault();
+		var $link = $(this);
+		var popupId = $link.attr("data-popup-id");
+		
+		if(!popupId || !document.getElementById(popupId)) return;
+		$("#" + popupId).popup();
+	}
+	
+	function clickPopupClose(e) {
+		e.preventDefault();
+		$(this).closest(".b-popup").popup();
+	}
+}
+
+function authorAvatar() {
+	$(document)
+		.delegate(".b-author-avatar", "mouseenter", mouseenterAvatar)
+		.delegate(".b-author-avatar", "mouseleave", mouseleaveAvatar);
+	
+	function mouseenterAvatar() {
+		var $avatar = $(this);
+		$avatar.find(".b-author-avatar__link").stop().animate({width: "100px", height: "100px", top: "-35px", left: "-35px"}, 100);
+	}
+	
+	function mouseleaveAvatar() {
+		var $avatar = $(this);
+		$avatar.find(".b-author-avatar__link").stop().animate({width: "30px", height: "30px", top: "0", left: "0"}, 100);
+	}
+}
+
+function adminButtons() {
+	$(document)
+		.delegate(".b-admin-buttons", "mouseenter", mouseenterAdmin)
+		.delegate(".b-admin-buttons", "mouseleave", mouseleaveAdmin)
+		.delegate(".b-delete-icon", "click", deleteAdmin);
+	
+	function mouseenterAdmin() {
+		var $block = $(this).find(".b-admin-buttons__block").addClass("i-hover");
+		$block.stop().show().animate({opacity: 1}, 100);
+	}
+	
+	function mouseleaveAdmin() {
+		var $block = $(this).find(".b-admin-buttons__block").removeClass("i-hover");
+		setTimeout(function() {
+			if($block.hasClass("i-hover")) return;
+			$block.stop().animate({opacity: 0}, 100, function() {$block.hide();});
+		}, 100);
+	}
+	
+	function deleteAdmin(e) {
+		if(confirm($(this).attr("title") + "?")) return true;
+		return false;
+	}
+}
+
+function alignImg($context) {
+	var $context = $context || $("body");
+	
+	if(!$context.is("img")) {
+		$context = $context.find(".i-align-img");
+	}
+	$context.each(align);
+	
+	function align() {
+		var $img = $(this),
+			$parent = $img.parent(),
+			img = new Image();
+			
+		img.src = $img.attr("src");
+		var size = $parent.height();
+		if(img.width > 0) {
+			align();
+		} else {
+			$img.load(function() {
+				align();
+			});
+		}
+		
+		function align() {
+			if(img.width > img.height) {
+				var width = Math.floor(img.width * size / img.height);
+				$img.height(size).width(width);
+				$img.css({marginLeft: (size/2 - width/2) + "px"});
+			} else {
+				var height = Math.floor(img.height * size / img.width);
+				$img.width(size).height(height);
+				$img.css({marginTop: (size/2 - height/2) + "px"});
+			}
+			
+			$img.attr({"data-size": size, "data-width": $img.width(), "data-height": $img.height(), "data-marginLeft": $img.css("marginLeft"), "data-marginTop": $img.css("marginTop") });
+		}
+	}
+}
+
+function isValid ( $form ) {//used only in recipe comments
+	var result = true;
+	var firstElem;
+	$form.find( "[required]" ).each( function() {
+		var $elem = $( this );
+		if ( $.trim( $elem.val() ) == "" ) {
+			result = false;
+			$elem.closest( ".b-form-field" ).addClass( "i-attention" );
+			if ( !firstElem ) {
+				$elem.focus();
+				firstElem = $elem;
+			}
+		} else {
+			$elem.closest( ".b-form-field" ).removeClass( "i-attention" );
+		}
+	});
+	$form.find( ":file" ).each( function () {
+		if ( $(this).closest( ".b-form-field" ).hasClass( "i-progress" ) ) {
+			result = false;
+		}
+	});
+	
+	return result;
+}
+
+(function($) {
+	var defaults = {
+		opaco:true,
+		valign:"center",
+		align:"center"
+		//after:function(thisElem){}
+		//closeElem:"a.close"
+		//close:function(thisElem){} overwrites default function
+	};
+	
+	$.fn.popup = function(params) {
+		var options = $.extend({}, defaults, params);
+		$(this).each(function() {
+			var $this=$(this);
+			if(!$this.is(":visible")) {
+				var topPx="20px", leftPx="50%", marginLeft=0, outerHeight=$this.outerHeight(), winHeight=$(window).height();
+				switch(options.valign) {
+					case "top": topPx = $(window).scrollTop() + 20 + "px"; break;
+					case "center":
+						if (winHeight > outerHeight) {
+							topPx = winHeight/2 + $("#top_panel").outerHeight() + $("#top_panel").offset().top - outerHeight/2 - 20 + "px";
+						} else {
+							//console.log($("#top_panel").outerHeight() + $("#top_panel").offset().top);
+							topPx = $("#top_panel").outerHeight() + $("#top_panel").offset().top + 20 + "px";
+						}
+						break;
+					case "bottom": topPx = $(window).scrollTop()+winHeight-outerHeight-20 + "px";break;
+				}
+				switch(options.align) {
+					case "left": leftPx = "0px"; break;
+					case "center":
+						leftPx = "50%";
+						marginLeft = -$this.outerWidth()/2+"px";
+						break;
+					case "right": leftPx = $(document).width()-$this.outerWidth()+"px";break;
+				}
+				if(options.opaco === true) {
+					$this.before('<div id="opaco"></div>');
+					$("#opaco, #opaco iframe").css({width:"100%", height:$(document).height()+"px", opacity: 0}).show().animate({opacity: 0.5});
+					var closeElem = $("#opaco");
+					if(options.closeElem){closeElem=$("#opaco, "+options.closeElem+"");}
+					
+					var closeFunc = function() {$this.popup(options);};
+					closeElem.click(function(e) {
+						closeFunc();
+						e.preventDefault();
+					});
+				}
+				$this
+					.css({marginLeft:marginLeft, left:leftPx, top:topPx, opacity: 0})
+					.show()
+					.animate({top:topPx, opacity: 1}, 500, function() {
+						$("#opaco, #opaco iframe").css({height:$(document).height()+"px"});
+						if(options.after) {options.after(this);}
+					});
+			} else {
+				$this.animate({opacity: 0}, 500, function() {
+					$this.hide();
+					if(options.close) options.close(this);
+				});
+				$("#opaco").animate({opacity: 0}, 500, function() {
+					$("#opaco").remove();
+				});
+				if(options.closeElem) $(""+options.closeElem+"").unbind("click");
+			}
+		});
+		return this;
+	};
+})(jQuery);
