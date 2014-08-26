@@ -61,3 +61,10 @@ bitrix/wizards/bitrix
 bitrix/[^/]*\.php$
 upload
 bitrix/php_interface
+
+#CUSTOM BITRIX IGNORE
+bitrix/log.txt
+bitrix/yandex_recipes.xml
+iphone/yandex_recipes.xml
+php/yandex_recipes.xml
+posts_search/yandex_recipes.xml
