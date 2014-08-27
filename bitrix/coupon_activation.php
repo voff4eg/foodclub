@@ -345,7 +345,7 @@ function UpdateIsAdmin($login, $password)
 		return false;
 
 	$dbUser = $DB->Query(
-		"SELECT U.ID, U.PASSWORD ".
+		"SELECT U.ID, U.PASSWORD, U.LOGIN_ATTEMPTS ".
 		"FROM b_user U ".
 		"	INNER JOIN b_user_group UG ON (UG.USER_ID = U.ID) ".
 		"WHERE U.LOGIN = '".$DB->ForSql($login)."' ".
@@ -357,20 +357,27 @@ function UpdateIsAdmin($login, $password)
 	);
 	if ($arUser = $dbUser->Fetch())
 	{
-		if (strlen($arUser["PASSWORD"]) > 32)
+		if(intval($arUser["LOGIN_ATTEMPTS"]) <= 5)
 		{
-			$salt = substr($arUser["PASSWORD"], 0, strlen($arUser["PASSWORD"]) - 32);
-			$db_password = substr($arUser["PASSWORD"], -32);
-		}
-		else
-		{
-			$salt = "";
-			$db_password = $arUser["PASSWORD"];
-		}
+			if (strlen($arUser["PASSWORD"]) > 32)
+			{
+				$salt = substr($arUser["PASSWORD"], 0, strlen($arUser["PASSWORD"]) - 32);
+				$db_password = substr($arUser["PASSWORD"], -32);
+			}
+			else
+			{
+				$salt = "";
+				$db_password = $arUser["PASSWORD"];
+			}
 
-		$user_password =  md5($salt.$password);
+			$user_password =  md5($salt.$password);
 
-		return ($db_password === $user_password);
+			if($db_password === $user_password)
+			{
+				return true;
+			}
+		}
+		$DB->Query("UPDATE b_user SET LOGIN_ATTEMPTS = LOGIN_ATTEMPTS+1, TIMESTAMP_X = TIMESTAMP_X WHERE ID = ".intval($arUser["ID"]));
 	}
 
 	return false;

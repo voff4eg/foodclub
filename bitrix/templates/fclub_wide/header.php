@@ -25,7 +25,6 @@ if(value == "/foodshot/"){
 
 <script src="/js/jscript.js" type="text/javascript"></script>
 <script src="/js/admin/jscript.js" type="text/javascript"></script>
-<script src="/js/ss_data.js?<?=filectime($_SERVER["DOCUMENT_ROOT"]."/js/ss_data.js")?>" type="text/javascript"></script>
 <script src="/js/helper.js" type="text/javascript"></script>
 <script src="/js/history/scripts/bundled/html4+html5/jquery.history.js"></script>
 <?} else {?>
@@ -36,7 +35,6 @@ echo '<link rel="stylesheet" type="text/css" href="/css/styles.v'.crc32($file).'
 <script src="/js/jscript.js" type="text/javascript"></script>
 <script src="/recipe_links.js" type="text/javascript"></script>
 <script src="/js/helper.js" type="text/javascript"></script>
-<script src="/js/ss_data.js?<?=filectime($_SERVER["DOCUMENT_ROOT"]."/js/ss_data.js")?>" type="text/javascript"></script>
 <script src="/js/history/scripts/bundled/html4+html5/jquery.history.js"></script>
 <meta name="title" content="<?$APPLICATION->ShowTitle();?>" />
 

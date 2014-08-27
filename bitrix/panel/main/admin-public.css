@@ -2023,6 +2023,7 @@
 #bx-admin-prefix .adm-input-wrap-calendar {
 	display:inline-block;
 	position: relative;
+	min-width:170px;
 }
 
 .bx-opera #bx-admin-prefix .adm-input-wrap-calendar,
