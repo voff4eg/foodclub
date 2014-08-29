@@ -2174,14 +2174,14 @@ div.input_file .blocker {
 	z-index:3;
 	width: 153px;
 	height: 50px;
-	background:url(/images/admin/transparent.gif);
+	background:url("data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==");
 	margin-left:-155px;}
 div.input_file .blocker2 {
 	position:absolute;
 	z-index:3;
 	width:220px;
 	height:21px;
-	background:url(/images/admin/transparent.gif);
+	background:url("data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==");
 	margin-left:79px;}
 div.input_file .browse_button {
 	position: absolute;

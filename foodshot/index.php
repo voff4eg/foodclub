@@ -8,12 +8,14 @@
 require($_SERVER["DOCUMENT_ROOT"]."/bitrix/header.php");
 $APPLICATION->SetPageProperty("keywords", "Foodstyling, Food design, фуд фотография, фуд дизайн, фуд фото");
 $APPLICATION->SetPageProperty("description", "Быстрый и простой способ добавить рецепт.");
-$APPLICATION->SetTitle("Фудшот — красивые фотографии еды и простые рецепты");?>
-<script type="text/javascript" src="/js/form.js"></script>
-<script type="text/javascript" src="/js/history.js"></script>
-<script type="text/javascript" src="/foodshot/foodshot.js?<?=filectime($_SERVER["DOCUMENT_ROOT"]."/foodshot/foodshot.js")?>"></script>
-<script type="text/javascript" src="/foodshot/script.js"></script>
-<script type="text/javascript" src="/foodshot/jquery.fileupload-ui.js"></script>
+$APPLICATION->SetTitle("Фудшот — красивые фотографии еды и простые рецепты");
+
+$APPLICATION->AddHeadScript('/js/form.js');
+$APPLICATION->AddHeadScript('/foodshot/foodshot.js');
+
+$APPLICATION->SetAdditionalCSS("/css/form.css",true);
+$APPLICATION->SetAdditionalCSS("/foodshot/foodshot.css",true);
+?>
 <script type="text/javascript">
 (function(d){
   var f = d.getElementsByTagName('SCRIPT')[0], p = d.createElement('SCRIPT');
@@ -23,11 +25,6 @@ $APPLICATION->SetTitle("Фудшот — красивые фотографии �
   f.parentNode.insertBefore(p, f);
 }(document));
 </script>
-<?
-$APPLICATION->AddHeadScript('/js/elem.js');
-$APPLICATION->SetAdditionalCSS("/css/form.css",true);
-$APPLICATION->SetAdditionalCSS("/foodshot/foodshot.css",true);
-?>
 <h1><span class="b-h1-heading">Фудшот</span> <span class="b-h1-choice">
 <?
 if(intval($_REQUEST["id"]) > 0){
@@ -45,7 +42,6 @@ if(intval($_REQUEST["id"]) > 0){
 
 	}
 }
-//echo "<!--@";print_r($_SERVER);echo "@-->";
 ?>
 <?if(CUser::IsAUthorized()):?><a href="/foodshot/add/" class="b-h1-choice__item b-h1-choice__add-foodshot" id="add-foodshot-button">Добавить фудшот</a><?endif;?></span><div class="i-clearfix"></div></h1>
 <script type="text/html" id="foodshot-detail-template">

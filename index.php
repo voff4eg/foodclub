@@ -8,7 +8,7 @@ if (CModule::IncludeModule("advertising")){
 
 $APPLICATION->SetPageProperty("title", "Кулинарные рецепты с фотографиями этапов приготовления. Foodclub.ru");
 $APPLICATION->SetPageProperty("description", "Кулинарные рецепты со всего света. Удобный поиск, пошаговые фотографии кулинарных рецептов.");
-$APPLICATION->SetPageProperty("keywords", "кулинарные рецепты, рецепт, кулинария, фото рецепты, рецепты с фотографиями, фото блюд");
+$APPLICATION->SetPageProperty("keywords", "кулинарные рецепты, кулинарный сайт, рецепт, кулинария, фото рецепты, рецепты с фотографиями, фото блюд");
 
 CModule::IncludeModule("blog");
 CModule::IncludeModule("socialnetwork");

@@ -1,6 +1,8 @@
 <?
 require($_SERVER["DOCUMENT_ROOT"]."/bitrix/header.php");
 
+$APPLICATION->AddHeadScript("/js/history/scripts/bundled/html4+html5/jquery.history.js");
+
 $APPLICATION->SetPageProperty("title", "Фото рецепты, кулинарные рецепты с фото");
 $APPLICATION->SetPageProperty("description", "Фото рецепты на сайте foodclub.ru с подробными описаниями каждого этапа приготовления и пошаговыми фотографиями.");
 $APPLICATION->SetPageProperty("keywords", "фото рецепты, рецепты с фото, рецепты с пошаговыми фотографиями, рецепты с фотографиями, фотографии блюд");

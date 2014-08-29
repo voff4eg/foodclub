@@ -1,5 +1,5 @@
-
-<div class="b-best-block__item"> 	<a href="/dieticheskie-blyuda/" class="b-best-block__item__image" ><img src="/upload/medialibrary/71c/dieticheskie_bluda.png" width="100%" alt="Рецепты диетических блюд" title="Рецепты диетических блюд"  /></a> 	 
+ 
+<div class="b-best-block__item"> 	<a href="/dieticheskie-blyuda/" class="b-best-block__item__image" ><img src="/upload/medialibrary/608/dieticheskie_bluda.jpg" width="100%" alt="Рецепты диетических блюд" title="Рецепты диетических блюд"  /></a> 	 
   <h3><a href="/dieticheskie-blyuda/" >Диетические блюда</a></h3>
  	 
   <p>Многие из&nbsp;тех, кто хочет похудеть или по&nbsp;<nobr>каким-то</nobr> другим причинам ограничивает себя в&nbsp;питании, даже не&nbsp;представляют, какой разнообразной и&nbsp;аппетитной может быть диетическая пища! Надо только подобрать правильный рецепт&hellip;</p>
@@ -58,3 +58,4 @@
  
   <p>На&nbsp;самом деле не&nbsp;все в&nbsp;этом разделе&nbsp;— это именно пельмени в&nbsp;традиционном понимании этого слова. Здесь вы&nbsp;найдете и&nbsp;родственные им&nbsp;блюда из&nbsp;разных кухонь: вареники, равиоли, тортелли, манты, хинкали ушки и&nbsp;всё, что готовится в&nbsp;виде небольших конвертиков, кулечков, мешочков из&nbsp;пресного теста с&nbsp;вкусной начинкой.</p>
  </div>
+ 

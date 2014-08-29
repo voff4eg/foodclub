@@ -1,5 +1,7 @@
-<link rel="stylesheet" type="text/css" href="/foodshot/foodshot-add.css">
-
+<?
+$APPLICATION->AddHeadScript('/foodshot/script.js');
+$APPLICATION->SetAdditionalCSS("/foodshot/foodshot-add.css",true);
+?>
 <div id="add-foodshot-layer" style="display: none;">
 	<a href="#" class="b-close-icon"></a>
 
@@ -71,15 +73,7 @@
 					<input type="hidden" name="photo" value="<%=files[i].url%>">
 				<% } %>
 				</script>
-
-
-
-				<script src="/js/file-upload/js/vendor/jquery.ui.widget.js"></script>
-				<script src="/js/file-upload/js/jquery.iframe-transport.js"></script>
-				<script src="/js/file-upload/js/jquery.fileupload.js"></script>
-				<script src="/js/file-upload/js/jquery.fileupload-fp.js"></script>
-				<script src="/foodshot/jquery.fileupload-ui.js"></script>
-				<script src="/foodshot/script.js"></script>
+				
 				<!-- The XDomainRequest Transport is included for cross-domain file deletion for IE8+ -->
 				<!--[if gte IE 8]><script src="js/cors/jquery.xdr-transport.js"></script><![endif]-->
 

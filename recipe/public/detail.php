@@ -942,7 +942,7 @@ $template = "custom";
 		<?=$strBlockLike?>		
 		<?require($_SERVER["DOCUMENT_ROOT"]."/facebook_box.html");?>
 		<?if(strlen($strSecond_banner) > 0){
-			$APPLICATION->AddHeadString('<link rel="stylesheet" type="text/css" href="/css/floating_banner.css">');
+			$APPLICATION->SetAdditionalCSS("/css/floating_banner.css");
 			$APPLICATION->AddHeadScript('/js/floating_banner.js');?>
 			<div class="clear"></div>
 			<div class="banner" data-floating="true">
@@ -953,7 +953,7 @@ $template = "custom";
 	</div>
 	<div class="clear"></div>
 	<div style="margin: 45px 0;">
-	<script charset="UTF-8" src="//www.travelpayouts.com/widgets/2e904aed9b11dc04a26ae5f66e4a9820.js?v=176"></script>
+	<?/*?><script charset="UTF-8" src="//www.travelpayouts.com/widgets/2e904aed9b11dc04a26ae5f66e4a9820.js?v=176"></script><?*/?>
 	</div>
 </div>
 <?//include(__DIR__."/recipe_print.html");

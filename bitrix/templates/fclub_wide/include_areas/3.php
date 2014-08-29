@@ -1,5 +1,5 @@
  
-<div class="b-best-block__item"> 	 	<a href="/retsepty-pitstsy/" class="b-best-block__item__image" ><img src="/upload/medialibrary/800/pitsa_recepti.png" width="100%" alt="Рецепты пиццы" title="Рецепты пиццы"  /></a> 
+<div class="b-best-block__item"> 	 	<a href="/retsepty-pitstsy/" class="b-best-block__item__image" ><img src="/upload/medialibrary/f74/pitsa_recepti.jpg" width="100%" alt="Рецепты пиццы" title="Рецепты пиццы"  /></a> 
   <h3><a href="/retsepty-pitstsy/" >Рецепты Пиццы</a></h3>
  	 
   <p>Сделать домашнюю пиццу? Проще простого: смотрите нашу подборку, выбирайте рецепт теста для пиццы и&nbsp;начинку. Домашняя пицца&nbsp;&mdash; это самый простой способ накормить всех, даже самых голодных.</p>

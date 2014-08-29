@@ -23,30 +23,30 @@ if(value == "/foodshot/"){
 }
 </script>';
 }?>
-<?if(strpos($APPLICATION->GetCurDir(), "recipe/") !== false && $APPLICATION->GetCurPage() != "/recipe/public/detail_opt.php"){
-$APPLICATION->SetAdditionalCSS("/css/admin/styles.css");
-$APPLICATION->SetAdditionalCSS("/css/helper.css");?>
-<script src="/js/jscript.js" type="text/javascript"></script>
-<script src="/js/admin/jscript.js" type="text/javascript"></script>
-<script src="/js/helper.js" type="text/javascript"></script>
-<script src="/js/history/scripts/bundled/html4+html5/jquery.history.js"></script>
-<?} else {?>
-<?/*$file = file_get_contents('http://foodclub.ru/css/styles.css', true);
-echo '<link rel="stylesheet" type="text/css" href="/css/styles.v'.crc32($file).'.css">';*/
-?>
-<?
+<?if(strpos($APPLICATION->GetCurDir(), "recipe/") !== false){
+$APPLICATION->SetAdditionalCSS("/css/admin/styles.css",true);
+$APPLICATION->SetAdditionalCSS("/css/helper.css",true);
+
+$APPLICATION->AddHeadScript("/js/jscript.js");
+$APPLICATION->AddHeadScript("/js/admin/jscript.js");
+$APPLICATION->AddHeadScript("/js/helper.js");
+//$APPLICATION->AddHeadScript("/js/history/scripts/bundled/html4+html5/jquery.history.js");
+
+} else {
+
 $APPLICATION->AddHeadScript("/js/elem.js");
 $APPLICATION->AddHeadScript("/js/jscript.js");
+
+$APPLICATION->AddHeadScript("/recipe_links.js");
+$APPLICATION->AddHeadScript("/js/helper.js");
+//$APPLICATION->AddHeadScript("/js/history/scripts/bundled/html4+html5/jquery.history.js");
+
+$APPLICATION->SetAdditionalCSS("/css/helper.css",true);
 ?>
-<link rel="stylesheet" type="text/css" href="/css/helper.css">
-<script src="/recipe_links.js" type="text/javascript"></script>
-<script src="/js/helper.js" type="text/javascript"></script>
-<script src="/js/history/scripts/bundled/html4+html5/jquery.history.js"></script>
 <meta name="title" content="<?$APPLICATION->ShowTitle();?>" />
-<?//echo $APPLICATION->AddBufferContent("setHeaderContent");?>
 <?}?>
 <?if($APPLICATION->GetCurDir() == "/recipes/"):?>
-<script src="/js/ss_data.js?<?=filectime($_SERVER["DOCUMENT_ROOT"]."/js/ss_data.js")?>" type="text/javascript"></script>
+<?$APPLICATION->AddHeadScript("/js/ss_data.js");?>
 <?endif;?>
 <?$APPLICATION->AddHeadScript("https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js");?>
 

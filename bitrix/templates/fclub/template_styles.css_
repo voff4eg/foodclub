@@ -443,7 +443,6 @@ div.capture div.code {
 div.two_buttons {height:49px;}
 div.two_buttons div.button {
 	float:left;
-
 	width:506px;}
 div.two_buttons div.first {
 	margin-right:14px;
@@ -1389,7 +1388,6 @@ div.thematic_block ul.recipes span.author {
 	font-size:9pt;
 	padding:7px 0 16px;
 	text-align:center;}
-
 #cooks_space h2 a {font-size:9pt;}
 #cooks_feed ul {
 	margin:0;
@@ -2195,10 +2193,10 @@ div.input_file .browse_button {
 	background: url(/images/buttons.png) no-repeat 0 -2660px;
 	cursor: pointer;
 }
-.browse_button:hover {
+div.input_file .browse_button:hover {
 	background-position: 0 -2711px;
 }
-.browse_button:active {
+div.input_file .browse_button:active {
 	background-position: 0 -2762px;
 }
 div.input_file .browse_button input {
@@ -2225,6 +2223,41 @@ div.file_name img.attention {
 	background-position:left -7px;
 	margin:0 0 0 8px;}
 input.customFile {cursor:default;}
+
+.i-progress div.input_file .browse_button {
+	background: url(/images/button-preloader-static.png) no-repeat center center;
+	cursor: default;
+	-webkit-animation: rotate-preloader 1s linear infinite normal;
+	-moz-animation: rotate-preloader 1s linear infinite normal;
+	-ms-animation: rotate-preloader 1s linear infinite normal;
+	-o-animation: rotate-preloader 1s linear infinite normal;
+	animation: rotate-preloader 1s linear infinite normal;
+}
+@-webkit-keyframes rotate-preloader {
+	0% {transform: rotate(0deg);}
+	50% { transform: rotate(180deg);}
+	100% { transform: rotate(360deg);}
+}
+@-moz-keyframes rotate-preloader {
+	0% {transform: rotate(0deg);}
+	50% { transform: rotate(180deg);}
+	100% { transform: rotate(360deg);}
+}
+@-ms-keyframes rotate-preloader {
+	0% {transform: rotate(0deg);}
+	50% { transform: rotate(180deg);}
+	100% { transform: rotate(360deg);}
+}
+@-o-keyframes rotate-preloader {
+	0% {transform: rotate(0deg);}
+	50% { transform: rotate(180deg);}
+	100% { transform: rotate(360deg);}
+}
+@keyframes rotate-preloader {
+	0% {transform: rotate(0deg);}
+	50% { transform: rotate(180deg);}
+	100% { transform: rotate(360deg);}
+}
 /*_Forms_*/
 
 /*Personal*/
