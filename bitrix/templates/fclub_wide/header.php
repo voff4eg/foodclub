@@ -71,7 +71,7 @@ require_once($_SERVER["DOCUMENT_ROOT"].'/classes/main.class.php');?>
 
 <script type='text/javascript'>var _merchantSettings=_merchantSettings || [];_merchantSettings.push(['AT', '1l3vmcn']);(function(){var autolink=document.createElement('script');autolink.type='text/javascript';autolink.async=true; autolink.src= ('https:' == document.location.protocol) ? 'https://autolinkmaker.itunes.apple.com/js/itunes_autolinkmaker.js' : 'http://autolinkmaker.itunes.apple.com/js/itunes_autolinkmaker.js';var s=document.getElementsByTagName('script')[0];s.parentNode.insertBefore(autolink, s);})();</script>
 
-<?$APPLICATION->IncludeFile("/include/an.php", Array(), Array("MODE"=>"html"))?>
+<?//$APPLICATION->IncludeFile("/include/an.php", Array(), Array("MODE"=>"html"))?>
 <div id="fb-root"></div>
 <a href="https://plus.google.com/118442365793857710655" rel="publisher" style="font-size:0; display:none;">Google+</a>
 <script>(function(d, s, id) {

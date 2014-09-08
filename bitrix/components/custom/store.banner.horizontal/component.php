@@ -1,7 +1,8 @@
 <?
 if(!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED!==true) die();
 
-$APPLICATION->AddHeadString('<link href="/bitrix/components/custom/store.banner.horizontal/templates/.default/store.css"  type="text/css" rel="stylesheet" />',true);
+//$APPLICATION->AddHeadString('<link href="/bitrix/components/custom/store.banner.horizontal/templates/.default/store.css"  type="text/css" rel="stylesheet" />',true);
+$APPLICATION->SetAdditionalCSS('/bitrix/components/custom/store.banner.horizontal/templates/.default/store.css',true);
 
 if (CModule::IncludeModule("advertising")){
 	$banner1 = CAdvBanner::Show("store_horizontal");

@@ -1,9 +1,3 @@
-@import url("/css/profile.css");
-@import url("/css/elem.css");
-/*Changes
-.other_recipes on the recipe page
-*/
-
 /*Elements*/
 html {overflow-y: scroll;}
 * {

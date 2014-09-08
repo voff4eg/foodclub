@@ -1,10 +1,14 @@
 <?
 //require($_SERVER["DOCUMENT_ROOT"]."/bitrix/header.php");
 require_once($_SERVER["DOCUMENT_ROOT"]."/bitrix/modules/main/include/prolog_before.php");
+define("MINIMIZE", true);
 //require_once($_SERVER["DOCUMENT_ROOT"]."/bitrix/modules/main/include/prolog_after.php");
 /*if($APPLICATION->GetCurDir() == "/detail/".intval($_REQUEST['r'])."/"){
 	LocalRedirect("/recipe/".intval($_REQUEST['r'])."/",true,"301 Moved Permanently");
 }*/
+
+$APPLICATION->SetAdditionalCSS("/css/recipe.css");
+$APPLICATION->AddHeadScript("/js/recipe.js");
 
 if (CModule::IncludeModule("advertising"))
 {
@@ -257,12 +261,13 @@ if($obCache->InitCache($cache_time, $cache_id, $cache_dir)){
 
 		$intCount = count($arResult['PROPERTY_RECIPT_STEPS_VALUE']);
 
-		$rsStages = CIBlockElement::GetList(Array(), Array("ID"=>$arResult['PROPERTY_RECIPT_STEPS_VALUE']), false, false, Array("ID", "NAME", "PREVIEW_PICTURE", "PREVIEW_TEXT", "PROPERTY_ingredient", "PROPERTY_numer", "PROPERTY_parent"));
+		$rsStages = CIBlockElement::GetList(Array(), Array("ID"=>$arResult['PROPERTY_RECIPT_STEPS_VALUE']), false, false, Array("ID", "NAME", "PREVIEW_PICTURE", "DETAIL_PICTURE", "PREVIEW_TEXT", "PROPERTY_ingredient", "PROPERTY_numer", "PROPERTY_parent"));
 		while($arStage = $rsStages->GetNext()){
 
 			$arStages[ $arStage['ID'] ]['ID'] = $arStage['ID'];
 			$arStages[ $arStage['ID'] ]['NAME'] = $arStage['NAME'];
 			$arStages[ $arStage['ID'] ]['PREVIEW_PICTURE'] = $arStage['PREVIEW_PICTURE'];
+			$arStages[ $arStage['ID'] ]['DETAIL_PICTURE'] = $arStage['DETAIL_PICTURE'];
 			$arStages[ $arStage['ID'] ]['~PREVIEW_TEXT'] = $arStage['~PREVIEW_TEXT'];
 			$arStages[ $arStage['ID'] ]['PREVIEW_TEXT'] = $arStage['PREVIEW_TEXT'];
 			$arStages[ $arStage['ID'] ]['PROPERTY_INGREDIENT_VALUE'][ $arStage['PROPERTY_INGREDIENT_VALUE_ID'] ] = $arStage['PROPERTY_INGREDIENT_VALUE'];
@@ -310,6 +315,7 @@ if($obCache->InitCache($cache_time, $cache_id, $cache_dir)){
 								"ID" => $strStep['ID'],
 								"NAME" => $strStep['NAME'],
 								"PREVIEW_PICTURE" => $strStep['PREVIEW_PICTURE'],
+								"DETAIL_PICTURE" => $strStep['DETAIL_PICTURE'],
 								"PREVIEW_TEXT" => $strStep['PREVIEW_TEXT'],
 								"~PREVIEW_TEXT" => $strStep['~PREVIEW_TEXT']
 								);
@@ -359,7 +365,10 @@ if($obCache->InitCache($cache_time, $cache_id, $cache_dir)){
 			}
 			$arResult["kkals"] = $kkals;
 			$rsFile = CFile::GetByID($arStageFields['PREVIEW_PICTURE']);
-			$arFile = $rsFile->Fetch();?>
+			$arFile = $rsFile->Fetch();
+			$rsDetailFile = CFile::GetByID($arStageFields['DETAIL_PICTURE']);
+			$arDetailFile = $rsDetailFile->Fetch();
+			?>
 			<?if(!$bFirst){?><div class="border"></div><?} else {$bFirst = false;}?>
 				<div class="stage">
 					<div class="body">
@@ -383,7 +392,9 @@ if($obCache->InitCache($cache_time, $cache_id, $cache_dir)){
 						</table>
 					</div>
 					<?} //if?>
-					<?if(IntVal($arStageFields['PREVIEW_PICTURE']) > 0):?>
+					<?if(intval($arStageFields["DETAIL_PICTURE"])):?>
+						<div class="image"><div class="screen"><div style="width: <?=$arDetailFile['WIDTH']?>px; height: <?=$arDetailFile['HEIGHT']?>px;"></div></div><img src="/upload/<?=$arFile['SUBDIR']?>/<?=$arFile['FILE_NAME']?>" data-src="/upload/<?=$arDetailFile['SUBDIR']?>/<?=$arDetailFile['FILE_NAME']?>" alt="<?=(strlen($arFile['DESCRIPTION']) > 0 ? $arFile['DESCRIPTION'] : $arRecipe['NAME']." ".$strMKey." этап")?>" title="<?=(strlen($arFile['DESCRIPTION']) > 0 ? $arFile['DESCRIPTION'] : $arRecipe['NAME']." ".$strMKey." этап")?>" width="<?=$arDetailFile['WIDTH']?>" height="<?=$arDetailFile['HEIGHT']?>" class="photo"></div>
+					<?elseif(IntVal($arStageFields['PREVIEW_PICTURE']) > 0):?>
 						<div class="image"><div class="screen"><div style="width: <?=$arFile['WIDTH']?>px; height: <?=$arFile['HEIGHT']?>px;"></div></div><img src="/upload/<?=$arFile['SUBDIR']?>/<?=$arFile['FILE_NAME']?>" alt="<?=(strlen($arFile['DESCRIPTION']) > 0 ? $arFile['DESCRIPTION'] : $arRecipe['NAME']." ".$strMKey." этап")?>" title="<?=(strlen($arFile['DESCRIPTION']) > 0 ? $arFile['DESCRIPTION'] : $arRecipe['NAME']." ".$strMKey." этап")?>" width="<?=$arFile['WIDTH']?>" height="<?=$arFile['HEIGHT']?>" class="photo"></div>
 					<?endif;?>
 					<?if(strlen($arStageFields['~PREVIEW_TEXT']) > 0){?>
@@ -428,8 +439,11 @@ if($obCache->InitCache($cache_time, $cache_id, $cache_dir)){
 				if($Avatar = $rsAvatar->Fetch()){
 					$arAuthor["avatar"] = "/upload/".$Avatar['SUBDIR']."/".$Avatar['FILE_NAME'];					
 				}
+				$file = CFile::ResizeImageGet($arAuthor['PERSONAL_PHOTO'], array('width'=>30, 'height'=>30), BX_RESIZE_IMAGE_PROPORTIONAL, true);
+				$arAuthor["small_avatar"] = $file["src"];
 			} else {
 				$arAuthor["avatar"] = "/images/avatar/avatar.jpg";
+				$arAuthor["small_avatar"] = "/images/avatar/avatar_small.jpg";
 			}
 
 			$rsCount = CIBlockElement::GetProperty(5, $arResult["ID"], "sort", "asc", Array("CODE"=>"comment_count"));
@@ -664,7 +678,7 @@ if($obCache->InitCache($cache_time, $cache_id, $cache_dir)){
 		<div class="title">
 			<div class="body">			
 			<div class="chain_path">
-				<div class="author"><div class="author_photo"><div class="big_photo" style="display: none;"><div><img width="100" height="100" alt="<?=$arAuthor["FULLNAME"]?>" src="<?=$arAuthor["avatar"]?>"></div></div><img width="30" height="30" alt="<?=$arAuthor["FULLNAME"]?>" src="<?=$arAuthor["avatar"]?>"></div><a class="nickname" href="/profile/<?=$arAuthor["ID"]?>/" title="<?=$arAuthor["FULLNAME"]?>"><?if(strlen($arAuthor["FULLNAME"]) > 10):?><?=substr($arAuthor["FULLNAME"],0,10)?>...<?else:?><?=$arAuthor["FULLNAME"]?><?endif;?></a></div>
+				<div class="author"><div class="author_photo"><div class="big_photo" style="display: none;"><div><img width="100" height="100" alt="<?=$arAuthor["FULLNAME"]?>" src="<?=$arAuthor["avatar"]?>"></div></div><img width="30" height="30" alt="<?=$arAuthor["FULLNAME"]?>" src="<?=$arAuthor["small_avatar"]?>"></div><a class="nickname" href="/profile/<?=$arAuthor["ID"]?>/" title="<?=$arAuthor["FULLNAME"]?>"><?if(strlen($arAuthor["FULLNAME"]) > 10):?><?=substr($arAuthor["FULLNAME"],0,10)?>...<?else:?><?=$arAuthor["FULLNAME"]?><?endif;?></a></div>
 				предлагает приготовить:	<span class="tags"><a class="sub-category" href="/search/<?=$arKitchens[ $arResult['PROPERTY_KITCHEN_VALUE'] ]['NAME']?>/" rel="tag"><?=$arKitchens[ $arResult['PROPERTY_KITCHEN_VALUE'] ]['NAME']?></a>/<a href="/search/<?=$arDishType[ $arResult['PROPERTY_DISH_TYPE_VALUE'] ]['NAME']?>/" class="category" rel="tag"><?=$arDishType[ $arResult['PROPERTY_DISH_TYPE_VALUE'] ]['NAME']?></a><?if(intval($arResult["PROPERTY_MAIN_INGREDIENT_VALUE"]) > 0):?>/<a href="/search/<?=$arResult["MAIN_INGREDIENT"]["NAME"]?>/" class="category" rel="tag"><?=$arResult["MAIN_INGREDIENT"]["NAME"]?></a><?endif;?></span>
 			</div>
 			<?if($USER->isAdmin() || $USER->GetID() == $arResult['CREATED_BY']):?>
@@ -758,7 +772,7 @@ if($obCache->InitCache($cache_time, $cache_id, $cache_dir)){
 							<div class="big_photo">
 								<div><img src="<?=$arAuthor["avatar"]?>" width="100" height="100" alt="<?=$arAuthor['FULLNAME']?>"></div>
 							</div>
-							<img src="<?=$arAuthor["avatar"]?>" width="30" height="30" alt="<?=$arAuthor['FULLNAME']?>">
+							<img src="<?=$arAuthor["small_avatar"]?>" width="30" height="30" alt="<?=$arAuthor['FULLNAME']?>">
 						</div>
 						<a class="nickname" href="/profile/<?=$arAuthor['ID']?>/" title="<?=$arAuthor['FULLNAME']?>"><?if(strlen($arAuthor['FULLNAME']) > 10):?><?=substr($arAuthor['FULLNAME'],0,10)?>...<?else:?><?=$arAuthor['FULLNAME']?><?endif;?></a>
 					</div>
@@ -844,11 +858,6 @@ if($obCache->InitCache($cache_time, $cache_id, $cache_dir)){
 <a name="comments"></a>
 <?
 $template = "custom";
-/*if(CUser::GetID() == 2253){
-	$template = "custom";
-}else{
-	$template = ".default";
-}*/
 ?>
 <?$APPLICATION->IncludeComponent("custom:recipe.comments", $template, Array(
 	"DISPLAY_DATE" => "Y",	// Выводить дату элемента
@@ -940,7 +949,7 @@ $template = "custom";
 			</div>
 		<?}?>
 		<?=$strBlockLike?>		
-		<?require($_SERVER["DOCUMENT_ROOT"]."/facebook_box.html");?>
+		<?//require($_SERVER["DOCUMENT_ROOT"]."/facebook_box.html");?>
 		<?if(strlen($strSecond_banner) > 0){
 			$APPLICATION->SetAdditionalCSS("/css/floating_banner.css");
 			$APPLICATION->AddHeadScript('/js/floating_banner.js');?>
@@ -952,207 +961,13 @@ $template = "custom";
 		<?}?>
 	</div>
 	<div class="clear"></div>
-	<div style="margin: 45px 0;">
-	<?/*?><script charset="UTF-8" src="//www.travelpayouts.com/widgets/2e904aed9b11dc04a26ae5f66e4a9820.js?v=176"></script><?*/?>
-	</div>
 </div>
-<?//include(__DIR__."/recipe_print.html");
-//$file = file_get_contents('/recipe_print.html', true);?>
 <script type="text/html" id="print-recipe">
 <!DOCTYPE HTML>
 <html>
 <head>
 <title><%=title%></title>
-<style>
-@media print {
-	.b-print-button, .screen {
-		display: none;
-	}
-}
-
-html {overflow-y: scroll;}
-* {
-	padding: 0;
-	margin: 0;}
-body {
-	font-size: 10pt;
-	width: 100%;
-	height: 100%;
-	background: #ffffff;
-	color: #333333;
-	font-family: Tahoma, Arial, Helvetica, sans-serif;}
-img {
-	border: 0;
-	vertical-align: bottom;
-}
-table, table td {border-collapse: collapse;}
-table td {vertical-align: top;}
-p {margin-top: 10px;}
-h1, h2, h3, h4, h5, h6 {
-	font-weight: normal;
-	font-family: Georgia, Times, serif;
-}
-h1 {
-	font-size: 20pt;
-	margin: 0 0 20px 0;}
-h2 {
-	font-size: 14pt;
-	color: #999999;
-	margin-bottom: 10px;
-}
-h3 {
-	font-size: 14pt;
-	font-family: Georgia, Times, serif;}
-h4 {}
-h5 {
-	color: #999999;
-	font-size: 10pt;
-	font-family: Georgia, Times, serif;
-	font-style: italic;}
-h6 {}
-
-.i-clearfix {
-	clear: both;
-	height: 0;
-	overflow: hidden;
-	width: 1px;}
-
-
-#body {
-	width: 602px;
-	padding: 50px 0;
-	margin: 0 auto;
-}
-#recipe {
-	border-left: 1px solid #cccccc;
-	border-right: 1px solid #cccccc;
-	padding: 30px 50px;
-}
-#top_decor, #bottom_decor {
-	height:4px;
-	font-size: 0;
-}
-
-.b-button {
-	display: inline-block;
-	height: 43px;
-	//height: 31px;
-	background: url(/images/buttons.png) repeat-x 0 -1841px;
-	color: #ffffff;
-	font-size: 11pt;
-	font-family: Georgia, "Times New Roman", Times, serif;
-	color: #7d7c7c;
-	text-shadow: 0 1px 0 #ffffff;
-	cursor: pointer;
-	text-align: center;
-	padding: 12px 18px 0 18px;
-	-moz-border-radius: 5px; /* Firefox */
-	-webkit-border-radius: 5px; /* Safari, Chrome */
-	-khtml-border-radius: 5px; /* KHTML */
-	border-radius: 5px; /* CSS3 */
-	box-sizing: border-box;
-	-moz-box-sizing: border-box;
-	-webkit-box-sizing: border-box;
-	-khtml-box-sizing: border-box;
-	border: 0;
-	text-decoration: none;}
-.b-button:hover {background-position:0 -1884px;}
-.b-button:active {background-position:0 -1927px;}
-
-.b-print-button {text-align:center;}
-
-.b-print-head {
-	margin: 30px 0 35px 0;
-}
-.b-print-head__logo {
-	float: left;
-	margin: 0 27px 0 0;
-}
-.b-logo {
-	width: 89px;
-	height: 63px;
-}
-.b-print-head__slogan {
-	float: left;
-	margin: 12px 0 0 0;
-}
-.b-slogan {
-	font-family: Georgia, "Times New Roman", Times, serif;
-	font-size: 9pt;
-	font-style: italic;
-	color: #666666;
-}
-.b-print-head__web {
-	float: right;
-	margin: 18px 0 0 0;
-}
-.b-web {
-	font-family: Georgia, "Times New Roman", Times, serif;
-	font-size: 18pt;
-	font-style: italic;
-}
-
-.needed {
-	margin: 0 0 30px 0;
-	color: #666666;}
-.needed table {
-	width: 100%;
-	border-top: 1px solid #ebebeb;
-	margin-top: 8px;}
-.needed table td {
-	border-bottom: 1px solid #ebebeb;
-	font-size: 8pt;
-	vertical-align: middle;}
-.needed table td.ing_name {
-	padding: 5px 13px;
-	width: 35%;}
-.needed table td.ing_amount {
-	padding: 5px 13px 5px 0;
-	width: 15%;}
-.needed table td.border {border-left:1px solid #ebebeb;}
-
-.recipe_info {
-	color: #666666;
-	margin: 0 0 28px 0;}
-.recipe_info table {
-	width:100%;
-	border-top:1px solid #ebebeb;}
-.recipe_info td {
-	border-bottom:1px solid #ebebeb;
-	font-size:8pt;
-	vertical-align:middle;}
-.recipe_info td.time {
-	padding:5px 13px;
-	width:42%;}
-.recipe_info td.yield {
-	padding:5px 13px 5px 0;
-	width:16%;}
-.recipe_info td.nutrition {
-	padding:5px 13px 5px 0;
-	width:42%;
-	text-align:right;}
-.recipe_info span {color:#999999;}
-
-.image {
-	float: left;
-	margin: 0 15px 0 0;
-}
-.description, .instruction {
-	float: left;
-	width: 280px;
-}
-
-.screen {position:relative;}
-.screen div {
-	position:absolute;
-	top:0;
-	left:0;
-	background:url(/images/spacer.gif) no-repeat 0 0;}
-
-.stage, .title {
-	margin-bottom: 40px;
-}
-</style>
+<link href="/css/print.css?140912446479610" type="text/css"  rel="stylesheet" />
 </head>
 
 <body>

@@ -6,8 +6,15 @@ IncludeTemplateLangFile(__FILE__);
       xmlns:og="http://ogp.me/ns#"
       xmlns:fb="http://www.facebook.com/2008/fbml">
 <head>
+<?$APPLICATION->ShowMeta("robots")?>
+<?$APPLICATION->ShowMeta("keywords")?>
+<?$APPLICATION->ShowMeta("description")?>
 <title><?$APPLICATION->ShowTitle()?></title>
-<?$APPLICATION->ShowHead(true)?>
+<?$APPLICATION->ShowCSS();?>
+<script type="text/javascript" src="/js/jquery-1.8.3.min.js?<?=filectime($_SERVER["DOCUMENT_ROOT"]."/js/jquery-1.8.3.min.js")?>"></script>
+<?$APPLICATION->ShowHeadStrings()?>
+<?$APPLICATION->ShowHeadScripts()?>
+<?//$APPLICATION->ShowHead(true)?>
 <meta name="verify-v1" content="IFNqswFktC+hhGa2ZKs6Ale87GxdIORrcVznFXPdEh4=" >
 <meta name='yandex-verification' content='7e14af38f0152a84' />
 <meta name='yandex-verification' content='4606e113f2b24cf7' />
@@ -23,11 +30,15 @@ if(value == "/foodshot/"){
 }
 </script>';
 }?>
-<?if(strpos($APPLICATION->GetCurDir(), "recipe/") !== false){
+<?//$APPLICATION->AddHeadScript("/js/jquery-1.8.3.min.js");?>
+<?
+$APPLICATION->SetAdditionalCSS("/css/profile.css");
+$APPLICATION->SetAdditionalCSS("/css/elem.css");
+if(strpos($APPLICATION->GetCurDir(), "recipe/") !== false){
 $APPLICATION->SetAdditionalCSS("/css/admin/styles.css",true);
 $APPLICATION->SetAdditionalCSS("/css/helper.css",true);
 
-$APPLICATION->AddHeadScript("/js/jscript.js");
+$APPLICATION->AddHeadScript("/js/jscript-min.js");
 $APPLICATION->AddHeadScript("/js/admin/jscript.js");
 $APPLICATION->AddHeadScript("/js/helper.js");
 //$APPLICATION->AddHeadScript("/js/history/scripts/bundled/html4+html5/jquery.history.js");
@@ -35,7 +46,7 @@ $APPLICATION->AddHeadScript("/js/helper.js");
 } else {
 
 $APPLICATION->AddHeadScript("/js/elem.js");
-$APPLICATION->AddHeadScript("/js/jscript.js");
+$APPLICATION->AddHeadScript("/js/jscript-min.js");
 
 $APPLICATION->AddHeadScript("/recipe_links.js");
 $APPLICATION->AddHeadScript("/js/helper.js");
@@ -45,10 +56,10 @@ $APPLICATION->SetAdditionalCSS("/css/helper.css",true);
 ?>
 <meta name="title" content="<?$APPLICATION->ShowTitle();?>" />
 <?}?>
+<?//$APPLICATION->AddHeadScript("https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js");?>
 <?if($APPLICATION->GetCurDir() == "/recipes/"):?>
 <?$APPLICATION->AddHeadScript("/js/ss_data.js");?>
 <?endif;?>
-<?$APPLICATION->AddHeadScript("https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js");?>
 
 <!-- Vkontakte -->
 <script type="text/javascript" src="http://userapi.com/js/api/openapi.js?47"></script>
@@ -75,7 +86,11 @@ require_once($_SERVER["DOCUMENT_ROOT"].'/classes/main.class.php');?>
 
 <script type='text/javascript'>var _merchantSettings=_merchantSettings || [];_merchantSettings.push(['AT', '1l3vmcn']);(function(){var autolink=document.createElement('script');autolink.type='text/javascript';autolink.async=true; autolink.src= ('https:' == document.location.protocol) ? 'https://autolinkmaker.itunes.apple.com/js/itunes_autolinkmaker.js' : 'http://autolinkmaker.itunes.apple.com/js/itunes_autolinkmaker.js';var s=document.getElementsByTagName('script')[0];s.parentNode.insertBefore(autolink, s);})();</script>
 
-<?$APPLICATION->IncludeFile("/include/an.php", Array(), Array("MODE"=>"html"))?>
+<?
+//$APPLICATION->SetAdditionalCSS("/css/android.css");
+//$APPLICATION->AddHeadScript("/js/android.js");
+//$APPLICATION->IncludeFile("/include/an.php", Array(), Array("MODE"=>"html"));
+?>
 <div id="fb-root"></div>
 <a href="https://plus.google.com/118442365793857710655" rel="publisher" style="font-size:0; display:none;">Google+</a>
 <script>(function(d, s, id) {

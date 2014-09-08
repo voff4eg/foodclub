@@ -11,8 +11,7 @@
 	 	}?>
 		<a class="comment" href="/blogs/group/<?=$arComment['BLOG_SOCNET_GROUP_ID']?>/blog/<?=$arComment['POST_ID']?>/<?=$arComment['urlToComment']?>"><?=$arComment['TEXT_FORMATED']?></a>
 		<div class="info">
-			<a class="author" href="/profile/<?=$arComment['arUser']['ID']?>/"><?=$name?></a>
-			<span class="date"><?=$arComment['DATE_CREATE_FORMATED']?></span>
+			<a class="author" href="/profile/<?=$arComment['arUser']['ID']?>/"><?=$name?></a> <span class="date"><?=$arComment['DATE_CREATE_FORMATED']?></span>
 		</div>
 	<?elseif(strlen($arComment["~PREVIEW_TEXT"]) > 0):?>
 		<?if(strlen($arComment['USER']["NAME"]) > 0 && strlen($arComment['USER']["LAST_NAME"]) > 0){
@@ -22,8 +21,7 @@
 	 	}?>
 		<?if($arResult["RECIPES"][ $arComment['PROPERTY_RECIPE_VALUE'] ]):?><a class="comment" href="/detail/<?=$arResult["RECIPES"][ $arComment['PROPERTY_RECIPE_VALUE'] ]?>/?ID=<?=$arComment['ID']?>#<?=$arComment['ID']?>"><?else:?><a class="comment" href="/detail/<?=$arComment['PROPERTY_RECIPE_VALUE']?>/?ID=<?=$arComment['ID']?>#<?=$arComment['ID']?>"><?endif;?><?if(strlen($arComment['~PREVIEW_TEXT']) > 100){echo substr($arComment['~PREVIEW_TEXT'], 0 ,100)."...";}else{echo $arComment['~PREVIEW_TEXT'];}?></a>
 		<div class="info">
-			<a class="author" href="/profile/<?=$arComment["USER"]["ID"]?>/"><?=$name?></a>
-			<span class="date"><?=$arComment['DATE_CREATE']?></span>
+			<a class="author" href="/profile/<?=$arComment["USER"]["ID"]?>/"><?=$name?></a> <span class="date"><?=$arComment['DATE_CREATE']?></span>
 		</div>
 	<?endif;?>
 	</li>

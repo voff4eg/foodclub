@@ -54,16 +54,18 @@ $arMainIngredients[1] = $arMainIngredientNames;
 $arIngredients = array();
 $rsIngredients = CIBlockElement::GetList(array("name"=>"asc"),array("IBLOCK_ID"=>3,"ACTIVE"=>"Y"),false,false,array("ID","NAME","PROPERTY_unit","IBLOCK_SECTION_ID"));
 while($arIngredient = $rsIngredients->GetNext()){
-	$arIngredientIds[ intval($arIngredient["IBLOCK_SECTION_ID"]) ][] = $arIngredient["ID"];
-	$arIngredientNames[ intval($arIngredient["IBLOCK_SECTION_ID"]) ][] = addslashes(htmlspecialchars($arIngredient["NAME"]));
-	$arIngredientMeasures[ intval($arIngredient["IBLOCK_SECTION_ID"]) ][] = $arIngredient["PROPERTY_UNIT_VALUE"];
+	if(intval($arIngredient["IBLOCK_SECTION_ID"])){
+		$arIngredientIds[ intval($arIngredient["IBLOCK_SECTION_ID"]) ][] = $arIngredient["ID"];
+		$arIngredientNames[ intval($arIngredient["IBLOCK_SECTION_ID"]) ][] = addslashes(htmlspecialchars($arIngredient["NAME"]));
+		$arIngredientMeasures[ intval($arIngredient["IBLOCK_SECTION_ID"]) ][] = $arIngredient["PROPERTY_UNIT_VALUE"];
+	}
 }
 $arKeys = array_keys($arIngredientIds);
 if(!empty($arKeys)){
 	$rsIngredientSections = CIBlockSection::GetList(array("name"=>"asc"),array("IBLOCK_ID"=>3,"ID"=>$arKeys));
 	while($arIngredientSection = $rsIngredientSections->GetNext()){
-		$arIngredientSectionIds[] = $arIngredientSection["ID"];
-		$arIngredientSectionNames[] = addslashes(htmlspecialchars($arIngredientSection["NAME"]));
+		$arIngredientSectionIds[ $arIngredientSection["ID"] ] = $arIngredientSection["ID"];
+		$arIngredientSectionNames[ $arIngredientSection["ID"] ] = addslashes(htmlspecialchars($arIngredientSection["NAME"]));
 	}
 }
 
@@ -82,15 +84,19 @@ echo "mainIngredientArray[0] = ".json_encode($arMainIngredientIds).PHP_EOL;
 echo "mainIngredientArray[1] = ".json_encode($arMainIngredientNames).PHP_EOL;
 echo "var ingredientArray =[]; ingredientArray[0]=[]; ingredientArray[1]=[]; ingredientArray[2]=[];ingredientArray[2][0]=[];".PHP_EOL;
 $i = 0;
+$arIndexID = array();
+$arIndexName = array();
 foreach($arIngredientIds as $key => $arSection){
 	echo "ingredientArray[2][".$i."] = [];".PHP_EOL;
 	echo "ingredientArray[2][".$i."][0]=".json_encode(array_values($arSection)).PHP_EOL;
 	echo "ingredientArray[2][".$i."][1]=".json_encode(array_values($arIngredientNames[$key])).PHP_EOL;
-	echo "ingredientArray[2][".$i."][2]=".json_encode(array_values($arIngredientMeasures[$key])).PHP_EOL;	
+	echo "ingredientArray[2][".$i."][2]=".json_encode(array_values($arIngredientMeasures[$key])).PHP_EOL;
+	$arIndexID[$i] = $arIngredientSectionIds[ $key ];
+	$arIndexName[$i] = $arIngredientSectionNames[ $key ];
 	$i++;
 }
-echo "ingredientArray[0] = ".json_encode($arIngredientSectionIds).PHP_EOL;
-echo "ingredientArray[1] = ".json_encode($arIngredientSectionNames).PHP_EOL;
+echo "ingredientArray[0] = ".json_encode($arIndexID).PHP_EOL;
+echo "ingredientArray[1] = ".json_encode($arIndexName).PHP_EOL;
 $content = ob_get_contents();
 ob_end_clean();
 $fp = fopen($_SERVER["DOCUMENT_ROOT"]."/js/ss_data.js", 'w+');

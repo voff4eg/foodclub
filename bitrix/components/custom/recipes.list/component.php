@@ -302,6 +302,10 @@ if($this->StartResultCache(false, array(($arParams["CACHE_GROUPS"]==="N"? false:
 				}
 			}
 
+			if(strlen($arItem["CODE"])){
+				$arItem["DETAIL_PAGE_URL"] = "/detail/".$arItem["CODE"]."/";
+			}
+
 			$arResult["ITEMS"][] = $arItem;
 			$arResult["ELEMENTS"][] = $arItem["ID"];
 		}

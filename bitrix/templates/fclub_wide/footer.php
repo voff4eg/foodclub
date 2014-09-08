@@ -35,18 +35,6 @@ screen.colorDepth:screen.pixelDepth))+";u"+escape(document.URL)+
 //--></script>
 <!--/LiveInternet-->
 </div>
-<div style="margin-top: 20px;">
-<!-- begin of Top100 code -->
-
-<script id="top100Counter" type="text/javascript" src="http://counter.rambler.ru/top100.jcn?2987244"></script>
-<noscript>
-<a href="http://top100.rambler.ru/navi/2987244/">
-<img src="http://counter.rambler.ru/top100.cnt?2987244" alt="Rambler's Top100" border="0" />
-</a>
-
-</noscript>
-<!-- end of Top100 code -->
-</div>
 	</div>
 	</div></div>
 	<div id="top_layer" style="display:none;"><iframe src="/iframe.html" width="10" height="10" frameborder="0"></iframe></div>
@@ -268,6 +256,7 @@ screen.colorDepth:screen.pixelDepth))+";u"+escape(document.URL)+
 	-->
 	</script>
 <?/*endif;*/?>
+<?/*?>
 	<div id="authorization_layer" style="display:none;">
 		<div class="relative">
 			<div class="padding">
@@ -333,6 +322,7 @@ screen.colorDepth:screen.pixelDepth))+";u"+escape(document.URL)+
 			<div class="close_icon"></div>
 		</div>
 	</div>
+<?*/?>
 <!-- Yandex.Metrika counter --><div style="display:none;"><script type="text/javascript">(function(w, c) { (w[c] = w[c] || []).push(function() { try { w.yaCounter7715218 = new Ya.Metrika({id:7715218, clickmap:true, accurateTrackBounce:true}); } catch(e) { } }); })(window, 'yandex_metrika_callbacks');</script></div><script src="//mc.yandex.ru/metrika/watch.js" type="text/javascript" defer="defer"></script><noscript><div><img src="//mc.yandex.ru/watch/7715218" style="position:absolute; left:-9999px;" alt="" /></div>
 </noscript><!-- /Yandex.Metrika counter -->
 

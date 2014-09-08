@@ -53,12 +53,39 @@ foreach(range(0, count($_REQUEST['stage_description'])-1, 1) as $intKey=>$intNum
     );
     
     if (strlen($arPreIMAGE["name"]) > 0){
+		/*$intPreIMAGE = CFile::SaveFile($arPreIMAGE, "iblock");
+		$arLoadProductArray["PREVIEW_PICTURE"] = CFile::MakeFileArray($_SERVER["DOCUMENT_ROOT"].CFile::GetPath($intPreIMAGE));*/
+		if(copy($arPhoto["tmp_name"], $arPhoto["tmp_name"]."~"))
+		{
+			$_FILES["STAGE_PREVIEW_PICTURE"][$intNumer] = $arPhoto;
+			$_FILES["STAGE_PREVIEW_PICTURE"][$intNumer]["tmp_name"] .= "~";
+			
+			$arPREVIEW_PICTURE = CIBlock::ResizePicture($_FILES["STAGE_PREVIEW_PICTURE"][$intNumer], $arStageIBlock["FIELDS"]["PREVIEW_PICTURE"]["DEFAULT_VALUE"]);
+			if(!is_array($arPREVIEW_PICTURE))
+			{
+				if($arStageIBlock["FIELDS"]["PREVIEW_PICTURE"]["DEFAULT_VALUE"]["IGNORE_ERRORS"] === "Y")
+					$arPREVIEW_PICTURE = $_FILES["STAGE_PREVIEW_PICTURE"][$intNumer];
+				else
+				{
+					$arPREVIEW_PICTURE = array(
+						"name" => false,
+						"type" => false,
+						"tmp_name" => false,
+						"error" => 4,
+						"size" => 0,
+					);
+				}
+			}
+			$arLoadProductArray["PREVIEW_PICTURE"] = $arPREVIEW_PICTURE;
+		}else{
+			echo "failed to copy ".$arPhoto['tmp_name']."...\n";
+		}
 		$intPreIMAGE = CFile::SaveFile($arPreIMAGE, "iblock");
-		$arLoadProductArray["PREVIEW_PICTURE"] = CFile::MakeFileArray($_SERVER["DOCUMENT_ROOT"].CFile::GetPath($intPreIMAGE));
+		$arLoadProductArray["DETAIL_PICTURE"] = CFile::MakeFileArray($_SERVER["DOCUMENT_ROOT"].CFile::GetPath($intPreIMAGE));
 	}
 
 	$elStep   = new CIBlockElement;
-	$strIntId = $elStep->Add($arLoadProductArray);
+	$strIntId = $elStep->Add($arLoadProductArray, false, false, true);
 	$arLoadProductArray["IBLOCK_ID"] = 23;
 	$strIntId_fr = $elStep->Add($arLoadProductArray);
 	$arDishStepsId[] = $strIntId;

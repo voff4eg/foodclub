@@ -127,20 +127,6 @@
          
           <ul> 
             <li><a href="/new-year/" title="Новогодние рецепты" >Новогодние рецепты</a></li>
-           
-            <li><a href="/multivarka/" >Рецепты для мультиварки</a></li>
-           
-            <li><a href="/desert/" >Десерт</a></li>
-           
-            <li><a href="/cookies/" >Рецепты печенья</a></li>
-           
-            <li><a href="/pies/" title="Рецепты пирогов" >Рецепты пирогов</a></li>
-           
-            <li><a href="/cakes/" >Рецепты тортов</a></li>
-           
-            <li> 
-              <br />
-             </li>
            </ul>
          </td> <td> 
           <h4>Наши партнеры</h4>

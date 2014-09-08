@@ -40,6 +40,7 @@ if(!isset($arParams["USER_ID"])){
 $this->IncludeComponentTemplate();
 $template = & $this->GetTemplate();
 $templateFile = $template->GetFile();
-$APPLICATION->AddHeadString('<link rel="stylesheet" type="text/css" href="'.str_replace("template.php", "", $templateFile).'additional.css">');
+//$APPLICATION->AddHeadString('<link rel="stylesheet" type="text/css" href="'.str_replace("template.php", "", $templateFile).'additional.css">');
+$APPLICATION->SetAdditionalCSS(str_replace("template.php", "", $templateFile).'additional.css',true);
 $APPLICATION->AddHeadScript(str_replace("template.php", "", $templateFile).'add-script.js');
 ?>

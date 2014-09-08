@@ -19,7 +19,7 @@
   <p><a target="_blank" href="/blogs/group/48/blog/1094/" >Обзор. Мультиварка Philips Avance Collection</a></p>
  </div>
  
-<div class="b-best-block__item"> 	<a href="/recepty-pecheniya/" class="b-best-block__item__image" ><img src="http://www.foodclub.ru/upload/iblock/167/0_4c30e_99738acc_L.jpg" width="100%" alt="Рецепты печенье" title="Рецепты печенье"  /></a> 	 
+<div class="b-best-block__item"> 	<a href="/recepty-pecheniya/" class="b-best-block__item__image" ><img src="/upload/medialibrary/66a/rezepti_pechenia.jpg" width="100%" alt="Рецепты печенья" title="Рецепты печенье"  /></a> 	 
   <h3><a href="/recepty-pecheniya/" >Рецепты печенья</a></h3>
  	 
   <p>Печенье может быть очень многоликим, и&nbsp;ему всегда найдется место в&nbsp;нашем рационе. Сладкое, пряное, закусочное, какое только пожелаете!</p>

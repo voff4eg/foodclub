@@ -1,0 +1,22 @@
+#android-banner {
+	display: none;
+}
+.i-android-banner #android-banner {
+	display: block;
+	text-align: center;
+}
+.i-android #top_panel {
+	position: static;
+}
+.i-android #top_spacer {
+	height: 0;
+}
+.b-ab__close {
+	width: 8%;
+	position: absolute;
+	top: 15px;
+	right: 15px;
+}
+html.i-android {
+	overflow-y: none;
+}

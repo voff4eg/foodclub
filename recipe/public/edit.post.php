@@ -84,13 +84,13 @@ foreach($_REQUEST['stage_description'] as $Key=>$Description){
 		    if(SITE_ID == "s1"){
 		        $arLoadProductArray["IBLOCK_ID"] = 4;
 		    }elseif(SITE_ID == "fr"){
-			$arLoadProductArray["IBLOCK_ID"] = 23;
+				$arLoadProductArray["IBLOCK_ID"] = 23;
 		    }
 		    
 		    /*
 		     * Фотография этапа
 		     */
-		    if($_FILES["photo"]['error'][ $Key ] == 0){
+		    /*if($_FILES["photo"]['error'][ $Key ] == 0){
 				
 		    	$arPhoto = Array(
 			        "name"     => $_FILES["photo"]['name'][$Key],
@@ -113,18 +113,73 @@ foreach($_REQUEST['stage_description'] as $Key=>$Description){
 				}
 		    } elseif(intval($_REQUEST['stage_photo'][$Key]) > 0) {
 		    	$arLoadProductArray["PREVIEW_PICTURE"] = CFile::MakeFileArray(CFile::GetPath($_REQUEST['stage_photo'][$Key]));
+		    }*/
+
+		    if($_FILES["photo"]['error'][ $Key ] == 0){
+				
+		    	$arPhoto = Array(
+			        "name"     => $_FILES["photo"]['name'][$Key],
+			        "type"     => $_FILES["photo"]['type'][$Key],
+			        "tmp_name" => $_FILES["photo"]['tmp_name'][$Key],
+			        "error"    => $_FILES["photo"]['error'][$Key],
+			        "size"     => $_FILES["photo"]['size'][$Key]
+			    );
+
+			    if(copy($arPhoto["tmp_name"], $arPhoto["tmp_name"]."~"))
+				{
+					$_FILES["STAGE_PREVIEW_PICTURE"][$intNumer] = $arPhoto;
+					$_FILES["STAGE_PREVIEW_PICTURE"][$intNumer]["tmp_name"] .= "~";
+					
+					$arPREVIEW_PICTURE = CIBlock::ResizePicture($_FILES["STAGE_PREVIEW_PICTURE"][$intNumer], $arStageIBlock["FIELDS"]["PREVIEW_PICTURE"]["DEFAULT_VALUE"]);
+					if(!is_array($arPREVIEW_PICTURE))
+					{
+						if($arStageIBlock["FIELDS"]["PREVIEW_PICTURE"]["DEFAULT_VALUE"]["IGNORE_ERRORS"] === "Y")
+							$arPREVIEW_PICTURE = $_FILES["STAGE_PREVIEW_PICTURE"][$intNumer];
+						else
+						{
+							$arPREVIEW_PICTURE = array(
+								"name" => false,
+								"type" => false,
+								"tmp_name" => false,
+								"error" => 4,
+								"size" => 0,
+							);
+						}
+					}
+					$arLoadProductArray["PREVIEW_PICTURE"] = $arPREVIEW_PICTURE;
+				}else{
+					echo "failed to copy ".$arPhoto['tmp_name']."...\n";
+				}
+				
+				$arPhoto = CIBlock::ResizePicture($arPhoto, $arIBlock["FIELDS"]["DETAIL_PICTURE"]["DEFAULT_VALUE"]);
+			    
+				$arPreIMAGE 				= $arPhoto;
+				$arPreIMAGE["old_file"] 	= "";
+				$arPreIMAGE["del"] 			= "N";
+				$arPreIMAGE["MODULE_ID"] 	= "iblock";
+			
+			    if (strlen($arPreIMAGE["name"]) > 0){
+					$intPreIMAGE = CFile::SaveFile($arPreIMAGE, "iblock");
+					$arLoadProductArray["DETAIL_PICTURE"] = CFile::MakeFileArray($_SERVER["DOCUMENT_ROOT"].CFile::GetPath($intPreIMAGE));
+				}
+
+		    } elseif(intval($_REQUEST['stage_photo'][$Key]) > 0) {
+		    	$arLoadProductArray["DETAIL_PICTURE"] = CFile::MakeFileArray(CFile::GetPath($_REQUEST['stage_photo'][$Key]));
 		    }
 		    
 		    /*
 		     * Обновление этапа
 		     */
+
+		    //echo "<pre>";print_r($arLoadProductArray);echo "</pre>";die;
 		    
 		    $elStep   = new CIBlockElement;
-			$elStep->Update($StageId, $arLoadProductArray);
+			$elStep->Update($StageId, $arLoadProductArray, false, false, true);
 			
 			$arDishStepsId[] = $StageId;
-			
+
 		}
+			
 	} else {
 		// этап необходимо создавать
 		$intNumer = count($_REQUEST['stage_id'])+intval($Key);
@@ -157,13 +212,13 @@ foreach($_REQUEST['stage_description'] as $Key=>$Description){
 	    if(SITE_ID == "s1"){
 	        $arLoadProductArray["IBLOCK_ID"] = 4;
 	    }elseif(SITE_ID == "fr"){
-		$arLoadProductArray["IBLOCK_ID"] = 23;
+			$arLoadProductArray["IBLOCK_ID"] = 23;
 	    }
 	    
 	    /*
 	     * Фотография этапа
 	     */
-	    if($_FILES["photo"]['error'][ $Key ] == 0){
+	    /*if($_FILES["photo"]['error'][ $Key ] == 0){
 			
 	    	$arPhoto = Array(
 		        "name"     => $_FILES["photo"]['name'][$Key],
@@ -184,13 +239,61 @@ foreach($_REQUEST['stage_description'] as $Key=>$Description){
 				$intPreIMAGE = CFile::SaveFile($arPreIMAGE, "iblock");
 				$arLoadProductArray["PREVIEW_PICTURE"] = CFile::MakeFileArray($_SERVER["DOCUMENT_ROOT"].CFile::GetPath($intPreIMAGE));
 			}
+	    }*/
+	    if($_FILES["photo"]['error'][ $Key ] == 0){
+			
+	    	$arPhoto = Array(
+		        "name"     => $_FILES["photo"]['name'][$Key],
+		        "type"     => $_FILES["photo"]['type'][$Key],
+		        "tmp_name" => $_FILES["photo"]['tmp_name'][$Key],
+		        "error"    => $_FILES["photo"]['error'][$Key],
+		        "size"     => $_FILES["photo"]['size'][$Key]
+		    );
+
+		    if(copy($arPhoto["tmp_name"], $arPhoto["tmp_name"]."~"))
+			{
+				$_FILES["STAGE_PREVIEW_PICTURE"][$intNumer] = $arPhoto;
+				$_FILES["STAGE_PREVIEW_PICTURE"][$intNumer]["tmp_name"] .= "~";
+				
+				$arPREVIEW_PICTURE = CIBlock::ResizePicture($_FILES["STAGE_PREVIEW_PICTURE"][$intNumer], $arStageIBlock["FIELDS"]["PREVIEW_PICTURE"]["DEFAULT_VALUE"]);
+				if(!is_array($arPREVIEW_PICTURE))
+				{
+					if($arStageIBlock["FIELDS"]["PREVIEW_PICTURE"]["DEFAULT_VALUE"]["IGNORE_ERRORS"] === "Y")
+						$arPREVIEW_PICTURE = $_FILES["STAGE_PREVIEW_PICTURE"][$intNumer];
+					else
+					{
+						$arPREVIEW_PICTURE = array(
+							"name" => false,
+							"type" => false,
+							"tmp_name" => false,
+							"error" => 4,
+							"size" => 0,
+						);
+					}
+				}
+				$arLoadProductArray["PREVIEW_PICTURE"] = $arPREVIEW_PICTURE;
+			}else{
+				echo "failed to copy ".$arPhoto['tmp_name']."...\n";
+			}
+		    
+			$arPhoto = CIBlock::ResizePicture($arPhoto, $arIBlock["FIELDS"]["DETAIL_PICTURE"]["DEFAULT_VALUE"]);
+			
+			$arPreIMAGE 				= $arPhoto;
+			$arPreIMAGE["old_file"] 	= "";
+			$arPreIMAGE["del"] 			= "N";
+			$arPreIMAGE["MODULE_ID"] 	= "iblock";
+			
+		    if (strlen($arPreIMAGE["name"]) > 0){
+				$intPreIMAGE = CFile::SaveFile($arPreIMAGE, "iblock");
+				$arLoadProductArray["DETAIL_PICTURE"] = CFile::MakeFileArray($_SERVER["DOCUMENT_ROOT"].CFile::GetPath($intPreIMAGE));
+			}
 	    }
 	    
 		/*
 	     * Обновление этапа
 	     */
 		$elStep   = new CIBlockElement;
-		$strIntId = $elStep->Add($arLoadProductArray);
+		$strIntId = $elStep->Add($arLoadProductArray, false, false, true);
 		$arDishStepsId[] = $strIntId;
 	}
 }

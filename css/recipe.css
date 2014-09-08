@@ -1,0 +1,10 @@
+.stage .photo {
+	padding-bottom: 10px;
+	margin-bottom: -10px;
+	background: url(/images/progress.gif) repeat-x 0 bottom;
+}
+.stage .photo.i-no-progress {
+	padding-bottom: 0;
+	margin-bottom: 0;
+	background: none;
+}

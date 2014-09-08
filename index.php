@@ -1,5 +1,7 @@
 <?php
-require($_SERVER["DOCUMENT_ROOT"]."/bitrix/header.php");  
+require($_SERVER["DOCUMENT_ROOT"]."/bitrix/header.php");
+
+define("MINIMIZE", true);
 
 if (CModule::IncludeModule("advertising")){
 	$strBanner_right = CAdvBanner::Show("right_banner");
@@ -89,9 +91,10 @@ if($obCache->InitCache(86400, "arBlogs_index".SITE_ID, "/blogs_index".SITE_ID)){
 		$arPost["arUser"] = $arUser;
 		
 		if(intval($arUser['PERSONAL_PHOTO']) > 0){
-			$rsAvatar = CFile::GetByID($arUser['PERSONAL_PHOTO']);
-			$arAvatar = $rsAvatar->Fetch();			
-			$arPost["arUser"]["avatar"] = "/upload/".$arAvatar['SUBDIR']."/".$arAvatar['FILE_NAME'];
+			//$rsAvatar = CFile::GetByID($arUser['PERSONAL_PHOTO']);
+			//$arAvatar = $rsAvatar->Fetch();
+			$file = CFile::ResizeImageGet($arUser['PERSONAL_PHOTO'], array('width'=>30, 'height'=>30), BX_RESIZE_IMAGE_PROPORTIONAL, true);
+			$arPost["arUser"]["avatar"] = $file["src"];
 		} else {
 			$arPost["arUser"]["avatar"] = "/images/avatar/avatar_small.jpg";
 		}

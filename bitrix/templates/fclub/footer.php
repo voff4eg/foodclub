@@ -38,18 +38,6 @@ screen.colorDepth:screen.pixelDepth))+";u"+escape(document.URL)+
 //--></script>
 <!--/LiveInternet-->
 </div>
-<div style="margin-top: 20px;">
-<!-- begin of Top100 code -->
-
-<script id="top100Counter" type="text/javascript" src="http://counter.rambler.ru/top100.jcn?2987244"></script>
-<noscript>
-<a href="http://top100.rambler.ru/navi/2987244/">
-<img src="http://counter.rambler.ru/top100.cnt?2987244" alt="Rambler's Top100" border="0" />
-</a>
-
-</noscript>
-<!-- end of Top100 code -->
-</div>
 	</div>
 	</div></div>
 	</div></div>
@@ -272,71 +260,6 @@ screen.colorDepth:screen.pixelDepth))+";u"+escape(document.URL)+
 	-->
 	</script>
 <?/*endif;*/?>
-	<div id="authorization_layer" style="display:none;">
-		<div class="relative">
-			<div class="padding">
-				<div class="bar">
-					<div class="act"><span>Авторизация</span><a href="#" rel="authorization_field" class="no_link">Авторизация</a></div>
-					<div><span>LiveJournal id</span><a href="#" rel="lj_id_field" class="no_link">LiveJournal id</a></div>
-					<div><span>Open id</span><a href="#" rel="open_id_field" class="no_link">Open id</a></div>
-					<div class="clear"></div>
-				</div>
-			<div class="body">
-				<div id="authorization_field" class="act">
-					<form action="/auth/index.php" method="post" name="authorization">
-						<input type="hidden" name="AUTH_FORM" value="Y" />
-						<input type="hidden" name="TYPE" value="AUTH" />
-						<input type='hidden' name='backurl' value='<?=$APPLICATION->GetCurPage()?>' />
-						<div class="fields">
-	
-							<div class="form_field">
-								<h5>Логин <span>?</span></h5>
-								<input type="text" class="text" name="USER_LOGIN">
-							</div>
-							<div class="form_field">
-								<h5>Пароль <span>?</span></h5>
-								<input type="password" class="text" name="USER_PASSWORD">
-	
-							</div>
-							<div class="clear"></div>
-							<div class="remember form_checkbox_pic"><img src="/images/checkbox.gif" width="12" height="12" alt=""><span>Запомнить меня</span><input type="hidden" value="N" name="USER_REMEMBER"></div>
-							
-							
-							<div class="forget"><div><a href="/registration/?backurl=<?=$APPLICATION->GetCurPage()?>">Зарегистрироваться!</a></div><a href="/auth/?forgot_password=yes&backurl=%2Findex.php">Забыли?</a></div>
-							<div class="clear"></div>
-						</div>
-					</form>
-				</div>
-				<div id="lj_id_field" >
-					<div class="fields">
-						<div class="form_field">
-							<h5>Имя пользователя <span>?</span></h5>
-							<input type="text" class="text" value="">
-						</div>
-					</div>
-					<form action="/auth/index.php" method="post" name="lj_id">
-					<input type='hidden' name='backurl' value='<?=$APPLICATION->GetCurPage()?>' />
-					<input type="hidden" name="OPENID_IDENTITY" value="">
-					</form>
-				</div>
-				
-				<div id="open_id_field">
-					<form action="/auth/index.php" method="post" name="open_id">
-					<input type='hidden' name='backurl' value='<?=$APPLICATION->GetCurPage()?>' />
-						<div class="fields">
-							<div class="form_field">
-								<h5>Имя пользователя <span>?</span></h5>
-								<input type="text" class="text" name="OPENID_IDENTITY" value="http://">
-							</div>
-						</div>
-					</form>
-				</div>
-			</div>
-			<div class="button">Войти</div>
-			</div>
-			<div class="close_icon"></div>
-		</div>
-	</div>
 <!-- Yandex.Metrika counter --><div style="display:none;"><script type="text/javascript">(function(w, c) { (w[c] = w[c] || []).push(function() { try { w.yaCounter7715218 = new Ya.Metrika({id:7715218, clickmap:true, accurateTrackBounce:true}); } catch(e) { } }); })(window, 'yandex_metrika_callbacks');</script></div><script src="//mc.yandex.ru/metrika/watch.js" type="text/javascript" defer="defer"></script><noscript><div><img src="//mc.yandex.ru/watch/7715218" style="position:absolute; left:-9999px;" alt="" /></div>
 </noscript><!-- /Yandex.Metrika counter -->
 
