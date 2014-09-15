@@ -21,24 +21,35 @@ $APPLICATION->SetTitle("Яблочные пироги c пошаговыми ф�
 	<div class="i-clearfix"></div>
 </div>
 <p><?$APPLICATION->IncludeComponent(
-	"custom:recipes.list",
-	".default",
-	Array(
+	"custom:recipes.list", 
+	".default", 
+	array(
 		"IBLOCK_TYPE" => "-",
 		"IBLOCK_ID" => "5",
 		"TITLE" => "Яблочные пироги",
-		"KITCHEN_LIST" => array(),
-		"MAIN_INGREDIENT_LIST" => array(0=>"57613",),
-		"DISHTYPE_LIST" => array(),
-		"TAG_LIST" => array(),
+		"KITCHEN_LIST" => array(
+		),
+		"MAIN_INGREDIENT_LIST" => array(
+			0 => "57613",
+		),
+		"DISHTYPE_LIST" => array(
+		),
+		"TAG_LIST" => array(
+		),
 		"NEWS_COUNT" => "40",
 		"SORT_BY1" => "ACTIVE_FROM",
 		"SORT_ORDER1" => "DESC",
 		"SORT_BY2" => "SORT",
 		"SORT_ORDER2" => "ASC",
 		"FILTER_NAME" => "",
-		"FIELD_CODE" => array(0=>"",1=>"",),
-		"PROPERTY_CODE" => array(0=>"",1=>"",),
+		"FIELD_CODE" => array(
+			0 => "",
+			1 => "",
+		),
+		"PROPERTY_CODE" => array(
+			0 => "",
+			1 => "",
+		),
 		"CHECK_DATES" => "Y",
 		"DETAIL_URL" => "",
 		"AJAX_MODE" => "N",
@@ -71,7 +82,10 @@ $APPLICATION->SetTitle("Яблочные пироги c пошаговыми ф�
 		"DISPLAY_NAME" => "Y",
 		"DISPLAY_PICTURE" => "Y",
 		"DISPLAY_PREVIEW_TEXT" => "Y",
-		"AJAX_OPTION_ADDITIONAL" => ""
-	)
+		"AJAX_OPTION_ADDITIONAL" => "",
+		"INGREDIENT_ID" => array(
+		)
+	),
+	false
 );?></p>
  <?require($_SERVER["DOCUMENT_ROOT"]."/bitrix/footer.php");?>

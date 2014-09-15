@@ -352,7 +352,7 @@ class CFClubCommentJSON extends CFClubComment
 		if(isset($strPhoto)){
 			require_once($_SERVER['DOCUMENT_ROOT']."/classes/foodshot.class.php");
 			$CFoodshot = CFoodshot::getInstance();
-			if($intFoodshotID = $CFoodshot->add("Фудшот с рецепта ".$arRecipe["NAME"], $strComment, $strPhoto, "http://".$_SERVER["SERVER_NAME"]."/detail/".($arRecipe["CODE"] ? $arRecipe["CODE"] : $arRecipe["ID"])."/")){
+			if($intFoodshotID = $CFoodshot->add("Фудшот из рецепта ".$arRecipe["NAME"], $strComment, $strPhoto, "http://".$_SERVER["SERVER_NAME"]."/detail/".($arRecipe["CODE"] ? $arRecipe["CODE"] : $arRecipe["ID"])."/")){
 				$arProp['foodshot'] = $intFoodshotID['id'];
 			}
 		}
@@ -500,7 +500,7 @@ class CFClubCommentJSON extends CFClubComment
 		    	if(isset($strPhoto)){
 					require_once($_SERVER['DOCUMENT_ROOT']."/classes/foodshot.class.php");
 					$CFoodshot = CFoodshot::getInstance();
-					if($intFoodshotID = $CFoodshot->add("Фудшот с рецепта ".$arRecipe["NAME"], $strComment, $strPhoto, "http://".$_SERVER["SERVER_NAME"]."/detail/".$arRecipe["ID"]."/")){
+					if($intFoodshotID = $CFoodshot->add("Фудшот из рецепта ".$arRecipe["NAME"], $strComment, $strPhoto, "http://".$_SERVER["SERVER_NAME"]."/detail/".$arRecipe["ID"]."/")){
 						$arProp['foodshot'] = $intFoodshotID['id'];
 					}
 				}
@@ -584,7 +584,7 @@ class CFClubCommentJSON extends CFClubComment
 						if(strlen($strPhoto) <= 0){
 							$arReturn["image"] = "";
 						}else{							
-							if($arFoodshot = $CFoodshot->update($arC["PROPERTIES"]["foodshot"]["VALUE"] ,"Фудшот с рецепта ".$arRecipe["NAME"], $strComment, $strPhoto, "http://".$_SERVER["SERVER_NAME"]."/detail/".$arRecipe["ID"]."/")){
+							if($arFoodshot = $CFoodshot->update($arC["PROPERTIES"]["foodshot"]["VALUE"] ,"Фудшот из рецепта ".$arRecipe["NAME"], $strComment, $strPhoto, "http://".$_SERVER["SERVER_NAME"]."/detail/".$arRecipe["ID"]."/")){
 								$arReturn["image"] = $arFoodshot["image"];							
 							}
 						}

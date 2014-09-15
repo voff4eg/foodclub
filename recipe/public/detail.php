@@ -774,7 +774,7 @@ if($obCache->InitCache($cache_time, $cache_id, $cache_dir)){
 							</div>
 							<img src="<?=$arAuthor["small_avatar"]?>" width="30" height="30" alt="<?=$arAuthor['FULLNAME']?>">
 						</div>
-						<a class="nickname" href="/profile/<?=$arAuthor['ID']?>/" title="<?=$arAuthor['FULLNAME']?>"><?if(strlen($arAuthor['FULLNAME']) > 10):?><?=substr($arAuthor['FULLNAME'],0,10)?>...<?else:?><?=$arAuthor['FULLNAME']?><?endif;?></a>
+						<a class="nickname" href="/profile/<?=$arAuthor['ID']?>/" title="<?=$arAuthor['FULLNAME']?>"><?=$arAuthor['FULLNAME']?></a>
 					</div>
 					<?if($USER->IsAuthorized()){?>
 					<div class="comments"><a href="#add_opinion">Комментировать</a><span class="number">(<a href="#add_opinion"><?=IntVal($mixCount)?></a>)</span></div>

@@ -109,13 +109,13 @@
  
   <div class="b-recipe-of-month"> 
     <div class="b-recipe-om__current"> 
-		<div class="b-recipe-om__current__image"> <a href="http://www.foodclub.ru/detail/60105/" class="b-recipe-om__current__image__link" target="_blank" > <span class="b-recipe-om__current__image__plate"></span> <span class="b-recipe-om__current__image__wrapper" style="display: block; overflow: hidden; height: 406px; width: 270px; margin: -30px 0 0 62px;"><img src="http://www.foodclub.ru/upload/iblock/0a9/we4.jpg" width="270" alt="Пирог из полу-песочного теста с творогом и абрикосами" class="b-recipe-om__current__image__pic" style="margin-top: 0;"  /></span> </a> 
-        <div class="b-recipe-om__current-month"> <span class="b-recipe-om__current-month__name">Май</span> </div>
+		<div class="b-recipe-om__current__image"> <a href="http://www.foodclub.ru/detail/61067/" class="b-recipe-om__current__image__link" target="_blank" > <span class="b-recipe-om__current__image__plate"></span> <span class="b-recipe-om__current__image__wrapper" style="display: block; overflow: hidden; height: 406px; width: 270px; margin: -30px 0 0 62px;"><img src="http://www.foodclub.ru.images.1c-bitrix-cdn.ru/upload/iblock/800/1.jpg" width="270" alt="Пирог из полу-песочного теста с творогом и абрикосами" class="b-recipe-om__current__image__pic" style="margin-top: 0;"  /></span> </a> 
+        <div class="b-recipe-om__current-month"> <span class="b-recipe-om__current-month__name">Июнь</span> </div>
        </div>
      
-      <h2 class="b-recipe-om__current__heading"><a href="http://www.foodclub.ru/detail/60105/" target="_blank" >Пирог из полу-песочного теста с творогом и абрикосами</a></h2>
+      <h2 class="b-recipe-om__current__heading"><a href="http://www.foodclub.ru/detail/61067/" target="_blank" >Котлеты с яркими овощами и секретным ингредиентом</a></h2>
      
-      <div class="b-recipe-author b-recipe-om__current__author b-recipe-author__size-M">От: Дарья Мальцева</div>
+      <div class="b-recipe-author b-recipe-om__current__author b-recipe-author__size-M">От: Натали Лисси</div>
      
       <div class="b-recipe-om__current__like-buttons b-social-buttons"> 
         <div class="b-social-buttons__item b-vk-like"> 
@@ -125,28 +125,28 @@
 			VK.Widgets.Like("vk_like1", {
 				type: "mini",
 				height: 20,
-				pageTitle: "Пирог из полу-песочного теста с творогом и абрикосами",
-				pageUrl: "http://www.foodclub.ru/detail/60105/",
-				pageImage: "http://www.foodclub.ru/upload/iblock/0a9/we4.jpg"
+				pageTitle: "Котлеты с яркими овощами и секретным ингредиентом",
+				pageUrl: "http://www.foodclub.ru/detail/61067/",
+				pageImage: "http://www.foodclub.ru.images.1c-bitrix-cdn.ru/upload/iblock/800/1.jpg"
 			});
 		  </script>
  </div>
        
-        <div class="b-social-buttons__item b-fb-like"> <fb:like font="arial" show_faces="false" width="50" layout="button_count" send="false" href="http://www.foodclub.ru/detail/60105/"></fb:like> </div>
+        <div class="b-social-buttons__item b-fb-like"> <fb:like font="arial" show_faces="false" width="50" layout="button_count" send="false" href="http://www.foodclub.ru/detail/61067/"></fb:like> </div>
        
         <div class="i-clearfix"></div>
        </div>
      
       <div class="b-comment b-comment__type-big-userpic b-recipe-om__current__comment"> 
-        <div class="b-comment__userpic"> <noindex><a class="b-userpic" href="http://www.vkusitsvet.ru/" target="_blank" rel="nofollow" > <img width="100" height="100" class="b-userpic__image" alt="Ольга Сюткина" src="http://www.foodclub.ru/images/userpic/sutkina.jpg"  /> </a></noindex> 
-          <div class="b-comment__author">Ольга Сюткина
+        <div class="b-comment__userpic"> <noindex><a class="b-userpic" href="http://aspiri.livejournal.com/" target="_blank" rel="nofollow" > <img width="100" height="100" class="b-userpic__image" alt="Алёна Спирина" src="http://www.foodclub.ru/images/userpic/spirina.jpg"  /> </a></noindex> 
+          <div class="b-comment__author">Алёна Спирина
             <br />
            <i>Эксперт</i></div>
          </div>
        
         <div class="b-comment__content"> 
           <div class="b-comment__text"> 
-            <p style="text-indent: -9px;">&laquo;Если оценивать летние пироги, то уж конечно это пироги с сезонными ягодами и фруктами. Абрикосы отлично ведут себя в любой выпечке. Сохраняют структуру, после тепловой обработки становятся слаще, ароматнее и не теряют важного своего свойства - яркости. Сочетание белоснежной сливочной начинки и солнечных половинок абрикосов идеально подходит для пирога, поданного на стол в разгаре лета.&raquo;</p>
+            <p style="text-indent: -9px;">&laquo;Симпатичный  рецепт диетических котлеток особенно актуален в преддверии нового учебного года: такие котлетки можно положить ребенку в школьный завтрак или предложить на обед с любым гарниром. Овощи можно варьировать в зависимости от сезона и наличия в холодильнике, а куриную грудку прекрасно заменит филе индейки. Я бы сократила время приготовления минут на 10.&raquo;</p>
            </div>
          </div>
        
@@ -167,7 +167,7 @@
         <div class="b-recipe-om__next__month"> 
           <div class="b-recipe-om__next__month__pic"></div>
          
-          <div class="b-recipe-om__next__month__name">Июнь</div>
+          <div class="b-recipe-om__next__month__name">Сентябрь</div>
          </div>
        
         <div class="b-recipe-om__next__button"> <a class="i-frame-bg b-add-button" href="http://www.foodclub.ru/recipe/add/" > <span class="i-frame-bg_left"> <span class="i-frame-bg_right"> <span class="i-frame-bg_bg"><span class="i-frame-bg_content">Добавить рецепт</span></span> </span> </span> </a> </div>
@@ -177,6 +177,28 @@
      </div>
    
     <div class="b-recipe-om__feed">
+	
+	  <div class="b-recipe-om__month">
+        <div class="b-recipe-om__month__heading"><span class="b-recipe-om__month__heading__name">Рецепт мая</span></div>
+       
+        <div class="b-recipe-om__month__image"><a href="http://www.foodclub.ru/detail/60105/" target="_blank" ><img src="http://www.foodclub.ru/upload/iblock/0a9/we4.jpg" width="200" alt="Пирог из полу-песочного теста с творогом и абрикосами" /></a></div>
+       
+        <div class="b-recipe-om__month__text"> 
+          <div class="b-recipe-om__month__recipe"> 
+            <h3 class="b-recipe-om__month__text__heading"><a href="http://www.foodclub.ru/detail/60105/" target="_blank" >Пирог из полу-песочного теста с творогом и абрикосами</a></h3>
+           
+            <div class="b-recipe-author b-recipe-author__size-M">От: Дарья Мальцева</div>
+           </div>
+         
+          <div class="b-recipe-om__month__comment"> 
+            <div class="b-recipe-om__month__comment__author"> <noindex><a class="b-userpic b-recipe-om__month__comment__author__userpic" href="http://www.vkusitsvet.ru/" target="_blank" rel="nofollow" ><img width="50" height="50" class="b-userpic__image" alt="Ольга Сюткина" src="http://www.foodclub.ru/images/userpic/sutkina.jpg"  /></a></noindex> <span class="b-recipe-om__month__comment__author__name">Ольга Сюткина</span> </div>
+           
+            <div class="b-recipe-om__month__comment__text">Если оценивать летние пироги, то уж конечно это пироги с сезонными ягодами и фруктами. Абрикосы отлично ведут себя в любой выпечке. Сохраняют структуру, после тепловой обработки становятся слаще, ароматнее и не теряют важного своего свойства - яркости.</div>
+           </div>
+         </div>
+       
+        <div class="i-clearfix"></div>
+       </div>
 	
 	  <div class="b-recipe-om__month">
         <div class="b-recipe-om__month__heading"><span class="b-recipe-om__month__heading__name">Рецепт апреля</span></div>
@@ -191,7 +213,7 @@
            </div>
          
           <div class="b-recipe-om__month__comment"> 
-            <div class="b-recipe-om__month__comment__author"> <noindex><a class="b-userpic b-recipe-om__month__comment__author__userpic" href="http://www.selectcake.com/" target="_blank" rel="nofollow" ><img width="50" height="50" class="b-userpic__image" alt="Влад Пискунов" src="http://www.foodclub.ru/images/userpic/agronik.jpg"  /></a></noindex> <span class="b-recipe-om__month__comment__author__name">Катерина Агроник</span> </div>
+            <div class="b-recipe-om__month__comment__author"> <noindex><a class="b-userpic b-recipe-om__month__comment__author__userpic" href="http://www.selectcake.com/" target="_blank" rel="nofollow" ><img width="50" height="50" class="b-userpic__image" alt="Катерина Агроник" src="http://www.foodclub.ru/images/userpic/agronik.jpg"  /></a></noindex> <span class="b-recipe-om__month__comment__author__name">Катерина Агроник</span> </div>
            
             <div class="b-recipe-om__month__comment__text">В рецепте Анна Рябова использует много качественного горького шоколада, а также подробно и доступно объясняет каждую ступень приготовления, уделяя внимание некоторым кулинарным хитростям.</div>
            </div>
