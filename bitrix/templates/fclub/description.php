@@ -1,1 +1,6 @@
-<?$arTemplate = array("NAME"=>"Фудклаб", "DESCRIPTION"=>"");?>
+<?$arTemplate = array(
+	"NAME" => "Фудклаб",
+	"DESCRIPTION" => "",
+	"SORT" => "",
+);
+?>

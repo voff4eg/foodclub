@@ -1,4 +1,5 @@
 <?if (!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED!==true)die();?>
+<?$this->setFrameMode(true);?>
 <div id="recipeSearch" class="b-recipe-search">
 	<form action="/search/" method="post">
 		<div class="b-form-field b-recipe-search__form-field">

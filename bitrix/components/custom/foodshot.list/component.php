@@ -219,6 +219,9 @@ if($this->StartResultCache(false, array(($arParams["CACHE_GROUPS"]==="N"? false:
 		$obParser = new CTextParser;
 		$arResult["ITEMS"] = array();
 		$arResult["ELEMENTS"] = array();
+
+		echo "<!--<pre>";print_r(array_merge($arFilter, $arrFilter));echo "</pre>-->";
+
 		$rsElement = CIBlockElement::GetList($arSort, array_merge($arFilter, $arrFilter), false, $arNavParams, $arSelect);
 		$rsElement->SetUrlTemplates($arParams["DETAIL_URL"], "", $arParams["IBLOCK_URL"]);
 		while($obElement = $rsElement->GetNextElement())

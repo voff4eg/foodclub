@@ -1,6 +1,7 @@
 <?
 require($_SERVER["DOCUMENT_ROOT"]."/bitrix/header.php");
 require($_SERVER["DOCUMENT_ROOT"]."/classes/factory.class.php");
+\Bitrix\Main\Data\StaticHtmlCache::getInstance()->markNonCacheable();
 $APPLICATION->AddHeadScript("/js/ss_data.js");
 
 CModule::IncludeModule("iblock");

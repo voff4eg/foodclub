@@ -1,4 +1,5 @@
 ﻿<?if (!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED!==true)die();?>
+<?$this->createFrame()->begin('<img src="/images/preloader.gif" width="100%" alt="">');?>
 <h5 title='Последние комментарии'>Последние комментарии</h5>
 <ul>
 <?foreach($arResult["ITEMS"] as $arComment){?>	

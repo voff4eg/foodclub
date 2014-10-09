@@ -79,7 +79,6 @@ $arResult["ID"] = $arParams["RECIPE_ID"];
 $cache_time = 3600;
 $comment_cache_id = "comments_id".$arParams["RECIPE_ID"]."_".intval(CUser::GetID());
 $comment_cache_dir = "/recipes_comments_cache/id".$arParams["RECIPE_ID"]."/".intval(CUser::GetID())."/";
-echo "<!--".$comment_cache_id."@".$comment_cache_dir."-->";
 $obCache = new CPHPCache;
 if($obCache->InitCache($cache_time, $comment_cache_id, $comment_cache_dir)){
 	$arComments = $obCache->GetVars();

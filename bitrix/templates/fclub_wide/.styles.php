@@ -1,5 +1,4 @@
 <?
-$arStyles = array(
+return array(
 );
-return $arStyles;
 ?>

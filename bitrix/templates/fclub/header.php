@@ -3,9 +3,10 @@ IncludeTemplateLangFile(__FILE__);
 ?>
 <!DOCTYPE HTML>
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:og="http://ogp.me/ns#"
+      xmlns:og="http://ogp.me/ns#1"
       xmlns:fb="http://www.facebook.com/2008/fbml">
 <head>
+<meta http-equiv="Content-Type" content="text/html; charset=<?=LANG_CHARSET;?>">
 <?$APPLICATION->ShowMeta("robots")?>
 <?$APPLICATION->ShowMeta("keywords")?>
 <?$APPLICATION->ShowMeta("description")?>
@@ -38,7 +39,7 @@ if(strpos($APPLICATION->GetCurDir(), "recipe/") !== false){
 $APPLICATION->SetAdditionalCSS("/css/admin/styles.css",true);
 $APPLICATION->SetAdditionalCSS("/css/helper.css",true);
 
-$APPLICATION->AddHeadScript("/js/jscript-min.js");
+$APPLICATION->AddHeadScript("/js/jscript.min.js");
 $APPLICATION->AddHeadScript("/js/admin/jscript.js");
 $APPLICATION->AddHeadScript("/js/helper.js");
 //$APPLICATION->AddHeadScript("/js/history/scripts/bundled/html4+html5/jquery.history.js");
@@ -46,7 +47,7 @@ $APPLICATION->AddHeadScript("/js/helper.js");
 } else {
 
 $APPLICATION->AddHeadScript("/js/elem.js");
-$APPLICATION->AddHeadScript("/js/jscript-min.js");
+$APPLICATION->AddHeadScript("/js/jscript.min.js");
 
 $APPLICATION->AddHeadScript("/recipe_links.js");
 $APPLICATION->AddHeadScript("/js/helper.js");
@@ -67,30 +68,14 @@ $APPLICATION->SetAdditionalCSS("/css/helper.css",true);
   VK.init({apiId: 2404991, onlyWidgets: true});
 </script>
 </head>
+<?php include_once($_SERVER["DOCUMENT_ROOT"]."/analytics.php") ?>
 <?
 CModule::IncludeModule("iblock");
 require_once($_SERVER["DOCUMENT_ROOT"].'/classes/main.class.php');?>
-
 <body data-site-id="<?=SITE_ID?>">
-
-<script>
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
-  ga('create', 'UA-43906683-1', 'foodclub.ru');
-  ga('send', 'pageview');
-
-</script>
 
 <script type='text/javascript'>var _merchantSettings=_merchantSettings || [];_merchantSettings.push(['AT', '1l3vmcn']);(function(){var autolink=document.createElement('script');autolink.type='text/javascript';autolink.async=true; autolink.src= ('https:' == document.location.protocol) ? 'https://autolinkmaker.itunes.apple.com/js/itunes_autolinkmaker.js' : 'http://autolinkmaker.itunes.apple.com/js/itunes_autolinkmaker.js';var s=document.getElementsByTagName('script')[0];s.parentNode.insertBefore(autolink, s);})();</script>
 
-<?
-//$APPLICATION->SetAdditionalCSS("/css/android.css");
-//$APPLICATION->AddHeadScript("/js/android.js");
-//$APPLICATION->IncludeFile("/include/an.php", Array(), Array("MODE"=>"html"));
-?>
 <div id="fb-root"></div>
 <a href="https://plus.google.com/118442365793857710655" rel="publisher" style="font-size:0; display:none;">Google+</a>
 <script>(function(d, s, id) {
@@ -100,66 +85,28 @@ require_once($_SERVER["DOCUMENT_ROOT"].'/classes/main.class.php');?>
   js.src = "//connect.facebook.net/ru_RU/all.js#xfbml=1&appId=140629199390639";
   fjs.parentNode.insertBefore(js, fjs);
 }(document, 'script', 'facebook-jssdk'));</script>
-    <?$APPLICATION->ShowPanel();?>
-        <div id="top_panel">
-	<div class="body"><!-- <div class="i-relative"><div class="b-top-panel__decor"></div></div> -->
-             <?global $USER;
-             require_once($_SERVER['DOCUMENT_ROOT']."/classes/mark.class.php");
-             $CFUser = new CFUser;
-             $arUser = $CFUser->getById($USER->GetID());
-             if ($USER->IsAuthorized()):
-             	if(strlen($arUser["NAME"]) > 0 && strlen($arUser["LAST_NAME"]) > 0){
-	             	$name = $arUser["NAME"]." ".$arUser["LAST_NAME"];
-             	}else{
-             		$name = $arUser["LOGIN"];
-             	}			
-             	?>
-		<div class="person">
-			<a class="user" href="/profile/"><?if(intval($arUser["PERSONAL_PHOTO"]) > 0):?><img width="30" height="30" alt="" src="<?=$arUser['photo']['SRC']?>"><?else:?><img width="30" height="30" alt="" src="/images/avatar/avatar.jpg"><?endif;?><span><?=(strlen($name) > 10 ? substr($name,0,10)."..." : $name )?></span></a>
-            <a href="?logout=yes" class="sign_out" title="Выйти"></a>
-			<span title="Рейтинг" class="rating"><?=(strlen($arUser["UF_RAITING"]) > 0 ? $arUser["UF_RAITING"] : 0)?></span>
-            <!--span title="Статус" class="status"><!--(--><?/*(strlen($arUser["UF_STATUS"]) > 0 ? $arUser["status_name"] : "Новичок")*/?><!--)--></span-->
-		</div>
-		<?require_once($_SERVER["DOCUMENT_ROOT"]."/classes/favorite.class.php");
-		$Favorite = new CFavorite;?>
-		<a href="/profile/favorites/" class="b-top-panel__favorites" title="Избранные рецепты"><?=$Favorite->getCount($arUser["ID"]);?></a>
-		
-		<div class="add">
-			<span class="submenu">
-				<span class="body">
-					<span class="pointer"></span>
-					<a class="first" href="/recipe/add/">Рецепт с пошаговыми фото</a>
-					<!-- <a class="last" href="/blogs/group/14/blog/edit/new/">Простой рецепт</a> -->
-					<a class="last" href="/foodshot/add/">Фудшот</a>					
-					<!--<a class="last" href="/blogs/group/">Запись в клуб</a>-->
-				</span>
-			</span>
-			<a class="button" href="#"><span>Добавить</span></a>
-		</div>
-		<div class="menu">			
-			<span class="kitchen">
-				<span class="submenu">
-					<span class="submenu_pointer"></span>
-					<a class="first" href="/profile/recipes/">Рецепты</a>
-					<a href="/profile/topics/">Записи</a>
-					<a href="/profile/comments/">Комментарии</a>
-					<a href="/profile/lenta/">Моя лента</a>
-					<a class="subscription" href="/profile/subscribe/">Подписка</a>
-					<a class="last" href="/profile/opinions/">Отзывы</a>
-					
-					<!--<a class="last" href="/profile/opinions/">Отзывы к моим рецептам</a>-->
-				</span>
-				<a href="#"><span class="up"><span>Моя кухня</span></span></a>
-			</span>
-			<!--a class="subscription" href="/profile/subscribe/">Подписка</a-->
-			<div class="clear"></div>
-		</div>
-		<div class="clear"></div>
-             <?else:?>
-                <noindex><a class="sign_in" href="/auth/?backurl=<?=$APPLICATION->GetCurPage()?>">Войти</a><a class="reg" href="/registration/">Зарегистрироваться</a></noindex>
-             <?endif;?>
+<?$APPLICATION->ShowPanel();?>
+<div id="top_panel">
+	<div class="body">
+	<?$APPLICATION->IncludeComponent(
+		"bitrix:main.user.link",
+		"top",
+		Array(
+			"CACHE_TYPE" => "A",
+			"CACHE_TIME" => "7200",
+			"ID" => CUser::GetID(),
+			"SHOW_LOGIN" => "Y",
+			"USE_THUMBNAIL_LIST" => "Y",
+			"SHOW_FIELDS" => array("PERSONAL_BIRTHDAY", "PERSONAL_ICQ", "PERSONAL_PHOTO", "PERSONAL_CITY", "WORK_COMPANY", "WORK_POSITION"),
+			"USER_PROPERTY" => array(),
+			"PATH_TO_SONET_USER_PROFILE" => "",
+			"PROFILE_URL" => "",
+			"DATE_TIME_FORMAT" => "d.m.Y H:i:s",
+			"SHOW_YEAR" => "Y"
+		)
+	);?>
 	</div>
-    </div>
+</div>
 <div id="top_spacer"></div>
 <?if (CModule::IncludeModule("advertising")){ $strBanner = CAdvBanner::Show("top_banner"); }?>
 <?if($strBanner){?>

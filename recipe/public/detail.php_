@@ -1,19 +1,77 @@
 <?
-require($_SERVER["DOCUMENT_ROOT"]."/bitrix/header.php");
+//require($_SERVER["DOCUMENT_ROOT"]."/bitrix/header.php");
+require_once($_SERVER["DOCUMENT_ROOT"]."/bitrix/modules/main/include/prolog_before.php");
+//define("MINIMIZE", true);
+//require_once($_SERVER["DOCUMENT_ROOT"]."/bitrix/modules/main/include/prolog_after.php");
+/*if($APPLICATION->GetCurDir() == "/detail/".intval($_REQUEST['r'])."/"){
+	LocalRedirect("/recipe/".intval($_REQUEST['r'])."/",true,"301 Moved Permanently");
+}*/
+
+function notNull($n)
+{
+	if(intval($n) > 0){
+		return true;
+	}else{
+		return false;
+	}
+}
+
+$APPLICATION->SetAdditionalCSS("/css/recipe.css");
+$APPLICATION->AddHeadScript("/js/recipe.js");
+
+if (CModule::IncludeModule("advertising"))
+{
+	/*CAdvBanner::SetRequiredKeywords(array("егоров"), "right_banner");
+	$APPLICATION->SetPageProperty("keywords", "егоров");
+	$strBannerTEST = CAdvBanner::Show("right_banner");*/
+
+	//$APPLICATION->SetPageProperty("adv_desired_target_keywords", $APPLICATION->GetPageProperty("keywords"));
+	//CAdvBanner::SetDesiredKeywords($APPLICATION->GetPageProperty("keywords"),"right_banner");
+	if(IntVal($_REQUEST['r']) == 60925){
+		//$arrKeywords = array();		
+		//$arrKeywords[] = array("EXACT_MATCH" => "Y", "KEYWORD" => "егоров");
+		//CAdvBanner::SetRequiredKeywords($arrKeywords, "right_banner");
+		//$APPLICATION->SetPageProperty("adv_desired_target_keywords", "егоров");		
+		//CAdvBanner::SetDesiredKeywords($arrKeywords,"right_banner");
+		//CAdvBanner::SetRequiredKeywords(array("егоров"));
+		//$APPLICATION->SetPageProperty("keywords", "егоров");
+		//CAdvBanner::ResetKeywords();
+		CAdvBanner::SetRequiredKeywords(array("егоров"), "right_banner");		
+	}
+	if(IntVal($_REQUEST['r']) == 60965){
+		//$arrKeywords = array();		
+		//$arrKeywords[] = array("EXACT_MATCH" => "Y", "KEYWORD" => "шварцвальдский торт");
+		//CAdvBanner::SetRequiredKeywords($arrKeywords, "right_banner");
+		//$APPLICATION->SetPageProperty("adv_desired_target_keywords", "шварцвальдский торт");
+		//CAdvBanner::SetDesiredKeywords($arrKeywords,"right_banner");
+		//CAdvBanner::SetRequiredKeywords(array("шварцвальдский торт"));
+		//$APPLICATION->SetPageProperty("keywords", "шварцвальдский торт");
+		//CAdvBanner::ResetKeywords();
+		CAdvBanner::SetRequiredKeywords(array("шварцвальдский торт"), "right_banner");		
+	}	
+	$strrBanner = CAdvBanner::Show("right_banner");
+}
+
+require_once($_SERVER["DOCUMENT_ROOT"]."/bitrix/modules/main/include/prolog_after.php");
+
 require_once($_SERVER["DOCUMENT_ROOT"]."/classes/favorite.class.php");
 require_once($_SERVER["DOCUMENT_ROOT"]."/classes/factory.class.php");
 require_once($_SERVER['DOCUMENT_ROOT']."/classes/mark.class.php");
+require_once($_SERVER['DOCUMENT_ROOT']."/classes/main.class.php");
 
-if (CModule::IncludeModule("advertising")){
-    $strBanner = CAdvBanner::Show("right_banner");
-    $strBookBanner = CAdvBanner::Show("book_banner");
-	$strSecond_banner = CAdvBanner::Show("second_right_banner");
-}
 $cache_time = "9999999999";
 $mixCount = 0;
 $arResult = array();
-$cache_dir = "/recipes_cache/id".IntVal($_REQUEST['r']);
-$cache_id = "id".IntVal($_REQUEST['r']);
+if(intval($_REQUEST["r"])){
+	$cache_dir = "/recipes_cache/id".IntVal($_REQUEST['r']);
+	$cache_id = "id".IntVal($_REQUEST['r']);
+}elseif(strval($_REQUEST["c"])){
+	$cache_dir = "/recipes_cache/code".strval($_REQUEST['c']);
+	$cache_id = "code".strval($_REQUEST['c']);
+}else{
+	LocalRedirect("/404.php");
+}
+
 $obCache = new CPHPCache;
 if($obCache->InitCache($cache_time, $cache_id, $cache_dir)){
 	$vars = $obCache->GetVars();	
@@ -32,28 +90,46 @@ if($obCache->InitCache($cache_time, $cache_id, $cache_dir)){
 	global $arKitchens;
 	global $arDishType;
 	
-	if(strlen($arResult['PROPERTY_TITLE_VALUE']) > 0){
+	if(strlen($arResult["IPROPERTY_VALUES"]["ELEMENT_META_TITLE"]) > 0){
+		$APPLICATION->SetPageProperty("title", strip_tags($arResult["IPROPERTY_VALUES"]["ELEMENT_META_TITLE"]));
+	}elseif(strlen($arResult['PROPERTY_TITLE_VALUE']) > 0){
 		$APPLICATION->SetPageProperty("title", $arResult['PROPERTY_TITLE_VALUE']);
 	} else {
 		$APPLICATION->SetPageProperty("title", $arResult['NAME']." &mdash; рецепт с пошаговыми фото. Foodclub.ru");
 	}
-
-	$APPLICATION->SetPageProperty("keywords", (strlen($arResult['PROPERTY_KEYWORDS_VALUE'])>0?$arResult['PROPERTY_KEYWORDS_VALUE']:"фото рецепты, рецепты с фотографиями, фото блюд"));
-
-	$APPLICATION->AddHeadString('<meta property="og:title" content="'.$arResult["NAME"].'"/>',true);
-	$APPLICATION->AddHeadString('<meta property="og:type" content="food"/>',true);
-	if(IntVal($arResult['DETAIL_PICTURE']) > 0){
-		$APPLICATION->AddHeadString('<meta property="og:image" content="http://www.'.$_SERVER["SERVER_NAME"].CFile::GetPath($arResult['DETAIL_PICTURE']).'" />',true);
-	}
-	$APPLICATION->AddHeadString('<meta property="og:url" content="http://www.'.$_SERVER["SERVER_NAME"].$APPLICATION->GetCurDir().'" />',true);
-	$APPLICATION->AddHeadString('<meta property="og:site_name" content="Кулинарные рецепты с пошаговыми фотографиями"/>',true);
-	$APPLICATION->AddHeadString('<meta property="og:description" content="'.strip_tags($arResult["PREVIEW_TEXT"]).'"/>',true);
 	
-	if(strlen($arResult["PREVIEW_TEXT"]) > 0){
+	if(strlen($arResult["IPROPERTY_VALUES"]["ELEMENT_META_KEYWORDS"]) > 0){
+		$APPLICATION->SetPageProperty("keywords", strip_tags($arResult["IPROPERTY_VALUES"]["ELEMENT_META_KEYWORDS"]));
+	}elseif(strlen($arResult['PROPERTY_KEYWORDS_VALUE'])){
+		$APPLICATION->SetPageProperty("keywords", $arResult['PROPERTY_KEYWORDS_VALUE']);
+	}else{
+		$APPLICATION->SetPageProperty("keywords", "фото рецепты, рецепты с фотографиями, фото блюд");
+	}
+
+	if(strlen($arResult["IPROPERTY_VALUES"]["ELEMENT_META_DESCRIPTION"]) > 0){
+		$APPLICATION->SetPageProperty("description", strip_tags($arResult["IPROPERTY_VALUES"]["ELEMENT_META_DESCRIPTION"]));
+	}elseif($arResult["PROPERTY_DESCRIPTION_VALUE"]){
+		$APPLICATION->SetPageProperty("description", strip_tags($arResult["PROPERTY_DESCRIPTION_VALUE"]));
+	}elseif(strlen($arResult["PREVIEW_TEXT"]) > 0){
 		$APPLICATION->SetPageProperty("description", strip_tags($arResult["PREVIEW_TEXT"]));
 	}else{
 		$APPLICATION->SetPageProperty("description", "Рецепты блюд с фотографиями и пошаговыми инструкциями.");
 	}
+
+	$APPLICATION->AddHeadString('<meta property="og:title" content="'.$arResult["NAME"].'"/>',true);
+	$APPLICATION->AddHeadString('<meta property="og:type" content="food"/>',true);
+	if(IntVal($arResult['DETAIL_PICTURE']) > 0){
+		$APPLICATION->AddHeadString('<meta property="og:image" content="http://'.$_SERVER["SERVER_NAME"].CFile::GetPath($arResult['DETAIL_PICTURE']).'" />',true);
+	}
+	$APPLICATION->AddHeadString('<meta property="og:url" content="http://'.$_SERVER["SERVER_NAME"].$APPLICATION->GetCurDir().'" />',true);
+	$APPLICATION->AddHeadString('<meta property="og:site_name" content="Кулинарные рецепты с пошаговыми фотографиями"/>',true);
+	$APPLICATION->AddHeadString('<meta property="og:description" content="'.strip_tags($arResult["PREVIEW_TEXT"]).'"/>',true);
+
+	if(strlen($arResult["CODE"]) > 0 && $APPLICATION->GetCurDir() == "/detail/".$arResult["ID"]."/"){
+		$APPLICATION->AddHeadString('<link rel="canonical" href="http://'.$_SERVER["SERVER_NAME"].'/detail/'.$arResult["CODE"].'/"/>');
+		$APPLICATION->AddHeadString('<meta name="robots" content="none">');
+	}
+		
 	$isOwner = false;
 	if($USER->IsAuthorized()){
 		if($arResult['CREATED_BY'] == $USER->GetID()){
@@ -61,13 +137,27 @@ if($obCache->InitCache($cache_time, $cache_id, $cache_dir)){
 		}
 	}
 }elseif(CModule::IncludeModule("iblock") && $obCache->StartDataCache()){
-		
+	$arFilter = Array("IBLOCK_CODE"=>"recipe");
+	if(intval($_REQUEST["r"])){
+		$arFilter["ID"] = IntVal($_REQUEST['r']);
+	}elseif(strval($_REQUEST["c"])){
+		$arFilter["CODE"] = strval($_REQUEST['c']);
+	}
 	//Получение данных рецепта из БД
-	$rsResult = CIBlockElement::GetList(Array(), Array("ID"=>IntVal($_REQUEST['r'])), false, false, Array("ID", "NAME", "DATE_ACTIVE_FROM", "CREATED_BY", "TAGS", "PREVIEW_PICTURE", "DETAIL_PICTURE", "PREVIEW_TEXT", "PROPERTY_kitchen", "PROPERTY_dish_type", "PROPERTY_recipt_steps", "PROPERTY_comment_count", "PROPERTY_title", "PROPERTY_keywords", "PROPERTY_description", "PROPERTY_block_photo", "PROPERTY_block_search", "PROPERTY_block_like",
-	"PROPERTY_main_ingredient","PROPERTY_kcals","PROPERTY_portion","PROPERTY_cooking_time","PROPERTY_vegetarian","PROPERTY_technics"));
+	$rsResult = CIBlockElement::GetList(Array(), $arFilter, false, false, Array("ID", "NAME", "CODE", "IBLOCK_ID", "DATE_ACTIVE_FROM", "CREATED_BY", "TAGS", "PREVIEW_PICTURE", "DETAIL_PICTURE", "PREVIEW_TEXT", "PROPERTY_kitchen", "PROPERTY_dish_type", "PROPERTY_recipt_steps", "PROPERTY_comment_count", "PROPERTY_title", "PROPERTY_keywords", "PROPERTY_description", "PROPERTY_block_photo", "PROPERTY_block_search", "PROPERTY_block_like",
+	"PROPERTY_main_ingredient","PROPERTY_kcals","PROPERTY_portion","PROPERTY_cooking_time","PROPERTY_vegetarian","PROPERTY_technics","PROPERTY_edit_deadline"));
 	if($arRecipe = $rsResult->GetNext()){
 
 		$arResult = $arRecipe;
+
+		if(strlen($arResult["CODE"]) > 0 && $APPLICATION->GetCurDir() == "/detail/".$arResult["ID"]."/"){
+			$APPLICATION->AddHeadString('<link rel="canonical" href="http://'.$_SERVER["SERVER_NAME"].'/detail/'.$arResult["CODE"].'/"/>');
+			$APPLICATION->AddHeadString('<meta name="robots" content="none">');
+		}
+
+		$ipropValues = new \Bitrix\Iblock\InheritedProperty\ElementValues($arResult["IBLOCK_ID"], $arResult["ID"]);
+		$arResult["IPROPERTY_VALUES"] = $ipropValues->getValues();
+
 		global $CACHE_MANAGER;
 		$CACHE_MANAGER->StartTagCache($cache_dir);
 		
@@ -79,24 +169,36 @@ if($obCache->InitCache($cache_time, $cache_id, $cache_dir)){
 		global $arKitchens;
 		global $arDishType;
 		
-		if(strlen($arResult['PROPERTY_TITLE_VALUE']) > 0){
+		if(strlen($arResult["IPROPERTY_VALUES"]["ELEMENT_META_TITLE"]) > 0){
+			$APPLICATION->SetPageProperty("title", strip_tags($arResult["IPROPERTY_VALUES"]["ELEMENT_META_TITLE"]));
+		}elseif(strlen($arResult['PROPERTY_TITLE_VALUE']) > 0){
 			$APPLICATION->SetPageProperty("title", $arResult['PROPERTY_TITLE_VALUE']);
 		} else {
 			$APPLICATION->SetPageProperty("title", $arResult['NAME']." &mdash; рецепт с пошаговыми фото. Foodclub.ru");
 		}
-
-		$APPLICATION->SetPageProperty("keywords", (strlen($arResult['PROPERTY_KEYWORDS_VALUE'])>0?$arResult['PROPERTY_KEYWORDS_VALUE']:"фото рецепты, рецепты с фотографиями, фото блюд"));
+		
+		if(strlen($arResult["IPROPERTY_VALUES"]["ELEMENT_META_KEYWORDS"]) > 0){
+			$APPLICATION->SetPageProperty("keywords", strip_tags($arResult["IPROPERTY_VALUES"]["ELEMENT_META_KEYWORDS"]));
+		}elseif(strlen($arResult['PROPERTY_KEYWORDS_VALUE'])){
+			$APPLICATION->SetPageProperty("keywords", $arResult['PROPERTY_KEYWORDS_VALUE']);
+		}else{
+			$APPLICATION->SetPageProperty("keywords", "фото рецепты, рецепты с фотографиями, фото блюд");
+		}		
 
 		$APPLICATION->AddHeadString('<meta property="og:title" content="'.$arResult["NAME"].'"/>',true);
 		$APPLICATION->AddHeadString('<meta property="og:type" content="food"/>',true);
 		if(IntVal($arResult['DETAIL_PICTURE']) > 0){
-			$APPLICATION->AddHeadString('<meta property="og:image" content="http://www.'.$_SERVER["SERVER_NAME"].CFile::GetPath($arResult['DETAIL_PICTURE']).'" />',true);
+			$APPLICATION->AddHeadString('<meta property="og:image" content="http://'.$_SERVER["SERVER_NAME"].CFile::GetPath($arResult['DETAIL_PICTURE']).'" />',true);
 		}
-		$APPLICATION->AddHeadString('<meta property="og:url" content="http://www.'.$_SERVER["SERVER_NAME"].$APPLICATION->GetCurDir().'" />',true);
+		$APPLICATION->AddHeadString('<meta property="og:url" content="http://'.$_SERVER["SERVER_NAME"].$APPLICATION->GetCurDir().'" />',true);
 		$APPLICATION->AddHeadString('<meta property="og:site_name" content="Кулинарные рецепты с пошаговыми фотографиями"/>',true);
 		$APPLICATION->AddHeadString('<meta property="og:description" content="'.strip_tags($arResult["PREVIEW_TEXT"]).'"/>',true);
 		
-		if(strlen($arResult["PREVIEW_TEXT"]) > 0){
+		if(strlen($arResult["IPROPERTY_VALUES"]["ELEMENT_META_DESCRIPTION"]) > 0){
+			$APPLICATION->SetPageProperty("description", strip_tags($arResult["IPROPERTY_VALUES"]["ELEMENT_META_DESCRIPTION"]));
+		}elseif($arResult["PROPERTY_DESCRIPTION_VALUE"]){
+			$APPLICATION->SetPageProperty("description", strip_tags($arResult["PROPERTY_DESCRIPTION_VALUE"]));
+		}elseif(strlen($arResult["PREVIEW_TEXT"]) > 0){
 			$APPLICATION->SetPageProperty("description", strip_tags($arResult["PREVIEW_TEXT"]));
 		}else{
 			$APPLICATION->SetPageProperty("description", "Рецепты блюд с фотографиями и пошаговыми инструкциями.");
@@ -199,153 +301,175 @@ if($obCache->InitCache($cache_time, $cache_id, $cache_dir)){
 		$rsMainFile = CFile::GetByID($arResult['DETAIL_PICTURE']);
 		$arMainFile = $rsMainFile->Fetch();
 		$arResult["MainFile"] = $arMainFile;
-
+		
+		$arResult['PROPERTY_RECIPT_STEPS_VALUE'] = array_filter($arResult['PROPERTY_RECIPT_STEPS_VALUE'],"notNull");
 		$intCount = count($arResult['PROPERTY_RECIPT_STEPS_VALUE']);
 
-		$rsStages = CIBlockElement::GetList(Array(), Array("ID"=>$arResult['PROPERTY_RECIPT_STEPS_VALUE']), false, false, Array("ID", "NAME", "PREVIEW_PICTURE", "PREVIEW_TEXT", "PROPERTY_ingredient", "PROPERTY_numer", "PROPERTY_parent"));
-		while($arStage = $rsStages->GetNext()){
+		/*if($arResult["ID"] == 4730){
+			$b = array_filter("notNull", $arResult['PROPERTY_RECIPT_STEPS_VALUE']);
+			if(!empty($b)){
+				echo true;
+			}else{
+				echo false;
+			}			
+			echo "<!--<pre>";print_r($b);echo "</pre>@-->";die;
+		}*/
 
-			$arStages[ $arStage['ID'] ]['ID'] = $arStage['ID'];
-			$arStages[ $arStage['ID'] ]['NAME'] = $arStage['NAME'];
-			$arStages[ $arStage['ID'] ]['PREVIEW_PICTURE'] = $arStage['PREVIEW_PICTURE'];
-			$arStages[ $arStage['ID'] ]['~PREVIEW_TEXT'] = $arStage['~PREVIEW_TEXT'];
-			$arStages[ $arStage['ID'] ]['PREVIEW_TEXT'] = $arStage['PREVIEW_TEXT'];
-			$arStages[ $arStage['ID'] ]['PROPERTY_INGREDIENT_VALUE'][ $arStage['PROPERTY_INGREDIENT_VALUE_ID'] ] = $arStage['PROPERTY_INGREDIENT_VALUE'];
-			$arStages[ $arStage['ID'] ]['PROPERTY_NUMER_VALUE'][ $arStage['PROPERTY_NUMER_VALUE_ID'] ] = $arStage['PROPERTY_NUMER_VALUE'];
-			$arStages[ $arStage['ID'] ]['PROPERTY_PARENT_VALUE'] = $arStage['PROPERTY_PARENT_VALUE'];
+		if($intCount > 0){
+			$rsStages = CIBlockElement::GetList(Array(), Array("ID"=>$arResult['PROPERTY_RECIPT_STEPS_VALUE']), false, false, Array("ID", "NAME", "PREVIEW_PICTURE", "DETAIL_PICTURE", "PREVIEW_TEXT", "PROPERTY_ingredient", "PROPERTY_numer", "PROPERTY_parent"));
+			while($arStage = $rsStages->GetNext()){
 
-		}
-			
-		global $DB;
-		foreach($arStages as $Item)
-		{
-			$ElementId = $Item['ID'];
+				$arStages[ $arStage['ID'] ]['ID'] = $arStage['ID'];
+				$arStages[ $arStage['ID'] ]['NAME'] = $arStage['NAME'];
+				$arStages[ $arStage['ID'] ]['PREVIEW_PICTURE'] = $arStage['PREVIEW_PICTURE'];
+				$arStages[ $arStage['ID'] ]['DETAIL_PICTURE'] = $arStage['DETAIL_PICTURE'];
+				$arStages[ $arStage['ID'] ]['~PREVIEW_TEXT'] = $arStage['~PREVIEW_TEXT'];
+				$arStages[ $arStage['ID'] ]['PREVIEW_TEXT'] = $arStage['PREVIEW_TEXT'];
+				$arStages[ $arStage['ID'] ]['PROPERTY_INGREDIENT_VALUE'][ $arStage['PROPERTY_INGREDIENT_VALUE_ID'] ] = $arStage['PROPERTY_INGREDIENT_VALUE'];
+				$arStages[ $arStage['ID'] ]['PROPERTY_NUMER_VALUE'][ $arStage['PROPERTY_NUMER_VALUE_ID'] ] = $arStage['PROPERTY_NUMER_VALUE'];
+				$arStages[ $arStage['ID'] ]['PROPERTY_PARENT_VALUE'] = $arStage['PROPERTY_PARENT_VALUE'];
 
-			$sqlIngridient = "SELECT * FROM `b_iblock_element_property` WHERE `IBLOCK_ELEMENT_ID` = ".$ElementId." AND `IBLOCK_PROPERTY_ID` = 3 ORDER BY `ID` ASC";
-			$sqlNumer = "SELECT * FROM `b_iblock_element_property` WHERE `IBLOCK_ELEMENT_ID` = ".$ElementId." AND `IBLOCK_PROPERTY_ID` = 4 ORDER BY `ID` ASC";
-
-			$rowFields = $DB->Query($sqlIngridient, false);
-			while($Field = $rowFields->Fetch()){
-				$arStages[ $Item['ID'] ]['PROPERTY_INGREDIENT_VALUE'][ $Field['ID'] ] = $Field['VALUE'];
 			}
-			ksort($arStages[ $Item['ID'] ]['PROPERTY_INGREDIENT_VALUE']);
-			reset($arStages[ $Item['ID'] ]['PROPERTY_INGREDIENT_VALUE']);
+				
+			global $DB;
+			foreach($arStages as $Item)
+			{
+				$ElementId = $Item['ID'];
 
-			$rowFields = $DB->Query($sqlNumer, false);
-			while($Field = $rowFields->Fetch()){
-				$arStages[ $Item['ID'] ]['PROPERTY_NUMER_VALUE'][ $Field['ID'] ] = $Field['VALUE'];
-			}
-			ksort($arStages[ $Item['ID'] ]['PROPERTY_NUMER_VALUE']);
-			reset($arStages[ $Item['ID'] ]['PROPERTY_NUMER_VALUE']);
-		}
+				$sqlIngridient = "SELECT * FROM `b_iblock_element_property` WHERE `IBLOCK_ELEMENT_ID` = ".$ElementId." AND `IBLOCK_PROPERTY_ID` = 3 ORDER BY `ID` ASC";
+				$sqlNumer = "SELECT * FROM `b_iblock_element_property` WHERE `IBLOCK_ELEMENT_ID` = ".$ElementId." AND `IBLOCK_PROPERTY_ID` = 4 ORDER BY `ID` ASC";
 
-		$strMKey = 0;
-		ob_start();
-		$bFirst = true;?>
-		<div class="instructions">
-				<div class="description">
-						<?=$arResult['~PREVIEW_TEXT']?>
-				</div>
-				<div class="border"></div>
-		<?
-		$kkals = 0;
-		foreach($arStages as $strStep){
-
-			$arStageFields = Array(
-								"ID" => $strStep['ID'],
-								"NAME" => $strStep['NAME'],
-								"PREVIEW_PICTURE" => $strStep['PREVIEW_PICTURE'],
-								"PREVIEW_TEXT" => $strStep['PREVIEW_TEXT'],
-								"~PREVIEW_TEXT" => $strStep['~PREVIEW_TEXT']
-								);
-			$arStageProp = Array(
-								"ingredient" => $strStep['PROPERTY_INGREDIENT_VALUE'],
-								"numer" => $strStep['PROPERTY_NUMER_VALUE'],
-								"parent" => $strStep['PROPERTY_PARENT_VALUE'],
-								);
-			$arKey = array_keys($arStageProp['ingredient']);
-			$arStageProp['numer'] = array_combine($arKey, $arStageProp['numer']);
-
-			$rsIng = CIBlockElement::GetList(Array(), Array("ID"=>$arStageProp['ingredient'],"IBLOCK_ID"=>3), false, false, Array("ID","NAME","PROPERTY_unit","PROPERTY_kkal"));
-			while($arIngSrc = $rsIng->GetNext()){
-				$arIng[ $arIngSrc['ID'] ] = $arIngSrc;				
-			}
-			foreach($arStageProp['ingredient'] as $strKey => $strItem){
-				if(!is_null($strItem)){
-					$arUnitsVal[] = Array(
-						"ID"    => $strItem,
-						"NAME"  => $arIng[ $strItem ]['NAME'],
-						"UNIT"  => $arIng[ $strItem ]['PROPERTY_UNIT_VALUE'],
-						"VALUE" => $arStageProp['numer'][ $strKey ],
-					);
-
-					$arAllUnits[$strItem][] = Array(
-						"ID"    => $strItem,
-						"NAME"  => $arIng[ $strItem ]['NAME'],
-						"UNIT"  => $arIng[ $strItem ]['PROPERTY_UNIT_VALUE'],
-						"VALUE" => $arStageProp['numer'][ $strKey ],
-						"KKAL"  => $arIng[ $strItem ]['PROPERTY_KKAL_VALUE'],
-					);
-					if(floatval(str_replace(",",".",$arIng[ $strItem ]['PROPERTY_KKAL_VALUE'])) <= 0){
-						$kkal = 0;
-					}else{
-						$kkal = floatval(str_replace(",",".",$arIng[ $strItem ]['PROPERTY_KKAL_VALUE']));
-					}
-					if(floatval(str_replace(",",".",$arStageProp['numer'][ $strKey ])) <= 0){
-						$mass = 0;
-					}else{
-						$mass = floatval(str_replace(",",".",$arStageProp['numer'][ $strKey ]));
-					}
-					//echo $mass." * ".$kkal." = ".$mass*$kkal;
-					$kkals += $mass * $kkal;
+				$rowFields = $DB->Query($sqlIngridient, false);
+				while($Field = $rowFields->Fetch()){
+					$arStages[ $Item['ID'] ]['PROPERTY_INGREDIENT_VALUE'][ $Field['ID'] ] = $Field['VALUE'];
 				}
+				ksort($arStages[ $Item['ID'] ]['PROPERTY_INGREDIENT_VALUE']);
+				reset($arStages[ $Item['ID'] ]['PROPERTY_INGREDIENT_VALUE']);
+
+				$rowFields = $DB->Query($sqlNumer, false);
+				while($Field = $rowFields->Fetch()){
+					$arStages[ $Item['ID'] ]['PROPERTY_NUMER_VALUE'][ $Field['ID'] ] = $Field['VALUE'];
+				}
+				ksort($arStages[ $Item['ID'] ]['PROPERTY_NUMER_VALUE']);
+				reset($arStages[ $Item['ID'] ]['PROPERTY_NUMER_VALUE']);
 			}
-			$arResult["kkals"] = $kkals;
-			$rsFile = CFile::GetByID($arStageFields['PREVIEW_PICTURE']);
-			$arFile = $rsFile->Fetch();?>
-			<?if(!$bFirst){?><div class="border"></div><?} else {$bFirst = false;}?>
-				<div class="stage">
-					<div class="body">
-					<?if($arResult["PROPERTY_VEGETARIAN_VALUE"] == "Y"):?><input type="hidden" name="vegetarian" value="y" /><?endif;?>
-					<?if(count($arUnitsVal) > 0){?>
-					<div class="needed">
-						<h2>Ингредиенты <?=$strMKey+1;?>-го этапа:</h2>
-						<table>
-							<?$flag = false;
-							foreach($arUnitsVal as $strKey => $arItem):
-								if($flag == false){ echo "<tr>";}?>
-								<td class="ing_name<?=($flag == true ? " border" : "")?>"><?=$arItem['NAME']?></td>
-								<td class="ing_amount"><?=str_replace(Array("1/2", "1/4", "3/4"), Array("&frac12;","&frac14;","&frac34;"), $arItem['VALUE'])?> <?=$arItem['UNIT']?></td><?
-								if($flag == true){ echo "</tr>";}
-								if($flag == false){$flag = true;}else{$flag = false;}
-							endforeach; 
-							if(count($arUnitsVal) % 2 != 0){
-								echo "<td class='ing_name border'></td><td class='ing_amount'></td></tr>";
-							}
-							unset($arUnitsVal);?>
-						</table>
-					</div>
-					<?} //if?>
-					<?if(IntVal($arStageFields['PREVIEW_PICTURE']) > 0):?>
-						<div class="image"><div class="screen"><div style="width: <?=$arFile['WIDTH']?>px; height: <?=$arFile['HEIGHT']?>px;"></div></div><img src="/upload/<?=$arFile['SUBDIR']?>/<?=$arFile['FILE_NAME']?>" alt="<?=(strlen($arFile['DESCRIPTION']) > 0 ? $arFile['DESCRIPTION'] : $arFields['NAME'])?>" title="<?=(strlen($arFile['DESCRIPTION']) > 0 ? $arFile['DESCRIPTION'] : $arFields['NAME'])?>" width="<?=$arFile['WIDTH']?>" height="<?=$arFile['HEIGHT']?>" class="photo"></div>
-					<?endif;?>
-					<?if(strlen($arStageFields['~PREVIEW_TEXT']) > 0){?>
-						<div class="instruction">
-							<?=$arStageFields['~PREVIEW_TEXT']?>
-						</div>
-					<?}?>
-					</div>
 
-					<div class="clear"></div>
-				</div>
-
+			$strMKey = 0;
+			ob_start();
+			$bFirst = true;?>
+			<div class="instructions">
+					<div class="description">
+							<?=$arResult['~PREVIEW_TEXT']?>
+					</div>
+					<div class="border"></div>
 			<?
-			$strMKey++;
-		}?>
-		</div>
-		<?
-		$strStages = ob_get_contents();
-		ob_end_clean();
+			$kkals = 0;
+			foreach($arStages as $strStep){
+
+				$arStageFields = Array(
+									"ID" => $strStep['ID'],
+									"NAME" => $strStep['NAME'],
+									"PREVIEW_PICTURE" => $strStep['PREVIEW_PICTURE'],
+									"DETAIL_PICTURE" => $strStep['DETAIL_PICTURE'],
+									"PREVIEW_TEXT" => $strStep['PREVIEW_TEXT'],
+									"~PREVIEW_TEXT" => $strStep['~PREVIEW_TEXT']
+									);
+				$arStageProp = Array(
+									"ingredient" => $strStep['PROPERTY_INGREDIENT_VALUE'],
+									"numer" => $strStep['PROPERTY_NUMER_VALUE'],
+									"parent" => $strStep['PROPERTY_PARENT_VALUE'],
+									);
+				$arKey = array_keys($arStageProp['ingredient']);
+				$arStageProp['numer'] = array_combine($arKey, $arStageProp['numer']);
+
+				$rsIng = CIBlockElement::GetList(Array(), Array("ID"=>$arStageProp['ingredient'],"IBLOCK_ID"=>3), false, false, Array("ID","NAME","CODE","PROPERTY_unit","PROPERTY_kkal","DETAIL_TEXT"));
+				while($arIngSrc = $rsIng->GetNext()){
+					$arIng[ $arIngSrc['ID'] ] = $arIngSrc;				
+				}
+				foreach($arStageProp['ingredient'] as $strKey => $strItem){
+					if(!is_null($strItem)){
+						$arUnitsVal[] = Array(
+							"ID"    => $strItem,
+							"NAME"  => $arIng[ $strItem ]['NAME'],
+							"UNIT"  => $arIng[ $strItem ]['PROPERTY_UNIT_VALUE'],
+							"VALUE" => $arStageProp['numer'][ $strKey ],
+						);
+
+						$arAllUnits[$strItem][] = Array(
+							"ID"    => $strItem,
+							"NAME"  => $arIng[ $strItem ]['NAME'],
+							"CODE"  => $arIng[ $strItem ]['CODE'],
+							"UNIT"  => $arIng[ $strItem ]['PROPERTY_UNIT_VALUE'],
+							"VALUE" => $arStageProp['numer'][ $strKey ],
+							"KKAL"  => $arIng[ $strItem ]['PROPERTY_KKAL_VALUE'],
+							"LINK"  => ($arIng[ $strItem ]['DETAIL_TEXT'] ? true : false)
+						);
+						if(floatval(str_replace(",",".",$arIng[ $strItem ]['PROPERTY_KKAL_VALUE'])) <= 0){
+							$kkal = 0;
+						}else{
+							$kkal = floatval(str_replace(",",".",$arIng[ $strItem ]['PROPERTY_KKAL_VALUE']));
+						}
+						if(floatval(str_replace(",",".",$arStageProp['numer'][ $strKey ])) <= 0){
+							$mass = 0;
+						}else{
+							$mass = floatval(str_replace(",",".",$arStageProp['numer'][ $strKey ]));
+						}
+						//echo $mass." * ".$kkal." = ".$mass*$kkal;
+						$kkals += $mass * $kkal;
+					}
+				}
+				$arResult["kkals"] = $kkals;
+				$rsFile = CFile::GetByID($arStageFields['PREVIEW_PICTURE']);
+				$arFile = $rsFile->Fetch();
+				$rsDetailFile = CFile::GetByID($arStageFields['DETAIL_PICTURE']);
+				$arDetailFile = $rsDetailFile->Fetch();
+				?>
+				<?if(!$bFirst){?><div class="border"></div><?} else {$bFirst = false;}?>
+					<div class="stage">
+						<div class="body">
+						<?if($arResult["PROPERTY_VEGETARIAN_VALUE"] == "Y"):?><input type="hidden" name="vegetarian" value="y" /><?endif;?>
+						<?if(count($arUnitsVal) > 0){?>
+						<div class="needed">
+							<h2>Ингредиенты <?=$strMKey+1;?>-го этапа:</h2>
+							<table>
+								<?$flag = false;
+								foreach($arUnitsVal as $strKey => $arItem):
+									if($flag == false){ echo "<tr>";}?>
+									<td class="ing_name<?=($flag == true ? " border" : "")?>"><?=$arItem['NAME']?></td>
+									<td class="ing_amount"><?=str_replace(Array("1/2", "1/4", "3/4"), Array("&frac12;","&frac14;","&frac34;"), $arItem['VALUE'])?> <?=$arItem['UNIT']?></td><?
+									if($flag == true){ echo "</tr>";}
+									if($flag == false){$flag = true;}else{$flag = false;}
+								endforeach; 
+								if(count($arUnitsVal) % 2 != 0){
+									echo "<td class='ing_name border'></td><td class='ing_amount'></td></tr>";
+								}
+								unset($arUnitsVal);?>
+							</table>
+						</div>
+						<?} //if?>
+						<?if(intval($arStageFields["DETAIL_PICTURE"])):?>
+							<div class="image"><div class="screen"><div style="width: <?=$arDetailFile['WIDTH']?>px; height: <?=$arDetailFile['HEIGHT']?>px;"></div></div><img src="/upload/<?=$arFile['SUBDIR']?>/<?=$arFile['FILE_NAME']?>" data-src="/upload/<?=$arDetailFile['SUBDIR']?>/<?=$arDetailFile['FILE_NAME']?>" alt="<?=(strlen($arFile['DESCRIPTION']) > 0 ? $arFile['DESCRIPTION'] : $arRecipe['NAME']." ".$strMKey." этап")?>" title="<?=(strlen($arFile['DESCRIPTION']) > 0 ? $arFile['DESCRIPTION'] : $arRecipe['NAME']." ".$strMKey." этап")?>" width="<?=$arDetailFile['WIDTH']?>" height="<?=$arDetailFile['HEIGHT']?>" class="photo"></div>
+						<?elseif(IntVal($arStageFields['PREVIEW_PICTURE']) > 0):?>
+							<div class="image"><div class="screen"><div style="width: <?=$arFile['WIDTH']?>px; height: <?=$arFile['HEIGHT']?>px;"></div></div><img src="/upload/<?=$arFile['SUBDIR']?>/<?=$arFile['FILE_NAME']?>" alt="<?=(strlen($arFile['DESCRIPTION']) > 0 ? $arFile['DESCRIPTION'] : $arRecipe['NAME']." ".$strMKey." этап")?>" title="<?=(strlen($arFile['DESCRIPTION']) > 0 ? $arFile['DESCRIPTION'] : $arRecipe['NAME']." ".$strMKey." этап")?>" width="<?=$arFile['WIDTH']?>" height="<?=$arFile['HEIGHT']?>" class="photo"></div>
+						<?endif;?>
+						<?if(strlen($arStageFields['~PREVIEW_TEXT']) > 0){?>
+							<div class="instruction">
+								<?=$arStageFields['~PREVIEW_TEXT']?>
+							</div>
+						<?}?>
+						</div>
+
+						<div class="clear"></div>
+					</div>
+
+				<?
+				$strMKey++;
+			}?>
+			</div>
+			<?
+			$strStages = ob_get_contents();
+			ob_end_clean();
+		}
 		
 		$rsAuthor = CUser::GetByID($arResult['CREATED_BY']);
 		if($arAuthor = $rsAuthor->Fetch()){
@@ -360,13 +484,22 @@ if($obCache->InitCache($cache_time, $cache_id, $cache_dir)){
 			}
 			$arAuthor['URL'] = "/profile/".$arAuthor['ID']."/";
 
+			if(strlen($arAuthor["NAME"]) > 0 && strlen($arAuthor["LAST_NAME"]) > 0){
+		     	$arAuthor["FULLNAME"] = $arAuthor["NAME"]." ".$arAuthor["LAST_NAME"];
+		 	}else{
+		 		$arAuthor["FULLNAME"] = $arAuthor["LOGIN"];
+		 	}			
+
 			if(intval($arAuthor['PERSONAL_PHOTO']) > 0){
 				$rsAvatar = CFile::GetByID($arAuthor['PERSONAL_PHOTO']);
 				if($Avatar = $rsAvatar->Fetch()){
 					$arAuthor["avatar"] = "/upload/".$Avatar['SUBDIR']."/".$Avatar['FILE_NAME'];					
 				}
+				$file = CFile::ResizeImageGet($arAuthor['PERSONAL_PHOTO'], array('width'=>30, 'height'=>30), BX_RESIZE_IMAGE_PROPORTIONAL, true);
+				$arAuthor["small_avatar"] = $file["src"];
 			} else {
 				$arAuthor["avatar"] = "/images/avatar/avatar.jpg";
+				$arAuthor["small_avatar"] = "/images/avatar/avatar_small.jpg";
 			}
 
 			$rsCount = CIBlockElement::GetProperty(5, $arResult["ID"], "sort", "asc", Array("CODE"=>"comment_count"));
@@ -386,11 +519,16 @@ if($obCache->InitCache($cache_time, $cache_id, $cache_dir)){
 				$strSearch = $arResult['PROPERTY_BLOCK_SEARCH_VALUE'];
 			}
 			
-			$rsBlockRecipe = CIBlockElement::GetList(Array(), Array("ID"=>$arResult['PROPERTY_BLOCK_LIKE_VALUE']), false, false, Array("ID", "NAME", "CREATED_BY", "PROPERTY_comment_count","PREVIEW_PICTURE"));			
+			$rsBlockRecipe = CIBlockElement::GetList(Array(), Array("ID"=>$arResult['PROPERTY_BLOCK_LIKE_VALUE']), false, false, Array("ID", "NAME", "CODE", "CREATED_BY", "PROPERTY_comment_count","PREVIEW_PICTURE"));			
 			while($arBlockRecipe = $rsBlockRecipe->GetNext()){
 
 				$rsUser = CUser::GetByID($arBlockRecipe['CREATED_BY']);
 				$arUser = $rsUser->Fetch();
+				if(strlen($arUser["NAME"]) > 0 && strlen($arUser["LAST_NAME"]) > 0){
+			     	$arUser["FULLNAME"] = $arUser["NAME"]." ".$arUser["LAST_NAME"];
+			 	}else{
+			 		$arUser["FULLNAME"] = $arUser["LOGIN"];
+			 	}
 				$arBlockRecipe["USER"] = $arUser;
 				
 				$BlockRecipes[] = $arBlockRecipe;
@@ -408,11 +546,11 @@ if($obCache->InitCache($cache_time, $cache_id, $cache_dir)){
 							<div class="item recipe_list_item">
 								<?if(isset($arBlockFile[$recipe["ID"]])){?>
 									<div class="photo">
-										<a href="/detail/<?=$recipe["ID"]?>/"><img width="150" alt="<?=$recipe["NAME"]?>" src="/upload/<?=$arBlockFile[$recipe["ID"]]['SUBDIR']?>/<?=$arBlockFile[$recipe["ID"]]['FILE_NAME']?>"></a>										
+										<a href="/detail/<?=($recipe['CODE'] ? $recipe['CODE'] : $recipe['ID'])?>/"><img width="150" alt="<?=$recipe["NAME"]?>" src="/upload/<?=$arBlockFile[$recipe["ID"]]['SUBDIR']?>/<?=$arBlockFile[$recipe["ID"]]['FILE_NAME']?>"></a>										
 									</div>
 								<?}?>
-								<h5><a href="/detail/<?=$recipe["ID"]?>/"><?=$recipe["NAME"]?></a></h5>
-								<p class="author">От: <?=$recipe["USER"]['LOGIN']?></p>
+								<h5><a href="/detail/<?=($recipe['CODE'] ? $recipe['CODE'] : $recipe['ID'])?>/"><?=$recipe["NAME"]?></a></h5>
+								<p class="author">От: <?=$recipe["USER"]['FULLNAME']?></p>
 							</div>
 						<?endforeach;?>
 					</div>
@@ -423,8 +561,12 @@ if($obCache->InitCache($cache_time, $cache_id, $cache_dir)){
 				$strBlockLike = '';
 			}
 		}
-			
-		$CACHE_MANAGER->RegisterTag("recipe#".IntVal($_REQUEST['r']));
+		
+		if(intval($_REQUEST["r"])){
+			$CACHE_MANAGER->RegisterTag("recipe#".IntVal($_REQUEST['r']));
+		}elseif(strval($_REQUEST["c"])){
+			$CACHE_MANAGER->RegisterTag("recipe#".strval($_REQUEST['c']));
+		}		
 		$CACHE_MANAGER->EndTagCache();
 		
 		
@@ -457,7 +599,10 @@ if($obCache->InitCache($cache_time, $cache_id, $cache_dir)){
 				$Favorite->add($arResult["ID"]);
 				if(!$isOwner){					
 					$CMark->updateUserRait($arResult["CREATED_BY"],$way = "up","r_favorite");
-				}				
+				}
+				global $CACHE_MANAGER;
+				$CACHE_MANAGER->ClearByTag("profile_".$USER->GetId()."_favorites");
+				LocalRedirect($APPLICATION->GetCurPageParam("", array("r", "c", "f","place")));
 			}
 			elseif($_REQUEST['f'] == "n")
 			{
@@ -465,14 +610,28 @@ if($obCache->InitCache($cache_time, $cache_id, $cache_dir)){
 				if(!$isOwner){					
 					$CMark->updateUserRait($arResult["CREATED_BY"],$way = "low","r_favorite");
 				}
+				global $CACHE_MANAGER;
+				$CACHE_MANAGER->ClearByTag("profile_".$USER->GetId()."_favorites");
+				LocalRedirect($APPLICATION->GetCurPageParam("", array("r", "c", "f","place")));
 			}
 		}
 		else
 		{
-			LocalRedirect('/auth/?backurl=/detail/'.$arResult["ID"].'/?f='.$_REQUEST['f']);
+			if(intval($_REQUEST["r"])){
+				LocalRedirect('/auth/?backurl=/detail/'.$arResult["ID"].'/?f='.$_REQUEST['f']);
+			}elseif(strval($_REQUEST["c"])){
+				LocalRedirect('/auth/?backurl=/detail/'.$arResult["CODE"].'/?f='.$_REQUEST['f']);
+			}
 		}
-	}?>
-	
+	}
+
+	//$bAllowEdit = ((!($USER->IsAdmin()) && (MakeTimeStamp($arResult["DATE_CREATE"]) <= (time() - 3600*24*3))) || $USER->IsAdmin());
+	if($arResult["PROPERTY_EDIT_DEADLINE_VALUE"]){
+		$bAllowEdit = ((!($USER->IsAdmin()) && (MakeTimeStamp($arResult["PROPERTY_EDIT_DEADLINE_VALUE"]) >= time())) || $USER->IsAdmin());
+	}else{
+		$bAllowEdit = ($USER->IsAdmin());
+	}
+	?>
 	
 	<style>
 	@media print {
@@ -486,42 +645,86 @@ if($obCache->InitCache($cache_time, $cache_id, $cache_dir)){
 	#body div.padding {padding:0;}
 	}
 	</style>
+	<?if(isset($_REQUEST["cant_delete"])):
+		if(!$bAllowEdit){
+			echo "<div class='b-error-message'>
+				<div class='b-error-message__pointer'>
+					<div class='b-error-message__pointer__div'></div>
+				</div>
+				Вам нельзя удалять этот рецепт, т.к. он был добавлен более, чем 3 дня назад.
+			</div>
+			<div class='i-clearfix'></div>";
+		}
+	endif;
+	if(isset($_REQUEST["cant_edit"])):
+		if(!$bAllowEdit){
+			echo "<div class='b-error-message'>
+				<div class='b-error-message__pointer'>
+					<div class='b-error-message__pointer__div'></div>
+				</div>
+				Вам нельзя редактировать этот рецепт, т.к. он был добавлен более, чем 3 дня назад.
+			</div>
+			<div class='i-clearfix'></div>";
+		}
+	endif;?>
+	
 	<div id="text_space">
 	
 		<div class="b-recipe-menu">
 			<? if($USER->IsAuthorized()){
 				if($Favorite->status($arResult["ID"]))
 				{
-				?>
-				<a href="<?=SITE_DIR?>detail/<?=$arResult["ID"]?>/?f=n" class="b-recipe-menu__item b-recipe-menu__button b-recipe-menu__button__type-favorite" title="Убрать из избранного">
-					<span class="b-favorite-button i-remove-favorite"></span>
-				</a>
-				<?
+					if(intval($_REQUEST["r"])){?>
+						<a href="<?=SITE_DIR?>detail/<?=$arResult["ID"]?>/?f=n" class="b-recipe-menu__item b-recipe-menu__button b-favorite-button i-remove-favorite" title="Удалить из избранного">
+							<span class="b-favorite-button__text">Удалить</span>
+						</a>
+					<?}elseif(strval($_REQUEST["c"])){?>
+						<a href="<?=SITE_DIR?>detail/<?=$arResult["CODE"]?>/?f=n" class="b-recipe-menu__item b-recipe-menu__button b-favorite-button i-remove-favorite" title="Удалить из избранного">
+							<span class="b-favorite-button__text">Удалить</span>
+						</a>
+					<?}
 				}
 				else
 				{
-				?>
-				<a href="<?=SITE_DIR?>detail/<?=$arResult["ID"]?>/?f=y" class="b-recipe-menu__item b-recipe-menu__button b-recipe-menu__button__type-favorite" title="Добавить в избранное">
-					<span class="b-favorite-button i-add-favorite"></span>
-				</a>
-				<?
+					if(intval($_REQUEST["r"])){?>
+						<a href="<?=SITE_DIR?>detail/<?=$arResult["ID"]?>/?f=y" class="b-recipe-menu__item b-recipe-menu__button b-favorite-button">
+							<span class="b-favorite-button__text">В избранное</span>
+						</a>
+					<?}elseif(strval($_REQUEST["c"])){?>
+						<a href="<?=SITE_DIR?>detail/<?=$arResult["CODE"]?>/?f=y" class="b-recipe-menu__item b-recipe-menu__button b-favorite-button">
+							<span class="b-favorite-button__text">В избранное</span>
+						</a>
+					<?}
 				}
 			}
 			else
-			{?>
-				<a href="<?=SITE_DIR?>detail/<?=$arResult["ID"]?>/?f=y" class="b-recipe-menu__item b-recipe-menu__button b-recipe-menu__button__type-favorite" title="Добавить в избранное">
-					<span class="b-favorite-button i-add-favorite"></span>
+			{
+				if(intval($_REQUEST["r"])){?>
+				<a href="<?=SITE_DIR?>detail/<?=$arResult["ID"]?>/?f=y" class="b-recipe-menu__item b-recipe-menu__button b-favorite-button">
+					<span class="b-favorite-button__text">В избранное</span>
 				</a>
-			<?}?>
+				<?}elseif(strval($_REQUEST["c"])){?>
+				<a href="<?=SITE_DIR?>detail/<?=$arResult["CODE"]?>/?f=y" class="b-recipe-menu__item b-recipe-menu__button b-favorite-button">
+					<span class="b-favorite-button__text">В избранное</span>
+				</a>
+				<?}
+			}?>
 			<a href="#" class="b-recipe-menu__item b-recipe-menu__button b-recipe-menu__button__type-print">
 				<span class="b-print-button" title="Распечатать рецепт"></span>
 			</a>
-			
-			<div class="b-recipe-menu__item b-recipe-menu__like b-fb-button"><fb:like send="false" layout="button_count" width="50" show_faces="false"></fb:like></div>
+			<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/ru_RU/all.js#xfbml=1";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+			<div class="b-recipe-menu__item b-recipe-menu__like b-fb-button"><!--fb:like send="false" layout="button_count" width="50" show_faces="false"></fb:like--> <div class="fb-share-button" data-href="http://<?=$_SERVER['HTTP_HOST'].$_SERVER['PHP_SELF']?>" data-type="button_count"></div></div>
 			<div class="b-recipe-menu__item b-recipe-menu__like b-vk-button">
 				<div id="vk_like"></div>
 				<script type="text/javascript">
-				VK.Widgets.Like("vk_like", {type: "mini", height: 20});
+				VK.Widgets.Like("vk_like", {type: "mini", height: 20, pageUrl: "<?="http://".$_SERVER["SERVER_NAME"].$APPLICATION->GetCurDir();?>"});
 				</script>
 			</div>
 		<div class="clear"></div>
@@ -531,15 +734,15 @@ if($obCache->InitCache($cache_time, $cache_id, $cache_dir)){
 		<div class="title">
 			<div class="body">			
 			<div class="chain_path">
-				<div class="author"><div class="author_photo"><div class="big_photo" style="display: none;"><div><img width="100" height="100" alt="<?=$arAuthor["LOGIN"]?>" src="<?=$arAuthor["avatar"]?>"></div></div><img width="30" height="30" alt="<?=$arAuthor["LOGIN"]?>" src="<?=$arAuthor["avatar"]?>"></div><a class="nickname" href="/profile/<?=$arAuthor["ID"]?>/" title="<?=$arAuthor["LOGIN"]?>"><?if(strlen($arAuthor["LOGIN"]) > 10):?><?=substr($arAuthor["LOGIN"],0,10)?>...<?else:?><?=$arAuthor["LOGIN"]?><?endif;?></a></div>
+				<div class="author"><div class="author_photo"><div class="big_photo" style="display: none;"><div><img width="100" height="100" alt="<?=$arAuthor["FULLNAME"]?>" src="<?=$arAuthor["avatar"]?>"></div></div><img width="30" height="30" alt="<?=$arAuthor["FULLNAME"]?>" src="<?=$arAuthor["small_avatar"]?>"></div><a class="nickname" href="/profile/<?=$arAuthor["ID"]?>/" title="<?=$arAuthor["FULLNAME"]?>"><?if(strlen($arAuthor["FULLNAME"]) > 10):?><?=substr($arAuthor["FULLNAME"],0,10)?>...<?else:?><?=$arAuthor["FULLNAME"]?><?endif;?></a></div>
 				предлагает приготовить:	<span class="tags"><a class="sub-category" href="/search/<?=$arKitchens[ $arResult['PROPERTY_KITCHEN_VALUE'] ]['NAME']?>/" rel="tag"><?=$arKitchens[ $arResult['PROPERTY_KITCHEN_VALUE'] ]['NAME']?></a>/<a href="/search/<?=$arDishType[ $arResult['PROPERTY_DISH_TYPE_VALUE'] ]['NAME']?>/" class="category" rel="tag"><?=$arDishType[ $arResult['PROPERTY_DISH_TYPE_VALUE'] ]['NAME']?></a><?if(intval($arResult["PROPERTY_MAIN_INGREDIENT_VALUE"]) > 0):?>/<a href="/search/<?=$arResult["MAIN_INGREDIENT"]["NAME"]?>/" class="category" rel="tag"><?=$arResult["MAIN_INGREDIENT"]["NAME"]?></a><?endif;?></span>
 			</div>
 			<?if($USER->isAdmin() || $USER->GetID() == $arResult['CREATED_BY']):?>
 				<div class="admin_panel">
 				<noindex>
 				<a id="html_code" href="#">HTML-код</a>
-				<a title="Редактировать запись" href="<?=SITE_DIR?>recipe/edit/<?=$arResult["ID"]?>/" class="edit">Редактировать запись</a>
-				<a title="Удалить запись" class="delete" href="<?=SITE_DIR?>recipe/delete/<?=$arResult["ID"]?>/">Удалить запись</a>
+				<?if($bAllowEdit):?><a title="Редактировать запись" href="<?=SITE_DIR?>recipe/edit/<?=$arResult["ID"]?>/" class="edit">Редактировать запись</a>
+				<a title="Удалить запись" class="delete" href="<?=SITE_DIR?>recipe/delete/<?=$arResult["ID"]?>/">Удалить запись</a><?endif;?>
 				</noindex>
 				</div>
 			<?endif;?>
@@ -559,7 +762,7 @@ if($obCache->InitCache($cache_time, $cache_id, $cache_dir)){
 			</div>
 			<?endif;?>
 			<?if(IntVal($arResult['PREVIEW_PICTURE']) > 0):?>
-				<div class="image"><div class="screen"><div style="width: <?=$arResult["MainFile"]['WIDTH']?>px; height: <?=$arResult["MainFile"]['HEIGHT']?>px;"></div></div><img class="final-photo" src="/upload/<?=$arResult["MainFile"]['SUBDIR']?>/<?=$arResult["MainFile"]['FILE_NAME']?>" alt="<?=(strlen($arResult["MainFile"]['DESCRIPTION']) > 0 ? $arResult["MainFile"]['DESCRIPTION'] :$arResult['NAME'])?>" title="<?=(strlen($arResult["MainFile"]['DESCRIPTION']) > 0 ? $arResult["MainFile"]['DESCRIPTION'] : $arResult['NAME'])?>" width="<?=$arMainFile['WIDTH']?>" height="<?=$arMainFile['HEIGHT']?>"></div>
+				<div class="image"><div class="screen"><div style="width: <?=$arResult["MainFile"]['WIDTH']?>px; height: <?=$arResult["MainFile"]['HEIGHT']?>px;"></div></div><img class="result-photo" src="/upload/<?=$arResult["MainFile"]['SUBDIR']?>/<?=$arResult["MainFile"]['FILE_NAME']?>" alt="<?=(strlen($arResult["MainFile"]['DESCRIPTION']) > 0 ? $arResult["MainFile"]['DESCRIPTION'] :$arResult['NAME'])?>" title="<?=(strlen($arResult["MainFile"]['DESCRIPTION']) > 0 ? $arResult["MainFile"]['DESCRIPTION'] : $arResult['NAME'])?>" width="<?=$arResult["MainFile"]['WIDTH']?><?//=$arMainFile['WIDTH']?>" height="<?=$arResult["MainFile"]['HEIGHT']?><?//=$arMainFile['HEIGHT']?>"></div>
 			<?endif;?>
 			<?if(count($arAllUnits) > 0 || count($arResult['PROPERTY_TECHNICS_VALUE']) > 0){?>
 			<div class="needed">
@@ -592,7 +795,13 @@ if($obCache->InitCache($cache_time, $cache_id, $cache_dir)){
 						}
 						if($bF == true){ echo "<tr>";};
 					?>
-						<td class="ing_name <?if($bF == false){echo "border";}?>"><span class="ingredient"><?=$arItem[0]['NAME']?></span></td>
+						<td class="ing_name <?if($bF == false){echo "border";}?>">
+						<?if($arItem[0]['LINK']):?>
+						<span class="ingredient"><a href="/ingredient/<?=($arItem[0]['CODE'] ? $arItem[0]['CODE'] : $arItem[0]['ID'])?>/"><?=$arItem[0]['NAME']?></a></span>						
+						<?else:?>
+						<span class="ingredient"><?=$arItem[0]['NAME']?></span>
+						<?endif;?>						
+						</td>
 						<td class="ing_amount"><?=str_replace(Array("0.5", "0.25", "0.75"), Array("&frac12;","&frac14;","&frac34;"), $intUnitCount)?> <?=$arItem[0]['UNIT']?></td>
 					<?
 						if($bF == false){ echo "</tr>"; $bF = true;} else { $bF = false; };
@@ -617,11 +826,11 @@ if($obCache->InitCache($cache_time, $cache_id, $cache_dir)){
 					<div class="author">
 						<div class="author_photo">
 							<div class="big_photo">
-								<div><img src="<?=$arAuthor["avatar"]?>" width="100" height="100" alt="<?=$arAuthor['LOGIN']?>"></div>
+								<div><img src="<?=$arAuthor["avatar"]?>" width="100" height="100" alt="<?=$arAuthor['FULLNAME']?>"></div>
 							</div>
-							<img src="<?=$arAuthor["avatar"]?>" width="30" height="30" alt="<?=$arAuthor['LOGIN']?>">
+							<img src="<?=$arAuthor["small_avatar"]?>" width="30" height="30" alt="<?=$arAuthor['FULLNAME']?>">
 						</div>
-						<a class="nickname" href="/profile/<?=$arAuthor['ID']?>/" title="<?=$arAuthor['LOGIN']?>"><?if(strlen($arAuthor['LOGIN']) > 10):?><?=substr($arAuthor['LOGIN'],0,10)?>...<?else:?><?=$arAuthor['LOGIN']?><?endif;?></a>
+						<a class="nickname" href="/profile/<?=$arAuthor['ID']?>/" title="<?=$arAuthor['FULLNAME']?>"><?=$arAuthor['FULLNAME']?></a>
 					</div>
 					<?if($USER->IsAuthorized()){?>
 					<div class="comments"><a href="#add_opinion">Комментировать</a><span class="number">(<a href="#add_opinion"><?=IntVal($mixCount)?></a>)</span></div>
@@ -634,27 +843,41 @@ if($obCache->InitCache($cache_time, $cache_id, $cache_dir)){
 			if($Favorite->status($arResult["ID"]))
 			{
 			?>
-			<a href="" class="b-recipe-menu__item b-recipe-menu__button b-recipe-menu__button__type-favorite" title="Убрать из избранного">
-				<span class="b-favorite-button i-remove-favorite"></span>
-			</a>
-			<?
+				<?if(intval($_REQUEST["r"])){?>
+				<a href="<?=SITE_DIR?>detail/<?=$arResult["ID"]?>/?f=n" class="b-recipe-menu__item b-recipe-menu__button b-favorite-button i-remove-favorite" title="Удалить из избранного">
+					<span class="b-favorite-button__text">Удалить</span>
+				</a>
+				<?}elseif(strval($_REQUEST["c"])){?>
+				<a href="<?=SITE_DIR?>detail/<?=$arResult["CODE"]?>/?f=n" class="b-recipe-menu__item b-recipe-menu__button b-favorite-button i-remove-favorite" title="Удалить из избранного">
+					<span class="b-favorite-button__text">Удалить</span>
+				</a>
+				<?}
 			}
 			else
 			{
 			?>
-			<a href="" class="b-recipe-menu__item b-recipe-menu__button b-recipe-menu__button__type-favorite" title="Добавить в избранное">
-				<span class="b-favorite-button i-add-favorite"></span>
-			</a>
-			<?
+				<?if(intval($_REQUEST["r"])){?>
+				<a href="<?=SITE_DIR?>detail/<?=$arResult["ID"]?>/?f=y" class="b-recipe-menu__item b-recipe-menu__button b-favorite-button">
+					<span class="b-favorite-button__text">В избранное</span>
+				</a>
+				<?}elseif(strval($_REQUEST["c"])){?>
+				<a href="<?=SITE_DIR?>detail/<?=$arResult["CODE"]?>/?f=y" class="b-recipe-menu__item b-recipe-menu__button b-favorite-button">
+					<span class="b-favorite-button__text">В избранное</span>
+				</a>
+				<?}
 			}
 		}
 		else
-		{
-			?>
-			<a href="<?=SITE_DIR?>detail/<?=$arResult["ID"]?>/?f=y" class="b-recipe-menu__item b-recipe-menu__button b-recipe-menu__button__type-favorite" title="Добавить в избранное">
-				<span class="b-favorite-button i-add-favorite"></span>
+		{?>
+			<?if(intval($_REQUEST["r"])){?>
+			<a href="<?=SITE_DIR?>detail/<?=$arResult["ID"]?>/?f=y" class="b-recipe-menu__item b-recipe-menu__button b-favorite-button">
+				<span class="b-favorite-button__text">В избранное</span>
 			</a>
-		<?
+			<?}elseif(strval($_REQUEST["c"])){?>
+			<a href="<?=SITE_DIR?>detail/<?=$arResult["CODE"]?>/?f=y" class="b-recipe-menu__item b-recipe-menu__button b-favorite-button">
+				<span class="b-favorite-button__text">В избранное</span>
+			</a>
+			<?}
 		}?>
 			<a href="#" class="b-recipe-menu__item b-recipe-menu__button b-recipe-menu__button__type-print">
 				<span class="b-print-button" title="Распечатать рецепт"></span>
@@ -665,7 +888,7 @@ if($obCache->InitCache($cache_time, $cache_id, $cache_dir)){
 			<div class="b-social-buttons__item b-vk-like">
 				<div id="vk_like1"></div>
 				<script type="text/javascript">
-					VK.Widgets.Like("vk_like1", {type: "mini", height: 20});
+					VK.Widgets.Like("vk_like1", {type: "mini", height: 20, pageUrl: "<?="http://".$_SERVER["SERVER_NAME"].$APPLICATION->GetCurDir();?>"});
 				</script>
 			</div>
 			<div class="b-social-buttons__item b-twitter-like">
@@ -688,97 +911,65 @@ if($obCache->InitCache($cache_time, $cache_id, $cache_dir)){
 		</div>
 <?}?>
 	
-	<a name="comments"></a>
-	<div id="opinion_block">
-	<?
-	$comment_cache_id = "comments_id".IntVal($_REQUEST['r']);
-	$comment_cache_dir = "/recipes_comments_cache/id".IntVal($_REQUEST['r']);	
-	if($obCache->InitCache($cache_time, $comment_cache_id, $comment_cache_dir)){
-		$arComments = $obCache->GetVars();
-	}elseif(CModule::IncludeModule("iblock") && $obCache->StartDataCache()){
-		global $CACHE_MANAGER;
-		$CACHE_MANAGER->StartTagCache($comment_cache_dir);
-		require_once($_SERVER["DOCUMENT_ROOT"].'/classes/comment.class.php');
-		CModule::IncludeModule("iblock");
-		$obComment = CFClubComment::getInstance();
-		$arComments = $obComment->getList($arResult["ID"]);
-		if($arComments !== false){
-			foreach($arComments as $arComment){
-				$CACHE_MANAGER->RegisterTag("recipe_comments#".IntVal($_REQUEST['r'])."_comment#".$arComment["ID"]);
-			}				
-		}else{
-			$arComments = array();
-		}
-		$CACHE_MANAGER->RegisterTag("recipe_comments#".IntVal($_REQUEST['r']));
-		$CACHE_MANAGER->EndTagCache();
-		$obCache->EndDataCache($arComments);
-	}else{
-		$arComments = array();
-	}
-	echo "<h2 class='h1'>Отзывы пользователей</h2>";
-	foreach($arComments as $arComment){?>
-		<a name="<?=$arComment['ID']?>"></a>
-		<div class="opinion <?if($arComment['CREATED_BY'] == $USER->GetId())echo "mine";?>" id="<?=$arComment['ID']?>">
-			<div class="icons">
-				<div class="close_icon" title="Закрыть"></div>
-				<div class="pointer"></div>
-				<div class="photo">
-					<div class="big_photo">
-						<div><img src="<?=$arComment['USER']['SRC']?>" width="100" height="100" alt="<?=$arComments['USER']['LOGIN']?>"></div>
-					</div>
-					<img src="<?=$arComment['USER']['SRC']?>" width="30" height="30" alt="<?=$arComments['USER']['LOGIN']?>">
-				</div>
-				<div class="right">
-					<?if($USER->IsAdmin() || $USER->GetID() == $arComment['CREATED_BY']){?><div class="delete" title="Удалить"></div>
-					<div class="edit" title="Редактировать"></div><?};?>
-				</div>
-			</div>
-
-			<div class="padding">
-				<div class="opinion_author"><a href="/profile/<?=$arComment["USER"]["ID"]?>/"><?=$arComment["USER"]["LOGIN"]?></a></div>
-				<div class="text">
-					<?=$arComment['PREVIEW_TEXT']?>
-				</div>
-				<form action="/comment.php" name="edit_comment" method="post">
-					<input type="hidden" name="cId" value="<?=$arComment['ID']?>">
-					<input type="hidden" name="rId" value="<?=$arResult["ID"]?>">
-					<input type="hidden" name="a" value="e">
-					<div class="textarea"><textarea name="opinion" cols="10" rows="5"><?=$arComment['~PREVIEW_TEXT']?></textarea></div>
-					<div class="button">Сохранить</div>
-				</form>
-				<div class="properties">
-					<div class="date"><?=$arComment['DATE_CREATE']?></div>
-				</div>
-			</div>
-		</div>
-	<?}
-	if($USER->IsAuthorized()){?>
-		<a name="add_opinion"></a>
-		<div id="opinion_form" class="form_field">
-			<form action="/comment.php" method="post" name="comment">
-				<div class="form_field">
-					<h4>Ваш отзыв <span>?</span></h4>
-					<textarea name="text" cols="10" rows="10"></textarea>
-					<input type="hidden" name="a" value="new">
-					<input type="hidden" name="recipe" value="<?=$arResult["ID"]?>">
-					<div class="button">Оставить отзыв</div>
-				</div>
-			</form>
-		</div>
-	<?} else {?>
-		<div class="opinion foodclub">
-			<div class="icons">
-				<div class="pointer"></div>
-			</div>
-			<div class="padding">
-				<div class="text">
-					Для добавления отзыва Вам необходимо <a href="/auth/?backurl=<?=$APPLICATION->GetCurPage()?>#add_opinion">авторизоваться</a> или <a href="/registration/?backurl=<?=$APPLICATION->GetCurPage()?>#add_opinion">зарегистрироваться</a>. У пользователей ЖЖ, есть возможность авторизоваться на сайте используя ЖЖ-аккаунт.
-				</div>
-			</div>
-		</div>
-	<?}//if?>
-	</div>
-	
+<a name="comments"></a>
+<?
+$template = "custom";
+?>
+<?$APPLICATION->IncludeComponent("custom:recipe.comments", $template, Array(
+	"DISPLAY_DATE" => "Y",	// Выводить дату элемента
+	"DISPLAY_NAME" => "Y",	// Выводить название элемента
+	"DISPLAY_PICTURE" => "Y",	// Выводить изображение для анонса
+	"DISPLAY_PREVIEW_TEXT" => "Y",	// Выводить текст анонса
+	"AJAX_MODE" => "N",	// Включить режим AJAX
+	"IBLOCK_TYPE" => "news",	// Тип информационного блока (используется только для проверки)
+	"IBLOCK_ID" => "",	// Код информационного блока
+	"RECIPE_ID" => $arResult["ID"],	// Код Рецепта
+	"CREATED_BY" => $arResult["CREATED_BY"],
+	"NEWS_COUNT" => "20",	// Количество новостей на странице
+	"SORT_BY1" => "ACTIVE_FROM",	// Поле для первой сортировки новостей
+	"SORT_ORDER1" => "DESC",	// Направление для первой сортировки новостей
+	"SORT_BY2" => "SORT",	// Поле для второй сортировки новостей
+	"SORT_ORDER2" => "ASC",	// Направление для второй сортировки новостей
+	"FILTER_NAME" => "",	// Фильтр
+	"FIELD_CODE" => "",	// Поля
+	"PROPERTY_CODE" => "",	// Свойства
+	"CHECK_DATES" => "Y",	// Показывать только активные на данный момент элементы
+	"DETAIL_URL" => "",	// URL страницы детального просмотра (по умолчанию - из настроек инфоблока)
+	"PREVIEW_TRUNCATE_LEN" => "",	// Максимальная длина анонса для вывода (только для типа текст)
+	"ACTIVE_DATE_FORMAT" => "d.m.Y",	// Формат показа даты
+	"SET_TITLE" => "Y",	// Устанавливать заголовок страницы
+	"SET_STATUS_404" => "N",	// Устанавливать статус 404, если не найдены элемент или раздел
+	"INCLUDE_IBLOCK_INTO_CHAIN" => "Y",	// Включать инфоблок в цепочку навигации
+	"ADD_SECTIONS_CHAIN" => "Y",	// Включать раздел в цепочку навигации
+	"HIDE_LINK_WHEN_NO_DETAIL" => "N",	// Скрывать ссылку, если нет детального описания
+	"PARENT_SECTION" => "",	// ID раздела
+	"PARENT_SECTION_CODE" => "",	// Код раздела
+	"CACHE_TYPE" => "N",	// Тип кеширования
+	"CACHE_TIME" => "36000000",	// Время кеширования (сек.)
+	"CACHE_NOTES" => "",
+	"CACHE_FILTER" => "N",	// Кэшировать при установленном фильтре
+	"CACHE_GROUPS" => "Y",	// Учитывать права доступа
+	"DISPLAY_TOP_PAGER" => "N",	// Выводить над списком
+	"DISPLAY_BOTTOM_PAGER" => "Y",	// Выводить под списком
+	"PAGER_TITLE" => "Новости",	// Название категорий
+	"PAGER_SHOW_ALWAYS" => "Y",	// Выводить всегда
+	"PAGER_TEMPLATE" => "",	// Название шаблона
+	"PAGER_DESC_NUMBERING" => "N",	// Использовать обратную навигацию
+	"PAGER_DESC_NUMBERING_CACHE_TIME" => "36000",	// Время кеширования страниц для обратной навигации
+	"PAGER_SHOW_ALL" => "Y",	// Показывать ссылку "Все"
+	"AJAX_OPTION_SHADOW" => "Y",	// Включить затенение
+	"AJAX_OPTION_JUMP" => "N",	// Включить прокрутку к началу компонента
+	"AJAX_OPTION_STYLE" => "Y",	// Включить подгрузку стилей
+	"AJAX_OPTION_HISTORY" => "N",	// Включить эмуляцию навигации браузера
+	"AJAX_OPTION_ADDITIONAL" => "",	// Дополнительный идентификатор
+	),
+	false
+);?>
+<?if (CModule::IncludeModule("advertising")){
+    //$strBanner = CAdvBanner::Show("right_banner");
+    $strBookBanner = CAdvBanner::Show("book_banner");
+	$strSecond_banner = CAdvBanner::Show("second_right_banner");
+}?>
 </div>
 										
 	<div id="banner_space">
@@ -797,29 +988,81 @@ if($obCache->InitCache($cache_time, $cache_id, $cache_dir)){
 			</div>
 		</div>
 		<?}?>
-		<?if(strlen($strBanner) > 0){?>
+		<?
+		//$APPLICATION->ShowBanner("right_banner", "<div class=\"banner\"><h5>Реклама</h5>", "</div>");
+		?>
+		<?if(strlen($strrBanner) > 0){?>
 			<div class="banner">
 				<h5>Реклама</h5>
-				<?=$strBanner?>
+				<?=$strrBanner?>
 			</div>
 		<?}?>
+		<?$APPLICATION->IncludeComponent("custom:store.banner.vertical", "", Array(),false);?>
 		<?if(strlen($strBookBanner) > 0){?>
 			<div class="auxiliary_block book">
 				<?=$strBookBanner?>
 				<div class="clear"></div>
 			</div>
 		<?}?>
-		<?=$strBlockLike?>
-		<?if(strlen($strSecond_banner) > 0){?>
-			<div class="banner">
+		<?=$strBlockLike?>		
+		<?//require($_SERVER["DOCUMENT_ROOT"]."/facebook_box.html");?>
+		<?if(strlen($strSecond_banner) > 0){
+			$APPLICATION->SetAdditionalCSS("/css/floating_banner.css");
+			$APPLICATION->AddHeadScript('/js/floating_banner.js');?>
+			<div class="clear"></div>
+			<div class="banner" data-floating="true">
 				<h5>Реклама</h5>
 				<?=$strSecond_banner?>
 			</div>
 		<?}?>
-		<?require($_SERVER["DOCUMENT_ROOT"]."/facebook_box.html");?>
 	</div>
 	<div class="clear"></div>
 </div>
-<?include(__DIR__."/recipe_print.html");?>
+<script type="text/html" id="print-recipe">
+<!DOCTYPE HTML>
+<html>
+<head>
+<title><%=title%></title>
+<link href="/css/print.css?140912446479610" type="text/css"  rel="stylesheet" />
+</head>
 
+<body>
+	<div id="body">
+		<div id="top_decor"><img src="/images/print/top_decor.gif" width="602" height="4" alt=""></div>
+			<div id="recipe">
+				<% if(!(browser.opera || browser.msie)) { %>
+				<div class="b-print-button"><a href="#" class="b-button i-print-button" onclick="window.print(); return false;"><span>Распечатать</span></a></div>
+				<% } %>
+				<div class="b-print-head">
+					<div class="b-print-head__logo b-logo"><img src="/images/print/foodclub_logo.gif" width="89" height="63" alt="Foodclub.ru"></div>
+					<div class="b-print-head__slogan b-slogan">Рецепты<br>с пошаговыми<br>фотографиями</div>
+					<div class="b-print-head__web b-web">www.foodclub.ru</div>
+					<div class="i-clearfix"></div>
+				</div>
+				<div class="title">
+					<h1><%=h1%></h1>
+					<div class="recipe_info"><%=recipeInfo%></div>
+					<div class="needed">
+						<h2>Для приготовления блюда вам понадобится:</h2>
+						<table><%=needed%></table>
+					</div>
+					<div class="image"><%=titleImage%></div>
+					<div class="description"><%=description%></div>
+					<div class="i-clearfix"></div>
+				</div>
+				<div class="instructions">
+					<% for(var i = 0; i < stages.length; i++) { %>
+					<div class="stage"><%=stages[i]%></div>
+					<% } %>
+				</div>
+				<% if(!(browser.opera || browser.msie)) { %>
+				<div class="b-print-button"><a href="#" class="b-button i-print-button" onclick="window.print(); return false;"><span>Распечатать</span></a></div>
+				<% } %>
+			</div>
+			<div id="bottom_decor"><img src="/images/print/bottom_decor.gif" width="602" height="4" alt=""></div>
+		</div>
+	</div>
+</body>
+</html>
+</script>
 <?require($_SERVER["DOCUMENT_ROOT"]."/bitrix/footer.php");?>

@@ -1,7 +1,10 @@
 <?php
 require($_SERVER["DOCUMENT_ROOT"]."/bitrix/header.php");
 
-define("MINIMIZE", true);
+/*global $USER;
+if(!$USER->IsAdmin()){
+	define("MINIMIZE", true);
+}*/
 
 if (CModule::IncludeModule("advertising")){
 	$strBanner_right = CAdvBanner::Show("right_banner");
@@ -142,11 +145,12 @@ unset($arPost);
 				<div class="fcut"><a href="/blogs/group/<?=$arBlogs[ $arPost['BLOG_ID'] ]['SOCNET_GROUP_ID']."/blog/".$arPost['ID']?>/#cut">Подробнее</a></div>
 			<?}?>
 			</div>
-			<?if(isset($arPost['CATEGORY'])){?>
+			<?if(isset($arPost['CATEGORY'])){
+				$categoryCount = count($arPost['CATEGORY']);?>
 				<div class="tags">
 					<h6>Метки</h6>
-					<?foreach($arPost['CATEGORY'] as $Item){?>
-						<a href="<?=$Item['urlToCategory']?>"><?=$Item['NAME']?></a>
+					<?foreach($arPost['CATEGORY'] as $key => $Item){?>
+						<a href="<?=$Item['urlToCategory']?>"><?=$Item['NAME']?></a><?=(($key+1) != $categoryCount ? ", " : "")?>
 					<?}?>
 				</div>
 			<?}?>
@@ -323,7 +327,7 @@ unset($arPost);
 	"PATH_TO_USER" => "/profile/#user_id#/",
 	"PATH_TO_GROUP_BLOG_POST" => "",
 	"CACHE_TYPE" => "A",
-	"CACHE_TIME" => "600",
+	"CACHE_TIME" => "6000",
 	"PATH_TO_SMILE" => "",
 	"BLOG_VAR" => "",
 	"POST_VAR" => "",
@@ -343,7 +347,7 @@ unset($arPost);
 	<div class="collection_block">
 		<h2><span>Подборка</span></h2>
 		<?
-		if($obCache->InitCache(86400, "FooterBlock".SITE_ID, "/FooterBlock".SITE_ID)){
+		if( $obCache->InitCache(86400, "FooterBlock".SITE_ID, "/FooterBlock".SITE_ID)){
 			$vars = $obCache->GetVars();
 			$Themes = $vars["Themes"];
 			$ResDump = $vars["ResDump"];
@@ -353,7 +357,7 @@ unset($arPost);
 											Array("ACTIVE"=>"Y", "IBLOCK_CODE"=>"thematic_bloc", "PROPERTY_place_VALUE"=>"home"),
 											false,
 											false,
-											Array("ID", "NAME", "PREVIEW_PICTURE", "PROPERTY_recipe", "PROPERTY_place")
+											Array("ID", "NAME", "PREVIEW_PICTURE", "PROPERTY_recipe", "PROPERTY_place", "PROPERTY_URL")
 										);
 			$ResDump = Array();
 			while($Bl = $rsThematicBlock->GetNext())
@@ -405,7 +409,11 @@ if($obCache->StartDataCache(86400, "FooterBlock_index_html".SITE_ID, "/footer_bl
 	if(!empty($Themes) && !empty($strBlockHTML)){
 		foreach($Themes as $Block){?>
 			<div class="block">
-				<h3><?=$Block['NAME']?></h3>
+				<?if($Block['PROPERTY_URL_VALUE']):?>
+					<h3><a href="<?=$Block['PROPERTY_URL_VALUE']?>"><?=$Block['NAME']?></a></h3>
+				<?else: ?>
+					<h3><?=$Block['NAME']?></h3>
+				<?endif?>
 				<?=$strBlockHTML[ $Block["ID"] ]?>
 				<div class="clear"></div>
 			</div>

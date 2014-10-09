@@ -1,4 +1,5 @@
 <?if(!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED!==true)die();?>
+<?$this->setFrameMode(false);?>
 <script src="/js/file-upload/js/vendor/jquery.ui.widget.js"></script>
 <script src="/js/file-upload/js/jquery.iframe-transport.js"></script>
 <script src="/js/file-upload/js/jquery.fileupload.js"></script>
@@ -209,6 +210,7 @@
 </script>
 
 <div id="b-comments">
+<?//$frame = $this->createFrame()->begin();?>
 <h2 class="b-rc__heading">Отзывы пользователей</h2>
 	<a name="comment"></a>
 	<div id="b-comment-form">
@@ -471,3 +473,4 @@
         <?}?>
 	</div>
 </div>
+<?//$frame->end();?>

@@ -1,21 +1,23 @@
 <?if(!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED!==true)die();?>
-<link rel="stylesheet" type="text/css" href="/foodshot/foodshot.css">
+<?$APPLICATION->AddHeadScript($this->GetFolder()."/script.js");?>
+<?if($USER->IsAuthorized()):
+	$strUserObj = '<script type="text/javascript">
+	var userObject = {
+		"id": "'.$arResult["user"]["ID"].'",
+		"href": "http://www.foodclub.ru/profile/'.$arResult["user"]["ID"].'/",
+		"src": "'.$arResult["user"]["PERSONAL_PHOTO"]["src"].'",
+		"name": "'.$arResult["user"]["NAME"]." ".$arResult["user"]["LAST_NAME"].'"
+	};';
+	if($USER->isAdmin()){
+		$strUserObj .= 'userObject.isAdmin = "yes";';
+	}
+	$strUserObj .= '</script>';
+	$APPLICATION->AddHeadString($strUserObj);?>	
+<?endif;?>
+<?$this->createFrame()->begin('<img src="/images/preloader.gif" width="100%" alt="">');?>
+<link rel="stylesheet" type="text/css" href="/foodshot/foodshot.css?135037931126807">
 <?$curDir = $APPLICATION->GetCurDir();?>
 <div class="b-last-foodshot <?if($curDir!="/"):?>b-collection-block b-collection-block__type_top-border<?endif;?>">
-	<?if($USER->IsAuthorized()):?>
-	<script type="text/javascript">
-		var userObject = {
-			"id": "<?=$arResult["user"]["ID"]?>",
-			"href": "http://www.foodclub.ru/profile/<?=$arResult["user"]["ID"]?>/",
-			"src": "<?=$arResult["user"]["PERSONAL_PHOTO"]["src"]?>",
-			"name": "<?=$arResult["user"]["NAME"]." ".$arResult["user"]["LAST_NAME"];?>"
-		};
-		<?if($USER->isAdmin()){?>
-			userObject.isAdmin = "yes";
-		<?}?>
-	</script>
-	<?endif;?>
-		
 	<script type="text/html" id="foodshot-comment-template">
 		<div class="b-comment b-comment__type-short b-foodshot-board__item-comment" data-id="<%=id%>">
 			<a href="<%=author.href%>" class="b-comment__userpic b-userpic">

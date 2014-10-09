@@ -12,9 +12,7 @@ $APPLICATION->SetAdditionalCSS("/best/best.css");
     <br />
    </p>
  	 
-  <div class="b-best-block"> 		 
-    <h2>Подборки по интересам  |  Дайджесты </h2>
-   		 
+  <div class="b-best-block"> 		 		 
     <div class="b-grid"> 			 
       <div class="b-gird__column"> 				<?$APPLICATION->IncludeFile(SITE_TEMPLATE_PATH."/include_areas/1.php", Array(), Array(
 				    "MODE"      => "html",                                           // будет редактировать в веб-редакторе

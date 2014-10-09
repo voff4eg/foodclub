@@ -1,4 +1,14 @@
  
+<div class="b-best-block__item"> 	<a href="/zakuski-na-zimu/" class="b-best-block__item__image" ><img src="/upload/medialibrary/44f/44f08f9c322bc27848e2e546d27477d4.JPG" width="100%" alt="Закуски на зиму" title="Закуски на зиму"  /></a> 	 
+  <h3><a href="/zakuski-na-zimu/" >Закуски на зиму</a></h3>
+ 
+  <p>Хотите сохранить свежие сезонные овощи, фрукты и&nbsp;грибы? Сделайте из&nbsp;них вкусные закуски на&nbsp;зиму и&nbsp;у&nbsp;вас под рукой всегда будет отличное домашнее угощение.</p>
+ 	 
+  <p> Читайте также:</p>
+ 
+  <p><a href="/detail/baklazhani-na-zimu/" >Баклажаны на зиму</a> </p>
+ </div>
+ 
 <div class="b-best-block__item"> 	<a href="/pesto/" class="b-best-block__item__image" ><img src="/upload/medialibrary/9e4/pesto.png" width="100%" alt="Песто" title="Песто"  /></a> 
   <h3><a href="/pesto/" >Песто</a></h3>
  

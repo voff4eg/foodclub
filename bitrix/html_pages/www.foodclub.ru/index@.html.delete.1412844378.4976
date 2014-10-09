@@ -1,0 +1,834 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:og="http://ogp.me/ns#1"
+      xmlns:fb="http://www.facebook.com/2008/fbml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="keywords" content="кулинарные рецепты, кулинарный сайт, рецепт, кулинария, фото рецепты, рецепты с фотографиями, фото блюд" />
+<meta name="description" content="Кулинарные рецепты со всего света. Удобный поиск, пошаговые фотографии кулинарных рецептов." />
+<title>Кулинарные рецепты с фотографиями этапов приготовления. Foodclub.ru</title>
+<style>.bx-composite-btn {background: url(/bitrix/images/main/composite/bx-white-logo.png) no-repeat right 5px #e94524;border-radius: 15px;color: #ffffff !important;display: inline-block;line-height: 30px;font-family: "Helvetica Neue", Helvetica, Arial, sans-serif !important;font-size: 12px !important;font-weight: bold !important;height: 31px !important;padding: 0 42px 0 17px !important;vertical-align: middle !important;text-decoration: none !important;}.bx-composite-btn-fixed {position: absolute;top: -45px;right: 15px;z-index: 10;}.bx-btn-white {background-image: url(/bitrix/images/main/composite/bx-white-logo.png);color: #fff !important;}.bx-btn-black {background-image: url(/bitrix/images/main/composite/bx-black-logo.png);color: #000 !important;}.bx-btn-grey {background-image: url(/bitrix/images/main/composite/bx-grey-logo.png);color: #657b89 !important;}.bx-btn-red {background-image: url(/bitrix/images/main/composite/bx-red-logo.png);color: #555 !important;}.bx-btn-border {border: 1px solid #d4d4d4;background-position: right 5px;height: 29px !important;line-height: 29px !important;}</style>
+<script>(function(w) {var v = w.frameCacheVars = {'CACHE_MODE':'HTMLCACHE','banner':{'url':'http://www.1c-bitrix.ru/composite/','text':'Быстро с 1С-Битрикс','bgcolor':'#FFFFFF','style':'grey'},'storageBlocks':[]};var r = w.XMLHttpRequest ? new XMLHttpRequest() : (w.ActiveXObject ? new w.ActiveXObject("Microsoft.XMLHTTP") : null);if (!r) { return; }w.frameRequestStart = true;var m = v.CACHE_MODE; var l = w.location; var x = new Date().getTime();var q = "?bxrand=" + x + (l.search.length > 0 ? "&" + l.search.substring(1) : "");var u = l.protocol + "//" + l.host + l.pathname + q;r.open("GET", u, true);r.setRequestHeader("BX-ACTION-TYPE", "get_dynamic");r.setRequestHeader("BX-REF", document.referrer || "");r.setRequestHeader("BX-CACHE-MODE", m);if (m === "APPCACHE"){r.setRequestHeader("BX-APPCACHE-PARAMS", JSON.stringify(v.PARAMS));r.setRequestHeader("BX-APPCACHE-URL", v.PAGE_URL ? v.PAGE_URL : "");}r.onreadystatechange = function() {if (r.readyState != 4) { return; }var a = r.getResponseHeader("BX-RAND");var b = w.BX && w.BX.frameCache ? w.BX.frameCache : false;if (a != x || !((r.status >= 200 && r.status < 300) || r.status === 304 || r.status === 1223 || r.status === 0)){if (w.BX){BX.ready(function() { BX.onCustomEvent("onFrameDataRequestFail"); });}else{w.frameRequestFail = false;}return;}if (b){b.onFrameDataReceived(r.responseText);if (!w.frameUpdateInvoked){b.update(false);}w.frameUpdateInvoked  = true;}else{w.frameDataString = r.responseText;}};r.send();})(window);</script>
+<link href="//www.foodclub.ru.css.1c-bitrix-cdn.ru/bitrix/cache/css/s1/fclub/page_81b839f326bd48b1c5f7d291c39f18c8/page_81b839f326bd48b1c5f7d291c39f18c8_ea23d9647d4c4a3b90c7196dc93aabaf.css?14126597031642" type="text/css"  rel="stylesheet" />
+<link href="//www.foodclub.ru.css.1c-bitrix-cdn.ru/bitrix/cache/css/s1/fclub/kernel_main/kernel_main.css?141266143357729" type="text/css"  rel="stylesheet" />
+<link href="//www.foodclub.ru.css.1c-bitrix-cdn.ru/bitrix/cache/css/s1/fclub/template_ae7223ce8a4b61af6e1019e45d8e7524/template_ae7223ce8a4b61af6e1019e45d8e7524_b4363c7761d3595261dd00c41437243b.css?1412679819160061" type="text/css"  data-template-style="true"  rel="stylesheet" />
+<script type="text/javascript" src="/js/jquery-1.8.3.min.js?1411921738"></script>
+<script>var _ba = _ba || []; _ba.push(["aid", "83bc315263293c64a034f00ee8394419"]);(function() {var ba = document.createElement("script"); ba.type = "text/javascript"; ba.async = true;ba.src = document.location.protocol + "//bitrix.info/ba.js";var s = document.getElementsByTagName("script")[0];s.parentNode.insertBefore(ba, s);})();</script>
+<script type="text/javascript">if(!window.BX)window.BX={message:function(mess){if(typeof mess=='object') for(var i in mess) BX.message[i]=mess[i]; return true;}};</script>
+<script type="text/javascript">(window.BX||top.BX).message({'JS_CORE_LOADING':'Загрузка...','JS_CORE_NO_DATA':'- Нет данных -','JS_CORE_WINDOW_CLOSE':'Закрыть','JS_CORE_WINDOW_EXPAND':'Развернуть','JS_CORE_WINDOW_NARROW':'Свернуть в окно','JS_CORE_WINDOW_SAVE':'Сохранить','JS_CORE_WINDOW_CANCEL':'Отменить','JS_CORE_H':'ч','JS_CORE_M':'м','JS_CORE_S':'с','JSADM_AI_HIDE_EXTRA':'Скрыть лишние','JSADM_AI_ALL_NOTIF':'Показать все','JSADM_AUTH_REQ':'Требуется авторизация!','JS_CORE_WINDOW_AUTH':'Войти','JS_CORE_IMAGE_FULL':'Полный размер'});</script>
+<script type="text/javascript">(window.BX||top.BX).message({'TOOLTIP_ENABLED':'Y'});</script>
+<script type="text/javascript">(window.BX||top.BX).message({'LANGUAGE_ID':'ru','FORMAT_DATE':'DD.MM.YYYY','FORMAT_DATETIME':'DD.MM.YYYY HH:MI:SS','COOKIE_PREFIX':'BITRIX_SM','SERVER_TZ_OFFSET':'14400','SITE_ID':'s1'});</script>
+
+
+<script type="text/javascript" src="//www.foodclub.ru.js.1c-bitrix-cdn.ru/bitrix/cache/js/s1/fclub/kernel_main/kernel_main.js?1412661433383253"></script>
+<script type="text/javascript" src="//www.foodclub.ru.js.1c-bitrix-cdn.ru/bitrix/js/main/core/core_db.js?140318099410954"></script>
+<script type="text/javascript" src="//www.foodclub.ru.js.1c-bitrix-cdn.ru/bitrix/js/main/core/core_frame_cache.js?140912446411917"></script>
+<script type="text/javascript">BX.setCSSList(['/bitrix/components/custom/foodshot.list/templates/one_foodshot/style.css','/bitrix/templates/fclub/components/custom/topcook.list/topcook.index.new/style.css','/bitrix/js/main/core/css/core.css','/bitrix/js/main/core/css/core_tooltip.css','/bitrix/js/main/core/css/core_popup.css','/bitrix/js/main/core/css/core_date.css','/css/profile.css','/css/elem.css','/bitrix/templates/fclub/components/bitrix/main.user.link/top/style.css','/bitrix/templates/fclub/template_styles.css','/css/helper.css','/bitrix/components/custom/header.search.v2/templates/.default/additional.css','/bitrix/components/custom/store.banner.horizontal/templates/.default/store.css']); </script>
+<script type="text/javascript">BX.setJSList(['/bitrix/js/main/core/core.js','/bitrix/js/main/core/core_ajax.js','/bitrix/js/main/json/json2.min.js','/bitrix/js/main/core/core_ls.js','/bitrix/js/main/core/core_fx.js','/bitrix/js/main/session.js','/bitrix/js/main/utils.js','/bitrix/js/main/core/core_tooltip.js','/bitrix/js/main/core/core_window.js','/bitrix/js/main/core/core_popup.js','/bitrix/js/main/core/core_date.js']); </script>
+<!-- The XDomainRequest Transport is included for cross-domain file deletion for IE8+ -->
+<!--[if gte IE 8]><script src="js/cors/jquery.xdr-transport.js"></script><![endif]-->
+<script type="text/javascript" src="//www.foodclub.ru.js.1c-bitrix-cdn.ru/bitrix/cache/js/s1/fclub/template_fd8a5b50c433951361eec63ff6047a1f/template_fd8a5b50c433951361eec63ff6047a1f_ce3a3ebbbe2e3bff8e90b5d620b46811.js?1412691056201218"></script>
+
+<script type="text/javascript" src="//www.foodclub.ru.js.1c-bitrix-cdn.ru/bitrix/cache/js/s1/fclub/page_c3d2b90d161a4a636988794193781340/page_c3d2b90d161a4a636988794193781340_6d5709131737e458215045b77ddab5e0.js?14128419204967"></script>
+<meta name="verify-v1" content="IFNqswFktC+hhGa2ZKs6Ale87GxdIORrcVznFXPdEh4=" >
+<meta name='yandex-verification' content='7e14af38f0152a84' />
+<meta name='yandex-verification' content='4606e113f2b24cf7' />
+<meta name="apple-itunes-app" content="app-id=445878711, affiliate-data=1l3vmcn" />
+<link rel="icon" href="http://www.foodclub.ru/favicon.ico">
+<meta name="title" content="Кулинарные рецепты с фотографиями этапов приготовления. Foodclub.ru" />
+
+<!-- Vkontakte -->
+<script type="text/javascript" src="http://userapi.com/js/api/openapi.js?47"></script>
+<script type="text/javascript">
+  VK.init({apiId: 2404991, onlyWidgets: true});
+</script>
+</head>
+<script type="text/javascript" async="true">
+	var _gaq = _gaq || [];
+	_gaq.push(['_setAccount', 'UA-43906683-1']);
+	_gaq.push(['_setDomainName', 'foodclub.ru']);
+	_gaq.push(['_setAllowLinker', true]);
+	_gaq.push(['_setCustomVar', 1, 'Cache', window.frameRequestStart ? 'Composite': 'NoComposite', 3]);
+	// Поиск картинок
+	_gaq.push(['_addOrganic', 'images.yandex.ru', 'text', true]);
+	// Поиск по блогам
+	_gaq.push(['_addOrganic', 'blogsearch.google.ru', 'q', true]);
+	_gaq.push(['_addOrganic', 'blogs.yandex.ru', 'text', true]);
+	// Товарные площадки России
+	_gaq.push(['_addOrganic', 'market.yandex.ru', 'text', true]);
+	_gaq.push(['_addOrganic', 'price.ru', 'pnam']);
+	// Поисковики России
+	_gaq.push(['_addOrganic', 'go.mail.ru', 'q']);
+	_gaq.push(['_addOrganic', 'nova.rambler.ru', 'query']);
+	_gaq.push(['_addOrganic', 'nigma.ru', 's']);
+	_gaq.push(['_addOrganic', 'webalta.ru', 'q']);
+	_gaq.push(['_addOrganic', 'aport.ru', 'r']);
+	_gaq.push(['_addOrganic', 'poisk.ru', 'text']);
+	_gaq.push(['_addOrganic', 'km.ru', 'sq']);
+	_gaq.push(['_addOrganic', 'liveinternet.ru', 'ask']);
+	_gaq.push(['_addOrganic', 'quintura.ru', 'request']);
+	_gaq.push(['_addOrganic', 'search.qip.ru', 'query']);
+	_gaq.push(['_addOrganic', 'gde.ru', 'keywords']);
+	_gaq.push(['_addOrganic', 'gogo.ru', 'q']);
+	_gaq.push(['_addOrganic', 'ru.yahoo.com', 'p']);
+	_gaq.push(['_trackPageview']);
+
+	(function() {
+		var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+		ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+		var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+	})();
+</script>
+<body data-site-id="s1">
+
+<script type='text/javascript'>var _merchantSettings=_merchantSettings || [];_merchantSettings.push(['AT', '1l3vmcn']);(function(){var autolink=document.createElement('script');autolink.type='text/javascript';autolink.async=true; autolink.src= ('https:' == document.location.protocol) ? 'https://autolinkmaker.itunes.apple.com/js/itunes_autolinkmaker.js' : 'http://autolinkmaker.itunes.apple.com/js/itunes_autolinkmaker.js';var s=document.getElementsByTagName('script')[0];s.parentNode.insertBefore(autolink, s);})();</script>
+
+<div id="fb-root"></div>
+<a href="https://plus.google.com/118442365793857710655" rel="publisher" style="font-size:0; display:none;">Google+</a>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/ru_RU/all.js#xfbml=1&appId=140629199390639";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+<div id="top_panel">
+	<div class="body">
+	<div id="bxdynamic_BjSui4">
+	<noindex><a class="sign_in" href="/auth/?backurl=/index.php">Войти</a><a class="reg" href="/registration/">Зарегистрироваться</a></noindex>
+	</div>	</div>
+</div>
+<div id="top_spacer"></div>
+<div id="top_banner" style="background-image:url(/images/infoblock/top_banner_bg.gif);">
+	<noindex><a href="/bitrix/rk.php?id=99&amp;event1=banner&amp;event2=click&amp;event3=14+%2F+%5B99%5D+%5Btop_banner%5D+Instagram&amp;goto=http%3A%2F%2Finstagram.com%2Ffoodclub_ru&amp;af=7aaacd26f105c1454b4133fe0c3cab75" target="_blank" ><img alt="Следите за нами в Instagrame"  title="Следите за нами в Instagrame" src="//www.foodclub.ru.images.1c-bitrix-cdn.ru/upload/rk/e02/instagram.gif?140070291911633" width="1000" height="90" border="0" /></a></noindex>
+</div><div id="bg1"><div id="bg2">
+<div id="body">
+	<div class="padding">
+		<div id="head">
+			<div id="logo">
+							<img src="/images/foodclub_logo.gif" width="143" height="102" alt="Кулинарные рецепты с фотографиями" title="Кулинарные рецепты с фотографиями">
+                                <h1>Рецепты<br>с пошаговыми<br>фотографиями</h1>
+			                                
+			</div>
+        <div id="recipeSearch" class="b-recipe-search">
+	<form action="/search/" method="post">
+		<div class="b-form-field b-recipe-search__form-field">
+			<a href="#" class="b-recipe-search__delete" title="Очистить поле"></a>
+			<input type="text" class="b-input-text b-recipe-search__input" value="" autocomplete="off" data-placeholder="Я ищу">
+		</div>
+		<button class="b-recipe-search__button"></button>
+		<div class="i-clearfix"></div>
+	</form>
+	<p class="b-recipe-search__helper"><noindex><a href="#" id="search_helper_link" class="b-recipe-search__helper__link">Помощник</a></noindex></p>
+</div>
+
+<script type="text/html" id="recipe_search_items">
+	<li class="b-rs__item">
+		<a href="<%=url%>" class="b-rs__item__link">
+			<% var imageRegExp = new RegExp('\.(gif)|(jpeg)|(jpg)|(png)$', 'gi'); %>
+			<% if(imageRegExp.test(image)) { %>
+			<span class="b-rs__item__image-wrapper" data-image="<%=image%>"></span>
+			<% } else { %>
+			<span class="b-rs__item__image-wrapper b-rs__item__image-wrapper__type_empty"></span>
+			<% } %>
+			<span class="b-rs__item__text b-rs-str"><%=title%></span>
+			<span class="b-rs__item__info">
+				<span class="b-rs__item__time"><% if(time.hours && time.hours > 0) {%>
+				<% function recipeWord(num) {
+					if (/(10|11|12|13|14|15|16|17|18|19)$/.test(num)) {return 'часов';}
+					else if (/.*1$/.test(num)) {return 'час';}
+					else if (/[2-4]$/.test(num)) {return 'часа';}
+					else {return 'часов';}
+				} %>
+				<%=time.hours%> <%=recipeWord(time.hours)%><% } %><% if(time.minutes && time.minutes > 0) {%> <%=time.minutes%> мин<% } %></span>
+				<span class="b-rs__item__nutrition"><%=nutrition%></span>
+			</span>
+			<span class="clear"></span>
+		</a>
+		<span class="b-rs__item__hr"></span>
+	</li>
+</script>		<div id="iphone_link">
+			<div class="pic"></div>
+			<a href="/iphone/"><b>Foodclub НD</b><br />Кулинарная книга для вашего iPhone и iPad</a>
+			<div class="clear"></div>
+		</div>
+
+			<div class="clear"></div>
+		</div>
+	<div id="topbar" class="nosubmenu"><div class="menu">
+<!--<div class="item sauce_contest"><a href="/contests/sauce/"><span title="Соус Прайм"></span></a></div>
+<div class="item magi_contest"><a href="/contests/magi/"><span>Суши <em>маги</em></span></a></div>-->
+<!-- <div class="item new_year"><a href="/pages/new_year/"><span>Новогодние рецепты</span></a></div> -->
+<!-- <div class="item"><a href="/recipe-of-month/"><span>Рецепт месяца</span></a></div> -->
+
+
+
+			<!-- <div class="item ny2014">
+				<div class="ny2014-tail"></div>
+				<a href="/new-year/" title="Новогодние рецепты"></a>
+			</div> -->
+<div class="item"><a href="/recipe-of-month/"><span>Рецепт месяца</span></a></div>
+
+
+
+
+<div class="item"><a href="/recipes/"><span>Рецепты</span></a></div>
+
+<div class="item"><a href="/blogs/"><span>Клубы</span></a>
+    </div>
+
+<!-- <div class="item"><a href="/specialists/"><span>Кулинары</span></a></div> -->
+<div class="item"><a href="/specialists/"><span>Кулинары</span></a></div>
+
+<!-- <div class="item"><a href="/book_store/"><span>Книжная лавка</span></a></div> -->
+
+
+<!-- <div class="item"><a href="/tv/"><span>Foodclub TV</span></a></div> -->
+<div class="item"><a href="/foodshot/#!foodshot"><span>Фудшот</span></a></div>
+<div class="item"><a href="/lavka/"><span>Лавка</span></a></div>
+<div class="item new"><a href="/best/"><span>Самое интересное</span></a></div>
+<!--<div class="item best"><a href="/pages/"><span>Самое интересное</span></a></div>-->
+<div class="clear"></div>
+</div>
+</div><!-- test  -->	
+	
+			    <div id="recipe_line_block">
+				<h2><a href="/recipes/">Рецепты с пошаговыми фотографиями</a></h2>
+						
+					<div class="item recipe_list_item">
+						<div class="photo">
+							<a href="/detail/rassolnik/" title="Рассольник"><!--  113х170  -->
+								<img src="//www.foodclub.ru.images.1c-bitrix-cdn.ru/upload/iblock/eca/eca07accc97be5e447c39169ba4cebc4.jpg?14125842165629" width="170" alt="Рассольник" />
+							</a>
+						</div>
+						<h5>
+							<a href="/detail/rassolnik/">Рассольник</a>
+						</h5>
+												<p class="author">От: Мария Савельева</p>
+						<p class="info"><span title="Оставить отзыв" class="comments_icon"><a href="/detail/rassolnik/#comments">3</a></span></p>
+					</div>
+						
+					<div class="item recipe_list_item">
+						<div class="photo">
+							<a href="/detail/yablochniy-jam-s-valyu-i-citrusom/" title="Яблочный джем: ванильная сладость, цитрусовые нотки"><!--  113х170  -->
+								<img src="//www.foodclub.ru.images.1c-bitrix-cdn.ru/upload/iblock/711/71132d7926d416ad460088d0d93419fb.jpg?14120901776404" width="170" alt="Яблочный джем: ванильная сладость, цитрусовые нотки" />
+							</a>
+						</div>
+						<h5>
+							<a href="/detail/yablochniy-jam-s-valyu-i-citrusom/">Яблочный джем: ванильная сладость, цитрусовые нотки</a>
+						</h5>
+												<p class="author">От: Натали Лисси</p>
+						<p class="info"><span title="Оставить отзыв" class="comments_icon"><a href="/detail/yablochniy-jam-s-valyu-i-citrusom/#comments">2</a></span></p>
+					</div>
+						
+					<div class="item recipe_list_item">
+						<div class="photo">
+							<a href="/detail/baklazhani-na-zimu/" title="Баклажаны на зиму"><!--  113х170  -->
+								<img src="//www.foodclub.ru.images.1c-bitrix-cdn.ru/upload/iblock/6c5/6c51e7570e47a613b9a3878778df0403.jpg?14120633005764" width="170" alt="Баклажаны на зиму" />
+							</a>
+						</div>
+						<h5>
+							<a href="/detail/baklazhani-na-zimu/">Баклажаны на зиму</a>
+						</h5>
+												<p class="author">От: Мария Савельева</p>
+						<p class="info"><span title="Оставить отзыв" class="comments_icon"><a href="/detail/baklazhani-na-zimu/#comments">10</a></span></p>
+					</div>
+						
+					<div class="item recipe_list_item">
+						<div class="photo">
+							<a href="/detail/yablochniy-pirog-iz-sloenogo-testa/" title="Закрытый яблочный пирог из слоеного теста"><!--  113х170  -->
+								<img src="//www.foodclub.ru.images.1c-bitrix-cdn.ru/upload/iblock/86b/86b0294b251b26d928e5c4202b9618bf.jpg?14120641115331" width="170" alt="Закрытый яблочный пирог из слоеного теста" />
+							</a>
+						</div>
+						<h5>
+							<a href="/detail/yablochniy-pirog-iz-sloenogo-testa/">Закрытый яблочный пирог из слоеного теста</a>
+						</h5>
+												<p class="author">От: Мария Савельева</p>
+						<p class="info"><span title="Оставить отзыв" class="comments_icon"><a href="/detail/yablochniy-pirog-iz-sloenogo-testa/#comments">2</a></span></p>
+					</div>
+						
+					<div class="item recipe_list_item">
+						<div class="photo">
+							<a href="/detail/osenniy-tort-s-grushami-orehami-i-vanilnim-kremom/" title="Нежный осенний торт с грушами, орехами и ванильным баварским кремом"><!--  113х170  -->
+								<img src="//www.foodclub.ru.images.1c-bitrix-cdn.ru/upload/iblock/d81/d81702e2f50d11acbddc5ede34f9e01d.jpg?14120017497509" width="170" alt="Нежный осенний торт с грушами, орехами и ванильным баварским кремом" />
+							</a>
+						</div>
+						<h5>
+							<a href="/detail/osenniy-tort-s-grushami-orehami-i-vanilnim-kremom/">Нежный осенний торт с грушами, орехами и ванильным баварским кремом</a>
+						</h5>
+												<p class="author">От: Дарья Мальцева</p>
+						<p class="info"><span title="Оставить отзыв" class="comments_icon"><a href="/detail/osenniy-tort-s-grushami-orehami-i-vanilnim-kremom/#comments">3</a></span></p>
+					</div>
+								<div class="clear"></div>
+		    </div>
+		    	    	<div id="top_search_list"><ul class="top_search_list"></ul></div><!--for IE-->
+<div id="fc_statistics">
+	<div class="wrapper">
+		<span class="item">Добавлено <span class="num">1944</span> <a href="/recipes/">рецепта</a></span><span class="sep"></span><span class="item"><span class="num">81</span> кулинар сейчас на сайте</span>
+	</div>
+</div>
+<div id="content">
+	<div id="feed_space">
+		<div class="choice">
+			<noindex>
+			<a href="/blogs/">Все клубы</a>
+						</noindex>
+		</div>
+		<h2>Темы, обсуждаемые в клубах</h2>
+				<div class="topic_item">
+			<div class="chain_path"><a href="/blogs/group/50/blog/">Жизнь живого журнала</a></div>			
+			<h3><a class="heading" href="/blogs/group/50/blog/1222/">Что приготовить из тыквы? Дайджест рецептов из Живого Журнала</a></h3>
+			<div class="text">Тыква – настоящая королева осени. Эти оранжевые плоды будто впитали в себя все ароматы и краски осени. А сладковатый и немного пряный вкус – идеально подходит для домашнего уютного обеда в дождливую погоду. Но не все знают, что именно приготовить из тыквы. Заглянем в Живой Журнал, и посмотрим какими блюдами удивят нас блоггеры. <br /><br />Самый простой способ – запечь тыкву. Nimfeechka предлагает в своем жж <a href="http://nimfeechka.livejournal.com/111109.html" target="_blank">два варианта</a> – в духовке и на сковороде-гриль. <br /><br /><a href="http://nimfeechka.livejournal.com/111109.html" target="_blank"><img src="//www.foodclub.ru.images.1c-bitrix-cdn.ru/upload/resize_cache/blog/9d0/465_600_1/9d0943e94e97d582af00e77e7d23de5f.jpg?141269065489224" title="" alt="" border="0" width="465" height="310" data-bx-image="/upload/blog/9d0/9d0943e94e97d582af00e77e7d23de5f.jpg" /></a>							<div class="fcut"><a href="/blogs/group/50/blog/1222/#cut">Подробнее</a></div>
+						</div>
+							<div class="tags">
+					<h6>Метки</h6>
+											<a href="/blogs/group/50/blog/?category=1389">Foodclub</a>, 											<a href="/blogs/group/50/blog/?category=1006">дайджест</a>, 											<a href="/blogs/group/50/blog/?category=1587">тыква</a>									</div>
+						<div class="bar">
+				<span class="comments_icon" title="Комментировать"><noindex>
+					<a href="/blogs/group/50/blog/1222/#00">2</a>
+				</noindex></span>
+				<span class="author">
+					<noindex>
+						<span class="photo">&nbsp;<a href="/profile/21007/">
+							<img src="//www.foodclub.ru.images.1c-bitrix-cdn.ru/upload/resize_cache/main/c3f/30_30_1/03c6926af6a511e1ba4022000a1e8932_7 (2).jpg?13775408571815" width="30" height="30" alt="viktoriafilbert" />
+						</a></span>
+												<a href="/profile/21007/">Виктория Фильберт</a>
+					</noindex>
+				</span>
+				<span class="date">7 октября 2014 17:45:37</span>
+				<div class="clear"></div>
+			</div>
+			<div class="clear"></div>
+		</div>
+						<div class="topic_item">
+			<div class="chain_path"><a href="/blogs/group/46/blog/">Интересные факты</a></div>			
+			<h3><a class="heading" href="/blogs/group/46/blog/1221/">Факты и мифы о майонезе</a></h3>
+			<div class="text">Вряд ли какой-нибудь продукт или блюдо может сравниться по его одиозности c майонезом. Есть разные версии происхождения этого соуса, название «майонез» связывают и с географическими наименованием и с французскими обозначением яичных желтков.<br /><br />По сути майонез представляет собой масляную эмульсию, в которой масло соединяется с яичным желтком в гомогенную воздушную массу. В состав майонеза также входит кислота (чаще всего уксус или лимонный сок), соль, сахар и горчица. Горчица, кстати, не только придает майонезу дополнительный вкус, но и способствует сохранению гомогенности эмульсии.<br /><br /><img src="//www.foodclub.ru.images.1c-bitrix-cdn.ru/upload/resize_cache/blog/2c7/465_600_1/2c7ef5f17ddd7eaca960c468f0814feb.jpg?141266325072531" title="" alt="" border="0" width="465" height="348" data-bx-image="/upload/blog/2c7/2c7ef5f17ddd7eaca960c468f0814feb.jpg" /><br />							<div class="fcut"><a href="/blogs/group/46/blog/1221/#cut">Подробнее</a></div>
+						</div>
+							<div class="tags">
+					<h6>Метки</h6>
+											<a href="/blogs/group/46/blog/?category=1585">домашняя кухня</a>, 											<a href="/blogs/group/46/blog/?category=1584">закуски</a>, 											<a href="/blogs/group/46/blog/?category=1583">майонез</a>, 											<a href="/blogs/group/46/blog/?category=1586">салаты</a>									</div>
+						<div class="bar">
+				<span class="comments_icon" title="Комментировать"><noindex>
+					<a href="/blogs/group/46/blog/1221/#00">4</a>
+				</noindex></span>
+				<span class="author">
+					<noindex>
+						<span class="photo">&nbsp;<a href="/profile/2/">
+							<img src="//www.foodclub.ru.images.1c-bitrix-cdn.ru/upload/resize_cache/main/fb3/30_30_1/avatar.jpg?13760363021498" width="30" height="30" alt="madler" />
+						</a></span>
+												<a href="/profile/2/">Мария Савельева</a>
+					</noindex>
+				</span>
+				<span class="date">7 октября 2014 10:06:18</span>
+				<div class="clear"></div>
+			</div>
+			<div class="clear"></div>
+		</div>
+							<div class="topic_item_brief">
+				<div class="bar">
+					<span class="comments_icon" title="Комментировать"><noindex>
+						<a href="/blogs/group/53/blog/1220/#00"></a>
+					</noindex></span>
+				</div>
+				<h3><a class="heading" href="/blogs/group/53/blog/1220/">Макаронс (макарунс, макаруны, макарони). Часть 3. Приготовление теста и выпечка</a></h3>
+				<div class="clear"></div>
+			</div>
+							<div class="topic_item_brief">
+				<div class="bar">
+					<span class="comments_icon" title="Комментировать"><noindex>
+						<a href="/blogs/group/50/blog/1219/#00"></a>
+					</noindex></span>
+				</div>
+				<h3><a class="heading" href="/blogs/group/50/blog/1219/">Прогоним осеннюю депрессию! Дайджест рецептов из ЖЖ</a></h3>
+				<div class="clear"></div>
+			</div>
+							<div class="topic_item_brief">
+				<div class="bar">
+					<span class="comments_icon" title="Комментировать"><noindex>
+						<a href="/blogs/group/53/blog/1218/#00"></a>
+					</noindex></span>
+				</div>
+				<h3><a class="heading" href="/blogs/group/53/blog/1218/">Макаронс (макарунс, макаруны, макарони). Часть 2. Продукты</a></h3>
+				<div class="clear"></div>
+			</div>
+				</div>
+	<div id="cooks_space">
+<!--<pre>Array
+(
+    [IBLOCK_ID] => 25
+    [IBLOCK_LID] => s1
+    [ACTIVE] => Y
+    [CHECK_PERMISSIONS] => Y
+    [ACTIVE_DATE] => Y
+)
+</pre>-->
+<div id="bxdynamic_BDVgAp"><img src="/images/preloader.gif" width="100%" alt=""></div>		<div id="cooks_feed">
+			<h2>
+	<a href="/specialists/">Наши кулинары</a>
+</h2>
+<ul>
+<li>
+		<a class="icon" href="/profile/2/"><img width="50" height="50" alt="Мария Савельева" src="//www.foodclub.ru.images.1c-bitrix-cdn.ru/upload/resize_cache/main/fb3/50_50_1/avatar.jpg?13172888372611"></a>	<div class="author"><a href="/profile/2/">Мария Савельева</a></div>
+	<div class="intro">Приготовление пищи для меня совсем не рутинное повседневное занятие, а настоящий творческий и познав...</div>	<div class="rating"><span>140641</span></div></li>
+<li>
+		<a class="icon" href="/profile/27/"><img width="50" height="50" alt="Татьяна Карташёва" src="//www.foodclub.ru.images.1c-bitrix-cdn.ru/upload/resize_cache/main/96d/50_50_1/corfu.jpg?13830474862873"></a>	<div class="author"><a href="/profile/27/">Татьяна Карташёва</a></div>
+	<div class="intro">Придерживаюсь идеи о здоровом питании, сладкого стараюсь не употреблять, но иногда готовлю по интере...</div>	<div class="rating"><span>20496</span></div></li>
+<li>
+		<a class="icon" href="/profile/21239/"><img width="50" height="50" alt="Анна Басто" src="//www.foodclub.ru.images.1c-bitrix-cdn.ru/upload/resize_cache/main/f09/50_50_1/IMG_72677.jpg?13763941502993"></a>	<div class="author"><a href="/profile/21239/">Анна Басто</a></div>
+		<div class="rating"><span>13870</span></div></li>
+<li>
+		<a class="icon" href="/profile/14260/"><img width="50" height="50" alt="Катя Левченко" src="//www.foodclub.ru.images.1c-bitrix-cdn.ru/upload/resize_cache/main/e2d/50_50_1/avatar.jpg?13517823202951"></a>	<div class="author"><a href="/profile/14260/">Катя Левченко</a></div>
+	<div class="intro">Люблю готовить)</div>	<div class="rating"><span>11316</span></div></li>
+<li>
+		<a class="icon" href="/profile/5725/"><img width="50" height="50" alt="Ирина Карпухина" src="//www.foodclub.ru.images.1c-bitrix-cdn.ru/upload/resize_cache/main/851/50_50_1/avatar.jpg?13911526613050"></a>	<div class="author"><a href="/profile/5725/">Ирина Карпухина</a></div>
+		<div class="rating"><span>10521</span></div></li>
+<li>
+		<a class="icon" href="/profile/2471/"><img width="50" height="50" alt="Mariha-kitchen" src="//www.foodclub.ru.images.1c-bitrix-cdn.ru/upload/resize_cache/main/cf2/50_50_1/mariha_kitchen.jpg?13184682363628"></a>	<div class="author"><a href="/profile/2471/">Mariha-kitchen</a></div>
+	<div class="intro">Автор блога Mariha-kitchen.livejournal.com. Люблю традиционные блюда, найденные в пожелтевших от вре...</div>	<div class="rating"><span>6451</span></div></li>
+<li>
+		<a class="icon" href="/profile/24866/"><img width="50" height="50" alt="Дарья Мальцева" src="//www.foodclub.ru.images.1c-bitrix-cdn.ru/upload/resize_cache/main/49d/50_50_1/1888507_10152666875454829_1658906828_n.jpg?13983552732893"></a>	<div class="author"><a href="/profile/24866/">Дарья Мальцева</a></div>
+	<div class="intro">Пишу из места, где слились во едино три культуры, три нации, три истории и случилось так, что стали ...</div>	<div class="rating"><span>6317</span></div></li>
+<li>
+		<a class="icon" href="/profile/70/"><img width="50" height="50" alt="Владислав Пискунов" src="//www.foodclub.ru.images.1c-bitrix-cdn.ru/upload/resize_cache/main/517/50_50_1/avatar.jpg?13180299812863"></a>	<div class="author"><a href="/profile/70/">Владислав Пискунов</a></div>
+	<div class="intro">Здравствуйте, друзья. Меня зовут Влад Пискунов, я кулинарный блогер и автор книги «ВСЁ о том, КАК вк...</div>	<div class="rating"><span>5639</span></div></li>
+<li>
+		<a class="icon" href="/profile/384/"><img width="50" height="50" alt="irina_ctc" src="//www.foodclub.ru.images.1c-bitrix-cdn.ru/upload/resize_cache/main/04f/50_50_1/avatar.jpg?13194422002121"></a>	<div class="author"><a href="/profile/384/">irina_ctc</a></div>
+		<div class="rating"><span>5454</span></div></li>
+<li>
+		<a class="icon" href="/profile/9585/"><img width="50" height="50" alt="niik 1213" src="//www.foodclub.ru.images.1c-bitrix-cdn.ru/upload/resize_cache/main/b10/50_50_1/avatar.jpg?13310669422493"></a>	<div class="author"><a href="/profile/9585/">niik 1213</a></div>
+		<div class="rating"><span>4966</span></div></li>
+</ul>		</div>
+	</div>
+	<div id="banner_space" class="index">
+				<div id="do-you-know-that" class="b-facts">
+			<div class="b-facts__heading">Знаете ли вы что:</div>
+			<div class="b-facts__content">
+				<div class="b-facts__item" data-id="52068">
+					Стир-фрай (Stir-fry) означает «жарить, помешивая», что определяет способ приготовления этого блюда.				</div>
+			</div>
+			<div class="b-facts__more">
+				<a href="#" class="b-facts__more__link">Еще</a>
+			</div>
+		</div>
+				<div class="banner"><h5>Реклама</h5>
+<!-- Soloway 240x400 code START-->
+ 
+<script language="javascript" type="text/javascript"><!--
+if(typeof(ar_cn)=="undefined") var ar_cn=1;
+var ar_Tail=document.referrer ? escape(document.referrer) : 'unknown';
+var ar_link="http://ad.adriver.ru/cgi-bin/erle.cgi?sid=193877&bt=49&target=blank&tail256=" + ar_Tail;
+document.write('<div style="visibility:hidden;height:0px;"><iframe id="ar_container_'+ar_cn+'" width=1 height=1 marginwidth=0 marginheight=0 scrolling=no frameborder=0><\/iframe><\/div><div id="ad_ph_'+ar_cn+'"><\/div>');
+function ar_getDoc(t,n,l){var doc;if(t<100){if(document.all && !window.opera){doc = window.frames['ar_container_'+n].document}
+else if(document.getElementById){doc=document.getElementById('ar_container_'+n).contentDocument}
+if(!doc){setTimeout('ar_getDoc('+(++t)+','+n+',"'+l+'")', 100)}else {var RndNum4NoCash = Math.round(Math.random() * 1000000000);
+doc.write ('<sc'+'ript language="JavaScript" type="text/javascript">var ar_bnum='+n+';<\/sc'+'ript>');
+doc.write ('<sc'+'ript language="JavaScript" type="text/javascript" src="'+l+'&rnd='+RndNum4NoCash+'"><\/sc'+'ript>');}}}
+(function(num,link){function addEvent(e,t,f){if(e.addEventListener)e.addEventListener(t,f,false);else if(e.attachEvent)e.attachEvent('on'+t,f)}
+function removeEvent(e,t,f){if(e.removeEventListener)e.removeEventListener(t,f,false);else if(e.detachEvent)e.detachEvent('on'+t,f)}
+var BannerLoader={top:0,height:400,cm:document.compatMode=="CSS1Compat",
+scroll:function(){var ch=self.innerHeight||this.cm&&document.documentElement.clientHeight||document.body.clientHeight;
+var st=self.pageYOffset||this.cm&&document.documentElement.scrollTop||document.body.scrollTop;
+var sh=self.scrollHeight||this.cm&&document.documentElement.scrollHeight||document.body.scrollHeight;
+if((st-this.top<=this.height*0.2&&st+ch-this.top>=this.height*0.8)||(sh-this.top<=this.height*0.8&&(sh-st-ch<1||sh<ch))){
+removeEvent(window,'scroll',this.sfunc);ar_getDoc(0,num,link)}},
+sfunc: function(){BannerLoader.scroll()},init:function(){var t=this,obj=document.getElementById('ad_ph_'+num);
+if(obj){while(obj.offsetParent){t.top += obj.offsetTop; obj = obj.offsetParent}
+addEvent(window,'scroll',this.sfunc);t.scroll()}}};addEvent(window, 'load', function(){BannerLoader.init()})})(ar_cn++,ar_link);
+//--></script>
+ 
+<!-- Soloway 240x400 code END -->
+ </div>		<div class="comments_feed">
+			﻿<div id="bxdynamic_WwKBh5"><img src="/images/preloader.gif" width="100%" alt=""></div>		</div>
+	</div>
+	<div class="clear"></div>
+	<div style="margin: 45px 0;">
+	<script charset="UTF-8" src="//www.travelpayouts.com/widgets/2e904aed9b11dc04a26ae5f66e4a9820.js?v=176"></script>
+	</div>
+	<div id="bxdynamic_FDTeip"></div>	<div class="collection_block">
+		<h2><span>Подборка</span></h2>
+					<div class="block">
+									<h3><a href="http://www.foodclub.ru/soup/">Супы</a></h3>
+								<div class="recipe_list_item"><div class="photo"><a title="Сырный суп с креветками" href="/detail/1662/"><img width="150" alt="Сырный суп с креветками" src="//www.foodclub.ru.images.1c-bitrix-cdn.ru/upload/iblock/8de/_sirniy_sup.jpg?13522100156067"></a></div><h5><a href="/detail/1662/">Сырный суп с креветками</a></h5><p class="author">От: Мария Савельева</p></div><div class="recipe_list_item"><div class="photo"><a title="Тосканский суп из смеси бобовых" href="/detail/19388/"><img width="150" alt="Тосканский суп из смеси бобовых" src="//www.foodclub.ru.images.1c-bitrix-cdn.ru/upload/iblock/ed5/_end.jpg?13256816955905"></a></div><h5><a href="/detail/19388/">Тосканский суп из смеси бобовых</a></h5><p class="author">От: Мария Савельева</p></div><div class="recipe_list_item"><div class="photo"><a title="Сливочный суп с лососем (lohikeitto)" href="/detail/35940/"><img width="150" alt="Сливочный суп с лососем (lohikeitto)" src="//www.foodclub.ru.images.1c-bitrix-cdn.ru/upload/iblock/b36/_end.jpg?13512399576956"></a></div><h5><a href="/detail/35940/">Сливочный суп с лососем (lohikeitto)</a></h5><p class="author">От: Мария Савельева</p></div><div class="recipe_list_item"><div class="photo"><a title="Тыквенный крем-суп с белым вином" href="/detail/38352/"><img width="150" alt="Тыквенный крем-суп с белым вином" src="//www.foodclub.ru.images.1c-bitrix-cdn.ru/upload/iblock/32e/_end.jpg?13577203557826"></a></div><h5><a href="/detail/38352/">Тыквенный крем-суп с белым вином</a></h5><p class="author">От: Мария Савельева</p></div><div class="recipe_list_item"><div class="photo"><a title="Острый рыбный суп (уха с венгерским акцентом)" href="/detail/41131/"><img width="150" alt="Острый рыбный суп (уха с венгерским акцентом)" src="//www.foodclub.ru.images.1c-bitrix-cdn.ru/upload/iblock/701/DSC_5045.jpg?13630750256444"></a></div><h5><a href="/detail/41131/">Острый рыбный суп (уха с венгерским акцентом)</a></h5><p class="author">От: Дмитрий Ефимов</p></div><div class="recipe_list_item"><div class="photo"><a title="Суп с ширатаки" href="/detail/43235/"><img width="150" alt="Суп с ширатаки" src="//www.foodclub.ru.images.1c-bitrix-cdn.ru/upload/iblock/1e7/_end.jpg?13879989886140"></a></div><h5><a href="/detail/43235/">Суп с ширатаки</a></h5><p class="author">От: Мария Савельева</p></div><div class="recipe_list_item"><div class="photo"><a title="Пряный, обжигающий томатный суп с рыбой и перцем чили" href="/detail/53246/"><img width="150" alt="Пряный, обжигающий томатный суп с рыбой и перцем чили" src="//www.foodclub.ru.images.1c-bitrix-cdn.ru/upload/iblock/d0b/21112afe-d81f-4c3e-80b4-a9cec2a8b09a_w600_h0_p.jpg?13864908495117"></a></div><h5><a href="/detail/53246/">Пряный, обжигающий томатный суп с рыбой и перцем чили</a></h5><p class="author">От: Анна Басто</p></div><div class="recipe_list_item"><div class="photo"><a title="Солянка мясная для ленивых" href="/detail/55791/"><img width="150" alt="Солянка мясная для ленивых" src="//www.foodclub.ru.images.1c-bitrix-cdn.ru/upload/iblock/43c/20140207_204501.jpg?13918819025710"></a></div><h5><a href="/detail/55791/">Солянка мясная для ленивых</a></h5><p class="author">От: Anna Plaksina</p></div><div class="recipe_list_item"><div class="photo"><a title="Постный борщ  грибами" href="/detail/57545/"><img width="150" alt="Постный борщ  грибами" src="//www.foodclub.ru.images.1c-bitrix-cdn.ru/upload/iblock/527/_borsch_s_gribami.jpg?13955858066153"></a></div><h5><a href="/detail/57545/">Постный борщ  грибами</a></h5><p class="author">От: Мария Савельева</p></div><div class="recipe_list_item"><div class="photo"><a title="Каштановый суп" href="/detail/57858/"><img width="150" alt="Каштановый суп" src="//www.foodclub.ru.images.1c-bitrix-cdn.ru/upload/iblock/216/_marron_soup.jpg?13961988863761"></a></div><h5><a href="/detail/57858/">Каштановый суп</a></h5><p class="author">От: Мария Савельева</p></div><div class="recipe_list_item"><div class="photo"><a title="Пряный, имбирный крем-суп из картофеля с креветками" href="/detail/59143/"><img width="150" alt="Пряный, имбирный крем-суп из картофеля с креветками" src="//www.foodclub.ru.images.1c-bitrix-cdn.ru/upload/iblock/fb3/IMG_6931.jpg?13989397854223"></a></div><h5><a href="/detail/59143/">Пряный, имбирный крем-суп из картофеля с креветками</a></h5><p class="author">От: Анна Басто</p></div><div class="recipe_list_item"><div class="photo"><a title="Суп с дымком" href="/detail/19219/"><img width="150" alt="Суп с дымком" src="//www.foodclub.ru.images.1c-bitrix-cdn.ru/upload/iblock/afd/IMG_7038.jpg?13244751378894"></a></div><h5><a href="/detail/19219/">Суп с дымком</a></h5><p class="author">От: avocado-sister.livejournal.com</p></div><div class="recipe_list_item"><div class="photo"><a title="Суп из осетрины" href="/detail/16741/"><img width="150" alt="Суп из осетрины" src="//www.foodclub.ru.images.1c-bitrix-cdn.ru/upload/iblock/143/_end.jpg?13152547726779"></a></div><h5><a href="/detail/16741/">Суп из осетрины</a></h5><p class="author">От: Мария Савельева</p></div><div class="recipe_list_item"><div class="photo"><a title="Солянка сборная мясная" href="/detail/1827/"><img width="150" alt="Солянка сборная мясная" src="//www.foodclub.ru.images.1c-bitrix-cdn.ru/upload/iblock/3f5/_solyanka1.jpg?13285085118734"></a></div><h5><a href="/detail/1827/">Солянка сборная мясная</a></h5><p class="author">От: Мария Савельева</p></div><div class="recipe_list_item"><div class="photo"><a title="Острый томатный суп с фасолью" href="/detail/3495/"><img width="150" alt="Острый томатный суп с фасолью" src="//www.foodclub.ru.images.1c-bitrix-cdn.ru/upload/iblock/7b0/_end.jpg?13554899096368"></a></div><h5><a href="/detail/3495/">Острый томатный суп с фасолью</a></h5><p class="author">От: Мария Савельева</p></div><div class="recipe_list_item"><div class="photo"><a title="Гороховый суп с копченостями и гренками" href="/detail/3805/"><img width="150" alt="Гороховый суп с копченостями и гренками" src="//www.foodclub.ru.images.1c-bitrix-cdn.ru/upload/iblock/927/1.jpg?14109307747409"></a></div><h5><a href="/detail/3805/">Гороховый суп с копченостями и гренками</a></h5><p class="author">От: Елена Кулешова</p></div><div class="recipe_list_item"><div class="photo"><a title="Русский борщ" href="/detail/4580/"><img width="150" alt="Русский борщ" src="//www.foodclub.ru.images.1c-bitrix-cdn.ru/upload/iblock/c95/end.jpg?13657587005914"></a></div><h5><a href="/detail/4580/">Русский борщ</a></h5><p class="author">От: Мария Савельева</p></div><div class="recipe_list_item"><div class="photo"><a title="Грибной суп" href="/detail/4976/"><img width="150" alt="Грибной суп" src="//www.foodclub.ru.images.1c-bitrix-cdn.ru/upload/iblock/6bb/end.jpg?13657585806283"></a></div><h5><a href="/detail/4976/">Грибной суп</a></h5><p class="author">От: Мария Савельева</p></div><div class="recipe_list_item"><div class="photo"><a title="Рассольник с перловкой" href="/detail/6314/"><img width="150" alt="Рассольник с перловкой" src="//www.foodclub.ru.images.1c-bitrix-cdn.ru/upload/iblock/3d9/end.jpg?13657585807587"></a></div><h5><a href="/detail/6314/">Рассольник с перловкой</a></h5><p class="author">От: Мария Савельева</p></div><div class="recipe_list_item"><div class="photo"><a title="Суп-пюре из зеленого горошка" href="/detail/7151/"><img width="150" alt="Суп-пюре из зеленого горошка" src="//www.foodclub.ru.images.1c-bitrix-cdn.ru/upload/iblock/548/_end.jpg?13657585805068"></a></div><h5><a href="/detail/7151/">Суп-пюре из зеленого горошка</a></h5><p class="author">От: Мария Савельева</p></div><div class="recipe_list_item"><div class="photo"><a title="Луковый суп" href="/detail/10316/"><img width="150" alt="Луковый суп" src="//www.foodclub.ru.images.1c-bitrix-cdn.ru/upload/iblock/706/_end1.jpg?13657585806674"></a></div><h5><a href="/detail/10316/">Луковый суп</a></h5><p class="author">От: Мария Савельева</p></div><div class="recipe_list_item"><div class="photo"><a title="Рыбный суп" href="/detail/12444/"><img width="150" alt="Рыбный суп" src="//www.foodclub.ru.images.1c-bitrix-cdn.ru/upload/iblock/4d1/_end1.jpg?13014925557080"></a></div><h5><a href="/detail/12444/">Рыбный суп</a></h5><p class="author">От: Мария Савельева</p></div><div class="recipe_list_item"><div class="photo"><a title="Солянка рыбная " href="/detail/16706/"><img width="150" alt="Солянка рыбная " src="//www.foodclub.ru.images.1c-bitrix-cdn.ru/upload/iblock/d20/soljanka1.jpg?13150474018947"></a></div><h5><a href="/detail/16706/">Солянка рыбная </a></h5><p class="author">От: Marina Lie</p></div><div class="recipe_list_item"><div class="photo"><a title="Солянка мясная" href="/detail/64016/"><img width="150" alt="Солянка мясная" src="//www.foodclub.ru.images.1c-bitrix-cdn.ru/upload/iblock/31f/_myasnaya-solyanka-s-gribami.jpg?14092102729572"></a></div><h5><a href="/detail/64016/">Солянка мясная</a></h5><p class="author">От: Мария Савельева</p></div>				<div class="clear"></div>
+			</div>
+					<div class="block">
+									<h3><a href="http://www.foodclub.ru/ingredient/baklazhany/">Баклажаны</a></h3>
+								<div class="recipe_list_item"><div class="photo"><a title="Террин из баклажанов и перцев" href="/detail/1232/"><img width="150" alt="Террин из баклажанов и перцев" src="//www.foodclub.ru.images.1c-bitrix-cdn.ru/upload/iblock/a90/7.jpg?13267064565849"></a></div><h5><a href="/detail/1232/">Террин из баклажанов и перцев</a></h5><p class="author">От: Максим Савельев</p></div><div class="recipe_list_item"><div class="photo"><a title="Баклажанные рулетики" href="/detail/54333/"><img width="150" alt="Баклажанные рулетики" src="//www.foodclub.ru.images.1c-bitrix-cdn.ru/upload/iblock/116/итог.jpg?13889180165795"></a></div><h5><a href="/detail/54333/">Баклажанные рулетики</a></h5><p class="author">От: Анна Рябова</p></div><div class="recipe_list_item"><div class="photo"><a title="Спагетти с баклажанами и помидорами" href="/detail/18141/"><img width="150" alt="Спагетти с баклажанами и помидорами" src="//www.foodclub.ru.images.1c-bitrix-cdn.ru/upload/iblock/2e8/pasta_auberg.jpg?13212967498109"></a></div><h5><a href="/detail/18141/">Спагетти с баклажанами и помидорами</a></h5><p class="author">От: Петр Голавский</p></div><div class="recipe_list_item"><div class="photo"><a title="Быстрый тарт с баклажанами" href="/detail/17798/"><img width="150" alt="Быстрый тарт с баклажанами" src="//www.foodclub.ru.images.1c-bitrix-cdn.ru/upload/iblock/c0a/_end.jpg?13200480688543"></a></div><h5><a href="/detail/17798/">Быстрый тарт с баклажанами</a></h5><p class="author">От: Мария Савельева</p></div><div class="recipe_list_item"><div class="photo"><a title="Соте из баклажанов" href="/detail/16356/"><img width="150" alt="Соте из баклажанов" src="//www.foodclub.ru.images.1c-bitrix-cdn.ru/upload/iblock/cd0/_end1.jpg?13141639407147"></a></div><h5><a href="/detail/16356/">Соте из баклажанов</a></h5><p class="author">От: Мария Савельева</p></div><div class="recipe_list_item"><div class="photo"><a title="Рулетики из баклажан" href="/detail/14243/"><img width="150" alt="Рулетики из баклажан" src="//www.foodclub.ru.images.1c-bitrix-cdn.ru/upload/iblock/842/_end.jpg?13081218599233"></a></div><h5><a href="/detail/14243/">Рулетики из баклажан</a></h5><p class="author">От: Мария Савельева</p></div><div class="recipe_list_item"><div class="photo"><a title="Тушеные баклажаны" href="/detail/10042/"><img width="150" alt="Тушеные баклажаны" src="//www.foodclub.ru.images.1c-bitrix-cdn.ru/upload/iblock/0ea/_end1.jpg?13657585208620"></a></div><h5><a href="/detail/10042/">Тушеные баклажаны</a></h5><p class="author">От: Мария Савельева</p></div><div class="recipe_list_item"><div class="photo"><a title="Икра баклажанная (Melitzanes Salata)" href="/detail/9886/"><img width="150" alt="Икра баклажанная (Melitzanes Salata)" src="//www.foodclub.ru.images.1c-bitrix-cdn.ru/upload/iblock/c16/_end1.jpg?13657587007351"></a></div><h5><a href="/detail/9886/">Икра баклажанная (Melitzanes Salata)</a></h5><p class="author">От: Мария Савельева</p></div><div class="recipe_list_item"><div class="photo"><a title="Мясо с баклажанами" href="/detail/6074/"><img width="150" alt="Мясо с баклажанами" src="//www.foodclub.ru.images.1c-bitrix-cdn.ru/upload/iblock/872/end2.jpg?13657586405247"></a></div><h5><a href="/detail/6074/">Мясо с баклажанами</a></h5><p class="author">От: Мария Савельева</p></div><div class="recipe_list_item"><div class="photo"><a title="Запеченные баклажаны с сыром" href="/detail/5804/"><img width="150" alt="Запеченные баклажаны с сыром" src="//www.foodclub.ru.images.1c-bitrix-cdn.ru/upload/iblock/c2f/end.jpg?13657587007005"></a></div><h5><a href="/detail/5804/">Запеченные баклажаны с сыром</a></h5><p class="author">От: Мария Савельева</p></div><div class="recipe_list_item"><div class="photo"><a title="Чили из черной фасоли и баклажан" href="/detail/5351/"><img width="150" alt="Чили из черной фасоли и баклажан" src="//www.foodclub.ru.images.1c-bitrix-cdn.ru/upload/iblock/bc8/img_8154.jpg?13657587005847"></a></div><h5><a href="/detail/5351/">Чили из черной фасоли и баклажан</a></h5><p class="author">От: Елена Кулешова</p></div><div class="recipe_list_item"><div class="photo"><a title="Фаршированные баклажаны" href="/detail/5063/"><img width="150" alt="Фаршированные баклажаны" src="//www.foodclub.ru.images.1c-bitrix-cdn.ru/upload/iblock/207/end.jpg?13267065727935"></a></div><h5><a href="/detail/5063/">Фаршированные баклажаны</a></h5><p class="author">От: Мария Савельева</p></div><div class="recipe_list_item"><div class="photo"><a title="Рулетики из баклажанов" href="/detail/2627/"><img width="150" alt="Рулетики из баклажанов" src="//www.foodclub.ru.images.1c-bitrix-cdn.ru/upload/iblock/5ea/1.jpg?13657585807790"></a></div><h5><a href="/detail/2627/">Рулетики из баклажанов</a></h5><p class="author">От: Елена Кулешова</p></div><div class="recipe_list_item"><div class="photo"><a title="Пюре из баклажанов" href="/detail/1419/"><img width="150" alt="Пюре из баклажанов" src="//www.foodclub.ru.images.1c-bitrix-cdn.ru/upload/iblock/de6/end.jpg?13657587006270"></a></div><h5><a href="/detail/1419/">Пюре из баклажанов</a></h5><p class="author">От: Максим Савельев</p></div><div class="recipe_list_item"><div class="photo"><a title="Баклажаны на зиму" href="/detail/65121/"><img width="150" alt="Баклажаны на зиму" src="//www.foodclub.ru.images.1c-bitrix-cdn.ru/upload/iblock/6c5/6c51e7570e47a613b9a3878778df0403.jpg?14120633005764"></a></div><h5><a href="/detail/65121/">Баклажаны на зиму</a></h5><p class="author">От: Мария Савельева</p></div>				<div class="clear"></div>
+			</div>
+					<div class="block">
+									<h3><a href="http://www.foodclub.ru/ingredient/kabachki/">Кабачки</a></h3>
+								<div class="recipe_list_item"><div class="photo"><a title="Бочонки из кабачков" href="/detail/1528/"><img width="150" alt="Бочонки из кабачков" src="//www.foodclub.ru.images.1c-bitrix-cdn.ru/upload/iblock/a13/1.jpg?13657586405877"></a></div><h5><a href="/detail/1528/">Бочонки из кабачков</a></h5><p class="author">От: Елена Кулешова</p></div><div class="recipe_list_item"><div class="photo"><a title="Киш творожный с кабачками и креветками" href="/detail/52364/"><img width="150" alt="Киш творожный с кабачками и креветками" src="//www.foodclub.ru.images.1c-bitrix-cdn.ru/upload/iblock/e85/IMG_5569.jpg?13847783225421"></a></div><h5><a href="/detail/52364/">Киш творожный с кабачками и креветками</a></h5><p class="author">От: Анна Басто</p></div><div class="recipe_list_item"><div class="photo"><a title="Салат с креветками и кабачками запечёнными на гриле" href="/detail/49332/"><img width="150" alt="Салат с креветками и кабачками запечёнными на гриле" src="//www.foodclub.ru.images.1c-bitrix-cdn.ru/upload/iblock/f03/IMG_4930.jpg?13789788596117"></a></div><h5><a href="/detail/49332/">Салат с креветками и кабачками запечёнными на гриле</a></h5><p class="author">От: Анна Басто</p></div><div class="recipe_list_item"><div class="photo"><a title="Запеканка с кабачками и мясным фаршем" href="/detail/43459/"><img width="150" alt="Запеканка с кабачками и мясным фаршем" src="//www.foodclub.ru.images.1c-bitrix-cdn.ru/upload/iblock/86c/_10.jpg?13819162415077"></a></div><h5><a href="/detail/43459/">Запеканка с кабачками и мясным фаршем</a></h5><p class="author">От: Мария Савельева</p></div><div class="recipe_list_item"><div class="photo"><a title="Террин из запечённых овощей" href="/detail/42367/"><img width="150" alt="Террин из запечённых овощей" src="//www.foodclub.ru.images.1c-bitrix-cdn.ru/upload/iblock/7da/_end.jpg?13657655086572"></a></div><h5><a href="/detail/42367/">Террин из запечённых овощей</a></h5><p class="author">От: Мария Савельева</p></div><div class="recipe_list_item"><div class="photo"><a title="Салат из кабачков с кедровыми орешками" href="/detail/21579/"><img width="150" alt="Салат из кабачков с кедровыми орешками" src="//www.foodclub.ru.images.1c-bitrix-cdn.ru/upload/iblock/fe2/_salad.jpg?13327580907498"></a></div><h5><a href="/detail/21579/">Салат из кабачков с кедровыми орешками</a></h5><p class="author">От: Мария Савельева</p></div><div class="recipe_list_item"><div class="photo"><a title="Икра из кабачков" href="/detail/15884/"><img width="150" alt="Икра из кабачков" src="//www.foodclub.ru.images.1c-bitrix-cdn.ru/upload/iblock/d4f/_end1.jpg?13133439419331"></a></div><h5><a href="/detail/15884/">Икра из кабачков</a></h5><p class="author">От: Мария Савельева</p></div><div class="recipe_list_item"><div class="photo"><a title="Фриттата с кабачками" href="/detail/9766/"><img width="150" alt="Фриттата с кабачками" src="//www.foodclub.ru.images.1c-bitrix-cdn.ru/upload/iblock/de9/_end.jpg?13657587007866"></a></div><h5><a href="/detail/9766/">Фриттата с кабачками</a></h5><p class="author">От: Мария Савельева</p></div><div class="recipe_list_item"><div class="photo"><a title="Овощная лазанья" href="/detail/8646/"><img width="150" alt="Овощная лазанья" src="//www.foodclub.ru.images.1c-bitrix-cdn.ru/upload/iblock/940/_end.jpg?13657586405324"></a></div><h5><a href="/detail/8646/">Овощная лазанья</a></h5><p class="author">От: Мария Савельева</p></div><div class="recipe_list_item"><div class="photo"><a title="Овощная пицца" href="/detail/8315/"><img width="150" alt="Овощная пицца" src="//www.foodclub.ru.images.1c-bitrix-cdn.ru/upload/iblock/e81/end.jpg?13657587608318"></a></div><h5><a href="/detail/8315/">Овощная пицца</a></h5><p class="author">От: Мария Савельева</p></div><div class="recipe_list_item"><div class="photo"><a title="Закрытая пицца кальцоне с овощами" href="/detail/7820/"><img width="150" alt="Закрытая пицца кальцоне с овощами" src="//www.foodclub.ru.images.1c-bitrix-cdn.ru/upload/iblock/eac/_end1.jpg?13657587606092"></a></div><h5><a href="/detail/7820/">Закрытая пицца кальцоне с овощами</a></h5><p class="author">От: Мария Савельева</p></div><div class="recipe_list_item"><div class="photo"><a title="Кабачковая икра (кусочками)" href="/detail/5299/"><img width="150" alt="Кабачковая икра (кусочками)" src="//www.foodclub.ru.images.1c-bitrix-cdn.ru/upload/iblock/0a6/_end.jpg?13673051597662"></a></div><h5><a href="/detail/5299/">Кабачковая икра (кусочками)</a></h5><p class="author">От: Мария Савельева</p></div><div class="recipe_list_item"><div class="photo"><a title="Свинина с кабачками" href="/detail/4835/"><img width="150" alt="Свинина с кабачками" src="//www.foodclub.ru.images.1c-bitrix-cdn.ru/upload/iblock/49c/end.jpg?13657585807651"></a></div><h5><a href="/detail/4835/">Свинина с кабачками</a></h5><p class="author">От: Мария Савельева</p></div><div class="recipe_list_item"><div class="photo"><a title="Кабачковые оладьи" href="/detail/3771/"><img width="150" alt="Кабачковые оладьи" src="//www.foodclub.ru.images.1c-bitrix-cdn.ru/upload/iblock/300/_end.jpg?13509030606241"></a></div><h5><a href="/detail/3771/">Кабачковые оладьи</a></h5><p class="author">От: Мария Савельева</p></div><div class="recipe_list_item"><div class="photo"><a title="Котлеты из индейки с кабачками" href="/detail/2994/"><img width="150" alt="Котлеты из индейки с кабачками" src="//www.foodclub.ru.images.1c-bitrix-cdn.ru/upload/iblock/7e6/_end.jpg?13603162056258"></a></div><h5><a href="/detail/2994/">Котлеты из индейки с кабачками</a></h5><p class="author">От: Мария Савельева</p></div><div class="recipe_list_item"><div class="photo"><a title="Пирог с кабачками" href="/detail/2129/"><img width="150" alt="Пирог с кабачками" src="//www.foodclub.ru.images.1c-bitrix-cdn.ru/upload/iblock/d02/end.jpg?13657587007931"></a></div><h5><a href="/detail/2129/">Пирог с кабачками</a></h5><p class="author">От: Мария Савельева</p></div><div class="recipe_list_item"><div class="photo"><a title="Суп-крем из кабачков с авокадо" href="/detail/2013/"><img width="150" alt="Суп-крем из кабачков с авокадо" src="//www.foodclub.ru.images.1c-bitrix-cdn.ru/upload/iblock/d7a/end.jpg?13657587006301"></a></div><h5><a href="/detail/2013/">Суп-крем из кабачков с авокадо</a></h5><p class="author">От: Мария Савельева</p></div><div class="recipe_list_item"><div class="photo"><a title="Сердечки из кабачков" href="/detail/56299/"><img width="150" alt="Сердечки из кабачков" src="//www.foodclub.ru.images.1c-bitrix-cdn.ru/upload/iblock/a73/_iz_kabachkov.jpg?13927201656661"></a></div><h5><a href="/detail/56299/">Сердечки из кабачков</a></h5><p class="author">От: Мария Савельева</p></div>				<div class="clear"></div>
+			</div>
+					<div class="block">
+									<h3><a href="http://www.foodclub.ru/ingredient/yabloki/">Рецепты с яблоками</a></h3>
+								<div class="recipe_list_item"><div class="photo"><a title="Яблочный пирог из слоеного теста" href="/detail/3224/"><img width="150" alt="Яблочный пирог из слоеного теста" src="//www.foodclub.ru.images.1c-bitrix-cdn.ru/upload/iblock/280/end.jpg?13657585208712"></a></div><h5><a href="/detail/3224/">Яблочный пирог из слоеного теста</a></h5><p class="author">От: Мария Савельева</p></div><div class="recipe_list_item"><div class="photo"><a title="Цыцыла с яблоками, медом и свежим тимьяном" href="/detail/41849/"><img width="150" alt="Цыцыла с яблоками, медом и свежим тимьяном" src="/upload/iblock/5b6/p41849.JPG"></a></div><h5><a href="/detail/41849/">Цыцыла с яблоками, медом и свежим тимьяном</a></h5><p class="author">От: tastyaiva.livejournal.com</p></div><div class="recipe_list_item"><div class="photo"><a title="Цветаевский яблочный пирог" href="/detail/50878/"><img width="150" alt="Цветаевский яблочный пирог" src="//www.foodclub.ru.images.1c-bitrix-cdn.ru/upload/iblock/884/DSCN2443.jpg?13837723296700"></a></div><h5><a href="/detail/50878/">Цветаевский яблочный пирог</a></h5><p class="author">От: Юлия ***</p></div><div class="recipe_list_item"><div class="photo"><a title="Пирог с яблоками и сливами" href="/detail/51857/"><img width="150" alt="Пирог с яблоками и сливами" src="//www.foodclub.ru.images.1c-bitrix-cdn.ru/upload/iblock/264/_plum_sharlotte.jpg?13841136406817"></a></div><h5><a href="/detail/51857/">Пирог с яблоками и сливами</a></h5><p class="author">От: Мария Савельева</p></div><div class="recipe_list_item"><div class="photo"><a title="Творожные пирожки с яблоком и корицей" href="/detail/52470/"><img width="150" alt="Творожные пирожки с яблоком и корицей" src="//www.foodclub.ru.images.1c-bitrix-cdn.ru/upload/iblock/e52/IMG_5601.jpg?13951250795492"></a></div><h5><a href="/detail/52470/">Творожные пирожки с яблоком и корицей</a></h5><p class="author">От: Анна Басто</p></div><div class="recipe_list_item"><div class="photo"><a title="Яблочные сырники без муки" href="/detail/56639/"><img width="150" alt="Яблочные сырники без муки" src="//www.foodclub.ru.images.1c-bitrix-cdn.ru/upload/iblock/38e/Jablochnye syrniki bez muki.jpg?139368694410673"></a></div><h5><a href="/detail/56639/">Яблочные сырники без муки</a></h5><p class="author">От: Юлия Аханова</p></div><div class="recipe_list_item"><div class="photo"><a title="Тарт с карамельным кремом и яблоками" href="/detail/58890/"><img width="150" alt="Тарт с карамельным кремом и яблоками" src="//www.foodclub.ru.images.1c-bitrix-cdn.ru/upload/iblock/3a4/DSC_0264.jpg?141093696016176"></a></div><h5><a href="/detail/58890/">Тарт с карамельным кремом и яблоками</a></h5><p class="author">От: Дарья Мальцева</p></div><div class="recipe_list_item"><div class="photo"><a title="Яблочный пирог" href="/detail/59219/"><img width="150" alt="Яблочный пирог" src="//www.foodclub.ru.images.1c-bitrix-cdn.ru/upload/iblock/691/1.jpg?139927632111506"></a></div><h5><a href="/detail/59219/">Яблочный пирог</a></h5><p class="author">От: Дарья Мальцева</p></div><div class="recipe_list_item"><div class="photo"><a title="Яблоки в кляре (Frittelle di mele)" href="/detail/60338/"><img width="150" alt="Яблоки в кляре (Frittelle di mele)" src="//www.foodclub.ru.images.1c-bitrix-cdn.ru/upload/iblock/233/DSC_0069.jpg?140560723014196"></a></div><h5><a href="/detail/60338/">Яблоки в кляре (Frittelle di mele)</a></h5><p class="author">От: Дарья Мальцева</p></div><div class="recipe_list_item"><div class="photo"><a title="Холодный яблочный десерт" href="/detail/60361/"><img width="150" alt="Холодный яблочный десерт" src="//www.foodclub.ru.images.1c-bitrix-cdn.ru/upload/iblock/58b/defaul6t.jpeg?14018038944527"></a></div><h5><a href="/detail/60361/">Холодный яблочный десерт</a></h5><p class="author">От: Анна Басто</p></div><div class="recipe_list_item"><div class="photo"><a title="Телятина с яблоками" href="/detail/61368/"><img width="150" alt="Телятина с яблоками" src="//www.foodclub.ru.images.1c-bitrix-cdn.ru/upload/iblock/e2d/default.jpeg?14036994887326"></a></div><h5><a href="/detail/61368/">Телятина с яблоками</a></h5><p class="author">От: Анна Басто</p></div><div class="recipe_list_item"><div class="photo"><a title="Говядина тушеная в яблоках" href="/detail/38604/"><img width="150" alt="Говядина тушеная в яблоках" src="//www.foodclub.ru.images.1c-bitrix-cdn.ru/upload/iblock/502/1.jpg?13582778519610"></a></div><h5><a href="/detail/38604/">Говядина тушеная в яблоках</a></h5><p class="author">От: Marina Lie</p></div><div class="recipe_list_item"><div class="photo"><a title="Яблочные чипсы" href="/detail/16763/"><img width="150" alt="Яблочные чипсы" src="//www.foodclub.ru.images.1c-bitrix-cdn.ru/upload/iblock/f00/jab1.jpg?13152887137677"></a></div><h5><a href="/detail/16763/">Яблочные чипсы</a></h5><p class="author">От: Marina Lie</p></div><div class="recipe_list_item"><div class="photo"><a title="Венский яблочный штрудель" href="/detail/9357/"><img width="150" alt="Венский яблочный штрудель" src="//www.foodclub.ru.images.1c-bitrix-cdn.ru/upload/iblock/dff/20100827.jpg?13657587006624"></a></div><h5><a href="/detail/9357/">Венский яблочный штрудель</a></h5><p class="author">От: http://ca-ira.livejournal.com</p></div><div class="recipe_list_item"><div class="photo"><a title="Пирожки с яблоками" href="/detail/10036/"><img width="150" alt="Пирожки с яблоками" src="//www.foodclub.ru.images.1c-bitrix-cdn.ru/upload/iblock/b1f/0_4002e_c7c5512e_xl.jpg?13657587006589"></a></div><h5><a href="/detail/10036/">Пирожки с яблоками</a></h5><p class="author">От: Mariha-kitchen</p></div><div class="recipe_list_item"><div class="photo"><a title="Яблоки в сиропе" href="/detail/11077/"><img width="150" alt="Яблоки в сиропе" src="//www.foodclub.ru.images.1c-bitrix-cdn.ru/upload/iblock/938/0_430c6_d0c64b43_XL.jpg?13657586406352"></a></div><h5><a href="/detail/11077/">Яблоки в сиропе</a></h5><p class="author">От: Mariha-kitchen</p></div><div class="recipe_list_item"><div class="photo"><a title="Яблочный крамбл " href="/detail/11294/"><img width="150" alt="Яблочный крамбл " src="//www.foodclub.ru.images.1c-bitrix-cdn.ru/upload/iblock/1c2/IMG_4384-5-5.jpg?13657585207317"></a></div><h5><a href="/detail/11294/">Яблочный крамбл </a></h5><p class="author">От: yo_soy</p></div><div class="recipe_list_item"><div class="photo"><a title="Тонкие блинчики с пряной яблочной начинкой" href="/detail/12190/"><img width="150" alt="Тонкие блинчики с пряной яблочной начинкой" src="//www.foodclub.ru.images.1c-bitrix-cdn.ru/upload/iblock/2b5/0_4c2c9_6e5e39a0_XL.jpg?13657585205984"></a></div><h5><a href="/detail/12190/">Тонкие блинчики с пряной яблочной начинкой</a></h5><p class="author">От: Mariha-kitchen</p></div><div class="recipe_list_item"><div class="photo"><a title="Яблоки, запеченные с мёдом и орехами" href="/detail/12212/"><img width="150" alt="Яблоки, запеченные с мёдом и орехами" src="//www.foodclub.ru.images.1c-bitrix-cdn.ru/upload/iblock/31b/0_55386_bed5c90f_XL.jpg?13657585808401"></a></div><h5><a href="/detail/12212/">Яблоки, запеченные с мёдом и орехами</a></h5><p class="author">От: Mariha-kitchen</p></div><div class="recipe_list_item"><div class="photo"><a title="Булочки с яблочной начинкой" href="/detail/12258/"><img width="150" alt="Булочки с яблочной начинкой" src="//www.foodclub.ru.images.1c-bitrix-cdn.ru/upload/iblock/0ae/_end.jpg?13794935136583"></a></div><h5><a href="/detail/12258/">Булочки с яблочной начинкой</a></h5><p class="author">От: Мария Савельева</p></div><div class="recipe_list_item"><div class="photo"><a title="Яблочный пирог с миндалем, клюквой и изюмом" href="/detail/15701/"><img width="150" alt="Яблочный пирог с миндалем, клюквой и изюмом" src="//www.foodclub.ru.images.1c-bitrix-cdn.ru/upload/iblock/508/378b1cd769a7.jpg?137949380210690"></a></div><h5><a href="/detail/15701/">Яблочный пирог с миндалем, клюквой и изюмом</a></h5><p class="author">От: Lillaya</p></div><div class="recipe_list_item"><div class="photo"><a title="Яблоки в карамели" href="/detail/15826/"><img width="150" alt="Яблоки в карамели" src="//www.foodclub.ru.images.1c-bitrix-cdn.ru/upload/iblock/89c/caramapple01.jpg?13132334987817"></a></div><h5><a href="/detail/15826/">Яблоки в карамели</a></h5><p class="author">От: Дмитрий Журавлев</p></div><div class="recipe_list_item"><div class="photo"><a title="Венгерский яблочный пирог" href="/detail/16130/"><img width="150" alt="Венгерский яблочный пирог" src="/upload/iblock/6cc/IMG_9812.JPG"></a></div><h5><a href="/detail/16130/">Венгерский яблочный пирог</a></h5><p class="author">От: Ирина Карпухина</p></div><div class="recipe_list_item"><div class="photo"><a title="Песочный пирог с яблоками" href="/detail/63627/"><img width="150" alt="Песочный пирог с яблоками" src="//www.foodclub.ru.images.1c-bitrix-cdn.ru/upload/iblock/d08/_yablochniy-pirog.jpg?14084865764724"></a></div><h5><a href="/detail/63627/">Песочный пирог с яблоками</a></h5><p class="author">От: Мария Савельева</p></div>				<div class="clear"></div>
+			</div>
+			</div>
+	</div>
+	<div id="bottom">
+				 
+<div id="bottom_nav"> 
+  <table> <colgroup> <col class="column1"></col> <col class="column2"></col> <col class="column3"></col> <col class="column4"></col> <col class="column5"></col> </colgroup> 
+    <tbody> 
+      <tr> <td> 
+          <h4>Читайте нас</h4>
+         
+          <ul> 
+            <li><noindex><a href="http://www.facebook.com/pages/Foodclubru/117900201576972" target="_blank" rel="nofollow" >Facebook</a></noindex></li>
+           
+            <li><noindex><a href="http://instagram.com/foodclub_ru" target="_blank" rel="nofollow" >Instagram</a></noindex></li>
+           
+            <li><noindex><a href="https://twitter.com/foodclub_ru/" target="_blank" rel="nofollow" >Twitter</a></noindex></li>
+           
+            <li><noindex><a href="http://community.livejournal.com/foodclub_ru/" target="_blank" rel="nofollow" >LiveJournal</a></noindex></li>
+           
+            <li><noindex><a href="http://www.odnoklassniki.ru/foodclub" target="_blank" rel="nofollow" >Одноклассники</a></noindex></li>
+           
+            <li><noindex><a href="http://vkontakte.ru/club17967854" target="_blank" rel="nofollow" >ВКонтакте</a></noindex></li>
+           
+            <li><noindex><a href="https://plus.google.com/+FoodclubRu" rel="nofollow" >Google+</a></noindex></li>
+           
+            <li><noindex><a href="http://pinterest.com/foodclubru/recipes/" target="_blank" rel="nofollow" >Pinterest</a></noindex></li>
+           </ul>
+         </td> <td> 
+          <h4>Моя Кухня</h4>
+         
+          <ul> 
+            <li><noindex><a href="/profile/" rel="nofollow" >Моя страница</a></noindex></li>
+           
+            <li><a href="/profile/favorites/" >Избранные рецепты</a></li>
+           
+            <li><a href="/profile/lenta/" >Моя лента</a></li>
+           
+            <li><a href="/profile/subscribe/" >Подписка</a></li>
+           
+            <li><a href="/profile/badges/" >Бейджи</a></li>
+           
+            <li><a href="/profile/edit/" >Редактировать анкету</a></li>
+           
+            <li><a href="/recipe/add/" >Добавить рецепт</a></li>
+           
+            <li><a href="/blogs/group/14/blog/edit/new/" >Добавить рецепт (простой)</a></li>
+           
+            <li><a href="http://www.foodclub.ru/blogs/" >Добавить запись в клуб</a></li>
+           </ul>
+         </td> <td> 
+          <h4>Темы</h4>
+         
+          <ul> 
+            <li><a href="http://www.foodclub.ru/all/" >Рецепты с фото</a></li>
+           
+            <li><a href="http://www.foodclub.ru/blogs/" >Кулинарные клубы</a></li>
+           
+            <li><a href="http://www.foodclub.ru/specialists/" >Кулинары</a></li>
+           
+            <li><a href="/recipe-of-month/" >Рецепт месяца</a></li>
+           
+            <li><a href="/best/" >Самое интересное</a></li>
+           
+            <li><a href="/lavka/" title="Лавка" >Лавка</a></li>
+           </ul>
+         </td> <td> 
+          <h4>Сервисы</h4>
+         
+          <ul> 
+            <li><a href="#search" >Поиск рецепта</a></li>
+           
+            <li><noindex><a href="http://www.yandex.ru/?add=53214&from=promocode" rel="nofollow" >Виджет Яндекса</a></noindex></li>
+           
+            <li><span>Приложение Facebook</span></li>
+           
+            <li><span>Приложение ВКонтакте</span></li>
+           </ul>
+         </td> <td> 
+          <h4>Реклама</h4>
+         
+          <ul> 
+            <li><a href="https://docs.google.com/document/d/1p44-Sxl4tsXOtg72gWrMG23otQ6EDkgpoCmPT6LQ8vQ/edit#heading=h.8rkzmfdlmkp7" target="_blank" >Медиа-кит</a></li>
+           
+            <li><a href="/blogs/group/6/blog/133/index.php" >Магазинам</a></li>
+           
+            <li><span>Конкурсы</span></li>
+           
+            <li><span>Брендирование</span></li>
+           
+            <li><span>Статистика</span></li>
+           </ul>
+         </td> </tr>
+     
+      <tr> <td> 
+          <h4>Пользователям</h4>
+         
+          <ul> 
+            <li><a href="/blogs/group/6/blog/842/" >Новый профиль</a></li>
+           
+            <li><a href="/help/" >Помощь</a></li>
+           
+            <li><a href="/blogs/group/6/blog/21/" >Ваши предложения</a></li>
+           
+            <li><a href="/blogs/group/6/blog/7/" >Сообщить об ошибке</a></li>
+           
+            <li><a href="/about/terms/" >Соглашение</a></li>
+           
+            <li><span>Правила</span></li>
+           </ul>
+         </td> <td> 
+          <h4>Мобильные приложение</h4>
+         
+          <ul> 
+            <li><a href="/iphone/" >iPhone &amp; iPad</a></li>
+           
+            <li><a href="https://play.google.com/store/apps/details?id=com.app.foodclub" target="_blank" >Android</a></li>
+           </ul>
+         </td> <td> 
+          <h4>Конкурсы</h4>
+         
+          <ul> 
+            <li><a href="/recipe-of-month/" >Рецепт месяца</a></li>
+           
+            <li><a href="/contests/magi/" >Суши маги</a></li>
+           
+            <li><a href="/contests/sauce/" >Соус Прайм</a></li>
+           </ul>
+         </td> <td> 
+          <h4>Тематики</h4>
+         
+          <ul> 
+            <li><a href="/new-year/" title="Новогодние рецепты" >Новогодние рецепты</a></li>
+           </ul>
+         </td> <td> 
+          <h4>Наши партнеры</h4>
+         
+          <ul> 
+            <li><a href="http://ellamartino.ru/" target="_blank" >Сайт Эллы Мартино</a></li>
+           
+            <li><a href="http://hobbytum.ru" title="Хобби" target="_blank" >Хобби для вас</a> (Hobbytum)</li>
+           </ul>
+         </td> </tr>
+     </tbody>
+   </table>
+ </div>
+ 
+<div id="made">Сайт создан <a href="http://www.twinpx.ru" target="_blank" >Twin px</a> 
+  <br />
+ 2008 год</div>
+ 
+<div id="copyright">&copy; Ни одно авторское право реально не защитит авторов фотографий и рецептов от копирования. Но Вам ничего не будет стоить, если в знак благодарности в конце Вашего поста будет стоять ссылка на сайт и имя кулинара, опубликовавшего рецепт. Спасибо тем, кто не просто копирует чужие фотографии, а помогает развивать интересные интернет-проекты.</div>
+ 
+<div id="vkontakte_widget"> </div>
+ 
+<div id="facebook_widget"> </div>
+ 		<div id="liveinternet" style="margin-top: 20px;">
+<!--LiveInternet counter-->
+<script><!--
+document.write("<a href='http://www.liveinternet.ru/click' "+
+"target=_blank><img src='//counter.yadro.ru/hit?t44.1;r"+
+escape(document.referrer)+((typeof(screen)=="undefined")?"":
+";s"+screen.width+"*"+screen.height+"*"+(screen.colorDepth?
+screen.colorDepth:screen.pixelDepth))+";u"+escape(document.URL)+
+";h"+escape(document.title.substring(0,80))+";"+Math.random()+
+"' alt='' title='LiveInternet' "+
+"border='0' width='31' height='31'><\/a>")
+//--></script>
+<!--/LiveInternet-->
+</div>
+<div id="bx-composite-banner" style="margin-top: 20px;"></div>
+	</div>
+	</div></div>
+	</div></div>
+	<div id="top_layer" style="display:none;"><iframe src="/iframe.html" width="10" height="10" frameborder="0"></iframe></div>
+	<div id="search_helper" style="display:none;">
+	<div class="body">
+		<div class="menu">
+			<div class="item act"><a href="#" rel="h_helper">Помощник поиска</a><span>Помощник поиска</span></div>                        
+			<div class="item right"><a href="#" rel="h_cuisines">Национальные кухни</a><span>Национальные кухни</span></div>
+			<div class="clear"></div>
+		</div>
+		<div id="h_helper" class="search_blocks">
+			<div class="column">
+				<div class="item">
+
+					<img src="/images/search/diet.jpg" width="200" height="150" alt="">
+					<ul>
+						<li><a href="/search/Низкокалорийные/">Низкокалорийные</a></li>
+						<li><a href="/search/Диетические блюда/">Диетические</a></li>
+						<li><a href="/search/Постные блюда/">Постные</a></li>
+					</ul>
+				</div>
+
+			</div>
+			<div class="column">
+				<div class="item">
+					<img src="/images/search/dinner.jpg" width="200" height="150" alt="">
+					<ul>
+						<li><a href="/search/Позавтракать/">Позавтракать</a></li>
+						<li><a href="/search/Пообедать/">Пообедать</a></li>
+						<li><a href="/search/Поужинать/">Поужинать</a></li>
+						<li><a href="/search/Поздний ужин/">Поздний ужин</a></li>
+					</ul>
+				</div>
+			</div>
+			<div class="column">
+				<div class="item">
+					<img src="/images/search/quick.jpg" width="200" height="150" alt="">
+					<ul>
+						<li><a href="/search/Холостяку/">Холостяку</a></li>
+						<li><a href="/search/Быстренько/">Быстренько</a></li>
+						<li><a href="/search/Хочется экзотики/">Хочется экзотики</a></li>
+					</ul>
+				</div>
+			</div>
+			<div class="column right">
+
+				<div class="item">
+					<img src="/images/search/guests.jpg" width="200" height="150" alt="">
+					<ul>
+						<li><a href="/search/День рождения/">День рождения</a></li>
+						<li><a href="/search/Удивить гостей/">Удивить гостей</a></li>
+						<li><a href="/search/Романтический ужин/">Романтический ужин</a></li>
+						<li><a href="/search/Вечеринка/">Вечеринка с друзьями</a></li>
+					</ul>
+				</div>
+			</div>
+			<div class="clear"></div>			
+		</div>
+		<div id="h_ingredients" class="search_blocks">
+			<div id="i_have_list">
+
+				<div class="bg">
+					<h2>У меня есть:</h2>
+					<div id="i_have_dash">—</div>
+					<table>
+					</table>
+				</div>
+				<div id="i_have_button">Найти</div>
+				<div id="stage_button">Добавить</div>
+
+			</div>
+			<div id="i_have_ingredients">
+				<div class="search_field">
+					<div class="search_input b-form-field"><input type="text" class="text" value="" data-placeholder="Введите название" id="helper_smartsearch"><div class="search_list"><ul class="search_list"></ul></div></div>
+				</div>
+				<div id="i_have_ingredients_group">
+					<ul>
+					</ul>
+				</div>
+
+				<div id="i_have_ingredients_list">
+					<h2></h2>
+					<div class="column">
+						<ul>
+						</ul>
+					</div>
+					<div class="column">
+						<ul>
+						</ul>
+
+					</div>
+					<div class="clear"></div>
+				</div>
+				<div class="clear"></div>
+			</div>
+			<div class="clear"></div>
+		</div>
+		<div id="h_cuisines" class="search_blocks">
+			<div class="column">
+
+				<div class="item">
+					<img src="/images/search/europe.jpg" width="200" height="150" alt="">
+					<h3>Европа</h3>
+					<ul>
+						<li><a href="/search/Австрийская кухня/">Австрийская кухня</a></li>
+						<li><a href="/search/Английская кухня/">Английская кухня</a></li>
+						<li><a href="/search/Болгарская кухня/">Болгарская кухня</a></li>
+
+						<li><a href="/search/Венгерская кухня/">Венгерская кухня</a></li>
+						<li><a href="/search/Немецкая кухня/">Немецкая кухня</a></li>
+						<li><a href="/search/Польская кухня/">Польская кухня</a></li>
+						<li><a href="/search/Португальская кухня/">Португальская кухня</a></li>
+						<li><a href="/search/Чешская кухня/">Чешская кухня</a></li>
+						<li><a href="/search/Шотландская кухня/">Шотландская кухня</a></li>
+
+					</ul>
+				</div>
+			</div>
+			<div class="column">
+				<div class="item">
+					<img src="/images/search/mediterranean.jpg" width="200" height="150" alt="">
+					<h3>Средиземноморье</h3>
+					<ul>
+						<li><a href="/search/Греческая кухня/">Греческая кухня</a></li>
+						<li><a href="/search/Испанская кухня/">Испанская кухня</a></li>
+						<li><a href="/search/Итальянская кухня/">Итальянская кухня</a></li>
+						<li><a href="/search/Французская кухня/">Французская кухня</a></li>
+					</ul>
+				</div>
+				<div class="item">
+
+					<img src="/images/search/asia.jpg" width="200" height="150" alt="">
+					<h3>Азия</h3>
+					<ul>
+						<li><a href="/search/Индонезийская кухня/">Индонезийская кухня</a></li>
+						<li><a href="/search/Китайская кухня/">Китайская кухня</a></li>
+						<li><a href="/search/Тайская кухня/">Тайская кухня</a></li>
+						<li><a href="/search/Японская кухня/">Японская кухня</a></li>
+					</ul>
+				</div>
+			</div>
+			<div class="column">
+				<div class="item">
+					<img src="/images/search/ussr.jpg" width="200" height="150" alt="">
+					<h3>Бывший СССР</h3>
+					<ul>
+						<li><a href="/search/Армянская кухня/">Армянская кухня</a></li>
+						<li><a href="/search/Белорусская кухня/">Белорусская кухня</a></li>
+						<li><a href="/search/Грузинская кухня/">Грузинская кухня</a></li>
+						<li><a href="/search/Русская кухня/">Русская кухня</a></li>
+						<li><a href="/search/Узбекская кухня/">Узбекская кухня</a></li>
+						<li><a href="/search/Украинская кухня/">Украинская кухня</a></li>
+					</ul>
+				</div>
+			</div>
+			<div class="column right">
+				<div class="item">
+					<img src="/images/search/america.jpg" width="200" height="150" alt="">
+					<h3>Америка</h3>
+					<ul>
+
+						<li><a href="/search/Американская кухня/">Американская кухня</a></li>
+						<li><a href="/search/Бразильская кухня/">Бразильская кухня</a></li>
+						<li><a href="/search/Кубинская кухня/">Кубинская кухня</a></li>
+						<li><a href="/search/Мексиканская кухня/">Мексиканская кухня</a></li>
+						<li><a href="/search/Ямайская кухня/">Ямайская кухня</a></li>
+					</ul>
+
+				</div>
+			</div>
+			<div class="clear"></div>
+		</div>
+		<div class="slide_up_button"><div></div></div>
+	</div>
+</div>
+	<script language="javascript" type="text/javascript">
+	<!--
+		var kitchenArray = new Array();
+		kitchenArray[0] = new Array("42", "43", "35460", "44", "45", "46", "47", "49", "50", "51", "53", "54", "55", "117", "50884", "56", "59", "60", "61", "62", "63", "64", "66", "68", "69", "11119", "70", "71", "9159", "72", "18692", "73", "74", "38891", "76", "77", "78", "79", "80", "35942", "82", "83", "8022", "1286", "86", "87");
+		kitchenArray[1] = new Array("Австралийская кухня", "Австрийская кухня", "Азербайджанская кухня", "Американская кухня", "Английская кухня", "Армянская кухня", "Белорусская кухня", "Болгарская кухня", "Бразильская кухня", "Венгерская кухня", "Греческая кухня", "Грузинская кухня", "Датская кухня", "Домашние рецепты", "Дюкан диета", "Еврейская кухня", "Индийская кухня", "Индонезийская кухня", "Испанская кухня", "Итальянская кухня", "Кавказская кухня", "Китайская кухня", "Кубинская кухня", "Ливанская кухня", "Литовская кухня", "Малышам", "Марокканская кухня", "Мексиканская кухня", "Молдавская кухня", "Немецкая кухня", "Норвежская кухня", "Польская кухня", "Португальская кухня", "Румынская кухня", "Русская кухня", "Тайская кухня", "Турецкая кухня", "Узбекская кухня", "Украинская кухня", "Финская кухня", "Французская кухня", "Чешская кухня", "Шведская кухня", "Шотландская кухня", "Ямайская кухня", "Японская кухня");
+		
+		var dishArray = new Array();
+		dishArray[0] = new Array("29", "38062", "38058", "3070", "35752", "4524", "3", "4", "35", "59933", "99", "38061", "39", "4013", "38766", "49662", "34", "27", "30", "92", "100", "36", "6715", "38060", "102", "1626", "59932", "59479", "105", "38", "38767", "53490", "41", "104", "1", "59986", "40", "1625", "8569", "4066", "59985", "96", "95", "6241");
+		dishArray[1] = new Array("Блины, блинчики, оладьи", "Булочки и сдоба", "Бутерброды, сендвичи", "Варенье и цукаты", "Вторые блюда", "Гарниры", "Десерты", "Закуски", "Запеканки", "Запеченное одним куском", "Каши", "Кексы", "Колбасы", "Котлеты", "Мороженое", "Мясные рулеты, фаршированное мясо", "Напитки", "Паста", "Паштеты", "Пельмени, вареники", "Печенье, пряники", "Пироги (несладкие), киши", "Пироги (сладкие), торты", "Пирожные", "Пицца", "Плов, ризотто, паэлья", "Рагу", "Рулеты и штрудели", "Рыба и морепродукты", "Салаты", "Сладости, конфеты", "Соленья, маринады", "Соусы", "Стейки, отбивные", "Супы", "Супы-пюре, крем-супы", "Суши, сашими", "Сырники", "Фаршированные овощи", "Хлеб", "Холодные супы", "Холодцы и заливное", "Шашлыки", "Яичницы и омлеты");
+<!--		var ingredientArray = new Array(); -->
+		var chosenSearchKitchen = new Array();
+		var chosenSearchDish = new Array();
+		var chosenSearchIngredient = new Array();
+		chosenSearchIngredient[0] = new Array();
+		chosenSearchIngredient[1] = new Array();
+	-->
+	</script>
+<!-- Yandex.Metrika counter -->
+<div style="display:none;"><script type="text/javascript">(function(w, c) { (w[c] = w[c] || []).push(function() { try { w.yaCounter7715218 = new Ya.Metrika({id:7715218, clickmap:true, accurateTrackBounce:true}); } catch(e) { } }); })(window, 'yandex_metrika_callbacks');</script></div><script src="//mc.yandex.ru/metrika/watch.js" type="text/javascript" defer="defer"></script>
+<noscript><div><img src="//mc.yandex.ru/watch/7715218" style="position:absolute; left:-9999px;" alt="" /></div></noscript><!-- /Yandex.Metrika counter -->
+</body>
+</html>
+<!--d14b6fbc03f5de3957c57257bdab9c91-->

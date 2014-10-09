@@ -1,9 +1,11 @@
 <?
 $APPLICATION->SetAdditionalCSS(SITE_TEMPLATE_PATH."/layout.css",true);
 /*$obCache = new CPageCache;
-if($USER->IsAdmin() || $obCache->StartDataCache((3*60*60), "search_form", "/")):
+if($USER->IsAdmin() || $obCache->StartDataCache((3*60*60), "search_form1", "/")):
 	CModule::IncludeModule("iblock");
+	require_once($_SERVER["DOCUMENT_ROOT"]."/classes/main.class.php");
 	$CFClub = CFClub::getInstance();*/
+	
 	global $arKitchens;
 	global $arDishType;
 	
@@ -17,9 +19,11 @@ if($USER->IsAdmin() || $obCache->StartDataCache((3*60*60), "search_form", "/")):
 	foreach($arDishType as $arItem){
 		$strDishID .= '"'.$arItem['ID'].'", ';
 		$strDishName .= '"'.$arItem['NAME'].'", ';
-	}?>
+	}
+	/**/
+	?>
 	<div id="bottom">
-		<?if($APPLICATION->GetCurDir() != "/recipes/" && $APPLICATION->GetCurDir() != "/"  && $APPLICATION->GetCurDir() != "/lavka/"){$APPLICATION->IncludeComponent("custom:store.banner.horizontal", "", Array(),false);}?>
+		<?if($APPLICATION->GetCurDir() != "/recipes/" && $APPLICATION->GetCurDir() != "/"  && $APPLICATION->GetCurDir() != "/lavka/" && $APPLICATION->GetCurDir() != "/iphone/"){$APPLICATION->IncludeComponent("custom:store.banner.horizontal", "", Array(),false);}?>
 		<?$APPLICATION->IncludeFile(BX_ROOT."/templates/fclub/include.footer.php", Array(), Array("MODE"=>"html"))?>
 		<div id="liveinternet" style="margin-top: 20px;">
 <!--LiveInternet counter-->
@@ -35,7 +39,9 @@ screen.colorDepth:screen.pixelDepth))+";u"+escape(document.URL)+
 //--></script>
 <!--/LiveInternet-->
 </div>
+<div id="bx-composite-banner" style="margin-top: 20px;"></div>
 	</div>
+	</div></div>
 	</div></div>
 	<div id="top_layer" style="display:none;"><iframe src="/iframe.html" width="10" height="10" frameborder="0"></iframe></div>
 	<?if(strpos($APPLICATION->GetCurDir(), "recipe/") !== false){?>
@@ -135,7 +141,7 @@ screen.colorDepth:screen.pixelDepth))+";u"+escape(document.URL)+
 			</div>
 			<div id="i_have_ingredients">
 				<div class="search_field">
-					<div class="search_input"><input type="text" class="text" value="Введите название" id="helper_smartsearch"><div class="search_list"><ul class="search_list"></ul></div></div>
+					<div class="search_input b-form-field"><input type="text" class="text" value="" data-placeholder="Введите название" id="helper_smartsearch"><div class="search_list"><ul class="search_list"></ul></div></div>
 				</div>
 				<div id="i_have_ingredients_group">
 					<ul>
@@ -237,7 +243,7 @@ screen.colorDepth:screen.pixelDepth))+";u"+escape(document.URL)+
 		<div class="slide_up_button"><div></div></div>
 	</div>
 </div>
-
+<??>
 	<script language="javascript" type="text/javascript">
 	<!--
 		var kitchenArray = new Array();
@@ -256,73 +262,6 @@ screen.colorDepth:screen.pixelDepth))+";u"+escape(document.URL)+
 	-->
 	</script>
 <?/*endif;*/?>
-<?/*?>
-	<div id="authorization_layer" style="display:none;">
-		<div class="relative">
-			<div class="padding">
-				<div class="bar">
-					<div class="act"><span>Авторизация</span><a href="#" rel="authorization_field" class="no_link">Авторизация</a></div>
-					<div><span>LiveJournal id</span><a href="#" rel="lj_id_field" class="no_link">LiveJournal id</a></div>
-					<div><span>Open id</span><a href="#" rel="open_id_field" class="no_link">Open id</a></div>
-					<div class="clear"></div>
-				</div>
-			<div class="body">
-				<div id="authorization_field" class="act">
-					<form action="/auth/index.php" method="post" name="authorization">
-						<input type="hidden" name="AUTH_FORM" value="Y" />
-						<input type="hidden" name="TYPE" value="AUTH" />
-						<input type='hidden' name='backurl' value='<?=$APPLICATION->GetCurPage()?>' />
-						<div class="fields">
-	
-							<div class="form_field">
-								<h5>Логин <span>?</span></h5>
-								<input type="text" class="text" name="USER_LOGIN">
-							</div>
-							<div class="form_field">
-								<h5>Пароль <span>?</span></h5>
-								<input type="password" class="text" name="USER_PASSWORD">
-	
-							</div>
-							<div class="clear"></div>
-							<div class="remember form_checkbox_pic"><img src="/images/checkbox.gif" width="12" height="12" alt=""><span>Запомнить меня</span><input type="hidden" value="N" name="USER_REMEMBER"></div>
-							
-							
-							<div class="forget"><div><a href="/registration/?backurl=<?=$APPLICATION->GetCurPage()?>">Зарегистрироваться!</a></div><a href="/auth/?forgot_password=yes&backurl=%2Findex.php">Забыли?</a></div>
-							<div class="clear"></div>
-						</div>
-					</form>
-				</div>
-				<div id="lj_id_field" >
-					<div class="fields">
-						<div class="form_field">
-							<h5>Имя пользователя <span>?</span></h5>
-							<input type="text" class="text" value="">
-						</div>
-					</div>
-					<form action="/auth/index.php" method="post" name="lj_id">
-					<input type='hidden' name='backurl' value='<?=$APPLICATION->GetCurPage()?>' />
-					<input type="hidden" name="OPENID_IDENTITY" value="">
-					</form>
-				</div>
-				
-				<div id="open_id_field">
-					<form action="/auth/index.php" method="post" name="open_id">
-					<input type='hidden' name='backurl' value='<?=$APPLICATION->GetCurPage()?>' />
-						<div class="fields">
-							<div class="form_field">
-								<h5>Имя пользователя <span>?</span></h5>
-								<input type="text" class="text" name="OPENID_IDENTITY" value="http://">
-							</div>
-						</div>
-					</form>
-				</div>
-			</div>
-			<div class="button">Войти</div>
-			</div>
-			<div class="close_icon"></div>
-		</div>
-	</div>
-<?*/?>
 <!-- Yandex.Metrika counter --><div style="display:none;"><script type="text/javascript">(function(w, c) { (w[c] = w[c] || []).push(function() { try { w.yaCounter7715218 = new Ya.Metrika({id:7715218, clickmap:true, accurateTrackBounce:true}); } catch(e) { } }); })(window, 'yandex_metrika_callbacks');</script></div><script src="//mc.yandex.ru/metrika/watch.js" type="text/javascript" defer="defer"></script><noscript><div><img src="//mc.yandex.ru/watch/7715218" style="position:absolute; left:-9999px;" alt="" /></div>
 </noscript><!-- /Yandex.Metrika counter -->
 

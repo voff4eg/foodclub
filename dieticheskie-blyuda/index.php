@@ -24,25 +24,42 @@ $APPLICATION->SetTitle("Диетические блюда на Foodclub.ru");
 </div>
  
 <div><?$APPLICATION->IncludeComponent(
-	"custom:recipes.list",
-	".default",
-	Array(
+	"custom:recipes.list", 
+	".default", 
+	array(
 		"IBLOCK_TYPE" => "-",
 		"IBLOCK_ID" => "5",
 		"TITLE" => "Рецепты диетических блюд",
-		"KITCHEN_LIST" => array(),
-		"MAIN_INGREDIENT_LIST" => array(),
-		"DISHTYPE_LIST" => array(),
-		"INGREDIENT_ID" => array(),
-		"TAG_LIST" => array(0=>"диетические",1=>"низкокалорийные",2=>"постные блюда",3=>"вегетарианское",4=>"Диета Дюкана",5=>"низкоуглеводные блюда",),
-		"NEWS_COUNT" => "40",
+		"KITCHEN_LIST" => array(
+		),
+		"MAIN_INGREDIENT_LIST" => array(
+		),
+		"DISHTYPE_LIST" => array(
+		),
+		"INGREDIENT_ID" => array(
+		),
+		"TAG_LIST" => array(
+			0 => "диетические",
+			1 => "низкокалорийные",
+			2 => "постные блюда",
+			3 => "вегетарианское",
+			4 => "Диета Дюкана",
+			5 => "низкоуглеводные блюда",
+		),
+		"NEWS_COUNT" => "50",
 		"SORT_BY1" => "ACTIVE_FROM",
 		"SORT_ORDER1" => "DESC",
 		"SORT_BY2" => "SORT",
 		"SORT_ORDER2" => "ASC",
 		"FILTER_NAME" => "",
-		"FIELD_CODE" => array(0=>"",1=>"",),
-		"PROPERTY_CODE" => array(0=>"",1=>"",),
+		"FIELD_CODE" => array(
+			0 => "",
+			1 => "",
+		),
+		"PROPERTY_CODE" => array(
+			0 => "",
+			1 => "",
+		),
 		"CHECK_DATES" => "Y",
 		"DETAIL_URL" => "",
 		"AJAX_MODE" => "N",
@@ -76,6 +93,7 @@ $APPLICATION->SetTitle("Диетические блюда на Foodclub.ru");
 		"DISPLAY_PICTURE" => "Y",
 		"DISPLAY_PREVIEW_TEXT" => "Y",
 		"AJAX_OPTION_ADDITIONAL" => ""
-	)
+	),
+	false
 );?></div>
  <?require($_SERVER["DOCUMENT_ROOT"]."/bitrix/footer.php");?>

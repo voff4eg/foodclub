@@ -1,4 +1,8 @@
  
+<div class="b-best-block__item"> 	<a href="/ingredient/baklazhany/" class="b-best-block__item__image" ><img src="/upload/medialibrary/41d/41dd025f93c6a3574c01be0cd7ee949f.jpg" width="100%" alt="Рецепты из баклажанов" title="Рецепты диетических блюд"  /></a> 	 
+  <h3><a href="/ingredient/baklazhany/" >Рецепты из баклажанов</a></h3>
+ </div>
+ 
 <div class="b-best-block__item"> 	<a href="/dieticheskie-blyuda/" class="b-best-block__item__image" ><img src="/upload/medialibrary/608/dieticheskie_bluda.jpg" width="100%" alt="Рецепты диетических блюд" title="Рецепты диетических блюд"  /></a> 	 
   <h3><a href="/dieticheskie-blyuda/" >Диетические блюда</a></h3>
  	 

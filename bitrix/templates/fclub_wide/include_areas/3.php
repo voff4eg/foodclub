@@ -1,8 +1,14 @@
  
+<div class="b-best-block__item"> 	 	<a href="/retsepty-dzhem/" class="b-best-block__item__image" ><img src="/upload/medialibrary/c4d/c4d35a304cba5af04233c9450f95664d.jpg" width="100%" alt="Рецепты джемов" title="Рецепты джемов"  /></a> 
+  <h3><a href="/retsepty-dzhem/" >Рецепты джемов</a></h3>
+ 	 
+  <p>Фруктовые и&nbsp;ягодные джемы&nbsp;&mdash; идеальное дополнение к&nbsp;чаю. Рецепты джемов из&nbsp;сезонных фруктов, с&nbsp;уменьшенным количеством сахара, джемы в&nbsp;мультиварке и&nbsp;микроволновке.</p>
+ </div>
+ 
 <div class="b-best-block__item"> 	 	<a href="/retsepty-pitstsy/" class="b-best-block__item__image" ><img src="/upload/medialibrary/f74/pitsa_recepti.jpg" width="100%" alt="Рецепты пиццы" title="Рецепты пиццы"  /></a> 
   <h3><a href="/retsepty-pitstsy/" >Рецепты Пиццы</a></h3>
  	 
-  <p>Сделать домашнюю пиццу? Проще простого: смотрите нашу подборку, выбирайте рецепт теста для пиццы и&nbsp;начинку. Домашняя пицца&nbsp;&mdash; это самый простой способ накормить всех, даже самых голодных.</p>
+  <p>Сделать домашнюю пиццу? Проще простого: смотрите нашу подборку, выбирайте рецепт теста для пиццы и&nbsp;начинку. Домашняя пицца&nbsp;— это самый простой способ накормить всех, даже самых голодных.</p>
  
   <p> Читайте также:</p>
  
@@ -41,14 +47,14 @@ if(strlen($strBanner_right) > 0){?>
  <?=$strBanner_right?></div>
  <?}?> 
 <div class="b-best-block__item"> 	 
-  <h3><a href="/kebabs/" >Шашлыки</a></h3>
+  <h3><a href="/shashlyk/" >Шашлыки</a></h3>
  	 
   <p>Готовясь к&nbsp;пикнику или дачным выходным, обязательно загляните в&nbsp;нашу подборку и&nbsp;выберите рецепт шашлыка. Может быть, вас вдохновит идея маринада для шашлыка или вы&nbsp;решите поэкспериментировать с&nbsp;выбором мяса.</p>
  
   <br />
  
   <br />
- <a href="/kebabs/" class="b-best-block__item__image" ><img src="/upload/best/kebabs.jpg" width="100%" alt="Рецепты шашлыков"  /></a> 
+ <a href="/shashlyk/" class="b-best-block__item__image" ><img src="/upload/best/kebabs.jpg" width="100%" alt="Рецепты шашлыков"  /></a> 
   <p>Читайте также:</p>
  
   <p><a target="_blank" href="/blogs/group/50/blog/272/" >Шашлыки от Stalic`a</a></p>

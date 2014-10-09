@@ -1,4 +1,4 @@
-
+ 
 <div id="bottom_nav"> 
   <table> <colgroup> <col class="column1"></col> <col class="column2"></col> <col class="column3"></col> <col class="column4"></col> <col class="column5"></col> </colgroup> 
     <tbody> 
@@ -18,7 +18,7 @@
            
             <li><noindex><a href="http://vkontakte.ru/club17967854" target="_blank" rel="nofollow" >ВКонтакте</a></noindex></li>
            
-            <li><noindex><a href="https://plus.google.com/u/0/118442365793857710655/posts?hl=ru" target="_blank" rel="nofollow" >Google+</a></noindex></li>
+            <li><noindex><a href="https://plus.google.com/+FoodclubRu" rel="nofollow" >Google+</a></noindex></li>
            
             <li><noindex><a href="http://pinterest.com/foodclubru/recipes/" target="_blank" rel="nofollow" >Pinterest</a></noindex></li>
            </ul>
@@ -150,3 +150,4 @@
 <div id="vkontakte_widget"> </div>
  
 <div id="facebook_widget"> </div>
+ 

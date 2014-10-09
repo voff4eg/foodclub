@@ -83,7 +83,6 @@ else:
 		}
 	}
 endif;
-echo "<!--<pre>";print_r($arItems);echo "</pre>-->";
 
 if(is_null($arItems)){
 	$bNull == true;
@@ -139,7 +138,7 @@ if(count($ID) == 0){
 		$Prop['PROPERTY_lib'] = "Y";
 	}
 	//$arNavStartParams = Array("nPageSize" => 25, "iNumPage"=>IntVal($_REQUEST["PAGER_1"]));
-	$rsRecipes = CIBlockElement::GetList(Array(), $Prop, false, /*$arNavStartParams*/false, Array("ID", "NAME", "CODE", "PREVIEW_TEXT", "CREATED_BY", "PREVIEW_PICTURE", "PROPERTY_dish_type", "PROPERTY_kitchen", "PROPERTY_comment_count"));
+	$rsRecipes = CIBlockElement::GetList(Array("show_counter" => "desc", "sort" => "asc"), $Prop, false, /*$arNavStartParams*/false, Array("ID", "NAME", "CODE", "PREVIEW_TEXT", "CREATED_BY", "PREVIEW_PICTURE", "PROPERTY_dish_type", "PROPERTY_kitchen", "PROPERTY_comment_count"));
 	while($arRecipe = $rsRecipes->GetNext()){
 		
 		$rsUser = CUser::GetByID($arRecipe['CREATED_BY']);

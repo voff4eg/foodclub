@@ -39,6 +39,7 @@ Thumbs.db
 ################ </The Octocat good rules> ################
 
 #BITRIX CMS
+bitrix/license_key.php
 bitrix/activities/bitrix/
 bitrix/admin
 bitrix/cache

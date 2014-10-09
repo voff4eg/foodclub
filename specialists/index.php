@@ -103,11 +103,11 @@ $APPLICATION->SetTitle("");?>
 	),
 	false
 );?> 
- </div> 
-  <div id="banner_space">
-	<?
-	$rsRandomDoUKnow = CIBlockElement::GetList(array("rand"=>"asc"),array("IBLOCK_CODE"=>"do_u_know"),false,false,array("ID","PREVIEW_TEXT"));
-	if($arRandomDoUKnow = $rsRandomDoUKnow->Fetch()){?>
+</div> 
+<div id="banner_space">
+<?
+$rsRandomDoUKnow = CIBlockElement::GetList(array("rand"=>"asc"),array("IBLOCK_CODE"=>"do_u_know"),false,false,array("ID","PREVIEW_TEXT"));
+if($arRandomDoUKnow = $rsRandomDoUKnow->Fetch()){?>
 	<div id="do-you-know-that" class="b-facts">
 		<div class="b-facts__heading">Знаете ли вы что:</div>
 		<div class="b-facts__content">
@@ -120,7 +120,7 @@ $APPLICATION->SetTitle("");?>
 		</div>
 	</div>
 	<?}?>
-  <?require($_SERVER["DOCUMENT_ROOT"]."/facebook_box.html");?> </div>
-  <div class="clear"></div>
- </div>
- <?require($_SERVER["DOCUMENT_ROOT"]."/bitrix/footer.php");?>
+<?require($_SERVER["DOCUMENT_ROOT"]."/facebook_box.html");?> </div>
+<div class="clear"></div>
+</div>
+<?require($_SERVER["DOCUMENT_ROOT"]."/bitrix/footer.php");?>

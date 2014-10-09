@@ -38,6 +38,7 @@ screen.colorDepth:screen.pixelDepth))+";u"+escape(document.URL)+
 //--></script>
 <!--/LiveInternet-->
 </div>
+<div id="bx-composite-banner" style="margin-top: 20px;"></div>
 	</div>
 	</div></div>
 	</div></div>
@@ -260,8 +261,8 @@ screen.colorDepth:screen.pixelDepth))+";u"+escape(document.URL)+
 	-->
 	</script>
 <?/*endif;*/?>
-<!-- Yandex.Metrika counter --><div style="display:none;"><script type="text/javascript">(function(w, c) { (w[c] = w[c] || []).push(function() { try { w.yaCounter7715218 = new Ya.Metrika({id:7715218, clickmap:true, accurateTrackBounce:true}); } catch(e) { } }); })(window, 'yandex_metrika_callbacks');</script></div><script src="//mc.yandex.ru/metrika/watch.js" type="text/javascript" defer="defer"></script><noscript><div><img src="//mc.yandex.ru/watch/7715218" style="position:absolute; left:-9999px;" alt="" /></div>
-</noscript><!-- /Yandex.Metrika counter -->
-
+<!-- Yandex.Metrika counter -->
+<div style="display:none;"><script type="text/javascript">(function(w, c) { (w[c] = w[c] || []).push(function() { try { w.yaCounter7715218 = new Ya.Metrika({id:7715218, clickmap:true, accurateTrackBounce:true}); } catch(e) { } }); })(window, 'yandex_metrika_callbacks');</script></div><script src="//mc.yandex.ru/metrika/watch.js" type="text/javascript" defer="defer"></script>
+<noscript><div><img src="//mc.yandex.ru/watch/7715218" style="position:absolute; left:-9999px;" alt="" /></div></noscript><!-- /Yandex.Metrika counter -->
 </body>
 </html>

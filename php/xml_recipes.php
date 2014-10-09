@@ -1,6 +1,7 @@
 <?$_SERVER["DOCUMENT_ROOT"] = "/home/webserver/www";
 require($_SERVER["DOCUMENT_ROOT"]."/bitrix/modules/main/include/prolog_before.php");
 	CModule::IncludeModule("iblock");
+	$SERVER_NAME = "www.foodclub.ru";
 	//chdir ('/srv/www/foodclub/public_html/');
 	chdir ('/srv/www/foodclub/');
 	//echo getcwd();
@@ -38,7 +39,7 @@ require($_SERVER["DOCUMENT_ROOT"]."/bitrix/modules/main/include/prolog_before.ph
 			"NAME" => $row["NAME"],
 			"CODE" => $row["CODE"],
 			"CREATED_BY" => $row["CREATED_BY"],
-			"DETAIL_PICTURE" => "http://".$_SERVER["SERVER_NAME"].CFile::GetPath($row["DETAIL_PICTURE"]),
+			"DETAIL_PICTURE" => "http://".$SERVER_NAME.CFile::GetPath($row["DETAIL_PICTURE"]),
 		);
 
 		$strPictureSRC[ $row["ID"] ] = $arRecipe["DETAIL_PICTURE"];
@@ -74,7 +75,7 @@ require($_SERVER["DOCUMENT_ROOT"]."/bitrix/modules/main/include/prolog_before.ph
 	while ($row = $res->Fetch()){
 		$arReciptSteps[ $row["IBLOCK_PROPERTY_ID"] ] = array(
 			"PREVIEW_TEXT" => $row["PREVIEW_TEXT"],
-			"PREVIEW_PICTURE" => "http://".$_SERVER["SERVER_NAME"].CFile::GetPath($row["PREVIEW_PICTURE"])
+			"PREVIEW_PICTURE" => "http://".$SERVER_NAME.CFile::GetPath($row["PREVIEW_PICTURE"])
 		);
 		$strPictureSRC[ $row["IBLOCK_PROPERTY_ID"] ] .= $arReciptSteps[ $row["IBLOCK_PROPERTY_ID"] ]["PREVIEW_PICTURE"];
 		$ElementId = $row["ID"];
@@ -135,7 +136,7 @@ require($_SERVER["DOCUMENT_ROOT"]."/bitrix/modules/main/include/prolog_before.ph
 			if(strpos($strPictureSRC[ $recipe["ID"] ], "]") === false || strpos($strPictureSRC[ $recipe["ID"] ], "[") === false){
 				$str_xml .= "<recipe>";
 				$str_xml .= "<name>".htmlspecialchars(strip_tags($recipe["NAME"]),ENT_QUOTES)."</name>";
-				$str_xml .= "<url>http://".$_SERVER["SERVER_NAME"]."/detail/".($recipe["CODE"] ? $recipe["CODE"] : $recipe["ID"])."/</url>";
+				$str_xml .= "<url>http://".$SERVER_NAME."/detail/".($recipe["CODE"] ? $recipe["CODE"] : $recipe["ID"])."/</url>";
 				$str_xml .= "<type>".htmlspecialchars(strip_tags($arDishTypes[ $recipe["PROPERTIES"]["dish_type"] ]["NAME"]),ENT_QUOTES)."</type>";
 				$str_xml .= "<cuisine-type>".htmlspecialchars(strip_tags($arKitchens[ $recipe["PROPERTIES"]["kitchen"] ]["NAME"]),ENT_QUOTES)."</cuisine-type>";
 				$str_xml .= "<author>".htmlspecialchars(strip_tags($arAuthors[ $recipe["CREATED_BY"] ]["LOGIN"]),ENT_QUOTES)."</author>";
@@ -152,7 +153,7 @@ require($_SERVER["DOCUMENT_ROOT"]."/bitrix/modules/main/include/prolog_before.ph
 				}
 				foreach($arReciptSteps[ $recipe["ID"] ] as $step){
 					if(intval($step["PREVIEW_PICTURE"]) > 0){
-						$str_xml .= "<photo>http://".$_SERVER["SERVER_NAME"].CFile::GetPath($step["PREVIEW_PICTURE"])."</photo>";
+						$str_xml .= "<photo>http://".$SERVER_NAME.CFile::GetPath($step["PREVIEW_PICTURE"])."</photo>";
 					}
 				}
 				$str_xml .= "<final-photo>".$recipe["DETAIL_PICTURE"]."</final-photo>";
